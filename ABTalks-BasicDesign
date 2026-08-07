@@ -350,8 +350,8 @@
     // ============================================================
     const MOCK = {
       profile: {
-        name: "Priya Sharma",
-        email: "priya@abtalks.in",
+        name: "Mihir Trivedi",
+        email: "MT@abtalks.in",
         avatar: "👩‍💻",
         streak: 12,
         xp: 1840,
@@ -369,8 +369,8 @@
         resources: ["https://leetcode.com/explore/", "https://www.geeksforgeeks.org/two-pointers/"]
       },
       submissions: [
-        { day: 11, github: "https://github.com/priya/day11", linkedin: "https://linkedin.com/in/priya/day11" },
-        { day: 10, github: "https://github.com/priya/day10", linkedin: "https://linkedin.com/in/priya/day10" }
+        { day: 11, github: "https://github.com/MT/day11", linkedin: "https://linkedin.com/in/MT/day11" },
+        { day: 10, github: "https://github.com/MT/day10", linkedin: "https://linkedin.com/in/MT/day10" }
       ],
       badges: [
         { name: "First Commit", icon: "🌟" },
@@ -379,7 +379,7 @@
       ],
       leaderboard: [
         { name: "Aarav", xp: 2450 },
-        { name: "Priya", xp: 1840 },
+        { name: "MT", xp: 1840 },
         { name: "Neha", xp: 1620 }
       ],
       weeklyActivity: [4, 5, 3, 6, 7, 6, 5] // Mon-Sun
