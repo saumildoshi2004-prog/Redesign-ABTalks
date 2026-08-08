@@ -702,3 +702,7 @@ Before finishing, verify that:
 * No console errors remain.
 * The website is fully responsive.
 * All existing features continue to work after enhancements.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+add and improve reset button and some smoothness in website make it perfect and professional
