@@ -227,10 +227,371 @@ h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-.01em;}
 .task-number{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:10px;background:rgba(99,102,241,.14);border:1px solid rgba(99,102,241,.3);margin-right:8px;font-weight:800}
 .info-item{display:flex;gap:9px;align-items:flex-start;margin:7px 0}
 .info-item .info-emoji{width:24px;flex:none}
-.activity-chart{position:relative;height:220px;margin-top:12px;padding:8px 0 0;} .activity-chart svg{width:100%;height:100%;overflow:visible;} .chart-grid{stroke:rgba(255,255,255,.08);stroke-width:1;} .chart-line{fill:none;stroke:url(#activityGrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;} .chart-area{fill:url(#activityArea);opacity:.28;} .chart-dot{fill:var(--cyan);stroke:var(--card);stroke-width:3;} .chart-value{font-family:var(--font-mono);font-size:10px;fill:var(--paper);font-weight:700;} .chart-label{font-family:var(--font-body);font-size:10px;fill:var(--dim);} .activity-summary{display:flex;justify-content:space-between;gap:8px;margin-top:10px;} .activity-summary .mini-stat{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;} .mini-stat .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;} .mini-stat .l{font-size:9px;color:var(--dim);margin-top:2px;} .focus-card{background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(103,94,242,.08));border:1px solid rgba(34,211,238,.18);border-radius:var(--r-lg);padding:16px;} .focus-row{display:flex;align-items:center;gap:12px;} .focus-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--grad-cyan);font-size:1.25rem;} .activity-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}.activity-label{text-align:center;font-size:10px;color:var(--dim)}.activity-cell{height:28px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line)}.activity-cell.l1{background:rgba(52,211,153,.22)}.activity-cell.l2{background:rgba(52,211,153,.4)}.activity-cell.l3{background:rgba(52,211,153,.62)}.activity-cell.l4{background:rgba(52,211,153,.85)}<style>.day-number,.day-tile,.challenge-day-number{cursor:default!important;user-select:none!important}</style>
+.activity-chart{position:relative;height:220px;margin-top:12px;padding:8px 0 0;} .activity-chart svg{width:100%;height:100%;overflow:visible;} .chart-grid{stroke:rgba(255,255,255,.08);stroke-width:1;} .chart-line{fill:none;stroke:url(#activityGrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;} .chart-area{fill:url(#activityArea);opacity:.28;} .chart-dot{fill:var(--cyan);stroke:var(--card);stroke-width:3;} .chart-value{font-family:var(--font-mono);font-size:10px;fill:var(--paper);font-weight:700;} .chart-label{font-family:var(--font-body);font-size:10px;fill:var(--dim);} .activity-summary{display:flex;justify-content:space-between;gap:8px;margin-top:10px;} .activity-summary .mini-stat{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;} .mini-stat .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;} .mini-stat .l{font-size:9px;color:var(--dim);margin-top:2px;} .focus-card{background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(103,94,242,.08));border:1px solid rgba(34,211,238,.18);border-radius:var(--r-lg);padding:16px;} .focus-row{display:flex;align-items:center;gap:12px;} .focus-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--grad-cyan);font-size:1.25rem;} .activity-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}.activity-label{text-align:center;font-size:10px;color:var(--dim)}.activity-cell{height:28px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line)}.activity-cell.l1{background:rgba(52,211,153,.22)}.activity-cell.l2{background:rgba(52,211,153,.4)}.activity-cell.l3{background:rgba(52,211,153,.62)}.activity-cell.l4{background:rgba(52,211,153,.85)}<style>.day-number,.day-tile,.challenge-day-number{cursor:default!important;user-select:none!important}
+/* Polished mobile-first streak header */
+.dashboard-topbar{align-items:stretch!important;gap:10px!important}
+.dashboard-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.dashboard-avatar{
+  width:46px;height:46px;flex:0 0 46px;border-radius:15px;
+  display:grid;place-items:center;background:linear-gradient(135deg,#675EF2,#8B5CF6);
+  color:#fff;font-weight:800;font-size:1rem;box-shadow:0 8px 22px rgba(103,94,242,.24);
+}
+.dashboard-name{min-width:0}
+.dashboard-name h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dashboard-streak-card{
+  display:flex;align-items:center;gap:10px;margin-top:10px;padding:12px 14px;
+  border:1px solid rgba(245,165,36,.20);border-radius:17px;
+  background:linear-gradient(135deg,rgba(245,165,36,.10),rgba(245,165,36,.035));
+}
+.dashboard-streak-icon{
+  width:40px;height:40px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(245,165,36,.12);color:var(--amber);font-size:1.05rem;
+}
+.dashboard-streak-main{flex:1;min-width:0}
+.dashboard-streak-main .eyebrow{
+  color:var(--dim);font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;
+}
+.dashboard-streak-main .number{font-family:var(--font-mono);font-size:1.02rem;font-weight:800;color:#FFD166;margin-top:2px}
+.dashboard-streak-meta{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.dashboard-streak-meta span{
+  font-size:.64rem;color:var(--dim);padding:5px 8px;border-radius:999px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+}
+.dashboard-streak-meta b{color:var(--paper)}
+.dashboard-streak-card.is-zero{border-color:rgba(139,132,247,.25);background:rgba(103,94,242,.06)}
+.dashboard-streak-card.is-zero .dashboard-streak-icon{color:var(--indigo-soft);background:rgba(103,94,242,.12)}
+.dashboard-streak-card.is-zero .number{color:var(--indigo-soft)}
+@media(min-width:700px){
+  .dashboard-streak-card{max-width:520px}
+}
+
+</style>
 <style>.weekly-chart-card{padding:16px 16px 12px!important}.today-focus-card{border-left:3px solid var(--primary)!important}</style>
 <style>
 :root{--primary:var(--indigo);--primary-light:var(--indigo-soft);--secondary:var(--violet);--border:var(--line);--muted:var(--dim);--muted-2:var(--dim-2);--success:var(--mint);--warning:var(--amber);--danger:var(--rose)}
+</style>
+
+<style>
+.profile-overlay{position:fixed;inset:0;z-index:300;display:none;align-items:flex-end;justify-content:center;background:rgba(2,6,23,.72);backdrop-filter:blur(8px);padding:14px}
+.profile-overlay.show{display:flex}
+.profile-modal{width:min(420px,100%);max-height:92dvh;overflow:auto;background:var(--surface,#0c1220);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.profile-modal h3{margin:0;font-size:1.25rem}.profile-modal .sub{color:var(--dim);font-size:.82rem;margin:4px 0 18px}
+.profile-form{display:grid;gap:12px}.profile-form label{font-size:.76rem;color:var(--dim);font-weight:600;display:block;margin-bottom:5px}.profile-form input,.profile-form select{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--paper)}
+.profile-actions{display:flex;gap:9px;margin-top:16px}.profile-actions .btn{flex:1}
+.profile-avatar-row{display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px}.profile-avatar-preview{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--grad-brand);font-weight:800;font-size:1.1rem}
+.empty-profile-card{border:1px dashed rgba(139,132,247,.45);background:rgba(103,94,242,.06)}
+</style>
+
+<style id="abtalks-design-v3">
+:root{
+  --ink:#070910!important;
+  --surface:#0b0d16!important;
+  --surface-2:#111421!important;
+  --card:#10131e!important;
+  --card-flat:#10131e!important;
+  --line:rgba(148,163,184,.14)!important;
+  --dim:#98a0b4!important;
+  --dim-2:#667085!important;
+  --paper:#f5f7fb!important;
+  --indigo:#675EF2!important;
+  --indigo-soft:#8b84f7!important;
+  --violet:#a855f7!important;
+  --cyan:#22d3ee!important;
+  --mint:#4ade80!important;
+  --amber:#ffb21a!important;
+  --rose:#fb7185!important;
+  --primary:var(--indigo)!important;
+  --primary-light:var(--indigo-soft)!important;
+  --secondary:var(--violet)!important;
+  --accent:var(--cyan)!important;
+  --success:var(--mint)!important;
+  --warning:var(--amber)!important;
+  --danger:var(--rose)!important;
+  --border:var(--line)!important;
+  --muted:var(--dim)!important;
+  --muted-2:var(--dim-2)!important;
+}
+*{box-sizing:border-box}
+html{background:#070910}
+body{
+  margin:0!important;
+  min-height:100vh;
+  color:var(--paper)!important;
+  background:
+    radial-gradient(900px 420px at 50% -10%,rgba(103,94,242,.16),transparent 58%),
+    radial-gradient(500px 320px at 100% 25%,rgba(168,85,247,.07),transparent 65%),
+    #070910!important;
+  font-family:Inter,system-ui,sans-serif!important;
+}
+.container{
+  width:min(100%,430px)!important;
+  max-width:430px!important;
+  margin:0 auto!important;
+  padding:18px 16px 104px!important;
+}
+.page{width:100%;max-width:430px;margin:0 auto}
+.card,.focus-card,.stat,.quote{
+  background:linear-gradient(180deg,rgba(20,23,35,.96),rgba(12,15,25,.96))!important;
+  border:1px solid rgba(148,163,184,.13)!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.18)!important;
+  border-radius:22px!important;
+}
+.card{padding:16px!important}
+.card.accent{
+  background:
+    radial-gradient(420px 180px at 0% 0%,rgba(103,94,242,.13),transparent 65%),
+    linear-gradient(180deg,#17172a,#10131e)!important;
+  border-color:rgba(103,94,242,.22)!important;
+}
+.btn{
+  border-radius:14px!important;
+  min-height:44px!important;
+  font-weight:700!important;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#675ef2,#7c3aed)!important;
+  border:0!important;
+  box-shadow:0 10px 24px rgba(103,94,242,.24)!important;
+}
+.btn-secondary{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid var(--line)!important;
+  color:#e8ebf3!important;
+}
+.badge{
+  border-radius:999px!important;
+  background:rgba(103,94,242,.13)!important;
+  border:1px solid rgba(103,94,242,.18)!important;
+  color:#b9b4ff!important;
+}
+.bottom-nav{
+  position:fixed!important;
+  left:50%!important;
+  bottom:0!important;
+  transform:translateX(-50%)!important;
+  width:min(100%,430px)!important;
+  height:78px!important;
+  z-index:100!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom))!important;
+  background:rgba(8,10,17,.94)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+  border-top:1px solid rgba(148,163,184,.13)!important;
+}
+.nav-item{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#8d95a8!important;
+  font-size:.66rem!important;
+  font-weight:600!important;
+  border-radius:15px!important;
+}
+.nav-item i{font-size:1.05rem!important;transition:.2s}
+.nav-item.active{color:#9b91ff!important}
+.nav-item.active:before{
+  content:""!important;
+  position:absolute!important;
+  top:-8px!important;
+  width:44px!important;
+  height:2px!important;
+  border-radius:10px!important;
+  background:linear-gradient(90deg,#675ef2,#a855f7)!important;
+}
+.nav-item.active i{filter:drop-shadow(0 0 8px rgba(103,94,242,.55))}
+.nav-dot{display:none!important}
+
+.mobile-brandbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:-2px 0 20px;padding:2px 2px;
+}
+.brand-lockup{display:flex;align-items:center;gap:9px}
+.brand-mark{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#675ef2,#a855f7);font-weight:900;color:#fff;
+  box-shadow:0 8px 22px rgba(103,94,242,.24)
+}
+.brand-name{font-family:"Space Grotesk";font-size:1.15rem;font-weight:800;letter-spacing:-.5px}
+.brand-name span{color:#fff}.brand-name b{color:#8b84f7}
+.brand-action{
+  width:36px;height:36px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);color:#c8cddd;display:grid;place-items:center;
+}
+.hero-greeting{margin-bottom:16px}
+.hero-greeting .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#777f93;font-weight:800}
+.hero-greeting h1{font-family:"Space Grotesk";font-size:1.55rem;letter-spacing:-.8px;margin:4px 0}
+.hero-greeting p{color:#858da0;font-size:.82rem;margin:0;line-height:1.45}
+
+.dashboard-streak-card{
+  display:grid!important;grid-template-columns:52px 1fr auto!important;align-items:center!important;
+  gap:11px!important;margin:0 0 13px!important;padding:13px!important;
+  border:1px solid rgba(255,178,26,.18)!important;border-radius:20px!important;
+  background:linear-gradient(135deg,rgba(255,178,26,.085),rgba(255,178,26,.025))!important;
+}
+.dashboard-streak-icon{
+  width:52px!important;height:52px!important;border-radius:17px!important;
+  background:rgba(255,178,26,.12)!important;color:#ffb21a!important;
+  display:grid!important;place-items:center!important;font-size:1.3rem!important;
+  box-shadow:inset 0 0 0 1px rgba(255,178,26,.08)!important;
+}
+.dashboard-streak-main .eyebrow{font-size:.62rem!important;text-transform:uppercase!important;letter-spacing:.08em!important;color:#81899b!important;font-weight:800!important}
+.dashboard-streak-main .number{font-size:1.08rem!important;color:#ffc247!important;font-weight:800!important;margin-top:3px}
+.dashboard-streak-meta{display:flex!important;flex-direction:column!important;gap:5px!important;align-items:flex-end!important}
+.dashboard-streak-meta span{font-size:.61rem!important;color:#8b93a6!important;padding:4px 7px!important;border-radius:999px!important;background:rgba(255,255,255,.035)!important;border:1px solid var(--line)!important}
+.dashboard-avatar{width:44px!important;height:44px!important;border-radius:15px!important;background:linear-gradient(135deg,#675ef2,#8b5cf6)!important;box-shadow:0 8px 22px rgba(103,94,242,.22)!important}
+
+.today-focus{
+  padding:17px!important;
+  border-radius:22px!important;
+  background:
+    radial-gradient(360px 180px at 0% 0%,rgba(103,94,242,.16),transparent 68%),
+    linear-gradient(180deg,#131523,#0f121c)!important;
+  border:1px solid rgba(103,94,242,.22)!important;
+}
+.today-focus-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:13px}
+.today-focus-label{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.88rem}
+.today-focus-icon{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:rgba(103,94,242,.16);color:#9b91ff}
+.today-task-main{display:flex;gap:12px;align-items:center}
+.today-task-emoji{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;font-size:1.7rem;background:rgba(103,94,242,.12);border:1px solid rgba(103,94,242,.15)}
+.today-task-title{font-family:"Space Grotesk";font-size:1.02rem;font-weight:800;line-height:1.2}
+.today-task-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.today-task-meta span{font-size:.65rem;color:#9da5b7}
+.today-task-arrow{margin-left:auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#675ef2;color:#fff;flex:0 0 40px;box-shadow:0 8px 20px rgba(103,94,242,.28)}
+
+.progress-card .progress{height:9px!important;background:#23262e!important;border-radius:99px!important}
+.progress-card .progress-fill{background:linear-gradient(90deg,#4ade80,#72df7e)!important;border-radius:99px!important}
+
+.activity-chart{margin:6px -4px 0!important}
+.activity-chart svg{width:100%!important;height:auto!important;display:block}
+.chart-grid{stroke:rgba(148,163,184,.09)!important}
+.chart-line{stroke:#4aa3ff!important;stroke-width:4!important;fill:none!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.chart-area{fill:url(#activityArea)!important;opacity:.42!important}
+.chart-dot{fill:#278bff!important;stroke:#0b0d16!important;stroke-width:3!important}
+.chart-value{fill:#8791a5!important;font:600 10px Inter!important}
+.chart-label{fill:#6f788c!important;font:600 10px Inter!important}
+
+.rank-highlight{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,178,26,.09),rgba(255,255,255,.02));
+  border:1px solid rgba(255,178,26,.15);
+}
+.rank-number{font-family:"Space Grotesk";font-size:2.2rem;font-weight:900;color:#ffbd35;line-height:1}
+.rank-caption{font-size:.68rem;color:#81899b;margin-top:5px}
+.rank-xp{font-size:1.05rem;font-weight:800}
+
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:"Space Grotesk";font-weight:800}
+.mini-stat .v{color:#f4f6fb!important;font-weight:800!important}
+.quote{padding:16px!important;color:#b9c0cf!important}
+
+.day-strip{
+  display:flex!important;gap:7px!important;overflow:hidden!important;padding:4px 0 12px!important;
+}
+.day-dot{
+  flex:0 0 34px!important;width:34px!important;height:34px!important;border-radius:50%!important;
+  border:1px solid var(--line)!important;background:rgba(255,255,255,.025)!important;color:#737c90!important;
+}
+.day-dot.current{background:#675ef2!important;color:#fff!important;border-color:#675ef2!important;box-shadow:0 0 0 5px rgba(103,94,242,.11)!important}
+.day-dot.done{color:#4ade80!important;border-color:rgba(74,222,128,.3)!important}
+.day-dot:disabled{opacity:1!important}
+
+.profile-overlay{background:rgba(2,4,8,.78)!important;backdrop-filter:blur(10px)!important}
+.profile-modal{
+  width:min(100% - 22px,410px)!important;
+  border-radius:26px!important;
+  background:linear-gradient(180deg,#151824,#0d1019)!important;
+  border:1px solid rgba(148,163,184,.15)!important;
+  box-shadow:0 24px 80px rgba(0,0,0,.48)!important;
+}
+.profile-avatar-preview{background:linear-gradient(135deg,#675ef2,#a855f7)!important;border:0!important}
+.profile-form input,.profile-form select{
+  background:#0c0f18!important;border:1px solid rgba(148,163,184,.15)!important;color:#eef1f7!important;border-radius:13px!important;
+}
+.profile-form input:focus,.profile-form select:focus{border-color:#675ef2!important;box-shadow:0 0 0 3px rgba(103,94,242,.12)!important;outline:none!important}
+
+.task-lock-modal{
+  background:linear-gradient(180deg,#171a28,#0e111a)!important;border:1px solid rgba(148,163,184,.14)!important;border-radius:25px!important
+}
+
+@media(min-width:700px){
+  .container{max-width:900px!important;padding-left:24px!important;padding-right:24px!important}
+  .page{max-width:900px}
+  .bottom-nav{max-width:520px;border:1px solid var(--line);border-radius:22px 22px 0 0}
+  .dashboard-grid{display:grid!important;grid-template-columns:1.35fr .65fr!important;gap:14px}
+}
+</style>
+
+<style id="home-edit-button-fix">
+/* Small Edit Info button — top-right on Home */
+#setupProfileBtn{
+  width:34px!important;
+  min-width:34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:0!important;
+  border-radius:11px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin-left:auto!important;
+  flex:0 0 34px!important;
+  font-size:.78rem!important;
+}
+#setupProfileBtn i{margin:0!important}
+.dashboard-identity{width:100%!important}
+@media(max-width:699px){
+  .dashboard-topbar{width:100%!important}
+  .dashboard-identity{padding-right:1px!important}
+}
+</style>
+
+
+<style id="matched-dashboard-details">
+.dashboard-streak-panel{
+  border:1px solid rgba(255,178,26,.16)!important;
+  border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(18,21,31,.98),rgba(10,13,21,.98))!important;
+  padding:15px!important;
+  margin-bottom:13px!important;
+}
+.streak-main-row{display:grid;grid-template-columns:1fr 118px;gap:12px;align-items:center}
+.streak-big{display:flex;align-items:center;gap:12px}
+.streak-fire-ring{
+  width:68px;height:68px;border-radius:50%;display:grid;place-items:center;flex:0 0 68px;
+  border:2px solid #ffb21a;background:radial-gradient(circle,rgba(255,178,26,.18),rgba(255,178,26,.04));
+  box-shadow:0 0 0 6px rgba(255,178,26,.06),0 0 28px rgba(255,178,26,.14);
+  color:#ffb21a;font-size:1.7rem;
+}
+.streak-label{font-size:.68rem;color:#8c94a6;display:flex;gap:5px;align-items:center}
+.streak-number{font-family:"Space Grotesk";font-size:1.75rem;font-weight:900;color:#ffc247;line-height:1.05;margin-top:2px}
+.streak-sub{font-size:.72rem;color:#a2a9b8;margin-top:4px}
+.streak-side{display:grid;gap:8px}
+.streak-side-box{padding:8px 9px;border-radius:12px;background:rgba(255,255,255,.028);border:1px solid var(--line)}
+.streak-side-box .label{font-size:.58rem;color:#777f92;display:flex;gap:5px;align-items:center}
+.streak-side-box .value{font-size:.76rem;font-weight:800;margin-top:2px}
+.week-row{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:17px;padding-top:12px;border-top:1px solid rgba(148,163,184,.08)}
+.week-day{text-align:center;color:#70798d;font-size:.59rem;font-weight:600}
+.week-status{width:27px;height:27px;margin:5px auto 0;border-radius:50%;display:grid;place-items:center;font-size:.65rem}
+.week-status.done{color:#52e47b;border:1px solid rgba(82,228,123,.35);background:rgba(82,228,123,.08)}
+.week-status.missed{color:#fb7185;border:1px solid rgba(251,113,133,.25);background:rgba(251,113,133,.06)}
+.week-status.today{color:#ffb21a;border:1px solid #ffb21a;background:rgba(255,178,26,.08);box-shadow:0 0 0 4px rgba(255,178,26,.05)}
+.consistency-line{display:flex;align-items:center;gap:7px;margin:13px -15px -15px;padding:11px 15px;border-top:1px solid rgba(148,163,184,.08);color:#a5adbd;font-size:.7rem}
+.consistency-line i{color:#a855f7}
+.info-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.info-stat{padding:10px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:13px}
+.info-stat .v{font-size:1rem;font-weight:900}.info-stat .l{font-size:.58rem;color:#7e8799;margin-top:2px}
+@media(max-width:360px){.streak-main-row{grid-template-columns:1fr}.streak-side{grid-template-columns:1fr 1fr}}
+</style>
+
+<style>
+.week-row .week-day.today-label{color:#e6e9f1}
+.day-strip .day-dot{cursor:default!important;pointer-events:none!important}
 </style>
 </head>
 <body>
@@ -244,11 +605,32 @@ h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-.01em;}
   </div>
 </div>
 
+<div class="profile-overlay" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+  <div class="profile-modal">
+    <div class="flex-between">
+      <div><h3 id="profileTitle">👤 Set up your profile</h3><div class="sub">This is local demo data — no account or authentication needed.</div></div>
+      <button class="btn btn-secondary btn-sm" id="profileClose" aria-label="Close">✕</button>
+    </div>
+    <div class="profile-avatar-row">
+      <div class="profile-avatar-preview" id="profilePreview">👨‍💻</div>
+      <div><div class="fw-7" id="profilePreviewName">Your profile</div><div class="text-xs text-muted">Your name and initials appear across ABTalks.</div></div>
+    </div>
+    <div class="profile-form" style="margin-top:13px;">
+      <div><label for="profileName">Full name *</label><input id="profileName" type="text" maxlength="40" placeholder="e.g. Saumil Doshi" autocomplete="name"></div>
+      <div><label for="profileCollege">College / University</label><input id="profileCollege" type="text" maxlength="70" placeholder="e.g. Indus University"></div>
+      <div><label for="profileCourse">Course / Branch</label><input id="profileCourse" type="text" maxlength="60" placeholder="e.g. B.Tech · Information Technology"></div>
+      <div><label for="profileGoal">Career goal</label><select id="profileGoal"><option value="Software Developer">Software Developer</option><option value="Frontend Developer">Frontend Developer</option><option value="Backend Developer">Backend Developer</option><option value="Full Stack Developer">Full Stack Developer</option><option value="Data / AI Engineer">Data / AI Engineer</option></select></div>
+    </div>
+    <div class="profile-actions"><button class="btn btn-secondary" id="profileCancel">Cancel</button><button class="btn btn-primary" id="profileSave">Save profile ✓</button></div>
+  </div>
+</div>
+
 <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Main navigation">
-  <button class="nav-item" data-page="dashboard" aria-label="Dashboard"><i class="fas fa-house"></i><span>Home</span></button>
-  <button class="nav-item" data-page="day" aria-label="Today's challenge"><i class="fas fa-terminal"></i><span>Today</span><span class="nav-dot" id="dayDot" hidden></span></button>
-  <button class="nav-item" data-page="leaderboard" aria-label="Leaderboard"><i class="fas fa-ranking-star"></i><span>Rank</span></button>
-  <button class="nav-item" data-page="landing" aria-label="About ABTalks"><i class="fas fa-circle-info"></i><span>About</span></button>
+  <button class="nav-item" data-page="dashboard" aria-label="Home"><i class="fas fa-house"></i><span>Home</span></button>
+  <button class="nav-item" data-page="day" aria-label="Challenge"><i class="far fa-calendar"></i><span>Challenge</span><span class="nav-dot" id="dayDot" hidden></span></button>
+  <button class="nav-item" data-page="progress" aria-label="Progress"><i class="fas fa-chart-line"></i><span>Progress</span></button>
+  <button class="nav-item" data-page="leaderboard" aria-label="Rank"><i class="fas fa-trophy"></i><span>Rank</span></button>
+  <button class="nav-item" data-page="profile" aria-label="Profile"><i class="far fa-user"></i><span>Profile</span></button>
 </nav>
 
 <main id="app" class="container" role="main"></main>
@@ -361,53 +743,60 @@ const QUOTES=[
 "The only bad practice day is the one you skipped."
 ];
 
-const STORAGE_KEY="abtalks_progress_v2";
+const STORAGE_KEY="abtalks_demo_matched_v3";
 function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
 function todayStart(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function dateKey(d){return d.toISOString().slice(0,10);}
 function escapeAttr(str){return String(str==null?"":str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function defaultState(){
+  // Demo state for review:
+  // Day 1,2,3,4,6,7 completed; Day 5 missed; current day = 8.
   const submissions=[];
-  for(let i=0;i<7;i++){
-    const day=7-i;
-    const d=new Date();
-    d.setHours(0,0,0,0);
-    d.setDate(d.getDate()-i);
+  [1,2,3,4,6,7].forEach(day=>{
+    const d=todayStart();
+    d.setDate(d.getDate()-(8-day));
+    d.setHours(10,30,0,0);
     submissions.push({
       day,
-      github:"https://github.com/mihir-t/abtalks-day-"+day,
-      linkedin:"https://linkedin.com/posts/mihir-trivedi-day-"+day,
+      github:`https://github.com/abtalks/demo-day-${day}`,
+      linkedin:`https://www.linkedin.com/posts/abtalks-demo-day-${day}`,
       submittedAt:d.toISOString()
     });
-  }
-
-  const joined=new Date();
-  joined.setHours(0,0,0,0);
-  joined.setDate(joined.getDate()-6);
+  });
 
   return {
     profile:{
       name:"Mihir Trivedi",
       initials:"MT",
-      joined:joined.toISOString(),
-      careerReadinessBase:38,
-      careerReadiness:45,
-      xp:submissions.length*50,
+      college:"Indus University",
+      course:"Information Technology",
+      goal:"Software Developer",
+      profileComplete:true,
+      joined:new Date(Date.now()-7*86400000).toISOString(),
+      careerReadinessBase:34,
+      careerReadiness:44,
+      xp:300,
       level:1,
-      streak:7
+      streak:2,
+      bestStreak:4
     },
     submissions,
-    badges:[],
+    badges:[
+      {name:"First Commit",icon:"🌟",date:"Day 1"},
+      {name:"Getting Started",icon:"🚀",date:"Day 3"}
+    ],
     badgesSeenAt:Date.now(),
     checklists:{},
     currentDay:8,
-    weeklyActivity:[3,5,2,6,4,7,3],
+    weeklyActivity:[1,3,2,4,1,2,3],
     leaderboard:[
-      {name:"Mihir Trivedi",xp:submissions.length*50,streak:7},
-      {name:"Aarav Shah",xp:300,streak:5},
-      {name:"Riya Patel",xp:250,streak:4},
-      {name:"Dev Mehta",xp:200,streak:3}
+      {name:"Mihir Trivedi",xp:300,streak:2,isYou:true,initials:"MT"},
+      {name:"Aarav Shah",xp:2450,streak:28},
+      {name:"Neha Kapoor",xp:1980,streak:22},
+      {name:"Vikram Rao",xp:1720,streak:19},
+      {name:"Priya Nair",xp:890,streak:11},
+      {name:"Arjun Mehta",xp:610,streak:9}
     ],
     quotes:QUOTES
   };
@@ -571,6 +960,8 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
         case "dashboard": renderDashboard(); break;
         case "day": renderDay(); break;
         case "leaderboard": renderLeaderboard(); break;
+        case "progress": renderProgress(); break;
+        case "profile": renderDashboard(); setTimeout(openProfile, 0); break;
         default: renderDashboard();
       }
       updateNav();
@@ -588,99 +979,127 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
 
     // ---------- LANDING ----------
     function renderLanding() {
-      app.innerHTML = `
-        <div class="page">
-          <div style="text-align:center;padding:24px 0 12px;">
-            <div style="font-size:2.8rem;margin-bottom:6px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
-            <h1 style="font-size:2.3rem;font-weight:900;letter-spacing:-1.2px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
-            <p class="text-muted" style="font-size:1rem;margin:6px auto 18px;max-width:280px;">60-day coding challenge · built for India</p>
-            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:260px;margin:0 auto;">
-              <i class="fas fa-bolt"></i> Join the challenge
-            </button>
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 14px;">
-            ${[
-              { v:"60", l:"days" },
-              { v:"1.2k+", l:"students" },
-              { v:"89%", l:"completion" }
-            ].map(s => `
-              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--border);">
-                <div style="font-size:1.55rem;font-weight:800;color:var(--indigo-soft);background:linear-gradient(135deg,var(--indigo-soft),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
-                <div style="font-size:11px;color:var(--muted);font-weight:500;">${s.l}</div>
-              </div>
-            `).join("")}
-          </div>
-
-          <div class="card">
-            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
-              <i class="fas fa-compass" style="color:var(--primary);"></i> How it works
-            </h3>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-              ${[
-                "Daily coding task (20–40 min)",
-                "Push your solution to GitHub",
-                "Share one learning on LinkedIn",
-                "Submit links & protect your streak"
-              ].map((t,i) => `
-                <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.025);padding:11px 13px;border-radius:12px;">
-                  <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span>
-                  <span style="font-size:0.9rem;">${t}</span>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-
-          <div class="card flat">
-            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
-              <i class="fas fa-star" style="color:var(--warning);"></i> Why ABTalks?
-            </h3>
-            <ul style="list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;">
-              ${[
-                "Build a real, public portfolio",
-                "Daily accountability & streaks",
-                "Earn XP, levels & badges",
-                "Join a community of doers"
-              ].map(t => `
-                <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;">
-                  <span style="color:var(--success);">✓</span> ${t}
-                </li>
-              `).join("")}
-            </ul>
-          </div>
-
-          ${[
-            { t:"“ABTalks turned my coding habit around. I went from zero to job-ready in 60 days.”", a:"— Ananya, NIT Trichy" },
-            { t:"“The streak system kept me going even on tough days. Best decision ever.”", a:"— Rohan, VIT" }
-          ].map(q => `
-            <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--primary);padding:14px 15px;border-radius:12px;margin:8px 0;">
-              <p style="font-size:0.9rem;font-style:italic;color:#E2E8F0;line-height:1.5;">${q.t}</p>
-              <span class="text-xs text-muted" style="margin-top:5px;display:block;font-weight:500;">${q.a}</span>
-            </div>
-          `).join("")}
-
-          <div class="card">
-            <h3 class="fw-7" style="font-size:1.02rem;">FAQ</h3>
-            ${[
-              { q:"Is it free?", a:"Yes — completely free for Indian college students." },
-              { q:"What if I miss a day?", a:"Your streak resets, but you can always catch up on previous days." },
-              { q:"How much time per day?", a:"Most tasks take 20–40 minutes. Day 60 is a mini project." }
-            ].map((f,i,arr) => `
-              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:13px 0;">
-                <h4 class="fw-6" style="font-size:0.92rem;display:flex;gap:9px;align-items:center;">
-                  <span class="badge">Q</span> ${f.q}
-                </h4>
-                <p class="text-muted text-sm" style="margin-top:3px;padding-left:30px;">${f.a}</p>
-              </div>
-            `).join("")}
-          </div>
-
-          <p class="text-center text-muted" style="font-size:0.7rem;letter-spacing:0.3px;padding:16px 0 6px;">
-            © 2026 ABTalks · Made with ❤️ in India
-          </p>
+  app.innerHTML = `
+    <div class="page">
+      <div class="mobile-brandbar">
+        <div class="brand-lockup">
+          <div class="brand-mark">AB</div>
+          <div class="brand-name"><b>AB</b><span>Talks</span></div>
         </div>
-      `;
-      $("#joinBtn")?.addEventListener("click", () => { page = "dashboard"; render(); });
+        <button class="brand-action" id="headerProfileBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+
+      <div style="text-align:center;padding:5px 0 10px;">
+        <span class="eyebrow">60 Days. Build. Share. Grow.</span>
+        <h1 style="font-family:'Space Grotesk';font-size:2.35rem;line-height:1.02;margin:18px 0 8px;letter-spacing:-1.3px;">
+          Build in Public.<br>Grow Your <span style="color:#8b84f7;">Future.</span>
+        </h1>
+        <p class="text-muted" style="font-size:.86rem;line-height:1.55;max-width:310px;margin:0 auto;">
+          ABTalks is a 60-day challenge for students to build real projects, share them online, and become career ready.
+        </p>
+        <button class="btn btn-primary" id="joinBtn" style="margin:22px auto 0;max-width:310px;">
+          Start Your 60-Day Challenge <i class="fas fa-arrow-right"></i>
+        </button>
+        <div class="text-xs text-muted" style="margin-top:11px;">🚀 Join 1.2K+ students already building</div>
+      </div>
+
+      <div class="card" style="margin-top:18px;padding:12px;">
+        <div style="height:180px;border-radius:17px;display:grid;place-items:center;position:relative;overflow:hidden;background:
+          radial-gradient(circle at 50% 70%,rgba(103,94,242,.32),transparent 38%),
+          radial-gradient(circle at 20% 20%,rgba(34,211,238,.10),transparent 25%),
+          linear-gradient(145deg,#15182a,#090c14);">
+          <div style="font-size:5.5rem;filter:drop-shadow(0 14px 28px rgba(103,94,242,.35));">👨‍💻</div>
+          <span style="position:absolute;left:12%;top:22%;font-size:1.5rem;">&lt;/&gt;</span>
+          <span style="position:absolute;right:13%;top:27%;font-size:1.7rem;color:#55aaff;">in</span>
+          <span style="position:absolute;left:18%;bottom:18%;font-size:1.4rem;">★</span>
+          <span style="position:absolute;right:18%;bottom:18%;font-size:1.2rem;color:#a855f7;">✦</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0;">
+        ${[
+          ["60","Days","#8b84f7"],["1.2k+","Students","#ffb21a"],["89%","Complete Rate","#4ade80"]
+        ].map(([v,l,c])=>`<div class="card" style="margin:0;text-align:center;padding:13px 5px;">
+          <div style="font-size:1.45rem;font-weight:900;color:${c};">${v}</div>
+          <div class="text-xs text-muted">${l}</div>
+        </div>`).join("")}
+      </div>
+
+      <div class="card">
+        <div class="section-title">Why ABTalks? ✨</div>
+        <div style="display:grid;gap:12px;margin-top:13px;">
+          ${[
+            ["⚡","Daily bite-sized challenges","Build consistently, learn continuously"],
+            ["🌐","Build in Public","Share on GitHub & LinkedIn"],
+            ["📈","Track Your Progress","Stay motivated with streaks & stats"],
+            ["🚀","Become Career Ready","Build a portfolio that gets you noticed"]
+          ].map(x=>`<div style="display:flex;gap:11px;align-items:flex-start;">
+            <div style="width:32px;height:32px;border-radius:10px;background:rgba(103,94,242,.12);display:grid;place-items:center;flex:0 0 32px;">${x[0]}</div>
+            <div><div class="fw-6 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;">${x[2]}</div></div>
+          </div>`).join("")}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">How it works</div>
+        <div style="display:grid;gap:8px;margin-top:12px;">
+          ${["Complete one focused coding task","Push your work to GitHub","Share one learning on LinkedIn","Submit proof and protect your streak"].map((t,i)=>`
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.025);">
+              <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span><span class="text-sm">${t}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">What you'll build over 60 days 🧭</div>
+        <div class="info-stats">
+          <div class="info-stat"><div class="v">01–07</div><div class="l">Foundations</div></div>
+          <div class="info-stat"><div class="v">08–20</div><div class="l">Core Patterns</div></div>
+          <div class="info-stat"><div class="v">21–60</div><div class="l">Algorithms + Capstone</div></div>
+        </div>
+        <p class="text-xs text-muted" style="margin-top:10px;line-height:1.5;">Start simple, build problem-solving habits, then finish with advanced structures and one complete capstone project.</p>
+      </div>
+
+      <div class="card">
+        <div class="section-title">FAQ</div>
+        ${[
+          ["Is it free?","Yes — all 60 challenge days are free."],
+          ["What if I miss a day?","Your streak resets, but completed work stays. You can catch up on the missed day."],
+          ["What do I submit?","A GitHub repository/commit and a LinkedIn post for the day."],
+          ["How much time does it take?","Most tasks take 15–40 minutes; later hard tasks can take up to an hour."]
+        ].map(f=>`<div style="padding:12px 0;border-bottom:1px solid var(--line);"><div class="fw-6 text-sm">Q · ${f[0]}</div><div class="text-xs text-muted" style="margin-top:4px;">${f[1]}</div></div>`).join("")}
+      </div>
+
+      <div class="text-center text-xs text-muted" style="padding:10px 0 5px;">© 2026 ABTalks · Made with ❤️ in India</div>
+    </div>`;
+  $("#joinBtn")?.addEventListener("click",()=>{page="dashboard";render();});
+  $("#headerProfileBtn")?.addEventListener("click",()=>{});
+}
+    // ---------- PROFILE SETUP ----------
+    function initialsFor(name){
+      const parts=String(name||"").trim().split(/\s+/).filter(Boolean);
+      return parts.length ? parts.slice(0,2).map(x=>x[0]).join("").toUpperCase() : "👨‍💻";
+    }
+    function openProfile(){
+      const overlay=$("#profileOverlay"); if(!overlay) return;
+      $("#profileName").value=state.profile.name||"";
+      $("#profileCollege").value=state.profile.college||"";
+      $("#profileCourse").value=state.profile.course||"";
+      $("#profileGoal").value=state.profile.goal||"Software Developer";
+      updateProfilePreview(); overlay.classList.add("show"); $("#profileName")?.focus();
+    }
+    function closeProfile(){ $("#profileOverlay")?.classList.remove("show"); }
+    function updateProfilePreview(){
+      const name=$("#profileName")?.value.trim()||"";
+      $("#profilePreview").textContent=initialsFor(name);
+      $("#profilePreviewName").textContent=name||"Your profile";
+    }
+    function saveProfile(){
+      const name=$("#profileName")?.value.trim()||"";
+      if(!name){ $("#profileName").style.borderColor="var(--rose)"; toast("Please enter your name","⚠️"); return; }
+      state.profile={...state.profile, name, initials:initialsFor(name), college:$("#profileCollege").value.trim(), course:$("#profileCourse").value.trim(), goal:$("#profileGoal").value, profileComplete:true};
+      state.profile.xp=xpTotal(); state.profile.level=xpLevel(); state.profile.streak=computeStreak(state); state.profile.careerReadiness=careerReadiness();
+      save(); closeProfile(); render(); toast("Profile saved successfully","✓");
     }
 
     // ---------- DASHBOARD ----------
@@ -694,16 +1113,71 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
 
       app.innerHTML = `
         <div class="page">
-          <div class="flex-between" style="margin-bottom:12px;">
-            <div class="flex gap-2" style="align-items:center;">
-              <span style="font-size:2.2rem;line-height:1;">${p.initials || "👨‍💻"}</span>
-              <div>
-                <h2 class="fw-7" style="font-size:1.35rem;letter-spacing:-0.3px;">${p.name}</h2>
-                <span class="text-muted text-sm">Level ${p.level} · ${p.xp.toLocaleString()} XP</span>
-              </div>
-            </div>
-            <span class="streak-pill"><i class="fas fa-fire"></i> ${p.streak} day streak</span>
+          <div class="mobile-brandbar">
+  <div class="brand-lockup">
+    <div class="brand-mark">AB</div>
+    <div class="brand-name"><b>AB</b><span>Talks</span></div>
+  </div>
+  <button class="brand-action" id="headerProfileBtn" aria-label="Open profile"><i class="far fa-bell"></i></button>
+</div>
+          <div class="hero-greeting">
+            <div class="eyebrow">60-Day Coding Challenge</div>
+            <h1>Good morning, ${p.name || "builder"}! 👋</h1>
+            <p>Let’s keep building your future, one day at a time.</p>
           </div>
+          <div class="dashboard-topbar" style="margin-bottom:12px;">
+            <div class="dashboard-identity">
+              <div class="dashboard-avatar">${p.initials || "👨‍💻"}</div>
+              <div class="dashboard-name">
+                <h2 class="fw-7" style="font-size:1.25rem;letter-spacing:-0.3px;margin:0;">${p.name || "Your ABTalks Profile"}</h2>
+                <span class="text-muted text-sm">${p.college ? p.college + " · " : ""}Level ${p.level || 1} · ${(p.xp || 0).toLocaleString()} XP</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="setupProfileBtn" title="Edit profile" style="margin-left:auto;flex:0 0 34px;">
+                <i class="fas fa-user-pen"></i>
+              </button>
+            </div>
+
+            <div class="dashboard-streak-panel">
+  <div class="streak-main-row">
+    <div class="streak-big">
+      <div class="streak-fire-ring"><i class="fas fa-fire"></i></div>
+      <div>
+        <div class="streak-label">Current Streak <i class="far fa-circle-question"></i></div>
+        <div class="streak-number">${Number(p.streak || 0)} Days</div>
+        <div class="streak-sub">${Number(p.streak || 0) > 0 ? "Keep it up! 🔥" : "Start today — you've got this."}</div>
+      </div>
+    </div>
+    <div class="streak-side">
+      <div class="streak-side-box">
+        <div class="label"><i class="fas fa-arrow-trend-up"></i> Best Streak</div>
+        <div class="value">${Math.max(Number(p.bestStreak || 0), Number(p.streak || 0))} days</div>
+      </div>
+      <div class="streak-side-box">
+        <div class="label"><i class="far fa-calendar-check"></i> Last Active</div>
+        <div class="value" style="color:#4ade80;">Yesterday</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-row">
+    ${[
+      ["Mon",4],["Tue",5],["Wed",6],["Thu",7],["Fri",8],["Sat",9],["Today",10]
+    ].map(([label,offset])=>{
+      const d=todayStart(); d.setDate(d.getDate()-(10-offset));
+      const key=dateKey(d);
+      const has=state.submissions.some(x=>x.submittedAt && x.submittedAt.slice(0,10)===key);
+      const isToday=label==="Today";
+      return `<div class="week-day">${label}<div class="week-status ${isToday?'today':has?'done':'missed'}">${isToday?'🔥':has?'✓':'•'}</div></div>`;
+    }).join("")}
+  </div>
+  <div class="consistency-line"><i class="fas fa-wand-magic-sparkles"></i><span>Consistency today, success tomorrow.</span></div>
+</div>
+
+          ${!p.profileComplete ? `<div class="card empty-profile-card" style="margin-bottom:12px;">
+            <div class="fw-7" style="font-size:1rem;">👋 Welcome to ABTalks</div>
+            <div class="text-xs text-muted" style="margin:4px 0 10px;">Set up your profile so your dashboard, rank and challenge history feel like yours.</div>
+            <button class="btn btn-primary btn-sm" id="setupProfileInline"><i class="fas fa-user-pen"></i> Set up my profile</button>
+          </div>` : ""}
 
           <div style="margin-bottom:14px;">
             <div class="flex-between text-xs text-muted">
@@ -715,30 +1189,66 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
             </div>
           </div>
 
-          <div class="grid-2" style="margin-bottom:4px;">
-            <div class="card accent" style="margin-bottom:0;">
-              <div class="flex-between">
-                <span class="badge">Day ${today.day}</span>
-                <span class="text-muted text-xs"><i class="far fa-clock"></i> ${today.time}</span>
-              </div>
-              <h3 class="fw-7" style="margin:8px 0 3px;font-size:1.08rem;">${today.title}</h3>
-              <p class="text-muted text-sm">${today.difficulty} · ${today.objectives.slice(0,2).join(" · ")}</p>
-              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:12px;">
-                <i class="fas fa-arrow-right"></i> Continue
-              </button>
+          <div class="today-focus" style="margin-bottom:13px;">
+            <div class="today-focus-head">
+              <div class="today-focus-label"><span class="today-focus-icon">◎</span> Today's Focus</div>
+              <span class="badge">Day ${today.day} / 60</span>
             </div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="card" style="padding:13px;margin-bottom:0;">
-                <div class="flex-between text-sm">
-                  <span>Progress</span>
-                  <span class="fw-7">${Math.round(prog)}%</span>
+            <div class="today-task-main">
+              <div class="today-task-emoji">${today.day <= 5 ? "💻" : today.day <= 10 ? "🧠" : "🚀"}</div>
+              <div style="min-width:0;flex:1;">
+                <div class="today-task-title">${today.title}</div>
+                <div class="text-xs text-muted" style="margin-top:4px;line-height:1.35;">${today.instructions.slice(0,88)}${today.instructions.length>88?"…":""}</div>
+                <div class="today-task-meta">
+                  <span>◷ ${today.time}</span>
+                  <span>▥ ${today.difficulty}</span>
+                  <span>⚡ +50 XP</span>
                 </div>
-                <div class="progress" style="margin-top:6px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
-                <div class="text-xs text-muted" style="margin-top:4px;">${done} of 60 done</div>
               </div>
-              <div class="card" style="padding:13px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
-                <span class="fw-8" style="font-size:1.4rem;color:var(--warning);">#${r}</span>
-                <span class="text-xs text-muted">rank</span>
+              <button class="today-task-arrow" id="goDay" aria-label="Open today's challenge"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="card progress-card" style="margin-bottom:13px;">
+            <div class="flex-between">
+              <div class="section-title">🏁 60 Day Challenge Progress</div>
+              <div style="font-size:1.35rem;font-weight:900;color:#58d978;">${Math.round(prog)}%</div>
+            </div>
+            <div class="progress" style="margin-top:12px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
+            <div class="flex-between text-xs text-muted" style="margin-top:8px;">
+              <span><b style="color:#58d978;">${done}</b> / 60 days completed</span>
+              <span>${Math.max(0,60-done)} days remaining</span>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom:13px;">
+            <div class="card" style="margin-bottom:0;">
+              <div class="section-title"><span>📈 Weekly Activity</span></div>
+              <div class="activity-chart" style="margin-top:8px;">
+                ${(() => {
+                  const vals = weeklyActivityData().map(v=>Number(v)||0);
+                  const max = Math.max(7,...vals), W=700,H=190,PL=28,PR=10,PT=14,PB=28,innerW=W-PL-PR,innerH=H-PT-PB;
+                  const pts=vals.map((v,i)=>[PL+(i*(innerW/6)),PT+innerH-(v/max)*innerH]);
+                  const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+                  const area=line+' L '+pts[6][0].toFixed(1)+','+(PT+innerH)+' L '+pts[0][0].toFixed(1)+','+(PT+innerH)+' Z';
+                  return `<svg viewBox="0 0 ${W} ${H}" aria-label="Weekly activity">
+                    <defs><linearGradient id="activityGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#4a8dff"/></linearGradient><linearGradient id="activityArea2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#278bff" stop-opacity=".22"/><stop offset="100%" stop-color="#278bff" stop-opacity="0"/></linearGradient></defs>
+                    ${[0,2,4,6].map(v=>{const y=PT+innerH-(v/max)*innerH;return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`}).join('')}
+                    <path d="${area}" fill="url(#activityArea2)"/>
+                    <path d="${line}" fill="none" stroke="url(#activityGrad2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".16"/>
+                    <path d="${line}" class="chart-line"/>
+                    ${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="7"/><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-6}">${['M','T','W','T','F','S','S'][i]}</text>`).join('')}
+                  </svg>`;
+                })()}
+              </div>
+              <div class="text-center text-xs" style="color:#4aa3ff;font-weight:800;margin-top:2px;">${weeklyActivityData().reduce((a,b)=>a+b,0)} Activities · This Week</div>
+            </div>
+            <div class="card" style="margin-bottom:0;">
+              <div class="section-title">🏆 Your Rank</div>
+              <div style="text-align:center;padding:22px 4px 8px;">
+                <div class="rank-number">#${r}</div>
+                <div class="rank-caption">Out of 1.2K+ students</div>
+                <span class="badge" style="margin-top:12px;color:#ffbd35;border-color:rgba(255,178,26,.2);background:rgba(255,178,26,.08)!important;">Top performer</span>
               </div>
             </div>
           </div>
@@ -760,51 +1270,6 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
               <div class="lbl">readiness</div>
             </div>
           </div>
-
-          <div class="card">
-            <div class="flex-between">
-              <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
-                <i class="fas fa-chart-line" style="color:var(--cyan);"></i> Weekly activity
-              </h4>
-              <span class="badge success"><i class="fas fa-arrow-trend-up"></i> ${weeklyActivityData().filter(v=>v>0).length}/7 active</span>
-            </div>
-            <div class="activity-chart">
-              ${(() => {
-                const vals = weeklyActivityData().map(v=>Number(v)||0);
-                const max = Math.max(7,...vals);
-                const W=700,H=190,PL=34,PR=12,PT=14,PB=28;
-                const innerW=W-PL-PR, innerH=H-PT-PB;
-                const pts=vals.map((v,i)=>{const x=PL+(i*(innerW/6)); const y=PT+innerH-(v/max)*innerH; return [x,y];});
-                const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-                const area=line+' L '+pts[6][0].toFixed(1)+','+(PT+innerH)+' L '+pts[0][0].toFixed(1)+','+(PT+innerH)+' Z';
-                return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly activity line graph">
-                  <defs><linearGradient id="activityGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#8B84F7"/></linearGradient><linearGradient id="activityArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#675EF2" stop-opacity="0"/></linearGradient></defs>
-                  ${[0,2,4,6].map(v=>{const y=PT+innerH-(v/max)*innerH;return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/><text class="chart-value" x="4" y="${y+4}">${v}</text>`}).join('')}
-                  <path class="chart-area" d="${area}"/>
-                  <path class="chart-line" d="${line}"/>
-                  ${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="5"><title>${vals[i]} activities</title></circle><text class="chart-value" text-anchor="middle" x="${p[0]}" y="${p[1]-10}">${vals[i]}</text><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-7}">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][i]}</text>`).join('')}
-                </svg>`;
-              })()}
-            </div>
-            <div class="activity-summary">
-              <div class="mini-stat"><div class="v">${weeklyActivityData().reduce((a,b)=>a+b,0)}</div><div class="l">TOTAL ACTIONS</div></div>
-              <div class="mini-stat"><div class="v">${Math.max(...weeklyActivityData())}</div><div class="l">BEST DAY</div></div>
-              <div class="mini-stat"><div class="v">${Math.round(weeklyActivityData().reduce((a,b)=>a+b,0)/7*10)/10}</div><div class="l">DAILY AVG</div></div>
-            </div>
-          </div>
-
-          <div class="focus-card" style="margin-bottom:12px;">
-            <div class="focus-row">
-              <div class="focus-icon">🎯</div>
-              <div style="flex:1;">
-                <div class="text-xs text-muted">Today's focus</div>
-                <div class="fw-7" style="font-size:.98rem;margin-top:2px;">${today.title}</div>
-                <div class="text-xs text-muted" style="margin-top:2px;">${today.time} · ${today.difficulty} · +50 XP</div>
-              </div>
-              <span class="badge">Day ${today.day}</span>
-            </div>
-          </div>
-
           <div class="card">
             <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
               <i class="fas fa-award" style="color:var(--secondary);"></i> Achievements
@@ -831,6 +1296,69 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
         </div>
       `;
       $("#goDay")?.addEventListener("click", () => { page = "day"; render(); });
+      $("#setupProfileInline")?.addEventListener("click", openProfile);
+        $("#headerProfileBtn")?.addEventListener("click", openProfile);
+    }
+
+const HEADER = `<div class="mobile-brandbar">
+  <div class="brand-lockup">
+    <div class="brand-mark">AB</div>
+    <div class="brand-name"><b>AB</b><span>Talks</span></div>
+  </div>
+  <button class="brand-action" id="headerProfileBtn" aria-label="Open profile"><i class="far fa-bell"></i></button>
+</div>`;
+
+    // ---------- PROGRESS ----------
+    function renderProgress(){
+      const vals=weeklyActivityData().map(v=>Number(v)||0);
+      const total=vals.reduce((a,b)=>a+b,0);
+      const done=state.submissions.length;
+      const prog=Math.round((done/60)*100);
+      const milestones=[1,15,30,45,60];
+      app.innerHTML=`
+        <div class="page">
+          ${HEADER}
+          <div class="hero-greeting">
+            <div class="eyebrow">Your journey</div>
+            <h1>Progress that feels visible. 📈</h1>
+            <p>Every submission moves your portfolio forward.</p>
+          </div>
+
+          <div class="card progress-card" style="margin-bottom:13px;">
+            <div class="flex-between">
+              <div><div class="text-xs text-muted">60-DAY JOURNEY</div><div style="font-size:1.55rem;font-weight:900;margin-top:2px;">Day ${state.currentDay} <span class="text-muted" style="font-size:.8rem;font-weight:500;">/ 60</span></div></div>
+              <div style="font-size:1.5rem;font-weight:900;color:#58d978;">${prog}%</div>
+            </div>
+            <div class="progress" style="margin-top:12px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
+            <div class="text-xs text-muted" style="margin-top:8px;">${done} challenges completed · ${Math.max(0,60-done)} remaining</div>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">📈 Weekly Activity <span class="badge">${total} actions</span></div>
+            <div class="activity-chart" style="margin-top:10px;">
+              ${(()=>{const max=Math.max(7,...vals),W=700,H=205,PL=28,PR=10,PT=15,PB=30,iw=W-PL-PR,ih=H-PT-PB;const pts=vals.map((v,i)=>[PL+i*(iw/6),PT+ih-(v/max)*ih]);const line=pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(' ');const area=line+' L '+pts[6][0]+','+(PT+ih)+' L '+pts[0][0]+','+(PT+ih)+' Z';return `<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#4a8dff"/></linearGradient><linearGradient id="pa" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#278bff" stop-opacity=".22"/><stop offset="1" stop-color="#278bff" stop-opacity="0"/></linearGradient></defs>${[0,2,4,6].map(v=>{let y=PT+ih-(v/max)*ih;return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`}).join('')}<path d="${area}" fill="url(#pa)"/><path d="${line}" fill="none" stroke="url(#pg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="7"/><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-7}">${['M','T','W','T','F','S','S'][i]}</text>`).join('')}</svg>`})()}
+            </div>
+            <div class="stat-row" style="margin-top:6px;">
+              <div class="stat"><div class="val">${total}</div><div class="lbl">actions</div></div>
+              <div class="stat"><div class="val">${Math.max(...vals)}</div><div class="lbl">best day</div></div>
+              <div class="stat"><div class="val">${Math.round(total/7*10)/10}</div><div class="lbl">daily avg</div></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">🧭 Your Journey</div>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:16px;">
+              ${milestones.map(d=>`<div style="text-align:center;"><div style="width:34px;height:34px;margin:auto;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.72rem;background:${done>=d?'#675ef2':'#171a24'};border:1px solid ${done>=d?'#675ef2':'var(--line)'};color:${done>=d?'#fff':'#7e8799'};">${done>=d?'✓':d}</div><div class="text-xs text-muted" style="margin-top:6px;">Day ${d}</div></div>`).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title">🏅 Achievements</div>
+            <div style="display:grid;gap:8px;margin-top:12px;">
+              ${(state.badges||[]).length ? state.badges.map(b=>`<div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025);"><span style="font-size:1.3rem;">${b.icon}</span><div><div class="fw-6 text-sm">${b.name}</div><div class="text-xs text-muted">${b.date}</div></div></div>`).join('') : `<div class="text-center text-muted" style="padding:16px;">🌱 Complete your first challenge to unlock your first badge.</div>`}
+            </div>
+          </div>
+        </div>`;
     }
 
     // ---------- DAY ----------
@@ -847,11 +1375,18 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
         let cls = "day-dot";
         if (d === state.currentDay) cls += " current";
         else if (submitted(d)) cls += " done";
-        dots += `<button type="button" class="${cls}" data-day="${d}" aria-label="Go to day ${d}">${d}</button>`;
+        dots += `<span class="${cls}" aria-label="Day ${d}">${d}</span>`;
       }
 
       app.innerHTML = `
         <div class="page">
+          <div class="mobile-brandbar">
+  <div class="brand-lockup">
+    <div class="brand-mark">AB</div>
+    <div class="brand-name"><b>AB</b><span>Talks</span></div>
+  </div>
+  <button class="brand-action" id="headerProfileBtn" aria-label="Open profile"><i class="far fa-bell"></i></button>
+</div>
           <div class="day-strip" id="dayStrip">${dots}</div>
 
           <div class="flex-between" style="margin-bottom:2px;">
@@ -929,6 +1464,8 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
           </div>
         </div>
       `;
+
+      $("#headerProfileBtn")?.addEventListener("click", openProfile);
 
       // Scroll current day into view
       requestAnimationFrame(() => {
@@ -1008,7 +1545,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
         const idx = (state.currentDay - 1) % 7;
         if (state.weeklyActivity[idx] < 7) state.weeklyActivity[idx]++;
 
-        const me = state.leaderboard.find(u => u.name.includes("Mihir"));
+        const me = state.leaderboard.find(u => u.name === state.profile.name || u.isYou);
         if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
 
         submitStatus = "success";
@@ -1052,6 +1589,13 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
 
       app.innerHTML = `
         <div class="page">
+          <div class="mobile-brandbar">
+  <div class="brand-lockup">
+    <div class="brand-mark">AB</div>
+    <div class="brand-name"><b>AB</b><span>Talks</span></div>
+  </div>
+  <button class="brand-action" id="headerProfileBtn" aria-label="Open profile"><i class="far fa-bell"></i></button>
+</div>
           <div style="margin-bottom:14px;">
             <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
             <p class="text-muted text-sm">Top performers this cohort</p>
@@ -1072,7 +1616,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
 
           <div class="card" style="padding:4px 0;">
             ${sorted.map((u, i) => {
-              const isMe = u.name.includes("Mihir") || u.name === state.profile.name;
+              const isMe = u.name === state.profile.name;
               const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
               return `
                 <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.07);" : ""}">
@@ -1095,6 +1639,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
           </p>
         </div>
       `;
+      $("#headerProfileBtn")?.addEventListener("click", openProfile);
     }
 
     // ============================================================
@@ -1103,7 +1648,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
     $$(".nav-item").forEach(el => {
       el.addEventListener("click", () => {
         const p = el.dataset.page;
-        if (["landing","dashboard","day","leaderboard"].includes(p)) {
+        if (["landing","dashboard","day","leaderboard","progress","profile"].includes(p)) {
           page = p;
           submitStatus = null;
           render();
@@ -1111,16 +1656,28 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
       });
     });
 
+    $("#setupProfileBtn")?.addEventListener("click", openProfile);
+    $("#profileClose")?.addEventListener("click", closeProfile);
+    $("#profileCancel")?.addEventListener("click", closeProfile);
+    $("#profileSave")?.addEventListener("click", saveProfile);
+    $("#profileName")?.addEventListener("input", updateProfilePreview);
+    $("#profileOverlay")?.addEventListener("click", e => { if(e.target.id === "profileOverlay") closeProfile(); });
+
     $("#taskLockClose")?.addEventListener("click", hideTaskLock);
     $("#taskLockOverlay")?.addEventListener("click", (e) => { if(e.target.id === "taskLockOverlay") hideTaskLock(); });
     document.addEventListener("keydown", (e) => { if(e.key === "Escape") hideTaskLock(); });
+
+    document.addEventListener("click", (e) => {
+      const btn=e.target.closest("#setupProfileBtn,#setupProfileInline");
+      if(btn){ e.preventDefault(); openProfile(); }
+    });
 
     // ============================================================
     //  INIT
     // ============================================================
     (async function init(){
       state = await loadState();
-      state.currentDay = Number(state.currentDay) || 1;
+      state.currentDay = Number(state.currentDay) || nextIncompleteDay();
       state.profile = { ...defaultState().profile, ...(state.profile || {}) };
       state.submissions = Array.isArray(state.submissions) ? state.submissions : [];
       state.badges = Array.isArray(state.badges) ? state.badges : [];
@@ -1128,8 +1685,12 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
       state.leaderboard = Array.isArray(state.leaderboard) ? state.leaderboard : defaultState().leaderboard;
       state.quotes = Array.isArray(state.quotes) && state.quotes.length ? state.quotes : QUOTES;
       state.profile.xp = xpTotal();
-      state.profile.initials = state.profile.initials || "MT";
-      state.profile.name = state.profile.name || "Mihir Trivedi";
+      state.profile.initials = state.profile.initials || initialsFor(state.profile.name);
+      state.profile.name = state.profile.name || "";
+      state.profile.initials = state.profile.name ? (state.profile.initials || initialsFor(state.profile.name)) : "👨‍💻";
+      state.profile.college = state.profile.college || "";
+      state.profile.course = state.profile.course || "";
+      state.profile.goal = state.profile.goal || "Software Developer";
       state.profile.level = xpLevel();
       state.profile.streak = computeStreak(state);
       state.profile.careerReadiness = careerReadiness();
