@@ -1,1282 +1,1388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>ABTalks · 60‑day coding challenge</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <style>
-        /* ----- RESET & BASE ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0B1120;
-            color: #F1F5F9;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 0 0 90px 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        button,
-        input,
-        textarea {
-            font: inherit;
-            border: none;
-            outline: none;
-            background: none;
-            color: inherit;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1E293B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #6366F1;
-            border-radius: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="ABTalks · 60-day coding challenge. Build real skills, ship daily, stay consistent." />
+  <title>ABTalks · 60-day coding challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ========== DESIGN SYSTEM ========== */
+    :root {
+      --primary: #6366F1;
+      --primary-light: #818CF8;
+      --primary-dark: #4F46E5;
+      --secondary: #8B5CF6;
+      --accent: #06B6D4;
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --bg: #0B1120;
+      --surface: #111827;
+      --card: #1E293B;
+      --text: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --muted: #94A3B8;
+      --radius: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --shadow: 0 8px 30px -8px rgba(0,0,0,0.55);
+      --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.7);
+      --glass: rgba(17, 24, 39, 0.78);
+      --border: rgba(255,255,255,0.06);
+      --border-strong: rgba(255,255,255,0.1);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 72px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
 
-        /* ----- DESIGN TOKENS ----- */
-        :root {
-            --primary: #6366F1;
-            --primary-light: #818CF8;
-            --secondary: #8B5CF6;
-            --accent: #06B6D4;
-            --success: #22C55E;
-            --warning: #F59E0B;
-            --danger: #EF4444;
-            --bg: #0B1120;
-            --surface: #111827;
-            --card: #1E293B;
-            --text: #F1F5F9;
-            --muted: #94A3B8;
-            --radius: 24px;
-            --shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.7);
-            --glass: rgba(17, 24, 39, 0.78);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-        }
+    /* ========== RESET ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      height: 100%;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100%;
+      min-height: 100dvh;
+      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 8px);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    button, input, textarea {
+      font: inherit;
+      border: none;
+      outline: none;
+      background: none;
+      color: inherit;
+    }
+    button { cursor: pointer; }
+    img, svg { display: block; max-width: 100%; }
+    ::selection { background: rgba(99,102,241,0.35); color: #fff; }
 
-        /* ----- LAYOUT ----- */
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 16px 18px;
-        }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.5); border-radius: 20px; }
 
-        /* ----- BOTTOM NAV ----- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(11, 17, 32, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0 env(safe-area-inset-bottom, 10px);
-            z-index: 100;
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5);
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--muted);
-            transition: 0.25s ease;
-            padding: 6px 14px;
-            border-radius: 40px;
-            gap: 2px;
-            cursor: pointer;
-            letter-spacing: 0.3px;
-            position: relative;
-            min-width: 60px;
-        }
-        .nav-item i {
-            font-size: 22px;
-            margin-bottom: 2px;
-            transition: 0.25s;
-        }
-        .nav-item.active {
-            color: var(--primary-light);
-        }
-        .nav-item.active i {
-            color: var(--primary);
-            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-        .nav-item .nav-badge {
-            position: absolute;
-            top: -2px;
-            right: 2px;
-            background: var(--danger);
-            color: white;
-            font-size: 8px;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 30px;
-            line-height: 1.2;
-            min-width: 18px;
-            text-align: center;
-        }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
-        /* ----- CARDS ----- */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius);
-            padding: 20px 18px;
-            box-shadow: var(--shadow);
-            margin-bottom: 18px;
-            transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1), box-shadow 0.3s;
-        }
-        .glass-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.8);
-        }
-        .glass-card.dark {
-            background: rgba(11, 17, 32, 0.6);
-            border-color: rgba(255, 255, 255, 0.03);
-        }
+    /* ========== LAYOUT ========== */
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 16px 12px;
+    }
 
-        .badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.18);
-            color: var(--primary-light);
-            font-weight: 600;
-            font-size: 11px;
-            padding: 4px 14px;
-            border-radius: 40px;
-            letter-spacing: 0.4px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-        }
-        .badge.success {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--success);
-            border-color: rgba(34, 197, 94, 0.2);
-        }
-        .badge.warning {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--warning);
-            border-color: rgba(245, 158, 11, 0.2);
-        }
-        .badge.accent {
-            background: rgba(6, 182, 212, 0.12);
-            color: var(--accent);
-            border-color: rgba(6, 182, 212, 0.2);
-        }
-        .badge.danger {
-            background: rgba(239, 68, 68, 0.12);
-            color: var(--danger);
-            border-color: rgba(239, 68, 68, 0.2);
-        }
+    /* ========== BOTTOM NAV ========== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: calc(var(--nav-h) + var(--safe-bottom));
+      padding-bottom: var(--safe-bottom);
+      background: rgba(11, 17, 32, 0.88);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      min-width: 64px;
+      height: 56px;
+      padding: 6px 10px;
+      border-radius: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: var(--muted);
+      transition: color 0.22s var(--ease), transform 0.18s var(--ease);
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .nav-item i {
+      font-size: 20px;
+      transition: transform 0.22s var(--ease), color 0.22s var(--ease), filter 0.22s;
+    }
+    .nav-item.active { color: var(--primary-light); }
+    .nav-item.active i {
+      color: var(--primary);
+      transform: translateY(-1px) scale(1.05);
+      filter: drop-shadow(0 0 8px rgba(99,102,241,0.5));
+    }
+    .nav-item:active { transform: scale(0.92); }
+    .nav-badge {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 5px;
+      background: linear-gradient(135deg, #EF4444, #F97316);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(239,68,68,0.45);
+      line-height: 1;
+    }
 
-        /* ----- BUTTONS ----- */
-        .btn-primary {
-            background: linear-gradient(135deg, #6366F1, #8B5CF6);
-            color: white;
-            font-weight: 600;
-            padding: 16px 28px;
-            border-radius: 60px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.35);
-            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
-            width: 100%;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.3px;
-        }
-        .btn-primary:active {
-            transform: scale(0.96);
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
-        }
-        .btn-primary:disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-subtle);
-            color: var(--text);
-            font-weight: 500;
-            padding: 14px;
-            border-radius: 60px;
-            transition: 0.25s ease;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            backdrop-filter: blur(4px);
-        }
-        .btn-secondary:active {
-            background: rgba(255, 255, 255, 0.08);
-            transform: scale(0.97);
-        }
-        .btn-secondary:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
+    /* ========== CARDS ========== */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+      transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+    .card:hover { border-color: var(--border-strong); }
+    .card.accent { border-left: 3px solid var(--primary); }
+    .card.flat {
+      background: rgba(255,255,255,0.025);
+      box-shadow: none;
+    }
 
-        /* ----- PROGRESS ----- */
-        .progress-bar {
-            background: #1E293B;
-            height: 8px;
-            border-radius: 20px;
-            overflow: hidden;
-            margin: 10px 0 6px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #6366F1, #06B6D4);
-            border-radius: 20px;
-            transition: width 0.8s cubic-bezier(0.2, 0.9, 0.4, 1);
-            position: relative;
-        }
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 20px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            filter: blur(6px);
-            border-radius: 20px;
-        }
+    /* ========== BADGES ========== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      border-radius: 40px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      background: rgba(99,102,241,0.14);
+      color: var(--primary-light);
+      border: 1px solid rgba(99,102,241,0.18);
+      white-space: nowrap;
+    }
+    .badge.success { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.2); }
+    .badge.warning { background: rgba(245,158,11,0.12); color: var(--warning); border-color: rgba(245,158,11,0.2); }
+    .badge.danger  { background: rgba(239,68,68,0.1); color: var(--danger); border-color: rgba(239,68,68,0.18); }
+    .badge.accent  { background: rgba(6,182,212,0.1); color: var(--accent); border-color: rgba(6,182,212,0.18); }
 
-        /* ----- STREAK BADGE ----- */
-        .streak-badge {
-            background: rgba(245, 158, 11, 0.12);
-            color: var(--warning);
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(245, 158, 11, 0.15);
-            backdrop-filter: blur(4px);
-        }
-        .streak-badge i {
-            animation: pulseFire 1.5s infinite;
-        }
-        @keyframes pulseFire {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 60px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.15px;
+      transition: transform 0.2s var(--ease), box-shadow 0.25s, opacity 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.42; pointer-events: none; }
 
-        /* ----- ACTIVITY HEATMAP ----- */
-        .activity-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 8px;
-        }
-        .activity-cell {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            background: #1E293B;
-            transition: 0.2s;
-            border: 1px solid transparent;
-            position: relative;
-        }
-        .activity-cell.level0 {
-            background: #1E293B;
-        }
-        .activity-cell.level1 {
-            background: #1E3A5F;
-        }
-        .activity-cell.level2 {
-            background: #2D4B7A;
-        }
-        .activity-cell.level3 {
-            background: #4F7EB3;
-        }
-        .activity-cell.level4 {
-            background: #7BA9E0;
-        }
-        .activity-cell:hover {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            z-index: 2;
-        }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(99,102,241,0.32);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-primary:hover::after { opacity: 1; }
+    .btn-primary:active { box-shadow: 0 3px 12px rgba(99,102,241,0.25); }
 
-        /* ----- INPUT GROUPS ----- */
-        .input-group {
-            background: #1E293B;
-            border-radius: 60px;
-            padding: 4px 18px;
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--border-subtle);
-            margin: 10px 0;
-            transition: 0.25s;
-        }
-        .input-group:focus-within {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-        }
-        .input-group i {
-            color: var(--muted);
-            margin-right: 14px;
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 14px 0;
-            background: transparent;
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .input-group input::placeholder {
-            color: var(--muted);
-            font-weight: 400;
-        }
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: var(--border-strong);
+    }
 
-        /* ----- CHIPS ----- */
-        .chip-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 12px 0 4px;
-        }
-        .chip {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 12px;
-            color: var(--muted);
-            border: 1px solid transparent;
-            font-weight: 500;
-        }
-        .chip.active {
-            border-color: var(--primary);
-            color: var(--text);
-            background: rgba(99, 102, 241, 0.08);
-        }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      width: auto;
+    }
+    .btn-ghost:hover { color: var(--text); }
 
-        /* ----- SCROLL X ----- */
-        .scroll-x {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 4px 2px 12px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .scroll-x>* {
-            flex: 0 0 auto;
-            scroll-snap-align: start;
-        }
-        .scroll-x::-webkit-scrollbar {
-            height: 3px;
-        }
-        .scroll-x::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 20px;
-        }
+    .btn-sm { padding: 10px 16px; font-size: 13px; }
 
-        /* ----- CONFETTI ----- */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-        }
+    /* ========== PROGRESS ========== */
+    .progress {
+      height: 6px;
+      background: #1E293B;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #6366F1, #06B6D4);
+      transition: width 0.85s var(--ease-out);
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0;
+      width: 20px; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25));
+      border-radius: 20px;
+    }
 
-        /* ----- EMPTY STATE ----- */
-        .empty-state {
-            text-align: center;
-            padding: 40px 10px;
-            color: var(--muted);
-        }
-        .empty-state i {
-            font-size: 3.2rem;
-            opacity: 0.25;
-            margin-bottom: 12px;
-        }
+    /* ========== STREAK ========== */
+    .streak {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: rgba(245,158,11,0.1);
+      color: var(--warning);
+      border: 1px solid rgba(245,158,11,0.18);
+    }
+    .streak i { animation: fire 1.5s ease-in-out infinite; }
+    @keyframes fire {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
 
-        /* ----- ANIMATIONS ----- */
-        .fade-in {
-            animation: fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
-            opacity: 0;
-        }
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .slide-up {
-            animation: slideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
-        }
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.96);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        .pulse-glow {
-            animation: pulseGlow 2.4s infinite;
-        }
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.25);
-            }
-            50% {
-                box-shadow: 0 0 0 14px rgba(99, 102, 241, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-            }
-        }
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(720deg) scale(0.3);
-                opacity: 0;
-            }
-        }
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    /* ========== INPUTS ========== */
+    .field {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1E293B;
+      border: 1px solid var(--border);
+      border-radius: 60px;
+      padding: 3px 16px;
+      margin: 8px 0;
+      transition: border-color 0.22s, box-shadow 0.22s;
+    }
+    .field:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.16);
+    }
+    .field.error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+    }
+    .field i {
+      color: var(--muted);
+      font-size: 1.05rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .field input {
+      flex: 1;
+      padding: 12px 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      min-width: 0;
+    }
+    .field input::placeholder { color: var(--muted); font-weight: 400; }
+    .field input:read-only { opacity: 0.7; }
+    .field-hint {
+      font-size: 12px;
+      color: var(--danger);
+      margin: -4px 0 6px 16px;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .field-hint.show { opacity: 1; transform: translateY(0); }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 480px) {
-            .container {
-                padding: 12px 14px;
-            }
-            .glass-card {
-                padding: 16px 14px;
-                border-radius: 20px;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .stat-item .num {
-                font-size: 1.4rem;
-            }
-            .day-header .day-num {
-                font-size: 2.2rem;
-            }
-        }
+    /* ========== CHIPS ========== */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 2px; }
+    .chip {
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+    .chip.on {
+      background: rgba(99,102,241,0.1);
+      color: var(--text-secondary);
+      border-color: rgba(99,102,241,0.3);
+    }
 
-        @media (min-width: 640px) {
-            .container {
-                max-width: 600px;
-                padding: 24px 32px;
-            }
-            .bottom-nav {
-                max-width: 600px;
-                left: 50%;
-                transform: translateX(-50%);
-                border-radius: 60px 60px 0 0;
-            }
-        }
+    /* ========== DAY SELECTOR ========== */
+    .day-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 2px 14px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .day-strip::-webkit-scrollbar { display: none; }
+    .day-dot {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      background: #1E293B;
+      color: var(--muted);
+      border: 1.5px solid transparent;
+      scroll-snap-align: center;
+      transition: all 0.22s var(--ease);
+      cursor: pointer;
+    }
+    .day-dot.current {
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+      transform: scale(1.08);
+    }
+    .day-dot.done {
+      background: rgba(34,197,94,0.14);
+      color: var(--success);
+      border-color: rgba(34,197,94,0.28);
+    }
+    .day-dot:hover:not(.current) {
+      border-color: var(--primary);
+      color: var(--text);
+    }
 
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 820px;
-                padding: 32px 40px;
-            }
-            .bottom-nav {
-                max-width: 720px;
-            }
-            .grid-2 {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 18px;
-            }
-            .grid-2 .glass-card {
-                margin-bottom: 0;
-            }
-        }
+    /* ========== ACTIVITY ========== */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .activity-label {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    .activity-cell {
+      aspect-ratio: 1;
+      border-radius: 5px;
+      background: #1E293B;
+      transition: transform 0.15s, border-color 0.15s;
+      border: 1px solid transparent;
+    }
+    .activity-cell.l1 { background: #1E3A5F; }
+    .activity-cell.l2 { background: #2D4B7A; }
+    .activity-cell.l3 { background: #4F7EB3; }
+    .activity-cell.l4 { background: #7BA9E0; }
+    .activity-cell:hover {
+      transform: scale(1.1);
+      border-color: var(--primary);
+      z-index: 1;
+    }
 
-        @media (min-width: 1280px) {
-            .container {
-                max-width: 1000px;
-            }
-            .bottom-nav {
-                max-width: 860px;
-            }
-        }
+    /* ========== SCROLL X ========== */
+    .scroll-x {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .scroll-x::-webkit-scrollbar { display: none; }
+    .scroll-x > * { flex: 0 0 auto; scroll-snap-align: start; }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 18px;
-        }
-        @media (min-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .grid-2 .glass-card {
-                margin-bottom: 0;
-            }
-        }
+    /* ========== TOAST ========== */
+    .toast-wrap {
+      position: fixed;
+      top: max(16px, env(safe-area-inset-top));
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      z-index: 300;
+      transition: transform 0.4s var(--ease-out);
+      pointer-events: none;
+    }
+    .toast-wrap.show { transform: translateX(-50%) translateY(0); }
+    .toast {
+      background: rgba(17,24,39,0.94);
+      border: 1px solid var(--border-strong);
+      padding: 11px 18px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(16px);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .text-muted {
-            color: var(--muted);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .fw-600 {
-            font-weight: 600;
-        }
-        .mt-1 {
-            margin-top: 8px;
-        }
-        .mb-1 {
-            margin-bottom: 8px;
-        }
-        .gap-1 {
-            gap: 8px;
-        }
-    </style>
+    /* ========== CONFETTI ========== */
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 250;
+      overflow: hidden;
+    }
+
+    /* ========== PAGE TRANSITION ========== */
+    .page {
+      animation: pageIn 0.4s var(--ease-out) forwards;
+    }
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== MISC ========== */
+    .flex { display: flex; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .gap-1 { gap: 8px; }
+    .gap-2 { gap: 12px; }
+    .text-muted { color: var(--muted); }
+    .text-sm { font-size: 0.85rem; }
+    .text-xs { font-size: 0.75rem; }
+    .fw-6 { font-weight: 600; }
+    .fw-7 { font-weight: 700; }
+    .fw-8 { font-weight: 800; }
+    .mt-1 { margin-top: 8px; }
+    .mb-1 { margin-bottom: 8px; }
+    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .stat {
+      text-align: center;
+      padding: 12px 6px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+    }
+    .stat i { font-size: 1.1rem; margin-bottom: 2px; }
+    .stat .val { font-weight: 700; font-size: 0.95rem; }
+    .stat .lbl { font-size: 0.62rem; color: var(--muted); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 32px 12px;
+      color: var(--muted);
+    }
+    .empty i { font-size: 2.6rem; opacity: 0.2; margin-bottom: 8px; }
+
+    .quote {
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+      border: 1px solid rgba(99,102,241,0.12);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #E2E8F0;
+      line-height: 1.55;
+    }
+
+    .success-banner {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(34,197,94,0.09);
+      border-radius: 14px;
+      border-left: 3px solid var(--success);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideUp 0.4s var(--ease-out);
+    }
+    .error-banner {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(239,68,68,0.09);
+      border-radius: 14px;
+      border-left: 3px solid var(--danger);
+      color: var(--danger);
+      font-size: 0.88rem;
+      animation: slideUp 0.4s var(--ease-out);
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg) scale(0.2); opacity: 0; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.28); }
+      50% { box-shadow: 0 0 0 10px rgba(99,102,241,0); }
+    }
+    .pulse { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (min-width: 640px) {
+      .container { max-width: 540px; padding: 24px 24px 16px; }
+      .bottom-nav {
+        max-width: 540px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 24px 24px 0 0;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .container { max-width: 680px; padding: 28px 32px 20px; }
+      .bottom-nav { max-width: 600px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- ===== BOTTOM NAV ===== -->
-    <nav class="bottom-nav" id="bottomNav">
-        <div class="nav-item active" data-page="dashboard">
-            <i class="fas fa-home"></i><span>Home</span>
-        </div>
-        <div class="nav-item" data-page="day">
-            <i class="fas fa-code"></i><span>Today</span>
-            <span class="nav-badge" id="dayBadge">1</span>
-        </div>
-        <div class="nav-item" data-page="landing">
-            <i class="fas fa-rocket"></i><span>Join</span>
-        </div>
-    </nav>
+  <div class="toast-wrap" id="toastWrap" aria-live="polite">
+    <div class="toast" id="toast"></div>
+  </div>
 
-    <!-- ===== APP ===== -->
-    <div id="app" class="container"></div>
+  <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Main navigation">
+    <button class="nav-item active" data-page="dashboard" aria-label="Home" aria-current="page">
+      <i class="fas fa-home"></i><span>Home</span>
+    </button>
+    <button class="nav-item" data-page="day" aria-label="Today's challenge">
+      <i class="fas fa-code"></i><span>Today</span>
+      <span class="nav-badge" id="dayBadge">8</span>
+    </button>
+    <button class="nav-item" data-page="leaderboard" aria-label="Leaderboard">
+      <i class="fas fa-trophy"></i><span>Rank</span>
+    </button>
+    <button class="nav-item" data-page="landing" aria-label="About and join">
+      <i class="fas fa-rocket"></i><span>Join</span>
+    </button>
+  </nav>
 
-    <script>
-        // ============================================================
-        //  COMPLETE 60-DAY CHALLENGES DATA
-        // ============================================================
-        const CHALLENGES = [
-            { day: 1, title: "Hello World & Variables", difficulty: "Easy", time: "15 min",
-                objectives: ["Print Hello World", "Declare variables", "Basic data types"],
-                instructions: "Write a program that prints 'Hello, World!' and declares variables of different types.",
-                criteria: ["Use console.log", "Use let, const"], resources: ["MDN Variables"] },
-            { day: 2, title: "Conditional Statements", difficulty: "Easy", time: "20 min",
-                objectives: ["If-else", "Switch case"], instructions: "Write a program that checks if a number is even or odd using if-else.",
-                criteria: ["Use if-else", "Handle edge cases"], resources: ["MDN Conditionals"] },
-            { day: 3, title: "Loops & Iteration", difficulty: "Easy", time: "20 min",
-                objectives: ["For loop", "While loop"], instructions: "Print numbers from 1 to 10 using for and while loops.",
-                criteria: ["Use for loop", "Use while loop"], resources: ["MDN Loops"] },
-            { day: 4, title: "Functions Basics", difficulty: "Easy", time: "25 min",
-                objectives: ["Function declaration", "Parameters", "Return values"],
-                instructions: "Create a function that adds two numbers and returns the result.",
-                criteria: ["Use function keyword", "Return value"], resources: ["MDN Functions"] },
-            { day: 5, title: "Arrays & Methods", difficulty: "Easy", time: "25 min",
-                objectives: ["Array creation", "Push/pop", "Map/Filter"], instructions: "Create an array of numbers and use map to double each value.",
-                criteria: ["Use map", "Use filter"], resources: ["MDN Arrays"] },
-            { day: 6, title: "Objects & Properties", difficulty: "Easy", time: "25 min",
-                objectives: ["Object creation", "Access properties", "Methods"],
-                instructions: "Create a student object with name, age, and a method to greet.",
-                criteria: ["Use object literal", "Add method"], resources: ["MDN Objects"] },
-            { day: 7, title: "String Manipulation", difficulty: "Easy", time: "20 min",
-                objectives: ["String methods", "Template literals"], instructions: "Reverse a string and use template literals.",
-                criteria: ["Use split/reverse/join", "Template literals"], resources: ["MDN Strings"] },
-            { day: 8, title: "Array Manipulation", difficulty: "Medium", time: "30 min",
-                objectives: ["Two pointers", "In-place operations"], instructions: "Remove duplicates from a sorted array in-place.",
-                criteria: ["O(n) time", "O(1) space"], resources: ["LeetCode 26"] },
-            { day: 9, title: "Binary Search", difficulty: "Medium", time: "30 min",
-                objectives: ["Binary search implementation", "Divide and conquer"],
-                instructions: "Implement binary search to find an element in a sorted array.",
-                criteria: ["O(log n) time", "Handle not found"], resources: ["LeetCode 704"] },
-            { day: 10, title: "Two Sum Problem", difficulty: "Medium", time: "30 min",
-                objectives: ["Hash map", "Two-pointer"], instructions: "Find two numbers that add up to a target.",
-                criteria: ["O(n) time", "Use hash map"], resources: ["LeetCode 1"] },
-            { day: 11, title: "Palindrome Check", difficulty: "Easy", time: "20 min",
-                objectives: ["String reversal", "Two pointers"], instructions: "Check if a string is a palindrome.",
-                criteria: ["Ignore case", "Handle spaces"], resources: ["LeetCode 125"] },
-            { day: 12, title: "FizzBuzz", difficulty: "Easy", time: "15 min",
-                objectives: ["Conditional logic", "Loop"], instructions: "Print numbers 1-100 with FizzBuzz logic.",
-                criteria: ["Use modulo", "Handle all cases"], resources: ["Classic problem"] },
-            { day: 13, title: "Factorial Recursion", difficulty: "Medium", time: "25 min",
-                objectives: ["Recursion", "Base case"], instructions: "Calculate factorial using recursion.",
-                criteria: ["Use recursion", "Handle 0!"], resources: ["MDN Recursion"] },
-            { day: 14, title: "Valid Parentheses", difficulty: "Medium", time: "30 min",
-                objectives: ["Stack", "String matching"], instructions: "Check if parentheses are valid.",
-                criteria: ["Use stack", "Handle all types"], resources: ["LeetCode 20"] },
-            { day: 15, title: "Merge Sorted Arrays", difficulty: "Medium", time: "30 min",
-                objectives: ["Two pointers", "In-place merge"], instructions: "Merge two sorted arrays.",
-                criteria: ["O(n+m) time", "In-place"], resources: ["LeetCode 88"] },
-            { day: 16, title: "Linked List Basics", difficulty: "Medium", time: "35 min",
-                objectives: ["Node class", "Traversal"], instructions: "Create a linked list and traverse it.",
-                criteria: ["Use class", "Print values"], resources: ["MDN Linked Lists"] },
-            { day: 17, title: "Stack Implementation", difficulty: "Medium", time: "30 min",
-                objectives: ["Stack operations", "Array-based"], instructions: "Implement a stack with push/pop/peek.",
-                criteria: ["Use array", "Handle empty"], resources: ["Data Structures"] },
-            { day: 18, title: "Queue Implementation", difficulty: "Medium", time: "30 min",
-                objectives: ["Queue operations", "Array-based"], instructions: "Implement a queue with enqueue/dequeue.",
-                criteria: ["Use array", "Handle empty"], resources: ["Data Structures"] },
-            { day: 19, title: "Tree Traversal", difficulty: "Hard", time: "40 min",
-                objectives: ["DFS", "BFS"], instructions: "Traverse a binary tree in-order.",
-                criteria: ["Use recursion", "Print values"], resources: ["Tree algorithms"] },
-            { day: 20, title: "Graph BFS", difficulty: "Hard", time: "45 min",
-                objectives: ["BFS", "Adjacency list"], instructions: "Implement BFS on a graph.",
-                criteria: ["Use queue", "Track visited"], resources: ["Graph algorithms"] },
-            { day: 21, title: "Sorting Algorithms", difficulty: "Medium", time: "35 min",
-                objectives: ["Bubble sort", "Selection sort"], instructions: "Implement bubble sort on an array.",
-                criteria: ["O(n²) time", "In-place"], resources: ["Sorting algorithms"] },
-            { day: 22, title: "Quick Sort", difficulty: "Hard", time: "40 min",
-                objectives: ["Partition", "Recursion"], instructions: "Implement quick sort on an array.",
-                criteria: ["O(n log n) avg", "In-place"], resources: ["Quick sort"] },
-            { day: 23, title: "Merge Sort", difficulty: "Hard", time: "40 min",
-                objectives: ["Divide and conquer", "Merge"], instructions: "Implement merge sort on an array.",
-                criteria: ["O(n log n)", "Stable"], resources: ["Merge sort"] },
-            { day: 24, title: "Hash Table", difficulty: "Medium", time: "35 min",
-                objectives: ["Hash function", "Collision handling"], instructions: "Implement a hash table with chaining.",
-                criteria: ["Use array", "Handle collisions"], resources: ["Hash tables"] },
-            { day: 25, title: "Dynamic Programming", difficulty: "Hard", time: "45 min",
-                objectives: ["Fibonacci", "Memoization"], instructions: "Solve Fibonacci with memoization.",
-                criteria: ["O(n) time", "Use cache"], resources: ["DP basics"] },
-            { day: 26, title: "Subarray Sum", difficulty: "Medium", time: "30 min",
-                objectives: ["Sliding window", "Kadane's"], instructions: "Find maximum subarray sum.",
-                criteria: ["O(n) time", "Use Kadane's"], resources: ["Kadane's algorithm"] },
-            { day: 27, title: "Longest Substring", difficulty: "Hard", time: "40 min",
-                objectives: ["Sliding window", "Hash set"], instructions: "Find longest substring without repeating characters.",
-                criteria: ["O(n) time", "Use set"], resources: ["LeetCode 3"] },
-            { day: 28, title: "Rotate Array", difficulty: "Medium", time: "30 min",
-                objectives: ["Reverse technique", "In-place"], instructions: "Rotate array by k positions.",
-                criteria: ["O(n) time", "In-place"], resources: ["LeetCode 189"] },
-            { day: 29, title: "Power of Two", difficulty: "Easy", time: "20 min",
-                objectives: ["Bit manipulation", "Math"], instructions: "Check if a number is power of two.",
-                criteria: ["Use bitwise", "Handle 0"], resources: ["Bit manipulation"] },
-            { day: 30, title: "Valid Anagram", difficulty: "Easy", time: "20 min",
-                objectives: ["Hash map", "Sorting"], instructions: "Check if two strings are anagrams.",
-                criteria: ["O(n) time", "Use map"], resources: ["LeetCode 242"] },
-            { day: 31, title: "Remove Element", difficulty: "Easy", time: "20 min",
-                objectives: ["Two pointers", "In-place"], instructions: "Remove all occurrences of a value in array.",
-                criteria: ["O(n) time", "In-place"], resources: ["LeetCode 27"] },
-            { day: 32, title: "Search Insert", difficulty: "Easy", time: "20 min",
-                objectives: ["Binary search", "Edge cases"], instructions: "Find insert position in sorted array.",
-                criteria: ["O(log n)", "Handle duplicates"], resources: ["LeetCode 35"] },
-            { day: 33, title: "Plus One", difficulty: "Easy", time: "15 min",
-                objectives: ["Array manipulation", "Carry"], instructions: "Add one to a number represented as array.",
-                criteria: ["Handle carry", "Return array"], resources: ["LeetCode 66"] },
-            { day: 34, title: "Climbing Stairs", difficulty: "Easy", time: "20 min",
-                objectives: ["DP", "Fibonacci"], instructions: "Count ways to climb n stairs (1 or 2 steps).",
-                criteria: ["Use DP", "O(n) time"], resources: ["LeetCode 70"] },
-            { day: 35, title: "Move Zeroes", difficulty: "Easy", time: "15 min",
-                objectives: ["Two pointers", "In-place"], instructions: "Move all zeroes to end of array.",
-                criteria: ["O(n) time", "In-place"], resources: ["LeetCode 283"] },
-            { day: 36, title: "Missing Number", difficulty: "Easy", time: "15 min",
-                objectives: ["Math", "XOR"], instructions: "Find missing number in array 0..n.",
-                criteria: ["O(n) time", "Use XOR"], resources: ["LeetCode 268"] },
-            { day: 37, title: "Single Number", difficulty: "Easy", time: "15 min",
-                objectives: ["XOR", "Bit manipulation"], instructions: "Find the single number in array where others appear twice.",
-                criteria: ["O(n) time", "Use XOR"], resources: ["LeetCode 136"] },
-            { day: 38, title: "Intersection Arrays", difficulty: "Medium", time: "30 min",
-                objectives: ["Hash set", "Two pointers"], instructions: "Find intersection of two arrays.",
-                criteria: ["O(n) time", "Handle duplicates"], resources: ["LeetCode 349"] },
-            { day: 39, title: "Longest Common Prefix", difficulty: "Easy", time: "20 min",
-                objectives: ["String comparison", "Horizontal scanning"], instructions: "Find longest common prefix among strings.",
-                criteria: ["O(n*m) time", "Handle empty"], resources: ["LeetCode 14"] },
-            { day: 40, title: "Valid Sudoku", difficulty: "Medium", time: "35 min",
-                objectives: ["Hash set", "Matrix"], instructions: "Check if a Sudoku board is valid.",
-                criteria: ["O(1) time", "Use sets"], resources: ["LeetCode 36"] },
-            { day: 41, title: "Pow(x,n)", difficulty: "Medium", time: "30 min",
-                objectives: ["Exponentiation", "Recursion"], instructions: "Calculate x raised to power n.",
-                criteria: ["O(log n)", "Handle negatives"], resources: ["LeetCode 50"] },
-            { day: 42, title: "Sqrt(x)", difficulty: "Easy", time: "20 min",
-                objectives: ["Binary search", "Math"], instructions: "Compute square root of x.",
-                criteria: ["O(log n)", "Handle edge cases"], resources: ["LeetCode 69"] },
-            { day: 43, title: "Matrix Spiral", difficulty: "Medium", time: "35 min",
-                objectives: ["Matrix traversal", "Boundaries"], instructions: "Traverse matrix in spiral order.",
-                criteria: ["O(m*n) time", "Handle edges"], resources: ["LeetCode 54"] },
-            { day: 44, title: "Rotate Image", difficulty: "Medium", time: "30 min",
-                objectives: ["Matrix rotation", "In-place"], instructions: "Rotate matrix 90 degrees.",
-                criteria: ["In-place", "O(1) space"], resources: ["LeetCode 48"] },
-            { day: 45, title: "Word Pattern", difficulty: "Easy", time: "20 min",
-                objectives: ["Hash map", "Pattern matching"], instructions: "Check if string follows a pattern.",
-                criteria: ["O(n) time", "Bijection"], resources: ["LeetCode 290"] },
-            { day: 46, title: "Binary Tree Inorder", difficulty: "Medium", time: "30 min",
-                objectives: ["Tree traversal", "Recursion"], instructions: "Inorder traversal of binary tree.",
-                criteria: ["Use recursion", "Return array"], resources: ["LeetCode 94"] },
-            { day: 47, title: "Binary Tree Max Depth", difficulty: "Easy", time: "20 min",
-                objectives: ["DFS", "Recursion"], instructions: "Find maximum depth of binary tree.",
-                criteria: ["O(n) time", "Use recursion"], resources: ["LeetCode 104"] },
-            { day: 48, title: "Symmetric Tree", difficulty: "Easy", time: "20 min",
-                objectives: ["DFS", "Recursion"], instructions: "Check if tree is symmetric.",
-                criteria: ["O(n) time", "Use recursion"], resources: ["LeetCode 101"] },
-            { day: 49, title: "Path Sum", difficulty: "Easy", time: "20 min",
-                objectives: ["DFS", "Recursion"], instructions: "Check if path sum equals target.",
-                criteria: ["O(n) time", "Use recursion"], resources: ["LeetCode 112"] },
-            { day: 50, title: "Linked List Cycle", difficulty: "Easy", time: "20 min",
-                objectives: ["Two pointers", "Floyd's"], instructions: "Detect cycle in linked list.",
-                criteria: ["O(n) time", "O(1) space"], resources: ["LeetCode 141"] },
-            { day: 51, title: "Merge Two Lists", difficulty: "Easy", time: "25 min",
-                objectives: ["Linked list", "Merge"], instructions: "Merge two sorted linked lists.",
-                criteria: ["O(n+m) time", "Iterative"], resources: ["LeetCode 21"] },
-            { day: 52, title: "Middle of List", difficulty: "Easy", time: "15 min",
-                objectives: ["Two pointers", "Slow/fast"], instructions: "Find middle node of linked list.",
-                criteria: ["O(n) time", "O(1) space"], resources: ["LeetCode 876"] },
-            { day: 53, title: "Stack from Queue", difficulty: "Medium", time: "30 min",
-                objectives: ["Queue", "Stack"], instructions: "Implement stack using queues.",
-                criteria: ["Use two queues", "O(n) push"], resources: ["LeetCode 225"] },
-            { day: 54, title: "Queue from Stack", difficulty: "Medium", time: "30 min",
-                objectives: ["Stack", "Queue"], instructions: "Implement queue using stacks.",
-                criteria: ["Use two stacks", "O(1) amortized"], resources: ["LeetCode 232"] },
-            { day: 55, title: "Min Stack", difficulty: "Medium", time: "30 min",
-                objectives: ["Stack", "Min tracking"], instructions: "Design a stack that supports getMin.",
-                criteria: ["O(1) time", "Use extra stack"], resources: ["LeetCode 155"] },
-            { day: 56, title: "Reverse Linked List", difficulty: "Easy", time: "20 min",
-                objectives: ["Linked list", "Iterative"], instructions: "Reverse a linked list.",
-                criteria: ["O(n) time", "Iterative"], resources: ["LeetCode 206"] },
-            { day: 57, title: "Palindrome Linked List", difficulty: "Medium", time: "30 min",
-                objectives: ["Two pointers", "Reverse"], instructions: "Check if linked list is palindrome.",
-                criteria: ["O(n) time", "O(1) space"], resources: ["LeetCode 234"] },
-            { day: 58, title: "LRU Cache", difficulty: "Hard", time: "45 min",
-                objectives: ["Hash map", "Doubly linked list"], instructions: "Design an LRU cache.",
-                criteria: ["O(1) time", "Use Map"], resources: ["LeetCode 146"] },
-            { day: 59, title: "Trie Implementation", difficulty: "Hard", time: "45 min",
-                objectives: ["Trie", "Insert/search"], instructions: "Implement a trie for word operations.",
-                criteria: ["O(n) time", "Use nodes"], resources: ["LeetCode 208"] },
-            { day: 60, title: "Final Project", difficulty: "Hard", time: "60 min",
-                objectives: ["Integrate skills", "Build a project"], instructions: "Build a mini project combining all concepts.",
-                criteria: ["Use OOP", "Clean code"], resources: ["Your creativity!"] }
-        ];
+  <main id="app" class="container" role="main"></main>
 
-        // ============================================================
-        //  MOCK USER DATA
-        // ============================================================
-        const MOCK = {
-            profile: {
-                id: "MT",
-                name: "Mihir Trivedi",
-                email: "mihir@abtalks.in",
-                avatar: "👨‍💻",
-                streak: 8,
-                xp: 1240,
-                level: 3,
-                joined: "2026-01-15",
-                careerReadiness: 68
-            },
-            submissions: [
-                { day: 7, github: "https://github.com/mihir/day7", linkedin: "https://linkedin.com/in/mihir/day7" },
-                { day: 6, github: "https://github.com/mihir/day6", linkedin: "https://linkedin.com/in/mihir/day6" },
-                { day: 5, github: "https://github.com/mihir/day5", linkedin: "https://linkedin.com/in/mihir/day5" }
-            ],
-            badges: [
-                { name: "First Commit", icon: "🌟", date: "Day 1" },
-                { name: "7 Day Streak", icon: "🔥", date: "Day 7" },
-                { name: "Problem Solver", icon: "🧩", date: "Day 4" }
-            ],
-            leaderboard: [
-                { name: "Aarav", xp: 2450, avatar: "🧑" },
-                { name: "Mihir", xp: 1240, avatar: "👨" },
-                { name: "Neha", xp: 1620, avatar: "👩" },
-                { name: "Vikram", xp: 1490, avatar: "🧑" }
-            ],
-            weeklyActivity: [3, 4, 5, 6, 7, 5, 4],
-            dailyMotivation: [
-                "Consistency beats talent. You're building the future, one commit at a time.",
-                "The best time to start was 60 days ago. The second best time is today.",
-                "Every expert was once a beginner who never gave up.",
-                "Small daily improvements lead to massive results.",
-                "The secret of getting ahead is getting started."
-            ]
-        };
+  <script>
+    // ============================================================
+    //  DATA
+    // ============================================================
+    const CHALLENGES = [
+      { day:1, title:"Hello World & Variables", difficulty:"Easy", time:"15 min", objectives:["Print Hello World","Declare variables","Basic data types"], instructions:"Write a program that prints 'Hello, World!' and declares variables of different types (string, number, boolean).", criteria:["Use console.log","Use let / const","Show typeof"], resources:["MDN Variables"] },
+      { day:2, title:"Conditional Statements", difficulty:"Easy", time:"20 min", objectives:["If-else","Switch case"], instructions:"Write a program that checks if a number is even or odd using if-else. Also implement a simple grade checker with switch.", criteria:["Use if-else","Handle edge cases","Use switch"], resources:["MDN Conditionals"] },
+      { day:3, title:"Loops & Iteration", difficulty:"Easy", time:"20 min", objectives:["For loop","While loop"], instructions:"Print numbers from 1 to 10 using both for and while loops. Then print only even numbers.", criteria:["Use for loop","Use while loop","Filter even"], resources:["MDN Loops"] },
+      { day:4, title:"Functions Basics", difficulty:"Easy", time:"25 min", objectives:["Function declaration","Parameters","Return values"], instructions:"Create a function that adds two numbers and returns the result. Also write an arrow function version.", criteria:["Use function keyword","Return value","Arrow function"], resources:["MDN Functions"] },
+      { day:5, title:"Arrays & Methods", difficulty:"Easy", time:"25 min", objectives:["Array creation","Push/pop","Map/Filter"], instructions:"Create an array of numbers and use map to double each value. Then filter values greater than 10.", criteria:["Use map","Use filter","Chain methods"], resources:["MDN Arrays"] },
+      { day:6, title:"Objects & Properties", difficulty:"Easy", time:"25 min", objectives:["Object creation","Access properties","Methods"], instructions:"Create a student object with name, age, and a method to greet. Add a method that returns a summary string.", criteria:["Use object literal","Add method","this keyword"], resources:["MDN Objects"] },
+      { day:7, title:"String Manipulation", difficulty:"Easy", time:"20 min", objectives:["String methods","Template literals"], instructions:"Reverse a string and use template literals to create a formatted message.", criteria:["Use split/reverse/join","Template literals"], resources:["MDN Strings"] },
+      { day:8, title:"Array Manipulation", difficulty:"Medium", time:"30 min", objectives:["Two pointers","In-place operations"], instructions:"Remove duplicates from a sorted array in-place. Return the new length.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 26"] },
+      { day:9, title:"Binary Search", difficulty:"Medium", time:"30 min", objectives:["Binary search","Divide and conquer"], instructions:"Implement binary search to find an element in a sorted array. Return index or -1.", criteria:["O(log n) time","Handle not found"], resources:["LeetCode 704"] },
+      { day:10, title:"Two Sum Problem", difficulty:"Medium", time:"30 min", objectives:["Hash map","Two-pointers"], instructions:"Find two numbers that add up to a target. Return their indices.", criteria:["O(n) time","Use hash map"], resources:["LeetCode 1"] },
+      { day:11, title:"Palindrome Check", difficulty:"Easy", time:"20 min", objectives:["String reversal","Two pointers"], instructions:"Check if a string is a palindrome. Ignore case, spaces and punctuation.", criteria:["Ignore case","Handle spaces"], resources:["LeetCode 125"] },
+      { day:12, title:"FizzBuzz", difficulty:"Easy", time:"15 min", objectives:["Conditional logic","Loop"], instructions:"Print numbers 1–100 with FizzBuzz rules (3 → Fizz, 5 → Buzz, both → FizzBuzz).", criteria:["Use modulo","Handle all cases"], resources:["Classic problem"] },
+      { day:13, title:"Factorial Recursion", difficulty:"Medium", time:"25 min", objectives:["Recursion","Base case"], instructions:"Calculate factorial using recursion. Handle 0! and negative input gracefully.", criteria:["Use recursion","Handle 0!"], resources:["MDN Recursion"] },
+      { day:14, title:"Valid Parentheses", difficulty:"Medium", time:"30 min", objectives:["Stack","String matching"], instructions:"Check if a string of parentheses is valid ((), {}, []).", criteria:["Use stack","Handle all types"], resources:["LeetCode 20"] },
+      { day:15, title:"Merge Sorted Arrays", difficulty:"Medium", time:"30 min", objectives:["Two pointers","In-place merge"], instructions:"Merge two sorted arrays into the first array in sorted order.", criteria:["O(n+m) time","In-place"], resources:["LeetCode 88"] },
+      { day:16, title:"Linked List Basics", difficulty:"Medium", time:"35 min", objectives:["Node class","Traversal"], instructions:"Create a singly linked list and implement traversal + insert at head.", criteria:["Use class","Print values"], resources:["MDN Linked Lists"] },
+      { day:17, title:"Stack Implementation", difficulty:"Medium", time:"30 min", objectives:["Stack operations","Array-based"], instructions:"Implement a stack with push, pop, peek and isEmpty methods.", criteria:["Use array","Handle empty"], resources:["Data Structures"] },
+      { day:18, title:"Queue Implementation", difficulty:"Medium", time:"30 min", objectives:["Queue operations","Array-based"], instructions:"Implement a queue with enqueue, dequeue, front and isEmpty.", criteria:["Use array","Handle empty"], resources:["Data Structures"] },
+      { day:19, title:"Tree Traversal", difficulty:"Hard", time:"40 min", objectives:["DFS","BFS"], instructions:"Implement in-order, pre-order and post-order traversal of a binary tree.", criteria:["Use recursion","Print values"], resources:["Tree algorithms"] },
+      { day:20, title:"Graph BFS", difficulty:"Hard", time:"45 min", objectives:["BFS","Adjacency list"], instructions:"Implement BFS on a graph represented as an adjacency list.", criteria:["Use queue","Track visited"], resources:["Graph algorithms"] },
+      { day:21, title:"Sorting Algorithms", difficulty:"Medium", time:"35 min", objectives:["Bubble sort","Selection sort"], instructions:"Implement bubble sort and selection sort. Compare their steps on the same array.", criteria:["O(n²) time","In-place"], resources:["Sorting algorithms"] },
+      { day:22, title:"Quick Sort", difficulty:"Hard", time:"40 min", objectives:["Partition","Recursion"], instructions:"Implement quick sort with a clear partition helper.", criteria:["O(n log n) avg","In-place"], resources:["Quick sort"] },
+      { day:23, title:"Merge Sort", difficulty:"Hard", time:"40 min", objectives:["Divide and conquer","Merge"], instructions:"Implement merge sort. Ensure the merge step is stable.", criteria:["O(n log n)","Stable"], resources:["Merge sort"] },
+      { day:24, title:"Hash Table", difficulty:"Medium", time:"35 min", objectives:["Hash function","Collision handling"], instructions:"Implement a simple hash table with chaining for collision resolution.", criteria:["Use array","Handle collisions"], resources:["Hash tables"] },
+      { day:25, title:"Dynamic Programming", difficulty:"Hard", time:"45 min", objectives:["Fibonacci","Memoization"], instructions:"Solve Fibonacci with both top-down memoization and bottom-up tabulation.", criteria:["O(n) time","Use cache"], resources:["DP basics"] },
+      { day:26, title:"Subarray Sum", difficulty:"Medium", time:"30 min", objectives:["Sliding window","Kadane's"], instructions:"Find the maximum subarray sum using Kadane's algorithm.", criteria:["O(n) time","Use Kadane's"], resources:["Kadane's algorithm"] },
+      { day:27, title:"Longest Substring", difficulty:"Hard", time:"40 min", objectives:["Sliding window","Hash set"], instructions:"Find the length of the longest substring without repeating characters.", criteria:["O(n) time","Use set"], resources:["LeetCode 3"] },
+      { day:28, title:"Rotate Array", difficulty:"Medium", time:"30 min", objectives:["Reverse technique","In-place"], instructions:"Rotate an array to the right by k steps using the reverse method.", criteria:["O(n) time","In-place"], resources:["LeetCode 189"] },
+      { day:29, title:"Power of Two", difficulty:"Easy", time:"20 min", objectives:["Bit manipulation","Math"], instructions:"Check if a number is a power of two using bit operations.", criteria:["Use bitwise","Handle 0"], resources:["Bit manipulation"] },
+      { day:30, title:"Valid Anagram", difficulty:"Easy", time:"20 min", objectives:["Hash map","Sorting"], instructions:"Check if two strings are anagrams of each other.", criteria:["O(n) time","Use map"], resources:["LeetCode 242"] },
+      { day:31, title:"Remove Element", difficulty:"Easy", time:"20 min", objectives:["Two pointers","In-place"], instructions:"Remove all occurrences of a value in an array in-place and return the new length.", criteria:["O(n) time","In-place"], resources:["LeetCode 27"] },
+      { day:32, title:"Search Insert", difficulty:"Easy", time:"20 min", objectives:["Binary search","Edge cases"], instructions:"Find the index where a target should be inserted in a sorted array.", criteria:["O(log n)","Handle duplicates"], resources:["LeetCode 35"] },
+      { day:33, title:"Plus One", difficulty:"Easy", time:"15 min", objectives:["Array manipulation","Carry"], instructions:"Add one to a number represented as an array of digits.", criteria:["Handle carry","Return array"], resources:["LeetCode 66"] },
+      { day:34, title:"Climbing Stairs", difficulty:"Easy", time:"20 min", objectives:["DP","Fibonacci"], instructions:"Count the number of distinct ways to climb n stairs taking 1 or 2 steps at a time.", criteria:["Use DP","O(n) time"], resources:["LeetCode 70"] },
+      { day:35, title:"Move Zeroes", difficulty:"Easy", time:"15 min", objectives:["Two pointers","In-place"], instructions:"Move all zeroes to the end of the array while maintaining relative order of non-zero elements.", criteria:["O(n) time","In-place"], resources:["LeetCode 283"] },
+      { day:36, title:"Missing Number", difficulty:"Easy", time:"15 min", objectives:["Math","XOR"], instructions:"Find the missing number in an array containing n distinct numbers from 0 to n.", criteria:["O(n) time","Use XOR"], resources:["LeetCode 268"] },
+      { day:37, title:"Single Number", difficulty:"Easy", time:"15 min", objectives:["XOR","Bit manipulation"], instructions:"Find the single number in an array where every other element appears twice.", criteria:["O(n) time","Use XOR"], resources:["LeetCode 136"] },
+      { day:38, title:"Intersection Arrays", difficulty:"Medium", time:"30 min", objectives:["Hash set","Two pointers"], instructions:"Find the intersection of two arrays (unique common elements).", criteria:["O(n) time","Handle duplicates"], resources:["LeetCode 349"] },
+      { day:39, title:"Longest Common Prefix", difficulty:"Easy", time:"20 min", objectives:["String comparison","Horizontal scanning"], instructions:"Find the longest common prefix string amongst an array of strings.", criteria:["O(n*m) time","Handle empty"], resources:["LeetCode 14"] },
+      { day:40, title:"Valid Sudoku", difficulty:"Medium", time:"35 min", objectives:["Hash set","Matrix"], instructions:"Determine if a 9×9 Sudoku board is valid (no need to solve it).", criteria:["O(1) time","Use sets"], resources:["LeetCode 36"] },
+      { day:41, title:"Pow(x, n)", difficulty:"Medium", time:"30 min", objectives:["Exponentiation","Recursion"], instructions:"Implement pow(x, n) which calculates x raised to the power n efficiently.", criteria:["O(log n)","Handle negatives"], resources:["LeetCode 50"] },
+      { day:42, title:"Sqrt(x)", difficulty:"Easy", time:"20 min", objectives:["Binary search","Math"], instructions:"Compute and return the integer square root of a non-negative integer x.", criteria:["O(log n)","Handle edge cases"], resources:["LeetCode 69"] },
+      { day:43, title:"Matrix Spiral", difficulty:"Medium", time:"35 min", objectives:["Matrix traversal","Boundaries"], instructions:"Return all elements of a matrix in spiral order.", criteria:["O(m*n) time","Handle edges"], resources:["LeetCode 54"] },
+      { day:44, title:"Rotate Image", difficulty:"Medium", time:"30 min", objectives:["Matrix rotation","In-place"], instructions:"Rotate an n×n matrix 90 degrees clockwise in-place.", criteria:["In-place","O(1) space"], resources:["LeetCode 48"] },
+      { day:45, title:"Word Pattern", difficulty:"Easy", time:"20 min", objectives:["Hash map","Pattern matching"], instructions:"Check if a string follows the same pattern given by a pattern string.", criteria:["O(n) time","Bijection"], resources:["LeetCode 290"] },
+      { day:46, title:"Binary Tree Inorder", difficulty:"Medium", time:"30 min", objectives:["Tree traversal","Recursion"], instructions:"Return the inorder traversal of a binary tree's node values.", criteria:["Use recursion","Return array"], resources:["LeetCode 94"] },
+      { day:47, title:"Binary Tree Max Depth", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Find the maximum depth of a binary tree.", criteria:["O(n) time","Use recursion"], resources:["LeetCode 104"] },
+      { day:48, title:"Symmetric Tree", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Check whether a binary tree is a mirror of itself (symmetric).", criteria:["O(n) time","Use recursion"], resources:["LeetCode 101"] },
+      { day:49, title:"Path Sum", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Determine if the tree has a root-to-leaf path that sums to a given target.", criteria:["O(n) time","Use recursion"], resources:["LeetCode 112"] },
+      { day:50, title:"Linked List Cycle", difficulty:"Easy", time:"20 min", objectives:["Two pointers","Floyd's"], instructions:"Detect if a linked list has a cycle using Floyd's cycle-finding algorithm.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 141"] },
+      { day:51, title:"Merge Two Lists", difficulty:"Easy", time:"25 min", objectives:["Linked list","Merge"], instructions:"Merge two sorted linked lists and return it as a new sorted list.", criteria:["O(n+m) time","Iterative"], resources:["LeetCode 21"] },
+      { day:52, title:"Middle of List", difficulty:"Easy", time:"15 min", objectives:["Two pointers","Slow/fast"], instructions:"Find the middle node of a linked list. If two middles, return the second.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 876"] },
+      { day:53, title:"Stack from Queue", difficulty:"Medium", time:"30 min", objectives:["Queue","Stack"], instructions:"Implement a last-in-first-out stack using only queues.", criteria:["Use two queues","O(n) push"], resources:["LeetCode 225"] },
+      { day:54, title:"Queue from Stack", difficulty:"Medium", time:"30 min", objectives:["Stack","Queue"], instructions:"Implement a first-in-first-out queue using only stacks.", criteria:["Use two stacks","O(1) amortized"], resources:["LeetCode 232"] },
+      { day:55, title:"Min Stack", difficulty:"Medium", time:"30 min", objectives:["Stack","Min tracking"], instructions:"Design a stack that supports push, pop, top, and retrieving the minimum in O(1).", criteria:["O(1) time","Use extra stack"], resources:["LeetCode 155"] },
+      { day:56, title:"Reverse Linked List", difficulty:"Easy", time:"20 min", objectives:["Linked list","Iterative"], instructions:"Reverse a singly linked list both iteratively and recursively.", criteria:["O(n) time","Iterative"], resources:["LeetCode 206"] },
+      { day:57, title:"Palindrome Linked List", difficulty:"Medium", time:"30 min", objectives:["Two pointers","Reverse"], instructions:"Check if a linked list is a palindrome in O(n) time and O(1) space.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 234"] },
+      { day:58, title:"LRU Cache", difficulty:"Hard", time:"45 min", objectives:["Hash map","Doubly linked list"], instructions:"Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.", criteria:["O(1) time","Use Map"], resources:["LeetCode 146"] },
+      { day:59, title:"Trie Implementation", difficulty:"Hard", time:"45 min", objectives:["Trie","Insert/search"], instructions:"Implement a trie (prefix tree) with insert, search and startsWith methods.", criteria:["O(n) time","Use nodes"], resources:["LeetCode 208"] },
+      { day:60, title:"Final Project", difficulty:"Hard", time:"60 min", objectives:["Integrate skills","Build a project"], instructions:"Build a mini project that combines multiple concepts from the challenge (e.g. a small CLI tool, todo with localStorage, or a simple algorithm visualizer).", criteria:["Use OOP / modules","Clean code","README"], resources:["Your creativity!"] }
+    ];
 
-        // ============================================================
-        //  STATE
-        // ============================================================
-        let currentPage = 'dashboard';
-        let currentDay = 8; // Start at day 8 (matches profile streak)
-        let submissionStatus = null;
+    const DEFAULT = {
+      profile: {
+        id: "MT",
+        name: "Mihir Trivedi",
+        email: "mihir@abtalks.in",
+        avatar: "👨‍💻",
+        streak: 7,
+        xp: 1050,
+        level: 3,
+        joined: "2026-01-15",
+        careerReadiness: 62
+      },
+      submissions: [
+        { day:7, github:"https://github.com/mihir/day7", linkedin:"https://linkedin.com/in/mihir/day7" },
+        { day:6, github:"https://github.com/mihir/day6", linkedin:"https://linkedin.com/in/mihir/day6" },
+        { day:5, github:"https://github.com/mihir/day5", linkedin:"https://linkedin.com/in/mihir/day5" },
+        { day:4, github:"https://github.com/mihir/day4", linkedin:"https://linkedin.com/in/mihir/day4" },
+        { day:3, github:"https://github.com/mihir/day3", linkedin:"https://linkedin.com/in/mihir/day3" },
+        { day:2, github:"https://github.com/mihir/day2", linkedin:"https://linkedin.com/in/mihir/day2" },
+        { day:1, github:"https://github.com/mihir/day1", linkedin:"https://linkedin.com/in/mihir/day1" }
+      ],
+      badges: [
+        { name:"First Commit", icon:"🌟", date:"Day 1" },
+        { name:"7 Day Streak", icon:"🔥", date:"Day 7" },
+        { name:"Problem Solver", icon:"🧩", date:"Day 4" }
+      ],
+      leaderboard: [
+        { name:"Aarav", xp:2450, avatar:"🧑‍💻", streak:28 },
+        { name:"Neha", xp:1980, avatar:"👩‍💻", streak:22 },
+        { name:"Vikram", xp:1720, avatar:"🧑", streak:19 },
+        { name:"Mihir Trivedi", xp:1050, avatar:"👨‍💻", streak:7 },
+        { name:"Priya", xp:980, avatar:"👩", streak:11 },
+        { name:"Arjun", xp:870, avatar:"🧑‍🎓", streak:9 }
+      ],
+      weeklyActivity: [4,5,6,7,5,3,2],
+      currentDay: 8,
+      quotes: [
+        "Consistency beats talent. You're building the future, one commit at a time.",
+        "The best time to start was 60 days ago. The second best time is today.",
+        "Every expert was once a beginner who never gave up.",
+        "Small daily improvements lead to massive results.",
+        "Ship something every day. Momentum compounds.",
+        "Code. Commit. Share. Repeat.",
+        "The only bad practice day is the one you skipped."
+      ]
+    };
 
-        // ============================================================
-        //  HELPERS
-        // ============================================================
-        function getChallenge(day) {
-            return CHALLENGES.find(c => c.day === day) || CHALLENGES[0];
+    // ============================================================
+    //  STATE
+    // ============================================================
+    const KEY = "abtalks_v3";
+    let state = load();
+    let page = "dashboard";
+    let submitStatus = null; // null | success | error
+    let toastTimer = null;
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) {
+          const p = JSON.parse(raw);
+          return {
+            ...DEFAULT,
+            ...p,
+            profile: { ...DEFAULT.profile, ...p.profile },
+            leaderboard: DEFAULT.leaderboard.map(u => {
+              if (u.name.includes("Mihir") && p.profile) {
+                return { ...u, xp: p.profile.xp, streak: p.profile.streak };
+              }
+              return u;
+            })
+          };
         }
+      } catch (_) {}
+      return structuredClone(DEFAULT);
+    }
 
-        function isDaySubmitted(day) {
-            return MOCK.submissions.some(s => s.day === day);
-        }
+    function save() {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          profile: state.profile,
+          submissions: state.submissions,
+          badges: state.badges,
+          weeklyActivity: state.weeklyActivity,
+          currentDay: state.currentDay
+        }));
+      } catch (_) {}
+    }
 
-        function getSubmission(day) {
-            return MOCK.submissions.find(s => s.day === day);
-        }
+    // ============================================================
+    //  HELPERS
+    // ============================================================
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-        // ============================================================
-        //  RENDER ENGINE
-        // ============================================================
-        const app = document.getElementById('app');
+    function challenge(d) {
+      return CHALLENGES.find(c => c.day === d) || CHALLENGES[0];
+    }
+    function submitted(d) {
+      return state.submissions.some(s => s.day === d);
+    }
+    function submission(d) {
+      return state.submissions.find(s => s.day === d);
+    }
+    function overallProgress() {
+      return Math.min(100, (state.submissions.length / 60) * 100);
+    }
+    function levelProgress() {
+      return (state.profile.xp % 500) / 500 * 100;
+    }
+    function rank() {
+      const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
+      const i = sorted.findIndex(u => u.name.includes("Mihir") || u.name === state.profile.name);
+      return i >= 0 ? i + 1 : sorted.length + 1;
+    }
+    function diffClass(d) {
+      return d === "Easy" ? "success" : d === "Medium" ? "warning" : "danger";
+    }
+    function quote() {
+      return state.quotes[Math.floor(Math.random() * state.quotes.length)];
+    }
 
-        function render() {
-            switch (currentPage) {
-                case 'landing':
-                    renderLanding();
-                    break;
-                case 'dashboard':
-                    renderDashboard();
-                    break;
-                case 'day':
-                    renderDay();
-                    break;
-                default:
-                    renderDashboard();
-            }
-            updateNav();
-            updateBadge();
-        }
+    function toast(msg, icon = "✓") {
+      const wrap = $("#toastWrap");
+      const el = $("#toast");
+      el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+      wrap.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => wrap.classList.remove("show"), 2600);
+    }
 
-        function updateNav() {
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.toggle('active', el.dataset.page === currentPage);
-            });
-        }
+    function confetti() {
+      const layer = document.createElement("div");
+      layer.className = "confetti-layer";
+      document.body.appendChild(layer);
+      const colors = ["#6366F1","#8B5CF6","#06B6D4","#F59E0B","#22C55E","#EF4444","#F1F5F9","#EC4899"];
+      for (let i = 0; i < 64; i++) {
+        const p = document.createElement("div");
+        const s = 4 + Math.random() * 8;
+        p.style.cssText = `
+          position:absolute;width:${s}px;height:${s}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          border-radius:${Math.random()>0.5?"50%":"2px"};
+          left:${Math.random()*100}%;top:-10%;
+          opacity:${0.5+Math.random()*0.5};
+          animation:confettiFall ${1.6+Math.random()*2.2}s linear forwards;
+          animation-delay:${Math.random()*0.3}s;
+          transform:rotate(${Math.random()*360}deg);
+        `;
+        layer.appendChild(p);
+      }
+      setTimeout(() => layer.remove(), 4000);
+    }
 
-        function updateBadge() {
-            const badge = document.getElementById('dayBadge');
-            if (badge) badge.textContent = currentDay;
-        }
+    // ============================================================
+    //  RENDER
+    // ============================================================
+    const app = $("#app");
 
-        // ============================================================
-        //  LANDING PAGE
-        // ============================================================
-        function renderLanding() {
-            app.innerHTML = `
-            <div class="fade-in">
-              <div style="text-align:center; padding:18px 0 8px;">
-                <div style="font-size:3.2rem; margin-bottom:4px; display:inline-block; animation:float 3s ease-in-out infinite;">🚀</div>
-                <h1 style="font-size:2.4rem; font-weight:900; letter-spacing:-1px; background:linear-gradient(135deg,#F1F5F9 0%,#94A3B8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">ABTalks</h1>
-                <p style="color:var(--muted); font-size:1.05rem; margin:6px 0 18px; max-width:320px; margin-left:auto; margin-right:auto;">60‑day coding challenge · built for India</p>
-                <button class="btn-primary pulse-glow" id="joinBtn"><i class="fas fa-bolt"></i> Join the challenge</button>
+    function render() {
+      switch (page) {
+        case "landing": renderLanding(); break;
+        case "dashboard": renderDashboard(); break;
+        case "day": renderDay(); break;
+        case "leaderboard": renderLeaderboard(); break;
+        default: renderDashboard();
+      }
+      updateNav();
+    }
+
+    function updateNav() {
+      $$(".nav-item").forEach(el => {
+        const active = el.dataset.page === page;
+        el.classList.toggle("active", active);
+        el.setAttribute("aria-current", active ? "page" : "false");
+      });
+      const badge = $("#dayBadge");
+      if (badge) badge.textContent = state.currentDay;
+    }
+
+    // ---------- LANDING ----------
+    function renderLanding() {
+      app.innerHTML = `
+        <div class="page">
+          <div style="text-align:center;padding:24px 0 12px;">
+            <div style="font-size:2.8rem;margin-bottom:6px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
+            <h1 style="font-size:2.3rem;font-weight:900;letter-spacing:-1.2px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
+            <p class="text-muted" style="font-size:1rem;margin:6px auto 18px;max-width:280px;">60-day coding challenge · built for India</p>
+            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:260px;margin:0 auto;">
+              <i class="fas fa-bolt"></i> Join the challenge
+            </button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 14px;">
+            ${[
+              { v:"60", l:"days" },
+              { v:"1.2k+", l:"students" },
+              { v:"89%", l:"completion" }
+            ].map(s => `
+              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--border);">
+                <div style="font-size:1.55rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
+                <div style="font-size:11px;color:var(--muted);font-weight:500;">${s.l}</div>
               </div>
+            `).join("")}
+          </div>
 
-              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:20px 0 10px;">
-                <div style="background:rgba(255,255,255,0.03); border-radius:18px; padding:14px 6px; text-align:center; backdrop-filter:blur(4px); border:1px solid var(--border-subtle);">
-                  <div style="font-size:1.7rem; font-weight:700; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">60</div>
-                  <div style="font-size:11px; color:var(--muted); font-weight:500; letter-spacing:0.3px;">days</div>
+          <div class="card">
+            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
+              <i class="fas fa-compass" style="color:var(--primary);"></i> How it works
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+              ${[
+                "Daily coding task (20–40 min)",
+                "Push your solution to GitHub",
+                "Share one learning on LinkedIn",
+                "Submit links & protect your streak"
+              ].map((t,i) => `
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.025);padding:11px 13px;border-radius:12px;">
+                  <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span>
+                  <span style="font-size:0.9rem;">${t}</span>
                 </div>
-                <div style="background:rgba(255,255,255,0.03); border-radius:18px; padding:14px 6px; text-align:center; backdrop-filter:blur(4px); border:1px solid var(--border-subtle);">
-                  <div style="font-size:1.7rem; font-weight:700; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">1.2k+</div>
-                  <div style="font-size:11px; color:var(--muted); font-weight:500; letter-spacing:0.3px;">students</div>
-                </div>
-                <div style="background:rgba(255,255,255,0.03); border-radius:18px; padding:14px 6px; text-align:center; backdrop-filter:blur(4px); border:1px solid var(--border-subtle);">
-                  <div style="font-size:1.7rem; font-weight:700; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">89%</div>
-                  <div style="font-size:11px; color:var(--muted); font-weight:500; letter-spacing:0.3px;">completion</div>
-                </div>
-              </div>
-
-              <div class="glass-card">
-                <h3 style="display:flex; gap:10px; align-items:center; font-size:1.1rem;"><i class="fas fa-compass" style="color:var(--primary);"></i> How it works</h3>
-                <div style="display:flex; flex-direction:column; gap:14px; margin-top:14px;">
-                  <div style="display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:16px;"><span class="badge" style="min-width:28px;">1</span> Daily coding task</div>
-                  <div style="display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:16px;"><span class="badge" style="min-width:28px;">2</span> Push code to GitHub</div>
-                  <div style="display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:16px;"><span class="badge" style="min-width:28px;">3</span> Share learning on LinkedIn</div>
-                  <div style="display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:16px;"><span class="badge" style="min-width:28px;">4</span> Submit & keep your streak</div>
-                </div>
-              </div>
-
-              <div class="glass-card dark">
-                <h3 style="display:flex; gap:10px; align-items:center; font-size:1.1rem;"><i class="fas fa-star" style="color:var(--warning);"></i> Why ABTalks?</h3>
-                <ul style="list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:12px;">
-                  <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--success);">✅</span> Build real portfolio projects</li>
-                  <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--success);">✅</span> Daily accountability & streaks</li>
-                  <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--success);">✅</span> Earn XP, levels & badges</li>
-                  <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--success);">✅</span> Join a community of doers</li>
-                </ul>
-              </div>
-
-              <div style="background:rgba(99,102,241,0.06); border-left:4px solid var(--primary); padding:16px 18px; border-radius:16px; margin:10px 0; backdrop-filter:blur(4px);">
-                <p style="font-size:0.95rem; font-style:italic; color:#E2E8F0;">“ABTalks turned my coding habit around. I went from zero to job‑ready in 60 days.”</p>
-                <span style="font-size:0.8rem; color:var(--muted); font-weight:500;">— Ananya, NIT Trichy</span>
-              </div>
-              <div style="background:rgba(99,102,241,0.06); border-left:4px solid var(--primary); padding:16px 18px; border-radius:16px; margin:10px 0; backdrop-filter:blur(4px);">
-                <p style="font-size:0.95rem; font-style:italic; color:#E2E8F0;">“The streak system kept me going even on tough days. Best decision ever.”</p>
-                <span style="font-size:0.8rem; color:var(--muted); font-weight:500;">— Rohan, VIT</span>
-              </div>
-
-              <div class="glass-card">
-                <h3 style="display:flex; gap:10px; align-items:center; font-size:1.1rem;">📌 FAQ</h3>
-                <div style="border-bottom:1px solid var(--border-subtle); padding:16px 0;"><h4 style="font-weight:600; display:flex; gap:10px; align-items:center; font-size:1rem;"><span class="badge">Q</span> Is it free?</h4><p style="color:var(--muted); font-size:0.9rem; margin-top:4px; padding-left:30px;">Yes, completely free for Indian college students.</p></div>
-                <div style="border-bottom:1px solid var(--border-subtle); padding:16px 0;"><h4 style="font-weight:600; display:flex; gap:10px; align-items:center; font-size:1rem;"><span class="badge">Q</span> What if I miss a day?</h4><p style="color:var(--muted); font-size:0.9rem; margin-top:4px; padding-left:30px;">Your streak resets, but you can always catch up.</p></div>
-                <div style="padding:16px 0; border-bottom:none;"><h4 style="font-weight:600; display:flex; gap:10px; align-items:center; font-size:1rem;"><span class="badge">Q</span> How much time per day?</h4><p style="color:var(--muted); font-size:0.9rem; margin-top:4px; padding-left:30px;">~20‑30 minutes per task.</p></div>
-              </div>
-
-              <div style="text-align:center; padding:20px 0 10px; color:var(--muted); font-size:0.75rem; letter-spacing:0.5px;">© 2026 ABTalks · Made with ❤️ in India</div>
+              `).join("")}
             </div>
-          `;
-            document.getElementById('joinBtn')?.addEventListener('click', () => {
-                currentPage = 'dashboard';
-                render();
-            });
-        }
+          </div>
 
-        // ============================================================
-        //  DASHBOARD
-        // ============================================================
-        function renderDashboard() {
-            const p = MOCK.profile;
-            const today = getChallenge(currentDay);
-            const progress = Math.min(100, (p.streak / 60) * 100);
-            const rank = MOCK.leaderboard.findIndex(u => u.name === p.name) + 1;
-            const moto = MOCK.dailyMotivation[Math.floor(Math.random() * MOCK.dailyMotivation.length)];
-            const levelProgress = (p.xp % 500) / 500 * 100;
+          <div class="card flat">
+            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
+              <i class="fas fa-star" style="color:var(--warning);"></i> Why ABTalks?
+            </h3>
+            <ul style="list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+              ${[
+                "Build a real, public portfolio",
+                "Daily accountability & streaks",
+                "Earn XP, levels & badges",
+                "Join a community of doers"
+              ].map(t => `
+                <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;">
+                  <span style="color:var(--success);">✓</span> ${t}
+                </li>
+              `).join("")}
+            </ul>
+          </div>
 
-            app.innerHTML = `
-            <div class="fade-in">
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-                <div>
-                  <div style="display:flex; align-items:center; gap:12px;">
-                    <span style="font-size:2.4rem;">${p.avatar}</span>
-                    <div>
-                      <h2 style="font-size:1.5rem; font-weight:700;">${p.name}</h2>
-                      <span style="color:var(--muted); font-size:0.85rem;">ID: ${p.id} · Level ${p.level} · ${p.xp} XP</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="streak-badge"><i class="fas fa-fire"></i> ${p.streak} day streak</span>
-              </div>
-
-              <div style="margin:4px 0 12px;">
-                <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--muted);">
-                  <span>Level ${p.level}</span>
-                  <span>${p.xp % 500} / 500 XP</span>
-                </div>
-                <div class="progress-bar" style="height:6px;"><div class="progress-fill" style="width:${levelProgress}%;"></div></div>
-              </div>
-
-              <div class="grid-2">
-                <div class="glass-card" style="border-left:4px solid var(--primary);">
-                  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
-                    <span class="badge">Day ${today.day}</span>
-                    <span style="color:var(--muted); font-size:0.8rem;"><i class="far fa-clock"></i> ${today.time}</span>
-                  </div>
-                  <h3 style="margin:8px 0 4px; font-size:1.15rem;">${today.title}</h3>
-                  <p style="color:var(--muted); font-size:0.9rem;">${today.difficulty} · ${today.objectives.slice(0,2).join(' · ')}</p>
-                  <button class="btn-primary" id="continueBtn" style="margin-top:16px; padding:14px;"><i class="fas fa-arrow-right"></i> Continue challenge</button>
-                </div>
-
-                <div>
-                  <div class="glass-card" style="padding:16px;">
-                    <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-                      <span>60‑day progress</span>
-                      <span style="font-weight:600;">${Math.round(progress)}%</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%;"></div></div>
-                  </div>
-                  <div class="glass-card" style="padding:16px; text-align:center; display:flex; flex-direction:column; justify-content:center;">
-                    <span style="font-size:1.5rem; font-weight:700; color:var(--warning);">#${rank}</span>
-                    <span style="font-size:0.75rem; color:var(--muted);">leaderboard</span>
-                  </div>
-                </div>
-              </div>
-
-              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:4px 0 8px;">
-                <div class="glass-card" style="padding:12px; text-align:center; background:rgba(6,182,212,0.05);">
-                  <i class="fas fa-medal" style="color:var(--accent); font-size:1.2rem;"></i>
-                  <div style="font-weight:600; font-size:0.9rem;">${MOCK.badges.length}</div>
-                  <div style="font-size:0.65rem; color:var(--muted);">badges</div>
-                </div>
-                <div class="glass-card" style="padding:12px; text-align:center; background:rgba(34,197,94,0.05);">
-                  <i class="fas fa-check-circle" style="color:var(--success); font-size:1.2rem;"></i>
-                  <div style="font-weight:600; font-size:0.9rem;">${MOCK.submissions.length}</div>
-                  <div style="font-size:0.65rem; color:var(--muted);">submissions</div>
-                </div>
-                <div class="glass-card" style="padding:12px; text-align:center; background:rgba(139,92,246,0.05);">
-                  <i class="fas fa-chart-line" style="color:var(--secondary); font-size:1.2rem;"></i>
-                  <div style="font-weight:600; font-size:0.9rem;">${p.careerReadiness}%</div>
-                  <div style="font-size:0.65rem; color:var(--muted);">readiness</div>
-                </div>
-              </div>
-
-              <div class="glass-card">
-                <h4 style="display:flex; gap:10px; align-items:center; font-size:0.95rem;"><i class="fas fa-calendar-alt" style="color:var(--primary);"></i> Weekly activity</h4>
-                <div class="activity-grid">
-                  ${['M','T','W','T','F','S','S'].map(d => `<div style="text-align:center; font-size:10px; color:var(--muted); font-weight:600;">${d}</div>`).join('')}
-                  ${MOCK.weeklyActivity.map(v => {
-                    let level = 'level0';
-                    if (v >= 6) level = 'level4';
-                    else if (v >= 4) level = 'level3';
-                    else if (v >= 2) level = 'level2';
-                    else if (v >= 1) level = 'level1';
-                    return `<div class="activity-cell ${level}" title="${v} commits"></div>`;
-                  }).join('')}
-                </div>
-              </div>
-
-              <div class="glass-card">
-                <h4 style="display:flex; gap:10px; align-items:center; font-size:0.95rem;"><i class="fas fa-award" style="color:var(--secondary);"></i> Achievements</h4>
-                <div class="scroll-x">
-                  ${MOCK.badges.map(b => `
-                    <div style="background:rgba(255,255,255,0.03); padding:10px 18px; border-radius:40px; display:flex; align-items:center; gap:10px; border:1px solid var(--border-subtle); backdrop-filter:blur(4px);">
-                      <span style="font-size:1.4rem;">${b.icon}</span>
-                      <div><div style="font-weight:600; font-size:0.8rem;">${b.name}</div><div style="font-size:0.6rem; color:var(--muted);">${b.date}</div></div>
-                    </div>
-                  `).join('')}
-                  ${MOCK.badges.length === 0 ? `<div class="empty-state" style="padding:12px; font-size:0.85rem; width:100%;"><i class="fas fa-trophy"></i><p>No badges yet. Keep going!</p></div>` : ''}
-                </div>
-              </div>
-
-              <div class="glass-card" style="background:linear-gradient(135deg, rgba(99,102,241,0.10), rgba(139,92,246,0.06)); border-color:rgba(99,102,241,0.1);">
-                <p style="font-style:italic; font-weight:400; color:#E2E8F0; display:flex; gap:10px;">
-                  <span style="color:var(--primary);">✨</span> “${moto}”
-                </p>
-              </div>
-              <div style="height:10px;"></div>
+          ${[
+            { t:"“ABTalks turned my coding habit around. I went from zero to job-ready in 60 days.”", a:"— Ananya, NIT Trichy" },
+            { t:"“The streak system kept me going even on tough days. Best decision ever.”", a:"— Rohan, VIT" }
+          ].map(q => `
+            <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--primary);padding:14px 15px;border-radius:12px;margin:8px 0;">
+              <p style="font-size:0.9rem;font-style:italic;color:#E2E8F0;line-height:1.5;">${q.t}</p>
+              <span class="text-xs text-muted" style="margin-top:5px;display:block;font-weight:500;">${q.a}</span>
             </div>
-          `;
-            document.getElementById('continueBtn')?.addEventListener('click', () => {
-                currentPage = 'day';
-                render();
-            });
-        }
+          `).join("")}
 
-        // ============================================================
-        //  DAY PAGE — Fully working with 60 unique challenges
-        // ============================================================
-        function renderDay() {
-            const challenge = getChallenge(currentDay);
-            const isSubmitted = isDaySubmitted(currentDay);
-            const prevSub = getSubmission(currentDay);
-
-            if (!challenge) {
-                app.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-circle"></i><p>Challenge not found!</p></div>`;
-                return;
-            }
-
-            app.innerHTML = `
-            <div class="fade-in">
-              <div class="day-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                <span class="day-num" style="font-size:2.6rem; font-weight:800; background:linear-gradient(135deg,#6366F1,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-1px;">Day ${challenge.day}</span>
-                <span class="badge ${challenge.difficulty === 'Easy' ? 'success' : challenge.difficulty === 'Medium' ? 'warning' : 'danger'}">${challenge.difficulty}</span>
+          <div class="card">
+            <h3 class="fw-7" style="font-size:1.02rem;">FAQ</h3>
+            ${[
+              { q:"Is it free?", a:"Yes — completely free for Indian college students." },
+              { q:"What if I miss a day?", a:"Your streak resets, but you can always catch up on previous days." },
+              { q:"How much time per day?", a:"Most tasks take 20–40 minutes. Day 60 is a mini project." }
+            ].map((f,i,arr) => `
+              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:13px 0;">
+                <h4 class="fw-6" style="font-size:0.92rem;display:flex;gap:9px;align-items:center;">
+                  <span class="badge">Q</span> ${f.q}
+                </h4>
+                <p class="text-muted text-sm" style="margin-top:3px;padding-left:30px;">${f.a}</p>
               </div>
-              <h2 style="margin:4px 0 2px; font-size:1.3rem;">${challenge.title}</h2>
-              <p style="color:var(--muted); font-size:0.85rem; margin-bottom:12px;">
-                <i class="far fa-clock"></i> ${challenge.time} · ${challenge.objectives.join(' · ')}
-              </p>
+            `).join("")}
+          </div>
 
-              <div class="glass-card">
-                <h4 style="display:flex; gap:10px; align-items:center; font-size:0.95rem;">📖 Instructions</h4>
-                <p style="color:#E2E8F0; font-size:0.95rem; margin:8px 0;">${challenge.instructions}</p>
-                <div class="chip-group">
-                  ${challenge.criteria.map(c => `<span class="chip active">${c}</span>`).join('')}
-                </div>
-                <div style="margin-top:10px;">
-                  <span style="color:var(--muted); font-size:0.8rem; font-weight:500;">Resources:</span>
-                  ${challenge.resources.map(r => `<span style="color:var(--primary-light); display:block; font-size:0.85rem; margin-top:2px;">📘 ${r}</span>`).join('')}
-                </div>
-                ${isSubmitted ? `<div class="badge success" style="margin-top:12px; display:inline-block;"><i class="fas fa-check-circle"></i> Submitted on Day ${challenge.day}</div>` : ''}
-              </div>
+          <p class="text-center text-muted" style="font-size:0.7rem;letter-spacing:0.3px;padding:16px 0 6px;">
+            © 2026 ABTalks · Made with ❤️ in India
+          </p>
+        </div>
+      `;
+      $("#joinBtn")?.addEventListener("click", () => { page = "dashboard"; render(); });
+    }
 
-              <div class="glass-card">
-                <h4 style="display:flex; gap:10px; align-items:center; font-size:0.95rem;">📤 Submit your work</h4>
-                <div class="input-group"><i class="fab fa-github"></i><input type="text" id="githubInput" placeholder="GitHub commit URL" value="${prevSub?.github || ''}"></div>
-                <div class="input-group"><i class="fab fa-linkedin"></i><input type="text" id="linkedinInput" placeholder="LinkedIn post URL" value="${prevSub?.linkedin || ''}"></div>
-                <button class="btn-primary" id="submitBtn" style="margin-top:10px;" ${isSubmitted ? 'disabled' : ''}>
-                  <i class="fas ${isSubmitted ? 'fa-check-circle' : 'fa-paper-plane'}"></i>
-                  ${isSubmitted ? '✅ Submitted' : 'Submit & earn XP'}
-                </button>
-                ${submissionStatus === 'success' ? `
-                  <div class="slide-up" style="margin-top:14px; padding:12px; background:rgba(34,197,94,0.08); border-radius:16px; border-left:3px solid var(--success); display:flex; align-items:center; gap:12px;">
-                    <i class="fas fa-confetti" style="color:var(--success); font-size:1.4rem;"></i>
-                    <div><span style="color:var(--success); font-weight:600;">+50 XP</span> · Badge unlocked! 🎉</div>
-                  </div>
-                ` : ''}
-                ${submissionStatus === 'error' ? `
-                  <div class="slide-up" style="margin-top:14px; padding:12px; background:rgba(239,68,68,0.08); border-radius:16px; border-left:3px solid var(--danger); color:var(--danger);">
-                    <i class="fas fa-exclamation-circle"></i> Invalid URL. Please include 'github.com' and 'linkedin.com'.
-                  </div>
-                ` : ''}
-              </div>
+    // ---------- DASHBOARD ----------
+    function renderDashboard() {
+      const p = state.profile;
+      const today = challenge(state.currentDay);
+      const prog = overallProgress();
+      const r = rank();
+      const lp = levelProgress();
+      const done = state.submissions.length;
 
-              <div style="display:flex; gap:12px; margin:6px 0 12px;">
-                <button class="btn-secondary" id="prevDay" style="flex:1;" ${currentDay <= 1 ? 'disabled' : ''}>
-                  <i class="fas fa-arrow-left"></i> Previous
-                </button>
-                <button class="btn-secondary" id="nextDay" style="flex:1;" ${currentDay >= 60 ? 'disabled' : ''}>
-                  Next <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
-
-              <div style="display:flex; gap:16px; justify-content:center; color:var(--muted); font-size:0.85rem; padding:8px 0;">
-                <span><i class="fas fa-star" style="color:var(--warning);"></i> +50 XP</span>
-                <span><i class="fas fa-medal" style="color:var(--secondary);"></i> Streak badge</span>
+      app.innerHTML = `
+        <div class="page">
+          <div class="flex-between" style="margin-bottom:12px;">
+            <div class="flex gap-2" style="align-items:center;">
+              <span style="font-size:2.2rem;line-height:1;">${p.avatar}</span>
+              <div>
+                <h2 class="fw-7" style="font-size:1.35rem;letter-spacing:-0.3px;">${p.name}</h2>
+                <span class="text-muted text-sm">ID ${p.id} · Level ${p.level} · ${p.xp.toLocaleString()} XP</span>
               </div>
             </div>
-          `;
+            <span class="streak"><i class="fas fa-fire"></i> ${p.streak}</span>
+          </div>
 
-            // ----- Event Listeners -----
-            document.getElementById('submitBtn')?.addEventListener('click', () => {
-                if (isDaySubmitted(currentDay)) return;
+          <div style="margin-bottom:14px;">
+            <div class="flex-between text-xs text-muted">
+              <span>Level ${p.level}</span>
+              <span>${p.xp % 500} / 500 XP</span>
+            </div>
+            <div class="progress" style="height:5px;margin-top:5px;">
+              <div class="progress-fill" style="width:${lp}%;"></div>
+            </div>
+          </div>
 
-                const github = document.getElementById('githubInput').value.trim();
-                const linkedin = document.getElementById('linkedinInput').value.trim();
+          <div class="grid-2" style="margin-bottom:4px;">
+            <div class="card accent" style="margin-bottom:0;">
+              <div class="flex-between">
+                <span class="badge">Day ${today.day}</span>
+                <span class="text-muted text-xs"><i class="far fa-clock"></i> ${today.time}</span>
+              </div>
+              <h3 class="fw-7" style="margin:8px 0 3px;font-size:1.08rem;">${today.title}</h3>
+              <p class="text-muted text-sm">${today.difficulty} · ${today.objectives.slice(0,2).join(" · ")}</p>
+              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:12px;">
+                <i class="fas fa-arrow-right"></i> Continue
+              </button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="card" style="padding:13px;margin-bottom:0;">
+                <div class="flex-between text-sm">
+                  <span>Progress</span>
+                  <span class="fw-7">${Math.round(prog)}%</span>
+                </div>
+                <div class="progress" style="margin-top:6px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
+                <div class="text-xs text-muted" style="margin-top:4px;">${done} of 60 done</div>
+              </div>
+              <div class="card" style="padding:13px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+                <span class="fw-8" style="font-size:1.4rem;color:var(--warning);">#${r}</span>
+                <span class="text-xs text-muted">rank</span>
+              </div>
+            </div>
+          </div>
 
-                if (!github || !linkedin || !github.includes('github.com') || !linkedin.includes('linkedin.com')) {
-                    submissionStatus = 'error';
-                    renderDay();
-                    return;
-                }
+          <div class="stat-row">
+            <div class="stat" style="background:rgba(6,182,212,0.05);">
+              <i class="fas fa-medal" style="color:var(--accent);"></i>
+              <div class="val">${state.badges.length}</div>
+              <div class="lbl">badges</div>
+            </div>
+            <div class="stat" style="background:rgba(34,197,94,0.05);">
+              <i class="fas fa-check-circle" style="color:var(--success);"></i>
+              <div class="val">${done}</div>
+              <div class="lbl">submitted</div>
+            </div>
+            <div class="stat" style="background:rgba(139,92,246,0.05);">
+              <i class="fas fa-chart-line" style="color:var(--secondary);"></i>
+              <div class="val">${p.careerReadiness}%</div>
+              <div class="lbl">readiness</div>
+            </div>
+          </div>
 
-                // Add submission
-                MOCK.submissions.push({ day: currentDay, github, linkedin });
-                MOCK.profile.xp += 50;
+          <div class="card">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+              <i class="fas fa-calendar-alt" style="color:var(--primary);"></i> Weekly activity
+            </h4>
+            <div class="activity-grid">
+              ${["M","T","W","T","F","S","S"].map(d => `<div class="activity-label">${d}</div>`).join("")}
+              ${state.weeklyActivity.map(v => {
+                const lvl = v >= 6 ? "l4" : v >= 4 ? "l3" : v >= 2 ? "l2" : v >= 1 ? "l1" : "";
+                return `<div class="activity-cell ${lvl}" title="${v} commits"></div>`;
+              }).join("")}
+            </div>
+          </div>
 
-                // Update streak if consecutive
-                if (currentDay === MOCK.profile.streak + 1) {
-                    MOCK.profile.streak++;
-                }
+          <div class="card">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+              <i class="fas fa-award" style="color:var(--secondary);"></i> Achievements
+            </h4>
+            <div class="scroll-x">
+              ${state.badges.length === 0
+                ? `<div class="empty" style="padding:14px;width:100%;font-size:0.85rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
+                : state.badges.map(b => `
+                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);">
+                      <span style="font-size:1.25rem;">${b.icon}</span>
+                      <div>
+                        <div class="fw-6" style="font-size:0.76rem;">${b.name}</div>
+                        <div class="text-muted" style="font-size:0.58rem;">${b.date}</div>
+                      </div>
+                    </div>
+                  `).join("")
+              }
+            </div>
+          </div>
 
-                // Add badge
-                if (!MOCK.badges.find(b => b.name === 'Submission Master')) {
-                    MOCK.badges.push({ name: 'Submission Master', icon: '📬', date: `Day ${currentDay}` });
-                }
+          <div class="quote">
+            <span style="color:var(--primary);margin-right:6px;">✨</span>“${quote()}”
+          </div>
+        </div>
+      `;
+      $("#goDay")?.addEventListener("click", () => { page = "day"; render(); });
+    }
 
-                // Update weekly activity
-                const dayIndex = (currentDay - 1) % 7;
-                if (MOCK.weeklyActivity[dayIndex] < 7) {
-                    MOCK.weeklyActivity[dayIndex]++;
-                }
+    // ---------- DAY ----------
+    function renderDay() {
+      const c = challenge(state.currentDay);
+      const done = submitted(state.currentDay);
+      const sub = submission(state.currentDay);
 
-                submissionStatus = 'success';
-                launchConfetti();
+      // Day strip: show a window around current
+      const start = Math.max(1, state.currentDay - 8);
+      const end = Math.min(60, state.currentDay + 8);
+      let dots = "";
+      for (let d = start; d <= end; d++) {
+        let cls = "day-dot";
+        if (d === state.currentDay) cls += " current";
+        else if (submitted(d)) cls += " done";
+        dots += `<button type="button" class="${cls}" data-day="${d}" aria-label="Go to day ${d}">${d}</button>`;
+      }
 
-                setTimeout(() => {
-                    submissionStatus = null;
-                    renderDay();
-                }, 3000);
+      app.innerHTML = `
+        <div class="page">
+          <div class="day-strip" id="dayStrip">${dots}</div>
 
-                renderDay();
-            });
+          <div class="flex-between" style="margin-bottom:2px;">
+            <span class="fw-8" style="font-size:2.3rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;">Day ${c.day}</span>
+            <span class="badge ${diffClass(c.difficulty)}">${c.difficulty}</span>
+          </div>
+          <h2 class="fw-7" style="font-size:1.2rem;margin-bottom:4px;">${c.title}</h2>
+          <p class="text-muted text-sm" style="margin-bottom:12px;">
+            <i class="far fa-clock"></i> ${c.time} · ${c.objectives.join(" · ")}
+          </p>
 
-            document.getElementById('prevDay')?.addEventListener('click', () => {
-                if (currentDay > 1) {
-                    currentDay--;
-                    submissionStatus = null;
-                    renderDay();
-                }
-            });
+          <div class="card">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+              <i class="fas fa-book-open" style="color:var(--primary);"></i> Instructions
+            </h4>
+            <p style="color:#E2E8F0;font-size:0.92rem;margin:8px 0;line-height:1.55;">${c.instructions}</p>
+            <div class="chips">
+              ${c.criteria.map(x => `<span class="chip on">${x}</span>`).join("")}
+            </div>
+            <div style="margin-top:12px;">
+              <span class="text-xs text-muted fw-6">Resources</span>
+              ${c.resources.map(r => `
+                <div style="color:var(--primary-light);font-size:0.84rem;margin-top:3px;">
+                  <i class="fas fa-book" style="font-size:0.65rem;opacity:0.65;"></i> ${r}
+                </div>
+              `).join("")}
+            </div>
+            ${done ? `<div class="badge success" style="margin-top:12px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
+          </div>
 
-            document.getElementById('nextDay')?.addEventListener('click', () => {
-                if (currentDay < 60) {
-                    currentDay++;
-                    submissionStatus = null;
-                    renderDay();
-                }
-            });
+          <div class="card">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+              <i class="fas fa-paper-plane" style="color:var(--accent);"></i> Submit your work
+            </h4>
+            <div class="field" id="ghField">
+              <i class="fab fa-github"></i>
+              <input type="url" id="githubInput" placeholder="GitHub commit or repo URL" value="${sub?.github || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+            </div>
+            <div class="field-hint" id="ghHint">Include github.com in the URL</div>
+            <div class="field" id="liField">
+              <i class="fab fa-linkedin"></i>
+              <input type="url" id="linkedinInput" placeholder="LinkedIn post URL" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+            </div>
+            <div class="field-hint" id="liHint">Include linkedin.com in the URL</div>
+            <button class="btn btn-primary" id="submitBtn" style="margin-top:6px;" ${done ? "disabled" : ""}>
+              <i class="fas ${done ? "fa-check-circle" : "fa-paper-plane"}"></i>
+              ${done ? "Submitted" : "Submit & earn +50 XP"}
+            </button>
+            ${submitStatus === "success" ? `
+              <div class="success-banner">
+                <i class="fas fa-check-circle" style="color:var(--success);font-size:1.2rem;"></i>
+                <div><span class="fw-7" style="color:var(--success);">+50 XP</span> <span class="text-muted text-sm">· Streak updated</span></div>
+              </div>
+            ` : ""}
+            ${submitStatus === "error" ? `
+              <div class="error-banner">
+                <i class="fas fa-exclamation-circle"></i> Please enter valid GitHub and LinkedIn URLs.
+              </div>
+            ` : ""}
+          </div>
+
+          <div class="flex gap-1" style="margin:6px 0 8px;">
+            <button class="btn btn-secondary" id="prevDay" style="flex:1;" ${state.currentDay <= 1 ? "disabled" : ""}>
+              <i class="fas fa-arrow-left"></i> Prev
+            </button>
+            <button class="btn btn-secondary" id="nextDay" style="flex:1;" ${state.currentDay >= 60 ? "disabled" : ""}>
+              Next <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="flex-center gap-2 text-muted text-sm" style="padding:4px 0 8px;">
+            <span><i class="fas fa-star" style="color:var(--warning);"></i> +50 XP</span>
+            <span><i class="fas fa-fire" style="color:var(--warning);"></i> Streak</span>
+            <span><i class="fas fa-medal" style="color:var(--secondary);"></i> Badges</span>
+          </div>
+        </div>
+      `;
+
+      // Scroll current day into view
+      requestAnimationFrame(() => {
+        const strip = $("#dayStrip");
+        const cur = strip?.querySelector(".day-dot.current");
+        if (cur && strip) {
+          const left = cur.offsetLeft - strip.clientWidth / 2 + cur.clientWidth / 2;
+          strip.scrollTo({ left, behavior: "smooth" });
         }
+      });
 
-        // ============================================================
-        //  CONFETTI
-        // ============================================================
-        function launchConfetti() {
-            const container = document.createElement('div');
-            container.className = 'confetti-container';
-            document.body.appendChild(container);
-            const colors = ['#6366F1', '#8B5CF6', '#06B6D4', '#F59E0B', '#22C55E', '#EF4444', '#F1F5F9', '#EC4899'];
-            for (let i = 0; i < 80; i++) {
-                const el = document.createElement('div');
-                const size = 5 + Math.random() * 10;
-                const shape = Math.random() > 0.5 ? '50%' : '2px';
-                el.style.cssText = `
-              position: absolute;
-              width: ${size}px;
-              height: ${size}px;
-              background: ${colors[Math.floor(Math.random() * colors.length)]};
-              border-radius: ${shape};
-              left: ${Math.random() * 100}%;
-              top: -10%;
-              opacity: ${0.6 + Math.random() * 0.4};
-              animation: confettiFall ${2 + Math.random() * 2.5}s linear forwards;
-              animation-delay: ${Math.random() * 0.4}s;
-              transform: rotate(${Math.random() * 360}deg);
-            `;
-                container.appendChild(el);
-            }
-            setTimeout(() => container.remove(), 4500);
-        }
-
-        // ============================================================
-        //  NAVIGATION
-        // ============================================================
-        document.querySelectorAll('.nav-item').forEach(el => {
-            el.addEventListener('click', () => {
-                const page = el.dataset.page;
-                if (page === 'landing' || page === 'dashboard' || page === 'day') {
-                    currentPage = page;
-                    submissionStatus = null;
-                    render();
-                }
-            });
+      // Day dots
+      $$(".day-dot").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.currentDay = +btn.dataset.day;
+          submitStatus = null;
+          save();
+          renderDay();
         });
+      });
 
-        // ============================================================
-        //  INIT
-        // ============================================================
-        render();
-    </script>
+      // Live validation clear
+      const ghIn = $("#githubInput");
+      const liIn = $("#linkedinInput");
+      ghIn?.addEventListener("input", () => {
+        $("#ghField")?.classList.remove("error");
+        $("#ghHint")?.classList.remove("show");
+      });
+      liIn?.addEventListener("input", () => {
+        $("#liField")?.classList.remove("error");
+        $("#liHint")?.classList.remove("show");
+      });
+
+      // Submit
+      $("#submitBtn")?.addEventListener("click", () => {
+        if (submitted(state.currentDay)) return;
+
+        const github = ghIn.value.trim();
+        const linkedin = liIn.value.trim();
+        const okGh = github && (github.includes("github.com") || github.includes("gist.github.com"));
+        const okLi = linkedin && linkedin.includes("linkedin.com");
+
+        if (!okGh || !okLi) {
+          if (!okGh) { $("#ghField")?.classList.add("error"); $("#ghHint")?.classList.add("show"); }
+          if (!okLi) { $("#liField")?.classList.add("error"); $("#liHint")?.classList.add("show"); }
+          submitStatus = "error";
+          renderDay();
+          return;
+        }
+
+        state.submissions.push({ day: state.currentDay, github, linkedin });
+        state.profile.xp += 50;
+
+        const newLevel = Math.floor(state.profile.xp / 500) + 1;
+        if (newLevel > state.profile.level) {
+          state.profile.level = newLevel;
+          toast(`Level ${newLevel} unlocked!`, "🎉");
+        }
+
+        if (state.currentDay === state.profile.streak + 1) {
+          state.profile.streak++;
+        }
+
+        state.profile.careerReadiness = Math.min(98, Math.round(38 + (state.submissions.length / 60) * 60));
+
+        // Badges
+        const addBadge = (name, icon) => {
+          if (!state.badges.find(b => b.name === name)) {
+            state.badges.push({ name, icon, date: `Day ${state.currentDay}` });
+            toast(`${name} badge earned!`, icon);
+          }
+        };
+        if (state.submissions.length === 1) addBadge("First Commit", "🌟");
+        if (state.profile.streak >= 7) addBadge("7 Day Streak", "🔥");
+        if (state.submissions.length >= 10) addBadge("Consistent Coder", "💪");
+        if (state.submissions.length >= 30) addBadge("Halfway Hero", "🏅");
+        if (state.submissions.length >= 60) addBadge("Challenge Complete", "🏆");
+
+        const idx = (state.currentDay - 1) % 7;
+        if (state.weeklyActivity[idx] < 7) state.weeklyActivity[idx]++;
+
+        const me = state.leaderboard.find(u => u.name.includes("Mihir"));
+        if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
+
+        submitStatus = "success";
+        save();
+        confetti();
+        toast("+50 XP earned");
+
+        setTimeout(() => {
+          submitStatus = null;
+          renderDay();
+        }, 2600);
+
+        renderDay();
+      });
+
+      $("#prevDay")?.addEventListener("click", () => {
+        if (state.currentDay > 1) {
+          state.currentDay--;
+          submitStatus = null;
+          save();
+          renderDay();
+        }
+      });
+      $("#nextDay")?.addEventListener("click", () => {
+        if (state.currentDay < 60) {
+          state.currentDay++;
+          submitStatus = null;
+          save();
+          renderDay();
+        }
+      });
+    }
+
+    // ---------- LEADERBOARD ----------
+    function renderLeaderboard() {
+      const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
+      const myRank = rank();
+
+      app.innerHTML = `
+        <div class="page">
+          <div style="margin-bottom:14px;">
+            <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
+            <p class="text-muted text-sm">Top performers this cohort</p>
+          </div>
+
+          <div class="card accent" style="margin-bottom:12px;">
+            <div class="flex-between">
+              <div>
+                <div class="text-xs text-muted">Your rank</div>
+                <div class="fw-8" style="font-size:1.5rem;color:var(--warning);">#${myRank}</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="text-xs text-muted">Your XP</div>
+                <div class="fw-7" style="font-size:1.2rem;">${state.profile.xp.toLocaleString()}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:4px 0;">
+            ${sorted.map((u, i) => {
+              const isMe = u.name.includes("Mihir") || u.name === state.profile.name;
+              const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
+              return `
+                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.07);" : ""}">
+                  <div style="width:26px;text-align:center;font-weight:700;font-size:0.92rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
+                    ${medal || (i + 1)}
+                  </div>
+                  <span style="font-size:1.35rem;">${u.avatar}</span>
+                  <div style="flex:1;min-width:0;">
+                    <div class="fw-6 truncate" style="font-size:0.9rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
+                    <div class="text-xs text-muted">${u.streak || 0} day streak</div>
+                  </div>
+                  <div class="fw-7" style="font-size:0.92rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted fw-5" style="font-weight:500;">XP</span></div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+
+          <p class="text-center text-muted text-xs" style="margin-top:10px;">
+            Rankings update as you submit. Keep shipping.
+          </p>
+        </div>
+      `;
+    }
+
+    // ============================================================
+    //  NAV
+    // ============================================================
+    $$(".nav-item").forEach(el => {
+      el.addEventListener("click", () => {
+        const p = el.dataset.page;
+        if (["landing","dashboard","day","leaderboard"].includes(p)) {
+          page = p;
+          submitStatus = null;
+          render();
+        }
+      });
+    });
+
+    // ============================================================
+    //  INIT
+    // ============================================================
+    render();
+  </script>
 </body>
 </html>
