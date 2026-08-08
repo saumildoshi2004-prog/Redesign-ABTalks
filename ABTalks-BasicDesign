@@ -227,8 +227,12 @@ h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-.01em;}
 .task-number{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:10px;background:rgba(99,102,241,.14);border:1px solid rgba(99,102,241,.3);margin-right:8px;font-weight:800}
 .info-item{display:flex;gap:9px;align-items:flex-start;margin:7px 0}
 .info-item .info-emoji{width:24px;flex:none}
-.activity-chart{position:relative;height:220px;margin-top:12px;padding:8px 0 0;} .activity-chart svg{width:100%;height:100%;overflow:visible;} .chart-grid{stroke:rgba(255,255,255,.08);stroke-width:1;} .chart-line{fill:none;stroke:url(#activityGrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;} .chart-area{fill:url(#activityArea);opacity:.28;} .chart-dot{fill:var(--cyan);stroke:var(--card);stroke-width:3;} .chart-value{font-family:var(--font-mono);font-size:10px;fill:var(--paper);font-weight:700;} .chart-label{font-family:var(--font-body);font-size:10px;fill:var(--dim);} .activity-summary{display:flex;justify-content:space-between;gap:8px;margin-top:10px;} .activity-summary .mini-stat{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;} .mini-stat .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;} .mini-stat .l{font-size:9px;color:var(--dim);margin-top:2px;} .focus-card{background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(103,94,242,.08));border:1px solid rgba(34,211,238,.18);border-radius:var(--r-lg);padding:16px;} .focus-row{display:flex;align-items:center;gap:12px;} .focus-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--grad-cyan);font-size:1.25rem;} .activity-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}.activity-label{text-align:center;font-size:10px;color:var(--dim)}.activity-cell{height:28px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line)}.activity-cell.l1{background:rgba(52,211,153,.22)}.activity-cell.l2{background:rgba(52,211,153,.4)}.activity-cell.l3{background:rgba(52,211,153,.62)}.activity-cell.l4{background:rgba(52,211,153,.85)}</style>
-<style>.weekly-chart-card{padding:16px 16px 12px!important}.today-focus-card{border-left:3px solid var(--primary)!important}</style></head>
+.activity-chart{position:relative;height:220px;margin-top:12px;padding:8px 0 0;} .activity-chart svg{width:100%;height:100%;overflow:visible;} .chart-grid{stroke:rgba(255,255,255,.08);stroke-width:1;} .chart-line{fill:none;stroke:url(#activityGrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;} .chart-area{fill:url(#activityArea);opacity:.28;} .chart-dot{fill:var(--cyan);stroke:var(--card);stroke-width:3;} .chart-value{font-family:var(--font-mono);font-size:10px;fill:var(--paper);font-weight:700;} .chart-label{font-family:var(--font-body);font-size:10px;fill:var(--dim);} .activity-summary{display:flex;justify-content:space-between;gap:8px;margin-top:10px;} .activity-summary .mini-stat{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;} .mini-stat .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;} .mini-stat .l{font-size:9px;color:var(--dim);margin-top:2px;} .focus-card{background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(103,94,242,.08));border:1px solid rgba(34,211,238,.18);border-radius:var(--r-lg);padding:16px;} .focus-row{display:flex;align-items:center;gap:12px;} .focus-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--grad-cyan);font-size:1.25rem;} .activity-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}.activity-label{text-align:center;font-size:10px;color:var(--dim)}.activity-cell{height:28px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line)}.activity-cell.l1{background:rgba(52,211,153,.22)}.activity-cell.l2{background:rgba(52,211,153,.4)}.activity-cell.l3{background:rgba(52,211,153,.62)}.activity-cell.l4{background:rgba(52,211,153,.85)}<style>.day-number,.day-tile,.challenge-day-number{cursor:default!important;user-select:none!important}</style>
+<style>.weekly-chart-card{padding:16px 16px 12px!important}.today-focus-card{border-left:3px solid var(--primary)!important}</style>
+<style>
+:root{--primary:var(--indigo);--primary-light:var(--indigo-soft);--secondary:var(--violet);--border:var(--line);--muted:var(--dim);--muted-2:var(--dim-2);--success:var(--mint);--warning:var(--amber);--danger:var(--rose)}
+</style>
+</head>
 <body>
 <div class="toast-wrap" id="toastWrap" aria-live="polite"><div class="toast" id="toast"></div></div>
 <div class="task-lock-overlay" id="taskLockOverlay" role="dialog" aria-modal="true" aria-labelledby="taskLockTitle">
@@ -601,9 +605,9 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
               { v:"1.2k+", l:"students" },
               { v:"89%", l:"completion" }
             ].map(s => `
-              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--line);">
-                <div style="font-size:1.55rem;font-weight:800;background:linear-gradient(135deg,var(--indigo),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
-                <div style="font-size:11px;color:var(--dim);font-weight:500;">${s.l}</div>
+              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--border);">
+                <div style="font-size:1.55rem;font-weight:800;color:var(--indigo-soft);background:linear-gradient(135deg,var(--indigo-soft),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
+                <div style="font-size:11px;color:var(--muted);font-weight:500;">${s.l}</div>
               </div>
             `).join("")}
           </div>
@@ -809,7 +813,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
               ${state.badges.length === 0
                 ? `<div class="empty" style="padding:14px;width:100%;font-size:0.85rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
                 : state.badges.map(b => `
-                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);">
+                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);">
                       <span style="font-size:1.25rem;">${b.icon}</span>
                       <div>
                         <div class="fw-6" style="font-size:0.76rem;">${b.name}</div>
