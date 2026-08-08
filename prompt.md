@@ -369,3 +369,9 @@ Final Goal
 Deliver a polished, production-quality, mobile-first frontend that isvisually impressive, responsive, accessible, and demonstratesoutstanding UI, UX, and frontend engineering.
 
 The project should be hackathon-ready and stand out through its design,usability, and attention to detail.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+make all thing proper working like all day different different challenges and make all proper smooth and responsive
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
