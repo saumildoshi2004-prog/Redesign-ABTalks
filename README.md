@@ -121,13 +121,10 @@ Primary design target:
 
 ```text
 /
-├── index.html
-├── css/
-├── js/
-├── assets/
-└── README.md
-```
+├── ABTalks-BaisDesign.html------css-------javascript
 
+```
+*html has all the codes together inside it
 ---
 
 # 🚀 Key Functionalities
