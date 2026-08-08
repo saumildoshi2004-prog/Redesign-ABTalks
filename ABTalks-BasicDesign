@@ -56,6 +56,40 @@ img,svg{display:block;max-width:100%;}
 @keyframes bootSlide{0%{transform:translateX(-100%);}100%{transform:translateX(340%);}}
 .boot-txt{font-size:.78rem;color:var(--dim);letter-spacing:.2px;}
 
+/* Splash — JUST DO IT */
+.splash{
+  position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#070910;transition:opacity .55s ease,visibility .55s;
+}
+.splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.splash-text{
+  font-family:'Space Grotesk',Inter,sans-serif;font-weight:900;font-size:clamp(2rem,9vw,3.4rem);
+  letter-spacing:-.02em;text-align:center;line-height:1.05;padding:0 20px;
+  background:linear-gradient(135deg,#fff 20%,#a99fff 50%,#22d3ee 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:splashPop .7s cubic-bezier(.22,1,.36,1) both;
+}
+.splash-sub{
+  margin-top:14px;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);animation:splashFade .6s ease .35s both;
+}
+.splash-bar{
+  margin-top:28px;width:90px;height:3px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;
+  animation:splashFade .5s ease .2s both;
+}
+.splash-bar span{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#675ef2,#22d3ee);
+  animation:splashLoad 1.6s ease .4s forwards;
+}
+@keyframes splashPop{
+  0%{opacity:0;transform:scale(.82) translateY(12px)}
+  60%{opacity:1;transform:scale(1.04) translateY(0)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes splashFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes splashLoad{to{width:100%}}
+
 .bottom-nav{
   position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav-h) + var(--safe-b));padding-bottom:var(--safe-b);
   background:rgba(6,8,16,.86);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
@@ -750,6 +784,11 @@ img,svg,video,canvas{max-width:100%!important;height:auto}
 </style>
 </head>
 <body>
+<div class="splash" id="splash" aria-hidden="false">
+  <div class="splash-text">JUST DO IT!!!!!</div>
+  <div class="splash-sub">ABTalks · 60-day challenge</div>
+  <div class="splash-bar"><span></span></div>
+</div>
 <div class="toast-wrap" id="toastWrap" aria-live="polite"><div class="toast" id="toast"></div></div>
 <div class="task-lock-overlay" id="taskLockOverlay" role="dialog" aria-modal="true" aria-labelledby="taskLockTitle">
   <div class="task-lock-modal">
@@ -1158,12 +1197,8 @@ function freshStartState(){
     weeklyActivity:[0,0,0,0,0,0,0],
     lastSubmitAt:null,
     leaderboard:[
-      {name:name||"You",xp:0,streak:0,isYou:true,initials},
-      {name:"Aarav Shah",xp:2450,streak:28},
-      {name:"Neha Kapoor",xp:1980,streak:22},
-      {name:"Vikram Rao",xp:1720,streak:19},
-      {name:"Priya Nair",xp:890,streak:11},
-      {name:"Arjun Mehta",xp:610,streak:9}
+      ...LEADERBOARD_OTHERS.map(o=>({...o,isYou:false,initials:o.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase()})),
+      {name:name||"You",xp:0,streak:0,isYou:true,initials}
     ],
     quotes:QUOTES
   };
@@ -1182,6 +1217,7 @@ async function doFullReset(){
     hideTaskLock?.();
     // Wipe every component
     state=freshStartState();
+    syncLeaderboardState();
     submitStatus=null;
     page="dashboard";
     // Clear all storage keys this app may have used
@@ -1233,11 +1269,36 @@ function computeStreak(s){
 function earnedBadges(){return BADGE_DEFS.filter(b=>b.need(state));}
 function lockedBadges(){return BADGE_DEFS.filter(b=>!b.need(state));}
 function leaderboardRows(){
-  const you={name:state.profile.name,initials:state.profile.initials,xp:xpTotal(),streak:computeStreak(),isYou:true};
-  const others=LEADERBOARD_OTHERS.map(o=>({...o,initials:o.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),isYou:false}));
-  return[...others,you].sort((a,b)=>b.xp-a.xp);
+  const youName=state.profile.name||"You";
+  const you={
+    name:youName,
+    initials:state.profile.initials||(youName==="You"?"YO":youName.split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase()),
+    xp:xpTotal(),
+    streak:computeStreak(),
+    isYou:true
+  };
+  const others=LEADERBOARD_OTHERS.map(o=>({
+    ...o,
+    initials:o.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),
+    isYou:false
+  }));
+  // Sort by XP desc; if tie, put "you" after others with same XP so rank is consistent
+  return[...others,you].sort((a,b)=>{
+    if(b.xp!==a.xp) return b.xp-a.xp;
+    if(a.isYou) return 1;
+    if(b.isYou) return -1;
+    return a.name.localeCompare(b.name);
+  });
 }
-function myRank(){const rows=leaderboardRows();return rows.findIndex(r=>r.isYou)+1;}
+function myRank(){
+  const rows=leaderboardRows();
+  const i=rows.findIndex(r=>r.isYou);
+  return i>=0?i+1:rows.length;
+}
+function syncLeaderboardState(){
+  // Keep state.leaderboard in sync with the single source of truth
+  state.leaderboard=leaderboardRows();
+}
 function greeting(){
   const h=new Date().getHours();
   if(h>=5 && h<12) return "Good morning";
@@ -1368,9 +1429,7 @@ function greeting(){
       return (state.profile.xp % 500) / 500 * 100;
     }
     function rank() {
-      const rows = leaderboardRows();
-      const me = rows.findIndex(u => u.isYou);
-      return me >= 0 ? me + 1 : rows.length;
+      return myRank();
     }
     function diffClass(d) {
       return d === "Easy" ? "success" : d === "Medium" ? "warning" : "danger";
@@ -2267,8 +2326,9 @@ const HEADER = `<div class="mobile-brandbar">
 
     // ---------- LEADERBOARD ----------
     function renderLeaderboard() {
-      const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
-      const myRank = rank();
+      const sorted = leaderboardRows();
+      const myRankNum = rank();
+      syncLeaderboardState();
 
       app.innerHTML = `
         <div class="page">
@@ -2281,14 +2341,14 @@ const HEADER = `<div class="mobile-brandbar">
 </div>
           <div style="margin-bottom:14px;">
             <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
-            <p class="text-muted text-sm">Top performers this cohort</p>
+            <p class="text-muted text-sm">Top performers this cohort · ${sorted.length} students</p>
           </div>
 
           <div class="card accent" style="margin-bottom:12px;">
             <div class="flex-between">
               <div>
                 <div class="text-xs text-muted">Your rank</div>
-                <div class="fw-8" style="font-size:1.5rem;color:var(--warning);">#${myRank}</div>
+                <div class="fw-8" style="font-size:1.5rem;color:var(--warning);">#${myRankNum}</div>
               </div>
               <div style="text-align:right;">
                 <div class="text-xs text-muted">Your XP</div>
@@ -2299,7 +2359,7 @@ const HEADER = `<div class="mobile-brandbar">
 
           <div class="card" style="padding:4px 0;">
             ${sorted.map((u, i) => {
-              const isMe = u.name === state.profile.name;
+              const isMe = !!u.isYou;
               const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
               return `
                 <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.07);" : ""}">
@@ -2308,10 +2368,10 @@ const HEADER = `<div class="mobile-brandbar">
                   </div>
                   <span style="font-size:1.35rem;">${u.initials || "👨‍💻"}</span>
                   <div style="flex:1;min-width:0;">
-                    <div class="fw-6 truncate" style="font-size:0.9rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
+                    <div class="fw-6 truncate" style="font-size:0.9rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name||"You"}${isMe ? " (you)" : ""}</div>
                     <div class="text-xs text-muted">${u.streak || 0} day streak</div>
                   </div>
-                  <div class="fw-7" style="font-size:0.92rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted fw-5" style="font-weight:500;">XP</span></div>
+                  <div class="fw-7" style="font-size:0.92rem;">${(u.xp||0).toLocaleString()} <span class="text-xs text-muted fw-5" style="font-weight:500;">XP</span></div>
                 </div>
               `;
             }).join("")}
@@ -2376,7 +2436,6 @@ const HEADER = `<div class="mobile-brandbar">
       state.submissions = Array.isArray(state.submissions) ? state.submissions : [];
       state.badges = Array.isArray(state.badges) ? state.badges : [];
       state.weeklyActivity = Array.isArray(state.weeklyActivity) ? state.weeklyActivity : [3,1,5,2,4,0,3];
-      state.leaderboard = Array.isArray(state.leaderboard) ? state.leaderboard : defaultState().leaderboard;
       state.quotes = Array.isArray(state.quotes) && state.quotes.length ? state.quotes : QUOTES;
       state.profile.xp = xpTotal();
       state.profile.initials = state.profile.initials || initialsFor(state.profile.name);
@@ -2389,7 +2448,18 @@ const HEADER = `<div class="mobile-brandbar">
       state.profile.streak = computeStreak(state);
       state.profile.careerReadiness = careerReadiness();
       if(!state.currentDay || state.currentDay < 1 || state.currentDay > 60) state.currentDay = nextIncompleteDay();
+      // Single source of truth for rank + list
+      syncLeaderboardState();
       render();
+      // Splash: JUST DO IT!!!!! then welcome
+      setTimeout(()=>{
+        const splash=$("#splash");
+        if(splash){
+          splash.classList.add("hide");
+          splash.setAttribute("aria-hidden","true");
+          setTimeout(()=>splash.remove(),600);
+        }
+      },2100);
     })();
 </script>
 </body>
