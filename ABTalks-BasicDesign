@@ -1,858 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#0B1120" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="ABTalks · 60-day coding challenge. Build real skills, ship daily, stay consistent. National-level student initiative." />
-  <title>ABTalks · 60-day coding challenge</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <style>
-    :root {
-      --primary: #6366F1;
-      --primary-light: #818CF8;
-      --primary-dark: #4F46E5;
-      --secondary: #8B5CF6;
-      --accent: #06B6D4;
-      --success: #22C55E;
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --bg: #0A0F1C;
-      --surface: #0F1629;
-      --card: #151C2E;
-      --text: #F8FAFC;
-      --text-secondary: #CBD5E1;
-      --muted: #94A3B8;
-      --radius: 14px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --shadow: 0 4px 24px -4px rgba(0,0,0,0.5);
-      --shadow-lg: 0 12px 40px -8px rgba(0,0,0,0.6);
-      --glass: rgba(15, 22, 41, 0.85);
-      --border: rgba(255,255,255,0.06);
-      --border-strong: rgba(255,255,255,0.1);
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --nav-h: 68px;
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#060810" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="description" content="ABTalks — a 60-day coding challenge for Indian college developers. Ship one task a day, prove it on GitHub and LinkedIn, and walk away with a portfolio recruiters can actually check." />
+<title>ABTalks · 60-Day Coding Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+:root{
+  --ink:#060810; --surface:#0C1220; --surface-2:#111a2c; --card:#131c30; --card-flat:rgba(255,255,255,0.025);
+  --line:rgba(255,255,255,0.08); --line-strong:rgba(255,255,255,0.14);
+  --indigo:#675EF2; --indigo-soft:#8B84F7; --violet:#A78BFA; --cyan:#22D3EE; --amber:#F5A524; --mint:#34D399; --rose:#FB7185;
+  --paper:#F7F8FC; --dim:#9AA3B8; --dim-2:#6B7488;
+  --grad-brand:linear-gradient(135deg,var(--indigo),var(--violet));
+  --grad-cyan:linear-gradient(135deg,var(--cyan),var(--indigo));
+  --font-display:'Space Grotesk',Inter,sans-serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:28px; --r-pill:999px;
+  --shadow-1:0 8px 24px -10px rgba(0,0,0,.55); --shadow-2:0 24px 56px -16px rgba(0,0,0,.7);
+  --ease:cubic-bezier(.22,1,.36,1); --nav-h:70px; --safe-b:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;height:100%;}
+body{
+  font-family:var(--font-body); background:var(--ink); color:var(--paper); line-height:1.55;
+  min-height:100dvh; padding-bottom:calc(var(--nav-h) + var(--safe-b) + 10px);
+  -webkit-tap-highlight-color:transparent; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  background-image:radial-gradient(60% 40% at 15% 0%, rgba(103,94,242,.16), transparent 60%),radial-gradient(50% 35% at 100% 10%, rgba(34,211,238,.09), transparent 60%);
+  background-attachment:fixed;
+}
+a{text-decoration:none;color:inherit;}
+button,input,textarea{font:inherit;border:none;outline:none;background:none;color:inherit;}
+button{cursor:pointer;}
+input:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:6px;}
+img,svg{display:block;max-width:100%;}
+::selection{background:rgba(103,94,242,.4);color:#fff;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(103,94,242,.5);border-radius:20px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; height: 100%; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      min-height: 100%;
-      min-height: 100dvh;
-      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 12px);
-      -webkit-tap-highlight-color: transparent;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    button, input, textarea { font: inherit; border: none; outline: none; background: none; color: inherit; }
-    button { cursor: pointer; }
-    ::selection { background: rgba(99,102,241,0.35); color: #fff; }
+.container{width:100%;max-width:520px;margin:0 auto;padding:18px 18px 12px;}
+.page{animation:pageIn .38s var(--ease) both;}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-    ::-webkit-scrollbar { width: 4px; height: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.45); border-radius: 20px; }
+.boot{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.boot-mark{font-family:var(--font-mono);font-weight:700;font-size:1.6rem;color:var(--indigo-soft);letter-spacing:-1px;}
+.boot-bar{width:120px;height:3px;border-radius:10px;background:var(--surface-2);overflow:hidden;}
+.boot-bar::after{content:'';display:block;width:40%;height:100%;background:var(--grad-brand);animation:bootSlide 1.1s ease-in-out infinite;}
+@keyframes bootSlide{0%{transform:translateX(-100%);}100%{transform:translateX(340%);}}
+.boot-txt{font-size:.78rem;color:var(--dim);letter-spacing:.2px;}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav-h) + var(--safe-b));padding-bottom:var(--safe-b);
+  background:rgba(6,8,16,.86);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+  border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:100;
+}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:64px;height:54px;padding:6px 10px;border-radius:14px;font-size:10px;font-weight:600;letter-spacing:.2px;color:var(--dim);transition:color .2s var(--ease);position:relative;}
+.nav-item i{font-size:19px;transition:transform .2s var(--ease),color .2s var(--ease);}
+.nav-item.active{color:var(--indigo-soft);}
+.nav-item.active i{color:var(--indigo-soft);transform:translateY(-1px);}
+.nav-item:active{transform:scale(.93);}
+.nav-dot{position:absolute;top:5px;right:14px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 3px rgba(6,8,16,.86);}
 
-    .container {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 16px 16px 12px;
-    }
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow-1);margin-bottom:12px;}
+.card.flat{background:var(--card-flat);box-shadow:none;}
+.card.accent{border-color:rgba(103,94,242,.35);background:linear-gradient(180deg,rgba(103,94,242,.08),var(--card) 60%);}
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: calc(var(--nav-h) + var(--safe-bottom));
-      padding-bottom: var(--safe-bottom);
-      background: rgba(10, 15, 28, 0.9);
-      backdrop-filter: blur(28px) saturate(1.5);
-      -webkit-backdrop-filter: blur(28px) saturate(1.5);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 100;
-      box-shadow: 0 -6px 28px rgba(0,0,0,0.35);
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      min-width: 62px;
-      height: 52px;
-      padding: 5px 8px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.15px;
-      color: var(--muted);
-      transition: color 0.2s var(--ease), transform 0.15s var(--ease);
-      position: relative;
-      user-select: none;
-    }
-    .nav-item i {
-      font-size: 19px;
-      transition: transform 0.2s var(--ease), color 0.2s, filter 0.2s;
-    }
-    .nav-item.active { color: var(--primary-light); }
-    .nav-item.active i {
-      color: var(--primary);
-      transform: translateY(-1px) scale(1.04);
-      filter: drop-shadow(0 0 7px rgba(99,102,241,0.45));
-    }
-    .nav-item:active { transform: scale(0.93); }
-    .nav-badge {
-      position: absolute;
-      top: 3px; right: 6px;
-      min-width: 16px; height: 16px;
-      padding: 0 4px;
-      background: linear-gradient(135deg, #EF4444, #F97316);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 700;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(239,68,68,0.4);
-      line-height: 1;
-    }
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--indigo-soft);background:rgba(103,94,242,.12);border:1px solid rgba(103,94,242,.25);padding:6px 12px;border-radius:var(--r-pill);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);}
 
-    .card {
-      background: var(--glass);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      margin-bottom: 12px;
-      transition: border-color 0.22s var(--ease);
-    }
-    .card:hover { border-color: var(--border-strong); }
-    .card.accent { border-left: 3px solid var(--primary); }
-    .card.flat {
-      background: rgba(255,255,255,0.02);
-      box-shadow: none;
-    }
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:var(--r-pill);font-size:11px;font-weight:600;background:rgba(103,94,242,.14);color:var(--indigo-soft);border:1px solid rgba(103,94,242,.2);white-space:nowrap;}
+.badge.success{background:rgba(52,211,153,.12);color:var(--mint);border-color:rgba(52,211,153,.24);}
+.badge.warning{background:rgba(245,165,36,.12);color:var(--amber);border-color:rgba(245,165,36,.24);}
+.badge.danger{background:rgba(251,113,133,.12);color:var(--rose);border-color:rgba(251,113,133,.22);}
+.badge.mono{font-family:var(--font-mono);}
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 10px;
-      border-radius: 40px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15px;
-      background: rgba(99,102,241,0.14);
-      color: var(--primary-light);
-      border: 1px solid rgba(99,102,241,0.16);
-      white-space: nowrap;
-    }
-    .badge.success { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.18); }
-    .badge.warning { background: rgba(245,158,11,0.12); color: var(--warning); border-color: rgba(245,158,11,0.18); }
-    .badge.danger  { background: rgba(239,68,68,0.1); color: var(--danger); border-color: rgba(239,68,68,0.16); }
-    .badge.accent  { background: rgba(6,182,212,0.1); color: var(--accent); border-color: rgba(6,182,212,0.16); }
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 20px;border-radius:var(--r-pill);font-size:15px;font-weight:600;transition:transform .16s var(--ease),box-shadow .2s,opacity .2s;user-select:none;}
+.btn:active:not(:disabled){transform:scale(.97);}
+.btn:disabled{opacity:.4;pointer-events:none;}
+.btn-primary{background:var(--grad-brand);color:#fff;box-shadow:0 10px 28px -10px rgba(103,94,242,.55);}
+.btn-secondary{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--paper);}
+.btn-secondary:hover{background:rgba(255,255,255,.07);border-color:var(--line-strong);}
+.btn-ghost{background:transparent;color:var(--dim);width:auto;padding:8px 4px;}
+.btn-ghost:hover{color:var(--paper);}
+.btn-sm{padding:10px 16px;font-size:13px;}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 13px 18px;
-      border-radius: 60px;
-      font-size: 14.5px;
-      font-weight: 600;
-      letter-spacing: 0.1px;
-      transition: transform 0.18s var(--ease), box-shadow 0.22s, opacity 0.2s, background 0.2s;
-      position: relative;
-      overflow: hidden;
-      user-select: none;
-    }
-    .btn:active:not(:disabled) { transform: scale(0.975); }
-    .btn:disabled { opacity: 0.4; pointer-events: none; }
+.progress{height:6px;background:var(--surface-2);border-radius:20px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:20px;background:var(--grad-cyan);transition:width .8s var(--ease);}
 
-    .btn-primary {
-      background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
-      color: #fff;
-      box-shadow: 0 5px 18px rgba(99,102,241,0.3);
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 25%, rgba(255,255,255,0.1), transparent 75%);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .btn-primary:hover::after { opacity: 1; }
+.streak-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:var(--r-pill);font-family:var(--font-mono);font-weight:700;background:rgba(245,165,36,.1);color:var(--amber);border:1px solid rgba(245,165,36,.22);}
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.035);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: var(--border-strong);
-    }
-    .btn-sm { padding: 10px 14px; font-size: 13px; }
+.field-group{margin:10px 0;}
+.field-label{display:block;font-size:11.5px;font-weight:600;color:var(--dim);margin:0 0 6px 4px;letter-spacing:.2px;}
+.field{display:flex;align-items:center;gap:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:2px 16px;transition:border-color .2s,box-shadow .2s;}
+.field:focus-within{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(103,94,242,.15);}
+.field.error{border-color:var(--rose);box-shadow:0 0 0 3px rgba(251,113,133,.12);}
+.field i{color:var(--dim);font-size:1rem;width:18px;text-align:center;flex-shrink:0;}
+.field input{flex:1;padding:12px 0;background:transparent;color:var(--paper);font-size:14px;font-weight:500;min-width:0;}
+.field input::placeholder{color:var(--dim-2);font-weight:400;}
+.field-hint{font-size:12px;color:var(--rose);margin:5px 0 0 16px;display:none;}
+.field-hint.show{display:block;}
 
-    .progress {
-      height: 6px;
-      background: #1A2236;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 20px;
-      background: linear-gradient(90deg, #6366F1, #06B6D4);
-      transition: width 0.8s var(--ease-out);
-      position: relative;
-    }
-    .progress-fill::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 0;
-      width: 18px; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22));
-      border-radius: 20px;
-    }
+.chip{padding:8px 12px;border-radius:12px;font-size:12.5px;font-weight:500;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--text-secondary,#CBD5E1);display:flex;align-items:center;gap:8px;}
+.chip i{color:var(--mint);font-size:.8rem;}
 
-    .streak {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 11px;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      background: rgba(245,158,11,0.1);
-      color: var(--warning);
-      border: 1px solid rgba(245,158,11,0.16);
-    }
-    .streak i { animation: fire 1.5s ease-in-out infinite; }
-    @keyframes fire {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-    }
+.day-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;}
+.day-grid .cell{aspect-ratio:1;border-radius:4px;background:var(--surface-2);border:1px solid transparent;transition:transform .15s;}
+.day-grid .cell.done{background:var(--grad-brand);}
+.day-grid .cell.next{background:var(--surface-2);border-color:var(--cyan);}
+.day-grid .cell:hover{transform:scale(1.18);}
 
-    .field {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      background: #1A2236;
-      border: 1px solid var(--border);
-      border-radius: 60px;
-      padding: 2px 15px;
-      margin: 7px 0;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .field:focus-within {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.14);
-    }
-    .field.error {
-      border-color: var(--danger);
-      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
-    }
-    .field i {
-      color: var(--muted);
-      font-size: 1rem;
-      width: 18px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .field input {
-      flex: 1;
-      padding: 11px 0;
-      background: transparent;
-      color: var(--text);
-      font-size: 13.5px;
-      font-weight: 500;
-      min-width: 0;
-    }
-    .field input::placeholder { color: var(--muted); font-weight: 400; }
-    .field input:read-only { opacity: 0.65; }
-    .field-hint {
-      font-size: 11.5px;
-      color: var(--danger);
-      margin: -2px 0 5px 14px;
-      opacity: 0;
-      transform: translateY(-3px);
-      transition: opacity 0.18s, transform 0.18s;
-    }
-    .field-hint.show { opacity: 1; transform: translateY(0); }
+.ring-wrap{position:relative;width:112px;height:112px;flex-shrink:0;}
+.ring-wrap svg{transform:rotate(-90deg);}
+.ring-track{fill:none;stroke:var(--surface-2);stroke-width:10;}
+.ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s var(--ease);}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-label .pct{font-family:var(--font-mono);font-weight:700;font-size:1.3rem;}
+.ring-label .lbl{font-size:9.5px;color:var(--dim);letter-spacing:.3px;text-transform:uppercase;}
 
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 9px 0 2px; }
-    .chip {
-      padding: 4px 11px;
-      border-radius: 40px;
-      font-size: 11.5px;
-      font-weight: 500;
-      background: rgba(255,255,255,0.035);
-      color: var(--muted);
-      border: 1px solid transparent;
-    }
-    .chip.on {
-      background: rgba(99,102,241,0.1);
-      color: var(--text-secondary);
-      border-color: rgba(99,102,241,0.28);
-    }
+.code-window{background:#080B14;border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-2);}
+.code-window-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);}
+.code-window-bar .dot{width:9px;height:9px;border-radius:50%;}
+.code-window-bar .path{margin-left:8px;font-family:var(--font-mono);font-size:11px;color:var(--dim);}
+.code-window-body{padding:16px;}
+.terminal-line{font-family:var(--font-mono);font-size:12.5px;color:var(--dim);margin-top:10px;}
+.terminal-line .prompt{color:var(--mint);}
+.terminal-line.result{color:var(--cyan);}
 
-    .day-strip {
-      display: flex;
-      gap: 5px;
-      overflow-x: auto;
-      padding: 2px 2px 12px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    }
-    .day-strip::-webkit-scrollbar { display: none; }
-    .day-dot {
-      flex: 0 0 auto;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11.5px;
-      font-weight: 600;
-      background: #1A2236;
-      color: var(--muted);
-      border: 1.5px solid transparent;
-      scroll-snap-align: center;
-      transition: all 0.2s var(--ease);
-      cursor: pointer;
-    }
-    .day-dot.current {
-      background: linear-gradient(135deg, #6366F1, #8B5CF6);
-      color: #fff;
-      box-shadow: 0 3px 12px rgba(99,102,241,0.38);
-      transform: scale(1.06);
-    }
-    .day-dot.done {
-      background: rgba(34,197,94,0.13);
-      color: var(--success);
-      border-color: rgba(34,197,94,0.25);
-    }
-    .day-dot:hover:not(.current) {
-      border-color: var(--primary);
-      color: var(--text);
-    }
+.avatar{border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;color:#fff;flex-shrink:0;}
 
-    /* ========== WEEKLY ACTIVITY HEATMAP ========== */
-    .activity-section { margin-top: 2px; }
-    .activity-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .activity-header h4 {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-    .activity-summary {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .activity-summary strong {
-      color: var(--text-secondary);
-      font-weight: 600;
-    }
+.timeline{position:relative;padding-left:26px;}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1.5px;background:linear-gradient(var(--indigo),transparent);}
+.timeline-item{position:relative;padding-bottom:20px;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-item::before{content:'';position:absolute;left:-26px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--indigo-soft);box-shadow:0 0 0 4px rgba(103,94,242,.15);}
 
-    .heatmap-wrap { position: relative; }
-    .heatmap {
-      display: grid;
-      grid-template-columns: 28px repeat(7, 1fr);
-      gap: 4px;
-      align-items: center;
-    }
-    .heatmap-day-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.2px;
-      text-align: right;
-      padding-right: 2px;
-    }
-    .heatmap-cell {
-      aspect-ratio: 1;
-      border-radius: 4px;
-      background: #1A2236;
-      border: 1px solid transparent;
-      transition: transform 0.15s var(--ease), border-color 0.15s, box-shadow 0.15s;
-      cursor: default;
-      position: relative;
-    }
-    .heatmap-cell.l0 { background: #1A2236; }
-    .heatmap-cell.l1 { background: #1E3A5F; }
-    .heatmap-cell.l2 { background: #2A5080; }
-    .heatmap-cell.l3 { background: #3D6BA3; }
-    .heatmap-cell.l4 { background: #5B8FD4; }
-    .heatmap-cell.l5 { background: #7BA9E0; }
-    .heatmap-cell:hover {
-      transform: scale(1.12);
-      border-color: rgba(99,102,241,0.5);
-      box-shadow: 0 0 0 1px rgba(99,102,241,0.25);
-      z-index: 2;
-    }
-    .heatmap-cell.has-tip:hover::after {
-      content: attr(data-tip);
-      position: absolute;
-      bottom: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: #1E293B;
-      color: #F1F5F9;
-      font-size: 10px;
-      font-weight: 500;
-      padding: 4px 8px;
-      border-radius: 6px;
-      white-space: nowrap;
-      border: 1px solid var(--border-strong);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      pointer-events: none;
-      z-index: 10;
-    }
-    .heatmap-cell.has-tip:hover::before {
-      content: '';
-      position: absolute;
-      bottom: calc(100% + 2px);
-      left: 50%;
-      transform: translateX(-50%);
-      border: 4px solid transparent;
-      border-top-color: #1E293B;
-      z-index: 10;
-    }
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 2px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:.92rem;}
+.faq-q i{color:var(--dim);transition:transform .25s var(--ease);flex-shrink:0;}
+.faq-item.open .faq-q i{transform:rotate(45deg);color:var(--indigo-soft);}
+.faq-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease);}
+.faq-item.open .faq-a-wrap{grid-template-rows:1fr;}
+.faq-a-inner{overflow:hidden;}
+.faq-a{padding:0 2px 16px;color:var(--dim);font-size:.86rem;line-height:1.6;}
 
-    .heatmap-legend {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 5px;
-      margin-top: 10px;
-      font-size: 10px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .legend-cell {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-    }
-    .legend-cell.l0 { background: #1A2236; }
-    .legend-cell.l1 { background: #1E3A5F; }
-    .legend-cell.l2 { background: #2A5080; }
-    .legend-cell.l3 { background: #3D6BA3; }
-    .legend-cell.l4 { background: #5B8FD4; }
-    .legend-cell.l5 { background: #7BA9E0; }
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0 4px;}
+.stat{text-align:center;padding:13px 6px;border-radius:var(--r-md);background:var(--card-flat);border:1px solid var(--line);}
+.stat i{font-size:1.05rem;margin-bottom:4px;}
+.stat .val{font-family:var(--font-mono);font-weight:700;font-size:.92rem;}
+.stat .lbl{font-size:.62rem;color:var(--dim);margin-top:2px;}
 
-    .scroll-x {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 0 6px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .scroll-x::-webkit-scrollbar { display: none; }
-    .scroll-x > * { flex: 0 0 auto; scroll-snap-align: start; }
+.scroll-x{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.scroll-x::-webkit-scrollbar{display:none;}
+.scroll-x>*{flex:0 0 auto;scroll-snap-align:start;}
 
-    .toast-wrap {
-      position: fixed;
-      top: max(14px, env(safe-area-inset-top));
-      left: 50%;
-      transform: translateX(-50%) translateY(-130%);
-      z-index: 300;
-      transition: transform 0.38s var(--ease-out);
-      pointer-events: none;
-    }
-    .toast-wrap.show { transform: translateX(-50%) translateY(0); }
-    .toast {
-      background: rgba(15,22,41,0.95);
-      border: 1px solid var(--border-strong);
-      padding: 10px 16px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      backdrop-filter: blur(16px);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
+.badge-chip{display:flex;flex-direction:column;align-items:center;gap:6px;width:76px;text-align:center;}
+.badge-chip .ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--grad-brand);color:#fff;box-shadow:0 8px 20px -8px rgba(103,94,242,.5);}
+.badge-chip.locked .ic{background:var(--surface-2);color:var(--dim-2);box-shadow:none;}
+.badge-chip .nm{font-size:10px;font-weight:600;line-height:1.3;}
+.badge-chip.locked .nm{color:var(--dim-2);}
 
-    .confetti-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 250;
-      overflow: hidden;
-    }
+.day-strip{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.day-strip::-webkit-scrollbar{display:none;}
+.day-dot{flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;font-weight:600;background:var(--surface-2);color:var(--dim);border:1.5px solid transparent;scroll-snap-align:center;transition:all .2s var(--ease);}
+.day-dot.current{background:var(--grad-brand);color:#fff;box-shadow:0 4px 14px rgba(103,94,242,.4);transform:scale(1.1);}
+.day-dot.done{background:rgba(52,211,153,.12);color:var(--mint);border-color:rgba(52,211,153,.3);}
 
-    .page { animation: pageIn 0.38s var(--ease-out) forwards; }
-    @keyframes pageIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.toast-wrap{position:fixed;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(-130%);z-index:300;transition:transform .4s var(--ease);pointer-events:none;}
+.toast-wrap.show{transform:translateX(-50%) translateY(0);}
+.toast{background:rgba(12,18,32,.95);border:1px solid var(--line-strong);padding:11px 18px;border-radius:var(--r-pill);font-size:13px;font-weight:500;box-shadow:var(--shadow-2);backdrop-filter:blur(16px);white-space:nowrap;display:flex;align-items:center;gap:8px;}
+.confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:250;overflow:hidden;}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0) scale(1);opacity:1;}100%{transform:translateY(110vh) rotate(720deg) scale(.2);opacity:0;}}
 
-    .flex { display: flex; }
-    .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
-    .gap-1 { gap: 8px; }
-    .gap-2 { gap: 12px; }
-    .text-muted { color: var(--muted); }
-    .text-sm { font-size: 0.84rem; }
-    .text-xs { font-size: 0.74rem; }
-    .fw-6 { font-weight: 600; }
-    .fw-7 { font-weight: 700; }
-    .fw-8 { font-weight: 800; }
-    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.success-banner{margin-top:12px;padding:13px 14px;background:rgba(52,211,153,.09);border-radius:14px;border-left:3px solid var(--mint);display:flex;align-items:center;gap:10px;}
+.error-banner{margin-top:12px;padding:13px 14px;background:rgba(251,113,133,.09);border-radius:14px;border-left:3px solid var(--rose);color:var(--rose);font-size:.86rem;}
 
-    .stat-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin: 10px 0 4px;
-    }
-    .stat {
-      text-align: center;
-      padding: 11px 6px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-    }
-    .stat i { font-size: 1.05rem; margin-bottom: 2px; }
-    .stat .val { font-weight: 700; font-size: 0.92rem; }
-    .stat .lbl { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.2px; }
+.quote-card{background:linear-gradient(135deg,rgba(103,94,242,.08),rgba(34,211,238,.04));border:1px solid rgba(103,94,242,.14);border-radius:var(--r-lg);padding:16px 18px;font-style:italic;font-size:.9rem;color:#E2E8F0;line-height:1.6;}
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-.01em;}
+.flex{display:flex;}
+.flex-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.flex-center{display:flex;align-items:center;justify-content:center;}
+.gap-1{gap:8px;} .gap-2{gap:12px;} .gap-3{gap:16px;}
+.text-muted{color:var(--dim);} .text-dim2{color:var(--dim-2);}
+.text-sm{font-size:.85rem;} .text-xs{font-size:.74rem;}
+.mono{font-family:var(--font-mono);}
+.fw-6{font-weight:600;} .fw-7{font-weight:700;}
+.mt-1{margin-top:8px;} .mt-2{margin-top:16px;} .mb-1{margin-bottom:8px;}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.divider{height:1px;background:var(--line);margin:14px 0;border:none;}
+.section-head{margin:26px 0 12px;}
+.section-head .eyebrow{margin-bottom:10px;}
+.section-head h2{font-size:1.4rem;font-weight:700;letter-spacing:-.02px;}
+.grid-2{display:grid;grid-template-columns:1fr;gap:10px;}
+.empty{text-align:center;padding:30px 12px;color:var(--dim);}
+.empty i{font-size:2.2rem;opacity:.2;margin-bottom:8px;}
 
-    .empty {
-      text-align: center;
-      padding: 28px 12px;
-      color: var(--muted);
-    }
-    .empty i { font-size: 2.4rem; opacity: 0.18; margin-bottom: 6px; }
+@media (min-width:640px){
+  .container{max-width:600px;padding:26px 26px 16px;}
+  .bottom-nav{max-width:600px;left:50%;transform:translateX(-50%);border-radius:22px 22px 0 0;border-left:1px solid var(--line);border-right:1px solid var(--line);}
+  .grid-2{grid-template-columns:1fr 1fr;}
+  .stat-row{grid-template-columns:repeat(3,1fr);}
+}
+@media (min-width:900px){
+  .container{max-width:760px;padding:32px 32px 20px;}
+  .bottom-nav{max-width:640px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  .hero-grid .code-window{margin-top:0;}
+}
 
-    .quote {
-      background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(139,92,246,0.03));
-      border: 1px solid rgba(99,102,241,0.1);
-      border-radius: var(--radius-lg);
-      padding: 13px 15px;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: #E2E8F0;
-      line-height: 1.5;
-    }
-
-    .success-banner {
-      margin-top: 11px;
-      padding: 11px 13px;
-      background: rgba(34,197,94,0.08);
-      border-radius: 12px;
-      border-left: 3px solid var(--success);
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      animation: slideUp 0.35s var(--ease-out);
-    }
-    .error-banner {
-      margin-top: 11px;
-      padding: 11px 13px;
-      background: rgba(239,68,68,0.08);
-      border-radius: 12px;
-      border-left: 3px solid var(--danger);
-      color: var(--danger);
-      font-size: 0.86rem;
-      animation: slideUp 0.35s var(--ease-out);
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    @keyframes confettiFall {
-      0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(720deg) scale(0.2); opacity: 0; }
-    }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.25); }
-      50% { box-shadow: 0 0 0 9px rgba(99,102,241,0); }
-    }
-    .pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin: 18px 0 12px;
-    }
-    .metric {
-      background: rgba(255,255,255,0.025);
-      border-radius: 12px;
-      padding: 13px 4px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-    .metric .num {
-      font-size: 1.45rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .metric .lbl {
-      font-size: 10.5px;
-      color: var(--muted);
-      font-weight: 500;
-      margin-top: 1px;
-    }
-
-    @media (min-width: 640px) {
-      .container { max-width: 540px; padding: 22px 24px 16px; }
-      .bottom-nav {
-        max-width: 540px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 22px 22px 0 0;
-        border-left: 1px solid var(--border);
-        border-right: 1px solid var(--border);
-      }
-      .grid-2 { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 900px) {
-      .container { max-width: 680px; padding: 26px 32px 18px; }
-      .bottom-nav { max-width: 600px; }
-    }
-  </style>
+/* Task lock modal */
+.task-lock-overlay{position:fixed;inset:0;background:rgba(2,6,23,.72);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
+.task-lock-overlay.show{display:flex}
+.task-lock-modal{width:min(420px,100%);background:var(--surface,#0f172a);border:1px solid rgba(99,102,241,.35);border-radius:20px;padding:24px;box-shadow:0 20px 70px rgba(0,0,0,.45);text-align:center}
+.task-lock-icon{font-size:2.5rem;margin-bottom:8px}
+.task-lock-modal h3{margin:0 0 8px;font-size:1.25rem}
+.task-lock-modal p{margin:0 0 18px;color:#94a3b8;line-height:1.55;font-size:.9rem}
+.task-lock-modal .btn{width:100%}
+.task-number{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:10px;background:rgba(99,102,241,.14);border:1px solid rgba(99,102,241,.3);margin-right:8px;font-weight:800}
+.info-item{display:flex;gap:9px;align-items:flex-start;margin:7px 0}
+.info-item .info-emoji{width:24px;flex:none}
+.activity-chart{position:relative;height:220px;margin-top:12px;padding:8px 0 0;} .activity-chart svg{width:100%;height:100%;overflow:visible;} .chart-grid{stroke:rgba(255,255,255,.08);stroke-width:1;} .chart-line{fill:none;stroke:url(#activityGrad);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;} .chart-area{fill:url(#activityArea);opacity:.28;} .chart-dot{fill:var(--cyan);stroke:var(--card);stroke-width:3;} .chart-value{font-family:var(--font-mono);font-size:10px;fill:var(--paper);font-weight:700;} .chart-label{font-family:var(--font-body);font-size:10px;fill:var(--dim);} .activity-summary{display:flex;justify-content:space-between;gap:8px;margin-top:10px;} .activity-summary .mini-stat{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;} .mini-stat .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;} .mini-stat .l{font-size:9px;color:var(--dim);margin-top:2px;} .focus-card{background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(103,94,242,.08));border:1px solid rgba(34,211,238,.18);border-radius:var(--r-lg);padding:16px;} .focus-row{display:flex;align-items:center;gap:12px;} .focus-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--grad-cyan);font-size:1.25rem;} .activity-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:10px}.activity-label{text-align:center;font-size:10px;color:var(--dim)}.activity-cell{height:28px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line)}.activity-cell.l1{background:rgba(52,211,153,.22)}.activity-cell.l2{background:rgba(52,211,153,.4)}.activity-cell.l3{background:rgba(52,211,153,.62)}.activity-cell.l4{background:rgba(52,211,153,.85)}</style>
 </head>
 <body>
-  <div class="toast-wrap" id="toastWrap" aria-live="polite">
-    <div class="toast" id="toast"></div>
+<div class="toast-wrap" id="toastWrap" aria-live="polite"><div class="toast" id="toast"></div></div>
+<div class="task-lock-overlay" id="taskLockOverlay" role="dialog" aria-modal="true" aria-labelledby="taskLockTitle">
+  <div class="task-lock-modal">
+    <div class="task-lock-icon">🔒</div>
+    <h3 id="taskLockTitle">Complete today's task first</h3>
+    <p id="taskLockMessage">Submit today's GitHub and LinkedIn links before moving to the next day.</p>
+    <button class="btn btn-primary" id="taskLockClose">Got it 👍</button>
   </div>
+</div>
 
-  <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Main navigation">
-    <button class="nav-item active" data-page="dashboard" aria-label="Home" aria-current="page">
-      <i class="fas fa-home"></i><span>Home</span>
-    </button>
-    <button class="nav-item" data-page="day" aria-label="Today's challenge">
-      <i class="fas fa-code"></i><span>Today</span>
-      <span class="nav-badge" id="dayBadge">8</span>
-    </button>
-    <button class="nav-item" data-page="leaderboard" aria-label="Leaderboard">
-      <i class="fas fa-trophy"></i><span>Rank</span>
-    </button>
-    <button class="nav-item" data-page="landing" aria-label="About and join">
-      <i class="fas fa-rocket"></i><span>Join</span>
-    </button>
-  </nav>
+<nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Main navigation">
+  <button class="nav-item" data-page="dashboard" aria-label="Dashboard"><i class="fas fa-house"></i><span>Home</span></button>
+  <button class="nav-item" data-page="day" aria-label="Today's challenge"><i class="fas fa-terminal"></i><span>Today</span><span class="nav-dot" id="dayDot" hidden></span></button>
+  <button class="nav-item" data-page="leaderboard" aria-label="Leaderboard"><i class="fas fa-ranking-star"></i><span>Rank</span></button>
+  <button class="nav-item" data-page="landing" aria-label="About ABTalks"><i class="fas fa-circle-info"></i><span>About</span></button>
+</nav>
 
-  <main id="app" class="container" role="main"></main>
+<main id="app" class="container" role="main"></main>
 
-  <script>
-    const CHALLENGES = [
-      { day:1, title:"Hello World & Variables", difficulty:"Easy", time:"15 min", objectives:["Print Hello World","Declare variables","Basic data types"], instructions:"Write a program that prints 'Hello, World!' and declares variables of different types (string, number, boolean).", criteria:["Use console.log","Use let / const","Show typeof"], resources:["MDN Variables"] },
-      { day:2, title:"Conditional Statements", difficulty:"Easy", time:"20 min", objectives:["If-else","Switch case"], instructions:"Write a program that checks if a number is even or odd using if-else. Also implement a simple grade checker with switch.", criteria:["Use if-else","Handle edge cases","Use switch"], resources:["MDN Conditionals"] },
-      { day:3, title:"Loops & Iteration", difficulty:"Easy", time:"20 min", objectives:["For loop","While loop"], instructions:"Print numbers from 1 to 10 using both for and while loops. Then print only even numbers.", criteria:["Use for loop","Use while loop","Filter even"], resources:["MDN Loops"] },
-      { day:4, title:"Functions Basics", difficulty:"Easy", time:"25 min", objectives:["Function declaration","Parameters","Return values"], instructions:"Create a function that adds two numbers and returns the result. Also write an arrow function version.", criteria:["Use function keyword","Return value","Arrow function"], resources:["MDN Functions"] },
-      { day:5, title:"Arrays & Methods", difficulty:"Easy", time:"25 min", objectives:["Array creation","Push/pop","Map/Filter"], instructions:"Create an array of numbers and use map to double each value. Then filter values greater than 10.", criteria:["Use map","Use filter","Chain methods"], resources:["MDN Arrays"] },
-      { day:6, title:"Objects & Properties", difficulty:"Easy", time:"25 min", objectives:["Object creation","Access properties","Methods"], instructions:"Create a student object with name, age, and a method to greet. Add a method that returns a summary string.", criteria:["Use object literal","Add method","this keyword"], resources:["MDN Objects"] },
-      { day:7, title:"String Manipulation", difficulty:"Easy", time:"20 min", objectives:["String methods","Template literals"], instructions:"Reverse a string and use template literals to create a formatted message.", criteria:["Use split/reverse/join","Template literals"], resources:["MDN Strings"] },
-      { day:8, title:"Array Manipulation", difficulty:"Medium", time:"30 min", objectives:["Two pointers","In-place operations"], instructions:"Remove duplicates from a sorted array in-place. Return the new length.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 26"] },
-      { day:9, title:"Binary Search", difficulty:"Medium", time:"30 min", objectives:["Binary search","Divide and conquer"], instructions:"Implement binary search to find an element in a sorted array. Return index or -1.", criteria:["O(log n) time","Handle not found"], resources:["LeetCode 704"] },
-      { day:10, title:"Two Sum Problem", difficulty:"Medium", time:"30 min", objectives:["Hash map","Two-pointers"], instructions:"Find two numbers that add up to a target. Return their indices.", criteria:["O(n) time","Use hash map"], resources:["LeetCode 1"] },
-      { day:11, title:"Palindrome Check", difficulty:"Easy", time:"20 min", objectives:["String reversal","Two pointers"], instructions:"Check if a string is a palindrome. Ignore case, spaces and punctuation.", criteria:["Ignore case","Handle spaces"], resources:["LeetCode 125"] },
-      { day:12, title:"FizzBuzz", difficulty:"Easy", time:"15 min", objectives:["Conditional logic","Loop"], instructions:"Print numbers 1–100 with FizzBuzz rules (3 → Fizz, 5 → Buzz, both → FizzBuzz).", criteria:["Use modulo","Handle all cases"], resources:["Classic problem"] },
-      { day:13, title:"Factorial Recursion", difficulty:"Medium", time:"25 min", objectives:["Recursion","Base case"], instructions:"Calculate factorial using recursion. Handle 0! and negative input gracefully.", criteria:["Use recursion","Handle 0!"], resources:["MDN Recursion"] },
-      { day:14, title:"Valid Parentheses", difficulty:"Medium", time:"30 min", objectives:["Stack","String matching"], instructions:"Check if a string of parentheses is valid ((), {}, []).", criteria:["Use stack","Handle all types"], resources:["LeetCode 20"] },
-      { day:15, title:"Merge Sorted Arrays", difficulty:"Medium", time:"30 min", objectives:["Two pointers","In-place merge"], instructions:"Merge two sorted arrays into the first array in sorted order.", criteria:["O(n+m) time","In-place"], resources:["LeetCode 88"] },
-      { day:16, title:"Linked List Basics", difficulty:"Medium", time:"35 min", objectives:["Node class","Traversal"], instructions:"Create a singly linked list and implement traversal + insert at head.", criteria:["Use class","Print values"], resources:["MDN Linked Lists"] },
-      { day:17, title:"Stack Implementation", difficulty:"Medium", time:"30 min", objectives:["Stack operations","Array-based"], instructions:"Implement a stack with push, pop, peek and isEmpty methods.", criteria:["Use array","Handle empty"], resources:["Data Structures"] },
-      { day:18, title:"Queue Implementation", difficulty:"Medium", time:"30 min", objectives:["Queue operations","Array-based"], instructions:"Implement a queue with enqueue, dequeue, front and isEmpty.", criteria:["Use array","Handle empty"], resources:["Data Structures"] },
-      { day:19, title:"Tree Traversal", difficulty:"Hard", time:"40 min", objectives:["DFS","BFS"], instructions:"Implement in-order, pre-order and post-order traversal of a binary tree.", criteria:["Use recursion","Print values"], resources:["Tree algorithms"] },
-      { day:20, title:"Graph BFS", difficulty:"Hard", time:"45 min", objectives:["BFS","Adjacency list"], instructions:"Implement BFS on a graph represented as an adjacency list.", criteria:["Use queue","Track visited"], resources:["Graph algorithms"] },
-      { day:21, title:"Sorting Algorithms", difficulty:"Medium", time:"35 min", objectives:["Bubble sort","Selection sort"], instructions:"Implement bubble sort and selection sort. Compare their steps on the same array.", criteria:["O(n²) time","In-place"], resources:["Sorting algorithms"] },
-      { day:22, title:"Quick Sort", difficulty:"Hard", time:"40 min", objectives:["Partition","Recursion"], instructions:"Implement quick sort with a clear partition helper.", criteria:["O(n log n) avg","In-place"], resources:["Quick sort"] },
-      { day:23, title:"Merge Sort", difficulty:"Hard", time:"40 min", objectives:["Divide and conquer","Merge"], instructions:"Implement merge sort. Ensure the merge step is stable.", criteria:["O(n log n)","Stable"], resources:["Merge sort"] },
-      { day:24, title:"Hash Table", difficulty:"Medium", time:"35 min", objectives:["Hash function","Collision handling"], instructions:"Implement a simple hash table with chaining for collision resolution.", criteria:["Use array","Handle collisions"], resources:["Hash tables"] },
-      { day:25, title:"Dynamic Programming", difficulty:"Hard", time:"45 min", objectives:["Fibonacci","Memoization"], instructions:"Solve Fibonacci with both top-down memoization and bottom-up tabulation.", criteria:["O(n) time","Use cache"], resources:["DP basics"] },
-      { day:26, title:"Subarray Sum", difficulty:"Medium", time:"30 min", objectives:["Sliding window","Kadane's"], instructions:"Find the maximum subarray sum using Kadane's algorithm.", criteria:["O(n) time","Use Kadane's"], resources:["Kadane's algorithm"] },
-      { day:27, title:"Longest Substring", difficulty:"Hard", time:"40 min", objectives:["Sliding window","Hash set"], instructions:"Find the length of the longest substring without repeating characters.", criteria:["O(n) time","Use set"], resources:["LeetCode 3"] },
-      { day:28, title:"Rotate Array", difficulty:"Medium", time:"30 min", objectives:["Reverse technique","In-place"], instructions:"Rotate an array to the right by k steps using the reverse method.", criteria:["O(n) time","In-place"], resources:["LeetCode 189"] },
-      { day:29, title:"Power of Two", difficulty:"Easy", time:"20 min", objectives:["Bit manipulation","Math"], instructions:"Check if a number is a power of two using bit operations.", criteria:["Use bitwise","Handle 0"], resources:["Bit manipulation"] },
-      { day:30, title:"Valid Anagram", difficulty:"Easy", time:"20 min", objectives:["Hash map","Sorting"], instructions:"Check if two strings are anagrams of each other.", criteria:["O(n) time","Use map"], resources:["LeetCode 242"] },
-      { day:31, title:"Remove Element", difficulty:"Easy", time:"20 min", objectives:["Two pointers","In-place"], instructions:"Remove all occurrences of a value in an array in-place and return the new length.", criteria:["O(n) time","In-place"], resources:["LeetCode 27"] },
-      { day:32, title:"Search Insert", difficulty:"Easy", time:"20 min", objectives:["Binary search","Edge cases"], instructions:"Find the index where a target should be inserted in a sorted array.", criteria:["O(log n)","Handle duplicates"], resources:["LeetCode 35"] },
-      { day:33, title:"Plus One", difficulty:"Easy", time:"15 min", objectives:["Array manipulation","Carry"], instructions:"Add one to a number represented as an array of digits.", criteria:["Handle carry","Return array"], resources:["LeetCode 66"] },
-      { day:34, title:"Climbing Stairs", difficulty:"Easy", time:"20 min", objectives:["DP","Fibonacci"], instructions:"Count the number of distinct ways to climb n stairs taking 1 or 2 steps at a time.", criteria:["Use DP","O(n) time"], resources:["LeetCode 70"] },
-      { day:35, title:"Move Zeroes", difficulty:"Easy", time:"15 min", objectives:["Two pointers","In-place"], instructions:"Move all zeroes to the end of the array while maintaining relative order of non-zero elements.", criteria:["O(n) time","In-place"], resources:["LeetCode 283"] },
-      { day:36, title:"Missing Number", difficulty:"Easy", time:"15 min", objectives:["Math","XOR"], instructions:"Find the missing number in an array containing n distinct numbers from 0 to n.", criteria:["O(n) time","Use XOR"], resources:["LeetCode 268"] },
-      { day:37, title:"Single Number", difficulty:"Easy", time:"15 min", objectives:["XOR","Bit manipulation"], instructions:"Find the single number in an array where every other element appears twice.", criteria:["O(n) time","Use XOR"], resources:["LeetCode 136"] },
-      { day:38, title:"Intersection Arrays", difficulty:"Medium", time:"30 min", objectives:["Hash set","Two pointers"], instructions:"Find the intersection of two arrays (unique common elements).", criteria:["O(n) time","Handle duplicates"], resources:["LeetCode 349"] },
-      { day:39, title:"Longest Common Prefix", difficulty:"Easy", time:"20 min", objectives:["String comparison","Horizontal scanning"], instructions:"Find the longest common prefix string amongst an array of strings.", criteria:["O(n*m) time","Handle empty"], resources:["LeetCode 14"] },
-      { day:40, title:"Valid Sudoku", difficulty:"Medium", time:"35 min", objectives:["Hash set","Matrix"], instructions:"Determine if a 9×9 Sudoku board is valid (no need to solve it).", criteria:["O(1) time","Use sets"], resources:["LeetCode 36"] },
-      { day:41, title:"Pow(x, n)", difficulty:"Medium", time:"30 min", objectives:["Exponentiation","Recursion"], instructions:"Implement pow(x, n) which calculates x raised to the power n efficiently.", criteria:["O(log n)","Handle negatives"], resources:["LeetCode 50"] },
-      { day:42, title:"Sqrt(x)", difficulty:"Easy", time:"20 min", objectives:["Binary search","Math"], instructions:"Compute and return the integer square root of a non-negative integer x.", criteria:["O(log n)","Handle edge cases"], resources:["LeetCode 69"] },
-      { day:43, title:"Matrix Spiral", difficulty:"Medium", time:"35 min", objectives:["Matrix traversal","Boundaries"], instructions:"Return all elements of a matrix in spiral order.", criteria:["O(m*n) time","Handle edges"], resources:["LeetCode 54"] },
-      { day:44, title:"Rotate Image", difficulty:"Medium", time:"30 min", objectives:["Matrix rotation","In-place"], instructions:"Rotate an n×n matrix 90 degrees clockwise in-place.", criteria:["In-place","O(1) space"], resources:["LeetCode 48"] },
-      { day:45, title:"Word Pattern", difficulty:"Easy", time:"20 min", objectives:["Hash map","Pattern matching"], instructions:"Check if a string follows the same pattern given by a pattern string.", criteria:["O(n) time","Bijection"], resources:["LeetCode 290"] },
-      { day:46, title:"Binary Tree Inorder", difficulty:"Medium", time:"30 min", objectives:["Tree traversal","Recursion"], instructions:"Return the inorder traversal of a binary tree's node values.", criteria:["Use recursion","Return array"], resources:["LeetCode 94"] },
-      { day:47, title:"Binary Tree Max Depth", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Find the maximum depth of a binary tree.", criteria:["O(n) time","Use recursion"], resources:["LeetCode 104"] },
-      { day:48, title:"Symmetric Tree", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Check whether a binary tree is a mirror of itself (symmetric).", criteria:["O(n) time","Use recursion"], resources:["LeetCode 101"] },
-      { day:49, title:"Path Sum", difficulty:"Easy", time:"20 min", objectives:["DFS","Recursion"], instructions:"Determine if the tree has a root-to-leaf path that sums to a given target.", criteria:["O(n) time","Use recursion"], resources:["LeetCode 112"] },
-      { day:50, title:"Linked List Cycle", difficulty:"Easy", time:"20 min", objectives:["Two pointers","Floyd's"], instructions:"Detect if a linked list has a cycle using Floyd's cycle-finding algorithm.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 141"] },
-      { day:51, title:"Merge Two Lists", difficulty:"Easy", time:"25 min", objectives:["Linked list","Merge"], instructions:"Merge two sorted linked lists and return it as a new sorted list.", criteria:["O(n+m) time","Iterative"], resources:["LeetCode 21"] },
-      { day:52, title:"Middle of List", difficulty:"Easy", time:"15 min", objectives:["Two pointers","Slow/fast"], instructions:"Find the middle node of a linked list. If two middles, return the second.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 876"] },
-      { day:53, title:"Stack from Queue", difficulty:"Medium", time:"30 min", objectives:["Queue","Stack"], instructions:"Implement a last-in-first-out stack using only queues.", criteria:["Use two queues","O(n) push"], resources:["LeetCode 225"] },
-      { day:54, title:"Queue from Stack", difficulty:"Medium", time:"30 min", objectives:["Stack","Queue"], instructions:"Implement a first-in-first-out queue using only stacks.", criteria:["Use two stacks","O(1) amortized"], resources:["LeetCode 232"] },
-      { day:55, title:"Min Stack", difficulty:"Medium", time:"30 min", objectives:["Stack","Min tracking"], instructions:"Design a stack that supports push, pop, top, and retrieving the minimum in O(1).", criteria:["O(1) time","Use extra stack"], resources:["LeetCode 155"] },
-      { day:56, title:"Reverse Linked List", difficulty:"Easy", time:"20 min", objectives:["Linked list","Iterative"], instructions:"Reverse a singly linked list both iteratively and recursively.", criteria:["O(n) time","Iterative"], resources:["LeetCode 206"] },
-      { day:57, title:"Palindrome Linked List", difficulty:"Medium", time:"30 min", objectives:["Two pointers","Reverse"], instructions:"Check if a linked list is a palindrome in O(n) time and O(1) space.", criteria:["O(n) time","O(1) space"], resources:["LeetCode 234"] },
-      { day:58, title:"LRU Cache", difficulty:"Hard", time:"45 min", objectives:["Hash map","Doubly linked list"], instructions:"Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.", criteria:["O(1) time","Use Map"], resources:["LeetCode 146"] },
-      { day:59, title:"Trie Implementation", difficulty:"Hard", time:"45 min", objectives:["Trie","Insert/search"], instructions:"Implement a trie (prefix tree) with insert, search and startsWith methods.", criteria:["O(n) time","Use nodes"], resources:["LeetCode 208"] },
-      { day:60, title:"Final Project", difficulty:"Hard", time:"60 min", objectives:["Integrate skills","Build a project"], instructions:"Build a mini project that combines multiple concepts from the challenge (e.g. a small CLI tool, todo with localStorage, or a simple algorithm visualizer).", criteria:["Use OOP / modules","Clean code","README"], resources:["Your creativity!"] }
-    ];
+<script>
+const CHALLENGES=[
+{day:1,title:"Hello World & Variables",difficulty:"Easy",time:"15 min",objectives:["Print Hello World","Declare variables","Basic data types"],instructions:"Write a program that prints 'Hello, World!' and declares variables of different types (string, number, boolean).",criteria:["Use console.log","Use let / const","Show typeof for each"],resources:["MDN — Variables"]},
+{day:2,title:"Conditional Statements",difficulty:"Easy",time:"20 min",objectives:["If-else","Switch case"],instructions:"Write a program that checks if a number is even or odd using if-else. Also implement a simple grade checker with switch.",criteria:["Use if-else","Handle edge cases","Use switch"],resources:["MDN — Conditionals"]},
+{day:3,title:"Loops & Iteration",difficulty:"Easy",time:"20 min",objectives:["For loop","While loop"],instructions:"Print numbers from 1 to 10 using both a for loop and a while loop. Then print only the even numbers.",criteria:["Use for loop","Use while loop","Filter even numbers"],resources:["MDN — Loops"]},
+{day:4,title:"Functions Basics",difficulty:"Easy",time:"25 min",objectives:["Function declaration","Parameters","Return values"],instructions:"Create a function that adds two numbers and returns the result. Also write an arrow-function version of it.",criteria:["Use function keyword","Return a value","Arrow function"],resources:["MDN — Functions"]},
+{day:5,title:"Arrays & Methods",difficulty:"Easy",time:"25 min",objectives:["Array creation","Push/pop","Map/Filter"],instructions:"Create an array of numbers and use map to double each value. Then filter values greater than 10.",criteria:["Use map","Use filter","Chain methods"],resources:["MDN — Arrays"]},
+{day:6,title:"Objects & Properties",difficulty:"Easy",time:"25 min",objectives:["Object creation","Access properties","Methods"],instructions:"Create a student object with name, age, and a method to greet. Add a method that returns a summary string.",criteria:["Use object literal","Add a method","Use this keyword"],resources:["MDN — Objects"]},
+{day:7,title:"String Manipulation",difficulty:"Easy",time:"20 min",objectives:["String methods","Template literals"],instructions:"Reverse a string and use template literals to build a formatted message from a few variables.",criteria:["Use split/reverse/join","Use template literals"],resources:["MDN — Strings"]},
+{day:8,title:"Array Manipulation",difficulty:"Medium",time:"30 min",objectives:["Two pointers","In-place operations"],instructions:"Remove duplicates from a sorted array in-place, without allocating a new array. Return the new length.",criteria:["O(n) time","O(1) extra space"],resources:["LeetCode 26"]},
+{day:9,title:"Binary Search",difficulty:"Medium",time:"30 min",objectives:["Binary search","Divide and conquer"],instructions:"Implement binary search to find an element in a sorted array. Return its index, or -1 if it isn't present.",criteria:["O(log n) time","Handle not-found case"],resources:["LeetCode 704"]},
+{day:10,title:"Two Sum Problem",difficulty:"Medium",time:"30 min",objectives:["Hash map","Two-pointers"],instructions:"Given an array and a target, find the two numbers that add up to the target. Return their indices.",criteria:["O(n) time","Use a hash map"],resources:["LeetCode 1"]},
+{day:11,title:"Palindrome Check",difficulty:"Easy",time:"20 min",objectives:["String reversal","Two pointers"],instructions:"Check whether a string is a palindrome, ignoring case, spaces and punctuation.",criteria:["Ignore case","Ignore spaces/punctuation"],resources:["LeetCode 125"]},
+{day:12,title:"FizzBuzz",difficulty:"Easy",time:"15 min",objectives:["Conditional logic","Loop"],instructions:"Print numbers 1–100. For multiples of 3 print 'Fizz', for multiples of 5 print 'Buzz', and for multiples of both print 'FizzBuzz'.",criteria:["Use the modulo operator","Handle all four cases"],resources:["Classic interview problem"]},
+{day:13,title:"Factorial Recursion",difficulty:"Medium",time:"25 min",objectives:["Recursion","Base case"],instructions:"Calculate a factorial using recursion. Handle 0! and negative input gracefully.",criteria:["Use recursion","Handle 0! correctly"],resources:["MDN — Recursion"]},
+{day:14,title:"Valid Parentheses",difficulty:"Medium",time:"30 min",objectives:["Stack","String matching"],instructions:"Check whether a string of brackets — (), {}, [] — is validly matched and nested.",criteria:["Use a stack","Handle all three bracket types"],resources:["LeetCode 20"]},
+{day:15,title:"Merge Sorted Arrays",difficulty:"Medium",time:"30 min",objectives:["Two pointers","In-place merge"],instructions:"Merge two sorted arrays into the first array so the result stays sorted, in-place.",criteria:["O(n+m) time","In-place merge"],resources:["LeetCode 88"]},
+{day:16,title:"Linked List Basics",difficulty:"Medium",time:"35 min",objectives:["Node class","Traversal"],instructions:"Build a singly linked list from scratch and implement traversal plus insert-at-head.",criteria:["Use a Node class","Print all values in order"],resources:["MDN — Linked lists"]},
+{day:17,title:"Stack Implementation",difficulty:"Medium",time:"30 min",objectives:["Stack operations","Array-based"],instructions:"Implement a stack with push, pop, peek and isEmpty methods, backed by an array.",criteria:["Array-backed","Handle empty stack"],resources:["Data structures reference"]},
+{day:18,title:"Queue Implementation",difficulty:"Medium",time:"30 min",objectives:["Queue operations","Array-based"],instructions:"Implement a queue with enqueue, dequeue, front and isEmpty methods.",criteria:["Array-backed","Handle empty queue"],resources:["Data structures reference"]},
+{day:19,title:"Tree Traversal",difficulty:"Hard",time:"40 min",objectives:["DFS","BFS"],instructions:"Implement in-order, pre-order and post-order traversal of a binary tree.",criteria:["Use recursion","Return/print all three orders"],resources:["Tree algorithms reference"]},
+{day:20,title:"Graph BFS",difficulty:"Hard",time:"45 min",objectives:["BFS","Adjacency list"],instructions:"Implement breadth-first search on a graph represented as an adjacency list.",criteria:["Use a queue","Track visited nodes"],resources:["Graph algorithms reference"]},
+{day:21,title:"Sorting Algorithms",difficulty:"Medium",time:"35 min",objectives:["Bubble sort","Selection sort"],instructions:"Implement bubble sort and selection sort, and compare their step counts on the same array.",criteria:["O(n²) time","In-place"],resources:["Sorting algorithms reference"]},
+{day:22,title:"Quick Sort",difficulty:"Hard",time:"40 min",objectives:["Partition","Recursion"],instructions:"Implement quick sort with a clearly separated partition helper function.",criteria:["O(n log n) average","In-place partition"],resources:["Quick sort reference"]},
+{day:23,title:"Merge Sort",difficulty:"Hard",time:"40 min",objectives:["Divide and conquer","Merge"],instructions:"Implement merge sort and make sure the merge step is stable.",criteria:["O(n log n) time","Stable sort"],resources:["Merge sort reference"]},
+{day:24,title:"Hash Table",difficulty:"Medium",time:"35 min",objectives:["Hash function","Collision handling"],instructions:"Implement a simple hash table that resolves collisions with chaining.",criteria:["Array-backed buckets","Handle collisions"],resources:["Hash tables reference"]},
+{day:25,title:"Dynamic Programming",difficulty:"Hard",time:"45 min",objectives:["Fibonacci","Memoization"],instructions:"Solve Fibonacci two ways: top-down with memoization, and bottom-up with tabulation.",criteria:["O(n) time","Cache intermediate results"],resources:["DP fundamentals"]},
+{day:26,title:"Subarray Sum",difficulty:"Medium",time:"30 min",objectives:["Sliding window","Kadane's algorithm"],instructions:"Find the maximum subarray sum using Kadane's algorithm.",criteria:["O(n) time","Implement Kadane's"],resources:["Kadane's algorithm"]},
+{day:27,title:"Longest Substring",difficulty:"Hard",time:"40 min",objectives:["Sliding window","Hash set"],instructions:"Find the length of the longest substring without repeating characters.",criteria:["O(n) time","Use a sliding window + set"],resources:["LeetCode 3"]},
+{day:28,title:"Rotate Array",difficulty:"Medium",time:"30 min",objectives:["Reverse technique","In-place"],instructions:"Rotate an array to the right by k steps using the three-reversal technique.",criteria:["O(n) time","In-place"],resources:["LeetCode 189"]},
+{day:29,title:"Power of Two",difficulty:"Easy",time:"20 min",objectives:["Bit manipulation","Math"],instructions:"Check whether a number is a power of two using bitwise operations.",criteria:["Use a bitwise trick","Handle 0 correctly"],resources:["Bit manipulation reference"]},
+{day:30,title:"Valid Anagram",difficulty:"Easy",time:"20 min",objectives:["Hash map","Sorting"],instructions:"Check whether two strings are anagrams of one another.",criteria:["O(n) time","Use a frequency map"],resources:["LeetCode 242"]},
+{day:31,title:"Remove Element",difficulty:"Easy",time:"20 min",objectives:["Two pointers","In-place"],instructions:"Remove every occurrence of a value from an array in-place, and return the new length.",criteria:["O(n) time","In-place"],resources:["LeetCode 27"]},
+{day:32,title:"Search Insert Position",difficulty:"Easy",time:"20 min",objectives:["Binary search","Edge cases"],instructions:"Find the index where a target value should be inserted into a sorted array.",criteria:["O(log n) time","Handle duplicates"],resources:["LeetCode 35"]},
+{day:33,title:"Plus One",difficulty:"Easy",time:"15 min",objectives:["Array manipulation","Carry logic"],instructions:"Add one to a large number represented as an array of digits.",criteria:["Handle the carry","Return a new array"],resources:["LeetCode 66"]},
+{day:34,title:"Climbing Stairs",difficulty:"Easy",time:"20 min",objectives:["Dynamic programming","Fibonacci"],instructions:"Count the distinct ways to climb n stairs, taking 1 or 2 steps at a time.",criteria:["Use DP","O(n) time"],resources:["LeetCode 70"]},
+{day:35,title:"Move Zeroes",difficulty:"Easy",time:"15 min",objectives:["Two pointers","In-place"],instructions:"Move all zeroes to the end of an array while keeping the relative order of non-zero elements.",criteria:["O(n) time","In-place"],resources:["LeetCode 283"]},
+{day:36,title:"Missing Number",difficulty:"Easy",time:"15 min",objectives:["Math","XOR"],instructions:"Find the missing number in an array containing n distinct numbers from 0 to n.",criteria:["O(n) time","Use XOR or sum trick"],resources:["LeetCode 268"]},
+{day:37,title:"Single Number",difficulty:"Easy",time:"15 min",objectives:["XOR","Bit manipulation"],instructions:"Find the single number in an array where every other element appears exactly twice.",criteria:["O(n) time","Use XOR"],resources:["LeetCode 136"]},
+{day:38,title:"Intersection of Arrays",difficulty:"Medium",time:"30 min",objectives:["Hash set","Two pointers"],instructions:"Find the intersection (unique common elements) of two arrays.",criteria:["O(n) time","Handle duplicates"],resources:["LeetCode 349"]},
+{day:39,title:"Longest Common Prefix",difficulty:"Easy",time:"20 min",objectives:["String comparison","Horizontal scanning"],instructions:"Find the longest common prefix shared by an array of strings.",criteria:["Handle the empty case","Horizontal scan"],resources:["LeetCode 14"]},
+{day:40,title:"Valid Sudoku",difficulty:"Medium",time:"35 min",objectives:["Hash set","Matrix"],instructions:"Determine whether a 9×9 Sudoku board is valid — you don't need to solve it.",criteria:["Check rows, columns, boxes","Use sets"],resources:["LeetCode 36"]},
+{day:41,title:"Pow(x, n)",difficulty:"Medium",time:"30 min",objectives:["Exponentiation","Recursion"],instructions:"Implement pow(x, n), calculating x raised to the power n efficiently.",criteria:["O(log n) time","Handle negative n"],resources:["LeetCode 50"]},
+{day:42,title:"Sqrt(x)",difficulty:"Easy",time:"20 min",objectives:["Binary search","Math"],instructions:"Compute the integer square root of a non-negative integer, without using a built-in sqrt.",criteria:["O(log n) time","Handle edge cases"],resources:["LeetCode 69"]},
+{day:43,title:"Spiral Matrix",difficulty:"Medium",time:"35 min",objectives:["Matrix traversal","Boundaries"],instructions:"Return all elements of a matrix in spiral order.",criteria:["O(m·n) time","Track shrinking boundaries"],resources:["LeetCode 54"]},
+{day:44,title:"Rotate Image",difficulty:"Medium",time:"30 min",objectives:["Matrix rotation","In-place"],instructions:"Rotate an n×n matrix 90 degrees clockwise, in-place.",criteria:["In-place","O(1) extra space"],resources:["LeetCode 48"]},
+{day:45,title:"Word Pattern",difficulty:"Easy",time:"20 min",objectives:["Hash map","Pattern matching"],instructions:"Check whether a string follows the same pattern described by a pattern string, one word per letter.",criteria:["O(n) time","Enforce a true bijection"],resources:["LeetCode 290"]},
+{day:46,title:"Binary Tree Inorder",difficulty:"Medium",time:"30 min",objectives:["Tree traversal","Recursion"],instructions:"Return the inorder traversal of a binary tree's node values.",criteria:["Use recursion","Return an array"],resources:["LeetCode 94"]},
+{day:47,title:"Binary Tree Max Depth",difficulty:"Easy",time:"20 min",objectives:["DFS","Recursion"],instructions:"Find the maximum depth of a binary tree.",criteria:["O(n) time","Use recursion"],resources:["LeetCode 104"]},
+{day:48,title:"Symmetric Tree",difficulty:"Easy",time:"20 min",objectives:["DFS","Recursion"],instructions:"Check whether a binary tree is a mirror of itself around its center.",criteria:["O(n) time","Use recursion"],resources:["LeetCode 101"]},
+{day:49,title:"Path Sum",difficulty:"Easy",time:"20 min",objectives:["DFS","Recursion"],instructions:"Determine whether the tree has a root-to-leaf path that adds up to a given target sum.",criteria:["O(n) time","Use recursion"],resources:["LeetCode 112"]},
+{day:50,title:"Linked List Cycle",difficulty:"Easy",time:"20 min",objectives:["Two pointers","Floyd's algorithm"],instructions:"Detect whether a linked list has a cycle using Floyd's cycle-finding algorithm.",criteria:["O(n) time","O(1) space"],resources:["LeetCode 141"]},
+{day:51,title:"Merge Two Sorted Lists",difficulty:"Easy",time:"25 min",objectives:["Linked list","Merge"],instructions:"Merge two sorted linked lists into one new sorted list.",criteria:["O(n+m) time","Iterative solution"],resources:["LeetCode 21"]},
+{day:52,title:"Middle of Linked List",difficulty:"Easy",time:"15 min",objectives:["Two pointers","Slow/fast pointers"],instructions:"Find the middle node of a linked list. If there are two middles, return the second.",criteria:["O(n) time","O(1) space"],resources:["LeetCode 876"]},
+{day:53,title:"Stack Using Queues",difficulty:"Medium",time:"30 min",objectives:["Queue","Stack"],instructions:"Implement a last-in-first-out stack using only queue operations.",criteria:["Use two queues","Correct push/pop order"],resources:["LeetCode 225"]},
+{day:54,title:"Queue Using Stacks",difficulty:"Medium",time:"30 min",objectives:["Stack","Queue"],instructions:"Implement a first-in-first-out queue using only stack operations.",criteria:["Use two stacks","O(1) amortized"],resources:["LeetCode 232"]},
+{day:55,title:"Min Stack",difficulty:"Medium",time:"30 min",objectives:["Stack","Min tracking"],instructions:"Design a stack that supports push, pop, top, and retrieving the minimum element, all in O(1).",criteria:["O(1) per operation","Use an auxiliary stack"],resources:["LeetCode 155"]},
+{day:56,title:"Reverse Linked List",difficulty:"Easy",time:"20 min",objectives:["Linked list","Iteration"],instructions:"Reverse a singly linked list, both iteratively and recursively.",criteria:["O(n) time","Provide the iterative version"],resources:["LeetCode 206"]},
+{day:57,title:"Palindrome Linked List",difficulty:"Medium",time:"30 min",objectives:["Two pointers","Reverse"],instructions:"Check whether a linked list reads the same forwards and backwards, in O(n) time and O(1) space.",criteria:["O(n) time","O(1) space"],resources:["LeetCode 234"]},
+{day:58,title:"LRU Cache",difficulty:"Hard",time:"45 min",objectives:["Hash map","Doubly linked list"],instructions:"Design a data structure implementing a Least Recently Used (LRU) cache.",criteria:["O(1) get/put","Use a Map + linked list"],resources:["LeetCode 146"]},
+{day:59,title:"Trie Implementation",difficulty:"Hard",time:"45 min",objectives:["Trie","Insert / search"],instructions:"Implement a trie (prefix tree) with insert, search and startsWith methods.",criteria:["Node-based structure","O(word length) operations"],resources:["LeetCode 208"]},
+{day:60,title:"Capstone Project",difficulty:"Hard",time:"60 min",objectives:["Integrate skills","Ship a project"],instructions:"Build one small project that combines several concepts from the last 59 days — a CLI tool, a small algorithm visualizer, or a mini app with real data structures underneath.",criteria:["Clean, organised code","A short README explaining it"],resources:["Your own judgement"]}
+];
+const PHASES=[
+{range:"Days 1–7",name:"Foundations",desc:"Syntax, control flow, functions and collections."},
+{range:"Days 8–20",name:"Core Patterns",desc:"Searching, recursion, stacks, queues, trees and graphs."},
+{range:"Days 21–30",name:"Algorithms",desc:"Sorting, hashing and dynamic programming."},
+{range:"Days 31–45",name:"Problem Solving",desc:"Arrays, matrices, bit tricks and string patterns."},
+{range:"Days 46–59",name:"Advanced Structures",desc:"Linked lists, binary trees, caches and tries."},
+{range:"Day 60",name:"Capstone",desc:"Ship one complete project end to end."}
+];
+const BADGE_DEFS=[
+{id:"first",name:"First Commit",icon:"fa-star",reqLabel:"Ship day 1",need:s=>s.submissions.length>=1},
+{id:"streak7",name:"Week Streak",icon:"fa-fire",reqLabel:"7-day streak",need:s=>computeStreak(s)>=7},
+{id:"consistent",name:"Consistent Coder",icon:"fa-bolt",reqLabel:"10 days shipped",need:s=>s.submissions.length>=10},
+{id:"halfway",name:"Halfway Hero",icon:"fa-mountain",reqLabel:"30 days shipped",need:s=>s.submissions.length>=30},
+{id:"momentum",name:"Momentum",icon:"fa-chart-line",reqLabel:"21-day streak",need:s=>computeStreak(s)>=21},
+{id:"complete",name:"Challenge Complete",icon:"fa-trophy",reqLabel:"All 60 days",need:s=>s.submissions.length>=60}
+];
+const LEADERBOARD_OTHERS=[
+{name:"Aarav Shah",xp:2450,streak:28},
+{name:"Neha Kapoor",xp:1980,streak:22},
+{name:"Vikram Rao",xp:1720,streak:19},
+{name:"Priya Nair",xp:890,streak:11},
+{name:"Arjun Mehta",xp:610,streak:9},
+{name:"Sana Iqbal",xp:420,streak:6}
+];
+const TESTIMONIALS=[
+{quote:"I stopped restarting the same tutorial for the third time. Ninety days ago I hadn't touched Git — now my GitHub graph is basically part of my resume.",name:"Ananya R.",meta:"NIT Trichy, CSE"},
+{quote:"The streak is what actually did it, not the problems. I didn't want to break a 40-day chain, so I showed up even during exam week.",name:"Rohan D.",meta:"VIT, IT"}
+];
+const FAQS=[
+{q:"Is ABTalks actually free?",a:"Yes. All 60 days are free — no credit card, and no paywalled \"premium\" tasks."},
+{q:"What exactly do I submit?",a:"A link to the GitHub commit or repo for that day's task, and a link to a short LinkedIn post about what you built or learned."},
+{q:"What if I miss a day?",a:"Your streak resets, but nothing you've already shipped disappears. Pick the next day back up whenever you're ready."},
+{q:"Do I need to already know how to code?",a:"You need the basics — variables, loops, functions. Day 1 starts simple on purpose, and difficulty ramps up gradually."},
+{q:"How much time does a day take?",a:"Most tasks take 15–40 minutes. A handful of the harder, later problems run up to an hour."}
+];
+const QUOTES=[
+"Consistency beats talent. You're building the future, one commit at a time.",
+"The best time to start was 60 days ago. The second best time is today.",
+"Every expert was once a beginner who never gave up.",
+"Small daily improvements compound into results tutorials never gave you.",
+"Ship something every day — momentum compounds faster than motivation.",
+"Code. Commit. Share. Repeat.",
+"The only bad practice day is the one you skipped."
+];
 
-    const DEFAULT = {
-      profile: {
-        id: "MT",
-        name: "Mihir Trivedi",
-        email: "mihir@abtalks.in",
-        avatar: "👨‍💻",
-        streak: 7,
-        xp: 1050,
-        level: 3,
-        joined: "2026-01-15",
-        careerReadiness: 62
-      },
-      submissions: [
-        { day:7, github:"https://github.com/mihir/day7", linkedin:"https://linkedin.com/in/mihir/day7" },
-        { day:6, github:"https://github.com/mihir/day6", linkedin:"https://linkedin.com/in/mihir/day6" },
-        { day:5, github:"https://github.com/mihir/day5", linkedin:"https://linkedin.com/in/mihir/day5" },
-        { day:4, github:"https://github.com/mihir/day4", linkedin:"https://linkedin.com/in/mihir/day4" },
-        { day:3, github:"https://github.com/mihir/day3", linkedin:"https://linkedin.com/in/mihir/day3" },
-        { day:2, github:"https://github.com/mihir/day2", linkedin:"https://linkedin.com/in/mihir/day2" },
-        { day:1, github:"https://github.com/mihir/day1", linkedin:"https://linkedin.com/in/mihir/day1" }
-      ],
-      badges: [
-        { name:"First Commit", icon:"🌟", date:"Day 1" },
-        { name:"7 Day Streak", icon:"🔥", date:"Day 7" },
-        { name:"Problem Solver", icon:"🧩", date:"Day 4" }
-      ],
-      leaderboard: [
-        { name:"Aarav", xp:2450, avatar:"🧑‍💻", streak:28 },
-        { name:"Neha", xp:1980, avatar:"👩‍💻", streak:22 },
-        { name:"Vikram", xp:1720, avatar:"🧑", streak:19 },
-        { name:"Mihir Trivedi", xp:1050, avatar:"👨‍💻", streak:7 },
-        { name:"Priya", xp:980, avatar:"👩", streak:11 },
-        { name:"Arjun", xp:870, avatar:"🧑‍🎓", streak:9 }
-      ],
-      weeklyActivity: [
-        [0,1,2,3,2,1,0],
-        [2,3,4,5,3,2,1],
-        [3,4,5,6,4,2,1],
-        [4,5,6,7,5,3,2]
-      ],
-      currentDay: 8,
-      quotes: [
-        "Consistency beats talent. You're building the future, one commit at a time.",
-        "The best time to start was 60 days ago. The second best time is today.",
-        "Every expert was once a beginner who never gave up.",
-        "Small daily improvements lead to massive results.",
-        "Ship something every day. Momentum compounds.",
-        "Code. Commit. Share. Repeat.",
-        "The only bad practice day is the one you skipped."
-      ]
-    };
+const STORAGE_KEY="abtalks_progress_v2";
+function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
+function todayStart(){const d=new Date();d.setHours(0,0,0,0);return d;}
+function dateKey(d){return d.toISOString().slice(0,10);}
+function escapeAttr(str){return String(str==null?"":str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-    const KEY = "abtalks_v4";
-    let state = load();
-    let page = "dashboard";
-    let submitStatus = null;
-    let toastTimer = null;
+function defaultState(){
+  const submissions=[];
+  for(let i=0;i<7;i++){
+    const day=7-i;
+    const d=new Date();
+    d.setHours(0,0,0,0);
+    d.setDate(d.getDate()-i);
+    submissions.push({
+      day,
+      github:"https://github.com/mihir-t/abtalks-day-"+day,
+      linkedin:"https://linkedin.com/posts/mihir-trivedi-day-"+day,
+      submittedAt:d.toISOString()
+    });
+  }
 
-    function load() {
-      try {
-        const raw = localStorage.getItem(KEY);
-        if (raw) {
-          const p = JSON.parse(raw);
-          return {
-            ...DEFAULT,
-            ...p,
-            profile: { ...DEFAULT.profile, ...p.profile },
-            weeklyActivity: p.weeklyActivity || DEFAULT.weeklyActivity,
-            leaderboard: DEFAULT.leaderboard.map(u => {
-              if (u.name.includes("Mihir") && p.profile) {
-                return { ...u, xp: p.profile.xp, streak: p.profile.streak };
-              }
-              return u;
-            })
-          };
-        }
-      } catch (_) {}
-      return structuredClone(DEFAULT);
+  const joined=new Date();
+  joined.setHours(0,0,0,0);
+  joined.setDate(joined.getDate()-6);
+
+  return {
+    profile:{
+      name:"Mihir Trivedi",
+      initials:"MT",
+      joined:joined.toISOString(),
+      careerReadinessBase:38,
+      careerReadiness:45,
+      xp:submissions.length*50,
+      level:1,
+      streak:7
+    },
+    submissions,
+    badges:[],
+    badgesSeenAt:Date.now(),
+    checklists:{},
+    currentDay:8,
+    weeklyActivity:[3,5,2,6,4,7,3],
+    leaderboard:[
+      {name:"Mihir Trivedi",xp:submissions.length*50,streak:7},
+      {name:"Aarav Shah",xp:300,streak:5},
+      {name:"Riya Patel",xp:250,streak:4},
+      {name:"Dev Mehta",xp:200,streak:3}
+    ],
+    quotes:QUOTES
+  };
+}
+
+let state=null;
+let stateVersion="new";
+let page="landing";
+let submitStatus=null;
+let saving=false;
+let toastTimer=null;
+
+function save(){ return persist(); }
+function showTaskLock(){
+  const overlay=$("#taskLockOverlay");
+  if(overlay) overlay.classList.add("show");
+}
+function hideTaskLock(){
+  const overlay=$("#taskLockOverlay");
+  if(overlay) overlay.classList.remove("show");
+}
+
+async function loadState(){
+  try{
+    const res=await window.storage.get(STORAGE_KEY,false);
+    if(res&&res.value){
+      const parsed=JSON.parse(res.value);
+      return{...defaultState(),...parsed,profile:{...defaultState().profile,...(parsed.profile||{})}};
+    }
+  }catch(e){}
+  return defaultState();
+}
+async function persist(){
+  try{
+    saving=true;
+    await window.storage.set(STORAGE_KEY,JSON.stringify(state),false);
+  }catch(e){
+    toast("Couldn't save — check your connection","warn");
+  }finally{
+    saving=false;
+  }
+}
+
+function getChallenge(day){return CHALLENGES.find(c=>c.day===day)||CHALLENGES[0];}
+function hasSubmitted(day){return state.submissions.some(s=>s.day===day);}
+function getSubmission(day){return state.submissions.find(s=>s.day===day);}
+function completedCount(){return state.submissions.length;}
+function completionPercent(){return Math.round((completedCount()/60)*100);}
+function nextIncompleteDay(){for(let d=1;d<=60;d++){if(!hasSubmitted(d))return d;}return 60;}
+function xpTotal(){return completedCount()*50;}
+function xpLevel(){return Math.floor(xpTotal()/500)+1;}
+function xpIntoLevel(){return xpTotal()%500;}
+function levelPercent(){return (xpIntoLevel()/500)*100;}
+function careerReadiness(){return clamp(Math.round(state.profile.careerReadinessBase+(completedCount()/60)*60),0,98);}
+function computeStreak(s){
+  s=s||state;
+  const dates=new Set(s.submissions.map(sub=>sub.submittedAt?sub.submittedAt.slice(0,10):null).filter(Boolean));
+  let cursor=todayStart();
+  if(!dates.has(dateKey(cursor))){cursor.setDate(cursor.getDate()-1);}
+  let streak=0;
+  while(dates.has(dateKey(cursor))){streak++;cursor.setDate(cursor.getDate()-1);}
+  return streak;
+}
+function earnedBadges(){return BADGE_DEFS.filter(b=>b.need(state));}
+function lockedBadges(){return BADGE_DEFS.filter(b=>!b.need(state));}
+function leaderboardRows(){
+  const you={name:state.profile.name,initials:state.profile.initials,xp:xpTotal(),streak:computeStreak(),isYou:true};
+  const others=LEADERBOARD_OTHERS.map(o=>({...o,initials:o.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),isYou:false}));
+  return[...others,you].sort((a,b)=>b.xp-a.xp);
+}
+function myRank(){const rows=leaderboardRows();return rows.findIndex(r=>r.isYou)+1;}
+function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";if(h<17)return"Good afternoon";if(h<21)return"Good evening";return"Still coding, night owl";}
+    function weeklyActivityData(){
+      const days=[];
+      for(let i=6;i>=0;i--){
+        const d=todayStart(); d.setDate(d.getDate()-i);
+        const key=dateKey(d);
+        const count=state.submissions.filter(s=>s.submittedAt && s.submittedAt.slice(0,10)===key).length;
+        days.push(count);
+      }
+      // Keep a useful demo signal before the student has real activity.
+      if(days.every(v=>v===0) && Array.isArray(state.weeklyActivity) && state.weeklyActivity.some(v=>v>0)) return state.weeklyActivity.slice(-7);
+      return days;
     }
 
-    function save() {
-      try {
-        localStorage.setItem(KEY, JSON.stringify({
-          profile: state.profile,
-          submissions: state.submissions,
-          badges: state.badges,
-          weeklyActivity: state.weeklyActivity,
-          currentDay: state.currentDay
-        }));
-      } catch (_) {}
-    }
-
+// ============================================================
+    //  HELPERS
+    // ============================================================
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
     const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
@@ -872,26 +511,17 @@
       return (state.profile.xp % 500) / 500 * 100;
     }
     function rank() {
-      const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
-      const i = sorted.findIndex(u => u.name.includes("Mihir") || u.name === state.profile.name);
-      return i >= 0 ? i + 1 : sorted.length + 1;
+      const rows = leaderboardRows();
+      const me = rows.findIndex(u => u.isYou);
+      return me >= 0 ? me + 1 : rows.length;
     }
     function diffClass(d) {
       return d === "Easy" ? "success" : d === "Medium" ? "warning" : "danger";
     }
+    function objectiveEmoji(i){ return ["🎯","🧠","⚙️","💡","🚀","🧩"][i] || "✨"; }
+    function criteriaEmoji(i){ return ["✅","📌","🔍","⚡","🏆"][i] || "✨"; }
     function quote() {
-      return state.quotes[Math.floor(Math.random() * state.quotes.length)];
-    }
-    function activityLevel(v) {
-      if (v >= 6) return "l5";
-      if (v >= 5) return "l4";
-      if (v >= 3) return "l3";
-      if (v >= 2) return "l2";
-      if (v >= 1) return "l1";
-      return "l0";
-    }
-    function totalCommits() {
-      return state.weeklyActivity.flat().reduce((a, b) => a + b, 0);
+      return (state.quotes && state.quotes.length ? state.quotes : QUOTES)[Math.floor(Math.random() * (state.quotes && state.quotes.length ? state.quotes.length : QUOTES.length))];
     }
 
     function toast(msg, icon = "✓") {
@@ -900,7 +530,7 @@
       el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
       wrap.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => wrap.classList.remove("show"), 2500);
+      toastTimer = setTimeout(() => wrap.classList.remove("show"), 2600);
     }
 
     function confetti() {
@@ -908,24 +538,27 @@
       layer.className = "confetti-layer";
       document.body.appendChild(layer);
       const colors = ["#6366F1","#8B5CF6","#06B6D4","#F59E0B","#22C55E","#EF4444","#F1F5F9","#EC4899"];
-      for (let i = 0; i < 56; i++) {
+      for (let i = 0; i < 64; i++) {
         const p = document.createElement("div");
-        const s = 4 + Math.random() * 7;
+        const s = 4 + Math.random() * 8;
         p.style.cssText = `
           position:absolute;width:${s}px;height:${s}px;
           background:${colors[Math.floor(Math.random()*colors.length)]};
           border-radius:${Math.random()>0.5?"50%":"2px"};
           left:${Math.random()*100}%;top:-10%;
           opacity:${0.5+Math.random()*0.5};
-          animation:confettiFall ${1.5+Math.random()*2}s linear forwards;
-          animation-delay:${Math.random()*0.28}s;
+          animation:confettiFall ${1.6+Math.random()*2.2}s linear forwards;
+          animation-delay:${Math.random()*0.3}s;
           transform:rotate(${Math.random()*360}deg);
         `;
         layer.appendChild(p);
       }
-      setTimeout(() => layer.remove(), 3800);
+      setTimeout(() => layer.remove(), 4000);
     }
 
+    // ============================================================
+    //  RENDER
+    // ============================================================
     const app = $("#app");
 
     function render() {
@@ -949,55 +582,63 @@
       if (badge) badge.textContent = state.currentDay;
     }
 
+    // ---------- LANDING ----------
     function renderLanding() {
       app.innerHTML = `
         <div class="page">
-          <div style="text-align:center;padding:22px 0 10px;">
-            <div style="font-size:2.6rem;margin-bottom:5px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
-            <h1 style="font-size:2.2rem;font-weight:900;letter-spacing:-1.1px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
-            <p class="text-muted" style="font-size:0.95rem;margin:5px auto 16px;max-width:270px;">60-day coding challenge · built for India</p>
-            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:250px;margin:0 auto;">
+          <div style="text-align:center;padding:24px 0 12px;">
+            <div style="font-size:2.8rem;margin-bottom:6px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
+            <h1 style="font-size:2.3rem;font-weight:900;letter-spacing:-1.2px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
+            <p class="text-muted" style="font-size:1rem;margin:6px auto 18px;max-width:280px;">60-day coding challenge · built for India</p>
+            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:260px;margin:0 auto;">
               <i class="fas fa-bolt"></i> Join the challenge
             </button>
           </div>
 
-          <div class="metric-grid">
-            <div class="metric"><div class="num">60</div><div class="lbl">days</div></div>
-            <div class="metric"><div class="num">1.2k+</div><div class="lbl">students</div></div>
-            <div class="metric"><div class="num">89%</div><div class="lbl">completion</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 14px;">
+            ${[
+              { v:"60", l:"days" },
+              { v:"1.2k+", l:"students" },
+              { v:"89%", l:"completion" }
+            ].map(s => `
+              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--border);">
+                <div style="font-size:1.55rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
+                <div style="font-size:11px;color:var(--muted);font-weight:500;">${s.l}</div>
+              </div>
+            `).join("")}
           </div>
 
           <div class="card">
-            <h3 class="fw-7" style="font-size:0.98rem;display:flex;gap:8px;align-items:center;">
+            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
               <i class="fas fa-compass" style="color:var(--primary);"></i> How it works
             </h3>
-            <div style="display:flex;flex-direction:column;gap:7px;margin-top:11px;">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
               ${[
                 "Daily coding task (20–40 min)",
                 "Push your solution to GitHub",
                 "Share one learning on LinkedIn",
                 "Submit links & protect your streak"
               ].map((t,i) => `
-                <div style="display:flex;align-items:center;gap:11px;background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:11px;">
-                  <span class="badge" style="min-width:22px;justify-content:center;">${i+1}</span>
-                  <span style="font-size:0.88rem;">${t}</span>
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.025);padding:11px 13px;border-radius:12px;">
+                  <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span>
+                  <span style="font-size:0.9rem;">${t}</span>
                 </div>
               `).join("")}
             </div>
           </div>
 
           <div class="card flat">
-            <h3 class="fw-7" style="font-size:0.98rem;display:flex;gap:8px;align-items:center;">
+            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
               <i class="fas fa-star" style="color:var(--warning);"></i> Why ABTalks?
             </h3>
-            <ul style="list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px;">
+            <ul style="list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;">
               ${[
                 "Build a real, public portfolio",
                 "Daily accountability & streaks",
                 "Earn XP, levels & badges",
                 "Join a community of doers"
               ].map(t => `
-                <li style="display:flex;gap:9px;align-items:center;font-size:0.88rem;">
+                <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;">
                   <span style="color:var(--success);">✓</span> ${t}
                 </li>
               `).join("")}
@@ -1008,29 +649,29 @@
             { t:"“ABTalks turned my coding habit around. I went from zero to job-ready in 60 days.”", a:"— Ananya, NIT Trichy" },
             { t:"“The streak system kept me going even on tough days. Best decision ever.”", a:"— Rohan, VIT" }
           ].map(q => `
-            <div style="background:rgba(99,102,241,0.05);border-left:3px solid var(--primary);padding:13px 14px;border-radius:11px;margin:7px 0;">
-              <p style="font-size:0.88rem;font-style:italic;color:#E2E8F0;line-height:1.48;">${q.t}</p>
-              <span class="text-xs text-muted" style="margin-top:4px;display:block;font-weight:500;">${q.a}</span>
+            <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--primary);padding:14px 15px;border-radius:12px;margin:8px 0;">
+              <p style="font-size:0.9rem;font-style:italic;color:#E2E8F0;line-height:1.5;">${q.t}</p>
+              <span class="text-xs text-muted" style="margin-top:5px;display:block;font-weight:500;">${q.a}</span>
             </div>
           `).join("")}
 
           <div class="card">
-            <h3 class="fw-7" style="font-size:0.98rem;">FAQ</h3>
+            <h3 class="fw-7" style="font-size:1.02rem;">FAQ</h3>
             ${[
               { q:"Is it free?", a:"Yes — completely free for Indian college students." },
               { q:"What if I miss a day?", a:"Your streak resets, but you can always catch up on previous days." },
               { q:"How much time per day?", a:"Most tasks take 20–40 minutes. Day 60 is a mini project." }
             ].map((f,i,arr) => `
-              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:12px 0;">
-                <h4 class="fw-6" style="font-size:0.9rem;display:flex;gap:8px;align-items:center;">
+              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:13px 0;">
+                <h4 class="fw-6" style="font-size:0.92rem;display:flex;gap:9px;align-items:center;">
                   <span class="badge">Q</span> ${f.q}
                 </h4>
-                <p class="text-muted text-sm" style="margin-top:2px;padding-left:28px;">${f.a}</p>
+                <p class="text-muted text-sm" style="margin-top:3px;padding-left:30px;">${f.a}</p>
               </div>
             `).join("")}
           </div>
 
-          <p class="text-center text-muted" style="font-size:0.68rem;letter-spacing:0.25px;padding:14px 0 4px;">
+          <p class="text-center text-muted" style="font-size:0.7rem;letter-spacing:0.3px;padding:16px 0 6px;">
             © 2026 ABTalks · Made with ❤️ in India
           </p>
         </div>
@@ -1038,6 +679,7 @@
       $("#joinBtn")?.addEventListener("click", () => { page = "dashboard"; render(); });
     }
 
+    // ---------- DASHBOARD ----------
     function renderDashboard() {
       const p = state.profile;
       const today = challenge(state.currentDay);
@@ -1045,115 +687,117 @@
       const r = rank();
       const lp = levelProgress();
       const done = state.submissions.length;
-      const commits = totalCommits();
-      const dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-
-      let heatmapHTML = "";
-      heatmapHTML += `<div class="heatmap-day-label"></div>`;
-      dayNames.forEach(d => {
-        heatmapHTML += `<div class="heatmap-day-label" style="text-align:center;font-size:9.5px;">${d[0]}</div>`;
-      });
-
-      state.weeklyActivity.forEach((week, wi) => {
-        heatmapHTML += `<div class="heatmap-day-label">W${wi + 1}</div>`;
-        week.forEach((v, di) => {
-          const lvl = activityLevel(v);
-          const tip = v === 0 ? "No activity" : `${v} commit${v > 1 ? "s" : ""} · ${dayNames[di]}`;
-          heatmapHTML += `<div class="heatmap-cell ${lvl} has-tip" data-tip="${tip}" title="${tip}"></div>`;
-        });
-      });
 
       app.innerHTML = `
         <div class="page">
-          <div class="flex-between" style="margin-bottom:11px;">
+          <div class="flex-between" style="margin-bottom:12px;">
             <div class="flex gap-2" style="align-items:center;">
-              <span style="font-size:2.1rem;line-height:1;">${p.avatar}</span>
+              <span style="font-size:2.2rem;line-height:1;">${p.initials || "👨‍💻"}</span>
               <div>
-                <h2 class="fw-7" style="font-size:1.28rem;letter-spacing:-0.25px;">${p.name}</h2>
-                <span class="text-muted text-sm">ID ${p.id} · Level ${p.level} · ${p.xp.toLocaleString()} XP</span>
+                <h2 class="fw-7" style="font-size:1.35rem;letter-spacing:-0.3px;">${p.name}</h2>
+                <span class="text-muted text-sm">Level ${p.level} · ${p.xp.toLocaleString()} XP</span>
               </div>
             </div>
-            <span class="streak"><i class="fas fa-fire"></i> ${p.streak}</span>
+            <span class="streak-pill"><i class="fas fa-fire"></i> ${p.streak} day streak</span>
           </div>
 
-          <div style="margin-bottom:12px;">
+          <div style="margin-bottom:14px;">
             <div class="flex-between text-xs text-muted">
               <span>Level ${p.level}</span>
               <span>${p.xp % 500} / 500 XP</span>
             </div>
-            <div class="progress" style="height:5px;margin-top:4px;">
+            <div class="progress" style="height:5px;margin-top:5px;">
               <div class="progress-fill" style="width:${lp}%;"></div>
             </div>
           </div>
 
-          <div class="grid-2" style="margin-bottom:2px;">
+          <div class="grid-2" style="margin-bottom:4px;">
             <div class="card accent" style="margin-bottom:0;">
               <div class="flex-between">
                 <span class="badge">Day ${today.day}</span>
                 <span class="text-muted text-xs"><i class="far fa-clock"></i> ${today.time}</span>
               </div>
-              <h3 class="fw-7" style="margin:7px 0 2px;font-size:1.04rem;">${today.title}</h3>
+              <h3 class="fw-7" style="margin:8px 0 3px;font-size:1.08rem;">${today.title}</h3>
               <p class="text-muted text-sm">${today.difficulty} · ${today.objectives.slice(0,2).join(" · ")}</p>
-              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:11px;">
+              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:12px;">
                 <i class="fas fa-arrow-right"></i> Continue
               </button>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="card" style="padding:12px;margin-bottom:0;">
+              <div class="card" style="padding:13px;margin-bottom:0;">
                 <div class="flex-between text-sm">
                   <span>Progress</span>
                   <span class="fw-7">${Math.round(prog)}%</span>
                 </div>
-                <div class="progress" style="margin-top:5px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
-                <div class="text-xs text-muted" style="margin-top:3px;">${done} of 60 done</div>
+                <div class="progress" style="margin-top:6px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
+                <div class="text-xs text-muted" style="margin-top:4px;">${done} of 60 done</div>
               </div>
-              <div class="card" style="padding:12px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
-                <span class="fw-8" style="font-size:1.35rem;color:var(--warning);">#${r}</span>
+              <div class="card" style="padding:13px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+                <span class="fw-8" style="font-size:1.4rem;color:var(--warning);">#${r}</span>
                 <span class="text-xs text-muted">rank</span>
               </div>
             </div>
           </div>
 
           <div class="stat-row">
-            <div class="stat" style="background:rgba(6,182,212,0.04);">
+            <div class="stat" style="background:rgba(6,182,212,0.05);">
               <i class="fas fa-medal" style="color:var(--accent);"></i>
-              <div class="val">${state.badges.length}</div>
+              <div class="val">${(state.badges || []).length}</div>
               <div class="lbl">badges</div>
             </div>
-            <div class="stat" style="background:rgba(34,197,94,0.04);">
+            <div class="stat" style="background:rgba(34,197,94,0.05);">
               <i class="fas fa-check-circle" style="color:var(--success);"></i>
               <div class="val">${done}</div>
               <div class="lbl">submitted</div>
             </div>
-            <div class="stat" style="background:rgba(139,92,246,0.04);">
+            <div class="stat" style="background:rgba(139,92,246,0.05);">
               <i class="fas fa-chart-line" style="color:var(--secondary);"></i>
-              <div class="val">${p.careerReadiness}%</div>
+              <div class="val">${careerReadiness()}%</div>
               <div class="lbl">readiness</div>
             </div>
           </div>
 
-          <div class="card activity-section">
-            <div class="activity-header">
-              <h4>
-                <i class="fas fa-chart-area" style="color:var(--primary);"></i>
-                Weekly activity
+          <div class="card">
+            <div class="flex-between">
+              <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+                <i class="fas fa-chart-line" style="color:var(--cyan);"></i> Weekly activity
               </h4>
-              <span class="activity-summary"><strong>${commits}</strong> commits this month</span>
+              <span class="badge success"><i class="fas fa-arrow-trend-up"></i> ${weeklyActivityData().filter(v=>v>0).length}/7 active</span>
             </div>
-            <div class="heatmap-wrap">
-              <div class="heatmap">
-                ${heatmapHTML}
+            <div class="activity-chart">
+              ${(() => {
+                const vals = weeklyActivityData().map(v=>Number(v)||0);
+                const max = Math.max(7,...vals);
+                const W=700,H=190,PL=34,PR=12,PT=14,PB=28;
+                const innerW=W-PL-PR, innerH=H-PT-PB;
+                const pts=vals.map((v,i)=>{const x=PL+(i*(innerW/6)); const y=PT+innerH-(v/max)*innerH; return [x,y];});
+                const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+                const area=line+' L '+pts[6][0].toFixed(1)+','+(PT+innerH)+' L '+pts[0][0].toFixed(1)+','+(PT+innerH)+' Z';
+                return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly activity line graph">
+                  <defs><linearGradient id="activityGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#8B84F7"/></linearGradient><linearGradient id="activityArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#675EF2" stop-opacity="0"/></linearGradient></defs>
+                  ${[0,2,4,6].map(v=>{const y=PT+innerH-(v/max)*innerH;return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/><text class="chart-value" x="4" y="${y+4}">${v}</text>`}).join('')}
+                  <path class="chart-area" d="${area}"/>
+                  <path class="chart-line" d="${line}"/>
+                  ${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="5"><title>${vals[i]} activities</title></circle><text class="chart-value" text-anchor="middle" x="${p[0]}" y="${p[1]-10}">${vals[i]}</text><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-7}">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][i]}</text>`).join('')}
+                </svg>`;
+              })()}
+            </div>
+            <div class="activity-summary">
+              <div class="mini-stat"><div class="v">${weeklyActivityData().reduce((a,b)=>a+b,0)}</div><div class="l">TOTAL ACTIONS</div></div>
+              <div class="mini-stat"><div class="v">${Math.max(...weeklyActivityData())}</div><div class="l">BEST DAY</div></div>
+              <div class="mini-stat"><div class="v">${Math.round(weeklyActivityData().reduce((a,b)=>a+b,0)/7*10)/10}</div><div class="l">DAILY AVG</div></div>
+            </div>
+          </div>
+
+          <div class="focus-card" style="margin-bottom:12px;">
+            <div class="focus-row">
+              <div class="focus-icon">🎯</div>
+              <div style="flex:1;">
+                <div class="text-xs text-muted">Today's focus</div>
+                <div class="fw-7" style="font-size:.98rem;margin-top:2px;">${today.title}</div>
+                <div class="text-xs text-muted" style="margin-top:2px;">${today.time} · ${today.difficulty} · +50 XP</div>
               </div>
-              <div class="heatmap-legend">
-                <span>Less</span>
-                <div class="legend-cell l0"></div>
-                <div class="legend-cell l1"></div>
-                <div class="legend-cell l2"></div>
-                <div class="legend-cell l3"></div>
-                <div class="legend-cell l4"></div>
-                <div class="legend-cell l5"></div>
-                <span>More</span>
-              </div>
+              <span class="badge">Day ${today.day}</span>
             </div>
           </div>
 
@@ -1163,13 +807,13 @@
             </h4>
             <div class="scroll-x">
               ${state.badges.length === 0
-                ? `<div class="empty" style="padding:12px;width:100%;font-size:0.84rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
+                ? `<div class="empty" style="padding:14px;width:100%;font-size:0.85rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
                 : state.badges.map(b => `
-                    <div style="background:rgba(255,255,255,0.025);padding:7px 13px;border-radius:40px;display:flex;align-items:center;gap:7px;border:1px solid var(--border);">
-                      <span style="font-size:1.2rem;">${b.icon}</span>
+                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);">
+                      <span style="font-size:1.25rem;">${b.icon}</span>
                       <div>
-                        <div class="fw-6" style="font-size:0.74rem;">${b.name}</div>
-                        <div class="text-muted" style="font-size:0.56rem;">${b.date}</div>
+                        <div class="fw-6" style="font-size:0.76rem;">${b.name}</div>
+                        <div class="text-muted" style="font-size:0.58rem;">${b.date}</div>
                       </div>
                     </div>
                   `).join("")
@@ -1178,18 +822,20 @@
           </div>
 
           <div class="quote">
-            <span style="color:var(--primary);margin-right:5px;">✨</span>“${quote()}”
+            <span style="color:var(--primary);margin-right:6px;">✨</span>“${quote()}”
           </div>
         </div>
       `;
       $("#goDay")?.addEventListener("click", () => { page = "day"; render(); });
     }
 
+    // ---------- DAY ----------
     function renderDay() {
       const c = challenge(state.currentDay);
       const done = submitted(state.currentDay);
       const sub = submission(state.currentDay);
 
+      // Day strip: show a window around current
       const start = Math.max(1, state.currentDay - 8);
       const end = Math.min(60, state.currentDay + 8);
       let dots = "";
@@ -1205,35 +851,35 @@
           <div class="day-strip" id="dayStrip">${dots}</div>
 
           <div class="flex-between" style="margin-bottom:2px;">
-            <span class="fw-8" style="font-size:2.2rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.9px;">Day ${c.day}</span>
+            <span class="fw-8" style="font-size:2.3rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;">Day ${c.day}</span>
             <span class="badge ${diffClass(c.difficulty)}">${c.difficulty}</span>
           </div>
-          <h2 class="fw-7" style="font-size:1.15rem;margin-bottom:3px;">${c.title}</h2>
-          <p class="text-muted text-sm" style="margin-bottom:11px;">
-            <i class="far fa-clock"></i> ${c.time} · ${c.objectives.join(" · ")}
+          <h2 class="fw-7" style="font-size:1.2rem;margin-bottom:4px;">${c.title}</h2>
+          <p class="text-muted text-sm" style="margin-bottom:12px;">
+            <i class="far fa-clock"></i> ${c.time} · ${c.objectives.map((x,i)=>`${objectiveEmoji(i)} ${x}`).join(" · ")}
           </p>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:7px;align-items:center;">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
               <i class="fas fa-book-open" style="color:var(--primary);"></i> Instructions
             </h4>
-            <p style="color:#E2E8F0;font-size:0.9rem;margin:7px 0;line-height:1.52;">${c.instructions}</p>
+            <div class="info-item"><span class="task-number">${c.day}</span><p style="color:#E2E8F0;font-size:0.92rem;margin:0;line-height:1.55;"><span style="margin-right:6px;">📝</span>${c.instructions}</p></div>
             <div class="chips">
-              ${c.criteria.map(x => `<span class="chip on">${x}</span>`).join("")}
+              ${c.criteria.map((x,i) => `<span class="chip on">${criteriaEmoji(i)} ${x}</span>`).join("")}
             </div>
-            <div style="margin-top:11px;">
+            <div style="margin-top:12px;">
               <span class="text-xs text-muted fw-6">Resources</span>
               ${c.resources.map(r => `
-                <div style="color:var(--primary-light);font-size:0.82rem;margin-top:2px;">
-                  <i class="fas fa-book" style="font-size:0.62rem;opacity:0.6;"></i> ${r}
+                <div style="color:var(--primary-light);font-size:0.84rem;margin-top:3px;">
+                  <i class="fas fa-book" style="font-size:0.65rem;opacity:0.65;"></i> ${r}
                 </div>
               `).join("")}
             </div>
-            ${done ? `<div class="badge success" style="margin-top:11px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
+            ${done ? `<div class="badge success" style="margin-top:12px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
           </div>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:7px;align-items:center;">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
               <i class="fas fa-paper-plane" style="color:var(--accent);"></i> Submit your work
             </h4>
             <div class="field" id="ghField">
@@ -1246,13 +892,13 @@
               <input type="url" id="linkedinInput" placeholder="LinkedIn post URL" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
             <div class="field-hint" id="liHint">Include linkedin.com in the URL</div>
-            <button class="btn btn-primary" id="submitBtn" style="margin-top:5px;" ${done ? "disabled" : ""}>
+            <button class="btn btn-primary" id="submitBtn" style="margin-top:6px;" ${done ? "disabled" : ""}>
               <i class="fas ${done ? "fa-check-circle" : "fa-paper-plane"}"></i>
               ${done ? "Submitted" : "Submit & earn +50 XP"}
             </button>
             ${submitStatus === "success" ? `
               <div class="success-banner">
-                <i class="fas fa-check-circle" style="color:var(--success);font-size:1.15rem;"></i>
+                <i class="fas fa-check-circle" style="color:var(--success);font-size:1.2rem;"></i>
                 <div><span class="fw-7" style="color:var(--success);">+50 XP</span> <span class="text-muted text-sm">· Streak updated</span></div>
               </div>
             ` : ""}
@@ -1263,7 +909,7 @@
             ` : ""}
           </div>
 
-          <div class="flex gap-1" style="margin:5px 0 7px;">
+          <div class="flex gap-1" style="margin:6px 0 8px;">
             <button class="btn btn-secondary" id="prevDay" style="flex:1;" ${state.currentDay <= 1 ? "disabled" : ""}>
               <i class="fas fa-arrow-left"></i> Prev
             </button>
@@ -1272,7 +918,7 @@
             </button>
           </div>
 
-          <div class="flex-center gap-2 text-muted text-sm" style="padding:3px 0 6px;">
+          <div class="flex-center gap-2 text-muted text-sm" style="padding:4px 0 8px;">
             <span><i class="fas fa-star" style="color:var(--warning);"></i> +50 XP</span>
             <span><i class="fas fa-fire" style="color:var(--warning);"></i> Streak</span>
             <span><i class="fas fa-medal" style="color:var(--secondary);"></i> Badges</span>
@@ -1280,6 +926,7 @@
         </div>
       `;
 
+      // Scroll current day into view
       requestAnimationFrame(() => {
         const strip = $("#dayStrip");
         const cur = strip?.querySelector(".day-dot.current");
@@ -1289,15 +936,15 @@
         }
       });
 
+      // Day numbers are display-only. Navigation is ONLY through Prev / Next buttons.
       $$(".day-dot").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.currentDay = +btn.dataset.day;
-          submitStatus = null;
-          save();
-          renderDay();
-        });
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.style.cursor = "default";
+        btn.style.pointerEvents = "none";
       });
 
+      // Live validation clear
       const ghIn = $("#githubInput");
       const liIn = $("#linkedinInput");
       ghIn?.addEventListener("input", () => {
@@ -1309,6 +956,7 @@
         $("#liHint")?.classList.remove("show");
       });
 
+      // Submit
       $("#submitBtn")?.addEventListener("click", () => {
         if (submitted(state.currentDay)) return;
 
@@ -1340,6 +988,7 @@
 
         state.profile.careerReadiness = Math.min(98, Math.round(38 + (state.submissions.length / 60) * 60));
 
+        // Badges
         const addBadge = (name, icon) => {
           if (!state.badges.find(b => b.name === name)) {
             state.badges.push({ name, icon, date: `Day ${state.currentDay}` });
@@ -1352,9 +1001,8 @@
         if (state.submissions.length >= 30) addBadge("Halfway Hero", "🏅");
         if (state.submissions.length >= 60) addBadge("Challenge Complete", "🏆");
 
-        const lastWeek = state.weeklyActivity[state.weeklyActivity.length - 1];
-        const dayIdx = (state.currentDay - 1) % 7;
-        if (lastWeek[dayIdx] < 7) lastWeek[dayIdx]++;
+        const idx = (state.currentDay - 1) % 7;
+        if (state.weeklyActivity[idx] < 7) state.weeklyActivity[idx]++;
 
         const me = state.leaderboard.find(u => u.name.includes("Mihir"));
         if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
@@ -1367,7 +1015,7 @@
         setTimeout(() => {
           submitStatus = null;
           renderDay();
-        }, 2500);
+        }, 2600);
 
         renderDay();
       });
@@ -1381,66 +1029,73 @@
         }
       });
       $("#nextDay")?.addEventListener("click", () => {
-        if (state.currentDay < 60) {
-          state.currentDay++;
-          submitStatus = null;
-          save();
-          renderDay();
+        if (state.currentDay >= 60) return;
+        if (!submitted(state.currentDay)) {
+          showTaskLock();
+          return;
         }
+        state.currentDay++;
+        submitStatus = null;
+        save();
+        renderDay();
       });
     }
 
+    // ---------- LEADERBOARD ----------
     function renderLeaderboard() {
       const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
       const myRank = rank();
 
       app.innerHTML = `
         <div class="page">
-          <div style="margin-bottom:13px;">
-            <h2 class="fw-8" style="font-size:1.35rem;letter-spacing:-0.35px;">Leaderboard</h2>
+          <div style="margin-bottom:14px;">
+            <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
             <p class="text-muted text-sm">Top performers this cohort</p>
           </div>
 
-          <div class="card accent" style="margin-bottom:11px;">
+          <div class="card accent" style="margin-bottom:12px;">
             <div class="flex-between">
               <div>
                 <div class="text-xs text-muted">Your rank</div>
-                <div class="fw-8" style="font-size:1.45rem;color:var(--warning);">#${myRank}</div>
+                <div class="fw-8" style="font-size:1.5rem;color:var(--warning);">#${myRank}</div>
               </div>
               <div style="text-align:right;">
                 <div class="text-xs text-muted">Your XP</div>
-                <div class="fw-7" style="font-size:1.15rem;">${state.profile.xp.toLocaleString()}</div>
+                <div class="fw-7" style="font-size:1.2rem;">${xpTotal().toLocaleString()}</div>
               </div>
             </div>
           </div>
 
-          <div class="card" style="padding:3px 0;">
+          <div class="card" style="padding:4px 0;">
             ${sorted.map((u, i) => {
               const isMe = u.name.includes("Mihir") || u.name === state.profile.name;
               const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
               return `
-                <div style="display:flex;align-items:center;gap:11px;padding:10px 13px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.06);" : ""}">
-                  <div style="width:24px;text-align:center;font-weight:700;font-size:0.9rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
+                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.07);" : ""}">
+                  <div style="width:26px;text-align:center;font-weight:700;font-size:0.92rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
                     ${medal || (i + 1)}
                   </div>
-                  <span style="font-size:1.3rem;">${u.avatar}</span>
+                  <span style="font-size:1.35rem;">${u.initials || "👨‍💻"}</span>
                   <div style="flex:1;min-width:0;">
-                    <div class="fw-6 truncate" style="font-size:0.88rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
+                    <div class="fw-6 truncate" style="font-size:0.9rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
                     <div class="text-xs text-muted">${u.streak || 0} day streak</div>
                   </div>
-                  <div class="fw-7" style="font-size:0.9rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted" style="font-weight:500;">XP</span></div>
+                  <div class="fw-7" style="font-size:0.92rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted fw-5" style="font-weight:500;">XP</span></div>
                 </div>
               `;
             }).join("")}
           </div>
 
-          <p class="text-center text-muted text-xs" style="margin-top:9px;">
+          <p class="text-center text-muted text-xs" style="margin-top:10px;">
             Rankings update as you submit. Keep shipping.
           </p>
         </div>
       `;
     }
 
+    // ============================================================
+    //  NAV
+    // ============================================================
     $$(".nav-item").forEach(el => {
       el.addEventListener("click", () => {
         const p = el.dataset.page;
@@ -1452,7 +1107,31 @@
       });
     });
 
-    render();
-  </script>
+    $("#taskLockClose")?.addEventListener("click", hideTaskLock);
+    $("#taskLockOverlay")?.addEventListener("click", (e) => { if(e.target.id === "taskLockOverlay") hideTaskLock(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") hideTaskLock(); });
+
+    // ============================================================
+    //  INIT
+    // ============================================================
+    (async function init(){
+      state = await loadState();
+      state.currentDay = Number(state.currentDay) || 1;
+      state.profile = { ...defaultState().profile, ...(state.profile || {}) };
+      state.submissions = Array.isArray(state.submissions) ? state.submissions : [];
+      state.badges = Array.isArray(state.badges) ? state.badges : [];
+      state.weeklyActivity = Array.isArray(state.weeklyActivity) ? state.weeklyActivity : [0,0,0,0,0,0,0];
+      state.leaderboard = Array.isArray(state.leaderboard) ? state.leaderboard : defaultState().leaderboard;
+      state.quotes = Array.isArray(state.quotes) && state.quotes.length ? state.quotes : QUOTES;
+      state.profile.xp = xpTotal();
+      state.profile.initials = state.profile.initials || "MT";
+      state.profile.name = state.profile.name || "Mihir Trivedi";
+      state.profile.level = xpLevel();
+      state.profile.streak = computeStreak(state);
+      state.profile.careerReadiness = careerReadiness();
+      if(!state.currentDay || state.currentDay < 1 || state.currentDay > 60) state.currentDay = nextIncompleteDay();
+      render();
+    })();
+</script>
 </body>
 </html>
