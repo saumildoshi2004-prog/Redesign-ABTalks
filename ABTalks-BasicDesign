@@ -339,11 +339,12 @@ body{
 }
 .container{
   width:100%!important;
-  max-width:430px!important;
+  max-width:100%!important;
   margin:0 auto!important;
-  padding:18px 16px 104px!important;
+  padding:16px 14px 110px!important;
+  box-sizing:border-box!important;
 }
-.page{width:100%;max-width:100%;margin:0 auto}
+.page{width:100%;max-width:100%;margin:0 auto;box-sizing:border-box}
 .card,.focus-card,.stat,.quote{
   background:linear-gradient(180deg,rgba(20,23,35,.96),rgba(12,15,25,.96))!important;
   border:1px solid rgba(148,163,184,.13)!important;
@@ -380,20 +381,22 @@ body{
 }
 .bottom-nav{
   position:fixed!important;
-  left:50%!important;
+  left:0!important;
+  right:0!important;
   bottom:0!important;
-  transform:translateX(-50%)!important;
+  transform:none!important;
   width:100%!important;
-  max-width:430px!important;
-  height:78px!important;
+  max-width:100%!important;
+  height:calc(70px + env(safe-area-inset-bottom,0px))!important;
   z-index:100!important;
   display:grid!important;
   grid-template-columns:repeat(5,1fr)!important;
-  padding:8px 8px calc(8px + env(safe-area-inset-bottom))!important;
-  background:rgba(8,10,17,.94)!important;
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))!important;
+  background:rgba(8,10,17,.96)!important;
   backdrop-filter:blur(18px)!important;
   -webkit-backdrop-filter:blur(18px)!important;
   border-top:1px solid rgba(148,163,184,.13)!important;
+  box-sizing:border-box!important;
 }
 .nav-item{
   position:relative!important;
@@ -408,6 +411,10 @@ body{
   font-size:.66rem!important;
   font-weight:600!important;
   border-radius:15px!important;
+  min-width:0!important;
+  width:100%!important;
+  padding:4px 2px!important;
+  box-sizing:border-box!important;
 }
 .nav-item i{font-size:1.05rem!important;transition:.2s}
 .nav-item.active{color:#9b91ff!important}
@@ -488,9 +495,9 @@ body{
 .chart-grid{stroke:rgba(148,163,184,.09)!important}
 .chart-line{stroke:#4aa3ff!important;stroke-width:4!important;fill:none!important;stroke-linecap:round!important;stroke-linejoin:round!important}
 .chart-area{fill:url(#activityArea)!important;opacity:.42!important}
-.chart-dot{fill:#278bff!important;stroke:#0b0d16!important;stroke-width:3!important}
-.chart-value{fill:#8791a5!important;font:600 10px Inter!important}
-.chart-label{fill:#6f788c!important;font:600 10px Inter!important}
+.chart-dot{fill:#4aa3ff!important;stroke:#0b0d16!important;stroke-width:3!important}
+.chart-value{fill:#e8eef8!important;font:700 11px 'JetBrains Mono',Inter,monospace!important}
+.chart-label{fill:#8b93a6!important;font:600 10px Inter!important}
 
 .rank-highlight{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
@@ -507,14 +514,23 @@ body{
 .quote{padding:16px!important;color:#b9c0cf!important}
 
 .day-strip{
-  display:flex!important;gap:7px!important;overflow:hidden!important;padding:4px 0 12px!important;
+  display:flex!important;gap:7px!important;overflow-x:auto!important;overflow-y:hidden!important;
+  padding:4px 2px 12px!important;-webkit-overflow-scrolling:touch!important;
+  scroll-snap-type:x mandatory!important;scrollbar-width:none!important;
 }
+.day-strip::-webkit-scrollbar{display:none!important}
 .day-dot{
   flex:0 0 34px!important;width:34px!important;height:34px!important;border-radius:50%!important;
   border:1px solid var(--line)!important;background:rgba(255,255,255,.025)!important;color:#737c90!important;
+  cursor:default!important;scroll-snap-align:center!important;user-select:none!important;
 }
 .day-dot.current{background:#675ef2!important;color:#fff!important;border-color:#675ef2!important;box-shadow:0 0 0 5px rgba(103,94,242,.11)!important}
-.day-dot.done{color:#4ade80!important;border-color:rgba(74,222,128,.3)!important}
+.day-dot.done{
+  color:#4ade80!important;border-color:rgba(74,222,128,.35)!important;
+  background:rgba(74,222,128,.12)!important;cursor:pointer!important;
+}
+.day-dot.done:active{transform:scale(.92)!important}
+.day-dot.locked{opacity:.45!important;pointer-events:none!important;cursor:default!important}
 .day-dot:disabled{opacity:1!important}
 
 .profile-overlay{background:rgba(2,4,8,.78)!important;backdrop-filter:blur(10px)!important}
@@ -535,33 +551,92 @@ body{
   background:linear-gradient(180deg,#171a28,#0e111a)!important;border:1px solid rgba(148,163,184,.14)!important;border-radius:25px!important
 }
 
+/* ===== RESPONSIVE: mobile first ===== */
+html,body{
+  overflow-x:hidden!important;
+  width:100%!important;
+  max-width:100vw!important;
+}
+img,svg,video,canvas{max-width:100%!important;height:auto}
+.day-strip,.scroll-x{max-width:100%!important}
+.progress-day-grid{grid-template-columns:repeat(10,1fr)!important;gap:3px!important}
+.progress-day-grid .cell{min-height:0;border-radius:3px;aspect-ratio:1}
+.grid-2{grid-template-columns:1fr!important;gap:10px!important}
+.stat-row{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}
+.stat{padding:10px 4px!important}
+.stat .val{font-size:.85rem!important}
+.stat .lbl{font-size:.58rem!important}
+.hero-greeting h1{font-size:1.35rem!important;line-height:1.2!important}
+.nav-item span{font-size:.6rem!important}
+.nav-item i{font-size:1rem!important}
+.streak-main-row{grid-template-columns:1fr!important;gap:10px!important}
+.streak-side{grid-template-columns:1fr 1fr!important}
+.dashboard-identity{flex-wrap:wrap!important}
+.today-task-main{flex-wrap:wrap!important}
+.profile-badge-grid{grid-template-columns:repeat(2,1fr)!important}
+
+@media(min-width:380px){
+  .progress-day-grid{grid-template-columns:repeat(12,1fr)!important;gap:4px!important}
+  .profile-badge-grid{grid-template-columns:repeat(3,1fr)!important}
+  .hero-greeting h1{font-size:1.5rem!important}
+}
+
 @media(min-width:480px){
-  .container{max-width:480px!important;padding-left:20px!important;padding-right:20px!important}
+  .container{max-width:480px!important;padding:18px 18px 110px!important}
+  .bottom-nav{
+    left:50%!important;right:auto!important;
+    transform:translateX(-50%)!important;
+    max-width:480px!important;width:100%!important;
+  }
+  .streak-main-row{grid-template-columns:1fr 118px!important}
 }
+
 @media(min-width:640px){
-  .container{max-width:640px!important;padding:24px 24px 110px!important}
-  .bottom-nav{max-width:520px;border:1px solid var(--line);border-radius:22px 22px 0 0}
+  .container{max-width:640px!important;padding:24px 24px 120px!important}
+  .bottom-nav{
+    max-width:640px!important;
+    border-left:1px solid var(--line)!important;
+    border-right:1px solid var(--line)!important;
+    border-radius:18px 18px 0 0!important;
+  }
   .grid-2{grid-template-columns:1fr 1fr!important}
-  .stat-row{grid-template-columns:repeat(3,1fr)!important}
+  .stat-row{gap:10px!important}
+  .stat .val{font-size:1rem!important}
   .progress-day-grid{grid-template-columns:repeat(15,1fr)!important;gap:5px!important}
+  .hero-greeting h1{font-size:1.7rem!important}
+  .streak-main-row{grid-template-columns:1fr 130px!important}
+  .nav-item span{font-size:.66rem!important}
 }
+
+@media(min-width:768px){
+  .container{max-width:720px!important;padding:28px 28px 120px!important}
+  .bottom-nav{max-width:560px!important}
+  .progress-day-grid{grid-template-columns:repeat(20,1fr)!important}
+}
+
 @media(min-width:900px){
-  .container{max-width:860px!important;padding:28px 28px 120px!important}
+  .container{max-width:860px!important;padding:32px 32px 130px!important}
   .page{max-width:860px}
-  .bottom-nav{max-width:560px}
+  .bottom-nav{max-width:580px!important}
   .dashboard-grid{display:grid!important;grid-template-columns:1.35fr .65fr!important;gap:14px}
   .progress-day-grid{grid-template-columns:repeat(20,1fr)!important}
-  .hero-greeting h1{font-size:1.85rem!important}
+  .hero-greeting h1{font-size:1.9rem!important}
 }
+
 @media(min-width:1100px){
   .container{max-width:960px!important}
+  .bottom-nav{max-width:600px!important}
 }
-/* Prevent horizontal overflow on small screens */
-html,body{overflow-x:hidden!important;max-width:100vw}
-img,svg,video{max-width:100%;height:auto}
-.day-strip,.scroll-x{max-width:100%}
-.progress-day-grid{grid-template-columns:repeat(12,1fr);gap:4px}
-.progress-day-grid .cell{min-height:0;border-radius:4px}
+
+/* Very small phones */
+@media(max-width:360px){
+  .container{padding:12px 10px 108px!important}
+  .stat-row{gap:4px!important}
+  .nav-item{min-width:0!important;padding:4px 2px!important}
+  .nav-item span{font-size:.55rem!important}
+  .streak-main-row{grid-template-columns:1fr!important}
+  .streak-side{grid-template-columns:1fr 1fr!important}
+}
 
 /* Profile page */
 .profile-hero{
@@ -672,7 +747,6 @@ img,svg,video{max-width:100%;height:auto}
 
 <style>
 .week-row .week-day.today-label{color:#e6e9f1}
-.day-strip .day-dot{cursor:default!important;pointer-events:none!important}
 </style>
 </head>
 <body>
@@ -686,10 +760,27 @@ img,svg,video{max-width:100%;height:auto}
   </div>
 </div>
 
+<div class="task-lock-overlay" id="waitOverlay" role="dialog" aria-modal="true" aria-labelledby="waitTitle">
+  <div class="task-lock-modal">
+    <div class="task-lock-icon" id="waitIcon">✅</div>
+    <h3 id="waitTitle">Submitted for today</h3>
+    <p id="waitMessage">You can submit only once per day. Come back after 24 hours for the next challenge.</p>
+    <div id="waitCountdownWrap" style="margin:14px 0 16px;padding:16px 12px;border-radius:16px;background:rgba(103,94,242,.1);border:1px solid rgba(103,94,242,.25);">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Next submit unlocks in</div>
+      <div id="waitCountdown" style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:1.85rem;font-weight:800;letter-spacing:2px;color:#a99fff;">23:59:59</div>
+      <div style="display:flex;justify-content:center;gap:18px;margin-top:6px;font-size:10px;color:var(--dim);font-weight:600;">
+        <span>HOURS</span><span>MINS</span><span>SECS</span>
+      </div>
+    </div>
+    <div id="waitNextBox" style="text-align:left;padding:12px 14px;border-radius:14px;margin:0 0 16px;background:rgba(103,94,242,.1);border:1px solid rgba(103,94,242,.22);display:none;"></div>
+    <button class="btn btn-primary" id="waitClose">Got it — see you in 24 hrs</button>
+  </div>
+</div>
+
 <div class="profile-overlay" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
   <div class="profile-modal">
     <div class="flex-between">
-      <div><h3 id="profileTitle">👤 Set up your profile</h3><div class="sub">This is local demo data — no account or authentication needed.</div></div>
+      <div><h3 id="profileTitle">👤 Set up your profile</h3><div class="sub" id="profileSub">Update your details — they appear on Home, Rank, and Profile.</div></div>
       <button class="btn btn-secondary btn-sm" id="profileClose" aria-label="Close">✕</button>
     </div>
     <div class="profile-avatar-row">
@@ -702,7 +793,7 @@ img,svg,video{max-width:100%;height:auto}
       <div><label for="profileCourse">Course / Branch</label><input id="profileCourse" type="text" maxlength="60" placeholder="e.g. B.Tech · Information Technology"></div>
       <div><label for="profileGoal">Career goal</label><select id="profileGoal"><option value="Software Developer">Software Developer</option><option value="Frontend Developer">Frontend Developer</option><option value="Backend Developer">Backend Developer</option><option value="Full Stack Developer">Full Stack Developer</option><option value="Data / AI Engineer">Data / AI Engineer</option></select></div>
     </div>
-    <div class="profile-actions"><button class="btn btn-secondary" id="profileCancel">Cancel</button><button class="btn btn-primary" id="profileSave">Save profile</button></div>
+    <div class="profile-actions"><button class="btn btn-secondary" id="profileCancel">Cancel</button><button class="btn btn-primary" id="profileSave">Save profile ✓</button></div>
   </div>
 </div>
 
@@ -838,7 +929,7 @@ const QUOTES=[
 "The only bad practice day is the one you skipped."
 ];
 
-const STORAGE_KEY="abtalks_demo_matched_v4_day13";
+const STORAGE_KEY="abtalks_demo_matched_v6_bars";
 function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
 function todayStart(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function dateKey(d){return d.toISOString().slice(0,10);}
@@ -884,7 +975,7 @@ function defaultState(){
     badgesSeenAt:Date.now(),
     checklists:{},
     currentDay:13,
-    weeklyActivity:[1,2,1,2,1,2,2],
+    weeklyActivity:[3,1,5,2,4,0,3],
     leaderboard:[
       {name:"Mihir Trivedi",xp:600,streak:5,isYou:true,initials:"MT"},
       {name:"Aarav Shah",xp:2450,streak:28},
@@ -905,13 +996,97 @@ let saving=false;
 let toastTimer=null;
 
 function save(){ return persist(); }
-function showTaskLock(){
+function showTaskLock(title, message){
   const overlay=$("#taskLockOverlay");
+  if(title) { const t=$("#taskLockTitle"); if(t) t.textContent=title; }
+  if(message){ const m=$("#taskLockMessage"); if(m) m.textContent=message; }
   if(overlay) overlay.classList.add("show");
 }
 function hideTaskLock(){
   const overlay=$("#taskLockOverlay");
   if(overlay) overlay.classList.remove("show");
+  // reset default copy
+  const t=$("#taskLockTitle"); if(t) t.textContent="Complete today's task first";
+  const m=$("#taskLockMessage"); if(m) m.textContent="Submit today's GitHub and LinkedIn links before moving to the next day.";
+}
+let waitCountdownTimer=null;
+function hoursLeftUntilNextSubmit(){
+  const last=state.lastSubmitAt ? new Date(state.lastSubmitAt).getTime() : 0;
+  if(!last) return 0;
+  const ms=24*60*60*1000 - (Date.now()-last);
+  return ms>0 ? ms : 0;
+}
+function canSubmitNextDay(){
+  return hoursLeftUntilNextSubmit()<=0;
+}
+function formatCountdown(ms){
+  if(ms<=0) return "00:00:00";
+  const totalSec=Math.floor(ms/1000);
+  const h=Math.floor(totalSec/3600);
+  const m=Math.floor((totalSec%3600)/60);
+  const s=totalSec%60;
+  return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+function updateWaitCountdown(){
+  const el=$("#waitCountdown");
+  if(!el) return;
+  const ms=hoursLeftUntilNextSubmit();
+  el.textContent=formatCountdown(ms);
+  if(ms<=0){
+    el.textContent="00:00:00";
+    el.style.color="var(--mint,#4ade80)";
+    stopWaitCountdown();
+    const msg=$("#waitMessage");
+    if(msg) msg.textContent="Your next challenge is unlocked. You can continue now.";
+    const btn=$("#waitClose");
+    if(btn) btn.textContent="Continue";
+  }
+}
+function startWaitCountdown(){
+  stopWaitCountdown();
+  updateWaitCountdown();
+  waitCountdownTimer=setInterval(updateWaitCountdown,1000);
+}
+function stopWaitCountdown(){
+  if(waitCountdownTimer){ clearInterval(waitCountdownTimer); waitCountdownTimer=null; }
+}
+function showWaitPopup(opts){
+  opts=opts||{};
+  const mode=opts.mode||"success"; // success | locked
+  const completedDay=opts.completedDay||state.currentDay;
+  const nextDay=Math.min(60, completedDay+1);
+  const icon=$("#waitIcon");
+  const title=$("#waitTitle");
+  const msg=$("#waitMessage");
+  const box=$("#waitNextBox");
+  const btn=$("#waitClose");
+  const cd=$("#waitCountdown");
+  if(cd) cd.style.color="#a99fff";
+  if(mode==="success"){
+    if(icon) icon.textContent="✅";
+    if(title) title.textContent=`Day ${completedDay} submitted`;
+    if(msg) msg.textContent="You can submit only once per day. The next challenge unlocks after 24 hours — keep your streak going.";
+    if(btn) btn.textContent="Got it — see you in 24 hrs";
+    if(box && nextDay<=60 && completedDay<60){
+      const nc=typeof challenge==="function"?challenge(nextDay):(CHALLENGES.find(c=>c.day===nextDay)||{});
+      box.style.display="block";
+      box.innerHTML=`<div style="font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.04em;margin-bottom:4px;">UP NEXT</div>
+        <div style="font-weight:800;font-size:.95rem;">Day ${nextDay} · ${nc.title||"Next challenge"}</div>
+        <div style="font-size:12px;color:var(--dim);margin-top:4px;">${nc.difficulty||""} · ${nc.time||""} · +50 XP</div>`;
+    } else if(box){ box.style.display="none"; }
+  } else {
+    if(icon) icon.textContent="⏳";
+    if(title) title.textContent="Come back in 24 hours";
+    if(msg) msg.textContent="One submission per day. Watch the timer — your next challenge unlocks when it hits zero.";
+    if(btn) btn.textContent="Okay";
+    if(box) box.style.display="none";
+  }
+  startWaitCountdown();
+  $("#waitOverlay")?.classList.add("show");
+}
+function hideWaitPopup(){
+  stopWaitCountdown();
+  $("#waitOverlay")?.classList.remove("show");
 }
 
 async function loadState(){
@@ -965,16 +1140,104 @@ function leaderboardRows(){
 function myRank(){const rows=leaderboardRows();return rows.findIndex(r=>r.isYou)+1;}
 function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";if(h<17)return"Good afternoon";if(h<21)return"Good evening";return"Still coding, night owl";}
     function weeklyActivityData(){
+      // Always show a different commit count for each day of the week (ups & downs).
+      // Prefer live submission counts; if flat/empty, use varied demo commits.
       const days=[];
       for(let i=6;i>=0;i--){
         const d=todayStart(); d.setDate(d.getDate()-i);
-        const key=dateKey(d);
-        const count=state.submissions.filter(s=>s.submittedAt && s.submittedAt.slice(0,10)===key).length;
+        const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0");
+        const key=`${y}-${m}-${day}`;
+        const count=state.submissions.filter(s=>{
+          if(!s.submittedAt) return false;
+          const raw=String(s.submittedAt);
+          if(raw.slice(0,10)===key) return true;
+          try{
+            const sd=new Date(s.submittedAt);
+            const sk=`${sd.getFullYear()}-${String(sd.getMonth()+1).padStart(2,"0")}-${String(sd.getDate()).padStart(2,"0")}`;
+            return sk===key;
+          }catch(e){ return false; }
+        }).length;
         days.push(count);
       }
-      // Keep a useful demo signal before the student has real activity.
-      if(days.every(v=>v===0) && Array.isArray(state.weeklyActivity) && state.weeklyActivity.some(v=>v>0)) return state.weeklyActivity.slice(-7);
+      const allZero=days.every(v=>v===0);
+      const allSame=days.every(v=>v===days[0]);
+      // Varied commits for each day: different height every day
+      const DEMO_COMMITS=[3,1,5,2,4,0,3]; // M T W T F S S — each day different
+      if(allZero || allSame){
+        if(Array.isArray(state.weeklyActivity) && state.weeklyActivity.length>=7){
+          const wa=state.weeklyActivity.slice(-7).map(v=>Number(v)||0);
+          // ensure not flat
+          if(!wa.every(v=>v===wa[0])) return wa;
+        }
+        return DEMO_COMMITS.slice();
+      }
       return days;
+    }
+
+    /** Bar + line chart: each day is a different height so commits are obvious */
+    function buildActivityChart(vals, opts){
+      opts=opts||{};
+      const W=opts.W||700, H=opts.H||220, PL=opts.PL||28, PR=opts.PR||14, PT=opts.PT||30, PB=opts.PB||34;
+      const labels=opts.labels||['M','T','W','T','F','S','S'];
+      const gid=opts.gid||('ac'+Math.random().toString(36).slice(2,7));
+      // Force visible variation if somehow still flat
+      let safe=vals.map(v=>Math.max(0,Number(v)||0));
+      if(safe.length<7) while(safe.length<7) safe.push(0);
+      if(safe.every(v=>v===safe[0])) safe=[3,1,5,2,4,0,3];
+      const maxVal=Math.max(...safe,1);
+      const max=Math.max(maxVal,1);
+      const n=safe.length;
+      const iw=W-PL-PR, ih=H-PT-PB;
+      const gap=iw/n;
+      const barW=Math.min(36, gap*0.55);
+      const baseY=PT+ih;
+
+      // Grid
+      const grids=Array.from({length:5},(_,i)=>{
+        const t=i/4;
+        const y=PT+ih*(1-t);
+        return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`;
+      }).join('');
+
+      // Bars — each day different height
+      const bars=safe.map((v,i)=>{
+        const cx=PL+gap*i+gap/2;
+        const bh=max===0?0:(v/max)*ih;
+        const x=cx-barW/2;
+        const y=baseY-bh;
+        const h=Math.max(bh, v>0?4:0);
+        return `
+          <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}"
+            rx="8" ry="8" fill="url(#${gid}bar)" opacity="${v===0?0.25:0.95}"/>
+          <text class="chart-value" text-anchor="middle" x="${cx.toFixed(1)}" y="${(y-8).toFixed(1)}">${v}</text>
+          <text class="chart-label" text-anchor="middle" x="${cx.toFixed(1)}" y="${H-10}">${labels[i]||''}</text>
+        `;
+      }).join('');
+
+      // Line + dots on top of bars
+      const pts=safe.map((v,i)=>{
+        const cx=PL+gap*i+gap/2;
+        const cy=baseY-(v/max)*ih;
+        return [cx, cy];
+      });
+      const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="5" fill="#4aa3ff" stroke="#0b0d16" stroke-width="2.5"/>`).join('');
+
+      return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-label="Weekly commits by day">
+        <defs>
+          <linearGradient id="${gid}bar" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#3b82f6" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#22d3ee" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="${gid}g" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#6366f1"/>
+          </linearGradient>
+        </defs>
+        ${grids}
+        ${bars}
+        <path d="${line}" fill="none" stroke="url(#${gid}g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+        ${dots}
+      </svg>`;
     }
 
 // ============================================================
@@ -1168,6 +1431,8 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
     }
     function openProfile(){
       const overlay=$("#profileOverlay"); if(!overlay) return;
+      const title=$("#profileTitle");
+      if(title) title.textContent = state.profile.profileComplete ? "✏️ Edit your profile" : "👤 Set up your profile";
       $("#profileName").value=state.profile.name||"";
       $("#profileCollege").value=state.profile.college||"";
       $("#profileCourse").value=state.profile.course||"";
@@ -1462,35 +1727,12 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
             </div>
           </div>
 
-          <div class="grid-2" style="margin-bottom:13px;">
-            <div class="card" style="margin-bottom:0;">
-              <div class="section-title"><span>📈 Weekly Activity</span></div>
-              <div class="activity-chart" style="margin-top:8px;">
-                ${(() => {
-                  const vals = weeklyActivityData().map(v=>Number(v)||0);
-                  const max = Math.max(7,...vals), W=700,H=190,PL=28,PR=10,PT=14,PB=28,innerW=W-PL-PR,innerH=H-PT-PB;
-                  const pts=vals.map((v,i)=>[PL+(i*(innerW/6)),PT+innerH-(v/max)*innerH]);
-                  const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-                  const area=line+' L '+pts[6][0].toFixed(1)+','+(PT+innerH)+' L '+pts[0][0].toFixed(1)+','+(PT+innerH)+' Z';
-                  return `<svg viewBox="0 0 ${W} ${H}" aria-label="Weekly activity">
-                    <defs><linearGradient id="activityGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#4a8dff"/></linearGradient><linearGradient id="activityArea2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#278bff" stop-opacity=".22"/><stop offset="100%" stop-color="#278bff" stop-opacity="0"/></linearGradient></defs>
-                    ${[0,2,4,6].map(v=>{const y=PT+innerH-(v/max)*innerH;return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`}).join('')}
-                    <path d="${area}" fill="url(#activityArea2)"/>
-                    <path d="${line}" fill="none" stroke="url(#activityGrad2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".16"/>
-                    <path d="${line}" class="chart-line"/>
-                    ${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="7"/><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-6}">${['M','T','W','T','F','S','S'][i]}</text>`).join('')}
-                  </svg>`;
-                })()}
-              </div>
-              <div class="text-center text-xs" style="color:#4aa3ff;font-weight:800;margin-top:2px;">${weeklyActivityData().reduce((a,b)=>a+b,0)} Activities · This Week</div>
-            </div>
-            <div class="card" style="margin-bottom:0;">
-              <div class="section-title">🏆 Your Rank</div>
-              <div style="text-align:center;padding:22px 4px 8px;">
-                <div class="rank-number">#${r}</div>
-                <div class="rank-caption">Out of 1.2K+ students</div>
-                <span class="badge" style="margin-top:12px;color:#ffbd35;border-color:rgba(255,178,26,.2);background:rgba(255,178,26,.08)!important;">Top performer</span>
-              </div>
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">🏆 Your Rank</div>
+            <div style="text-align:center;padding:22px 4px 8px;">
+              <div class="rank-number">#${r}</div>
+              <div class="rank-caption">Out of 1.2K+ students</div>
+              <span class="badge" style="margin-top:12px;color:#ffbd35;border-color:rgba(255,178,26,.2);background:rgba(255,178,26,.08)!important;">Top performer</span>
             </div>
           </div>
 
@@ -1551,8 +1793,6 @@ const HEADER = `<div class="mobile-brandbar">
 
     // ---------- PROGRESS ----------
     function renderProgress(){
-      const vals=weeklyActivityData().map(v=>Number(v)||0);
-      const total=vals.reduce((a,b)=>a+b,0);
       const done=state.submissions.length;
       const prog=Math.round((done/60)*100);
       const streak=computeStreak();
@@ -1642,18 +1882,6 @@ const HEADER = `<div class="mobile-brandbar">
           </div>
 
           <div class="card" style="margin-bottom:13px;">
-            <div class="section-title">📈 Weekly Activity <span class="badge">${total} actions</span></div>
-            <div class="activity-chart" style="margin-top:10px;">
-              ${(()=>{const max=Math.max(1,...vals,1),W=700,H=205,PL=28,PR=10,PT=15,PB=30,iw=W-PL-PR,ih=H-PT-PB;const pts=vals.map((v,i)=>[PL+i*(iw/6),PT+ih-((v/max)*ih)]);const line=pts.map((p,i)=>(i?"L":"M")+p[0]+","+p[1]).join(" ");const area=line+" L "+pts[6][0]+","+(PT+ih)+" L "+pts[0][0]+","+(PT+ih)+" Z";return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#4a8dff"/></linearGradient><linearGradient id="pa" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#278bff" stop-opacity=".22"/><stop offset="1" stop-color="#278bff" stop-opacity="0"/></linearGradient></defs>${[0,.33,.66,1].map(t=>{let y=PT+ih*(1-t);return `<line class="chart-grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`}).join("")}<path d="${area}" fill="url(#pa)"/><path d="${line}" fill="none" stroke="url(#pg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle class="chart-dot" cx="${p[0]}" cy="${p[1]}" r="7"/><text class="chart-label" text-anchor="middle" x="${p[0]}" y="${H-7}">${["M","T","W","T","F","S","S"][i]}</text>`).join("")}</svg>`})()}
-            </div>
-            <div class="stat-row" style="margin-top:6px;">
-              <div class="stat"><div class="val">${total}</div><div class="lbl">actions</div></div>
-              <div class="stat"><div class="val">${Math.max(...vals,0)}</div><div class="lbl">best day</div></div>
-              <div class="stat"><div class="val">${(Math.round(total/7*10)/10)}</div><div class="lbl">daily avg</div></div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-bottom:13px;">
             <div class="section-title">🏅 Achievements</div>
             <div style="display:grid;gap:8px;margin-top:12px;">
               ${earned.length ? earned.map(b=>`
@@ -1680,15 +1908,18 @@ const HEADER = `<div class="mobile-brandbar">
       const done = submitted(state.currentDay);
       const sub = submission(state.currentDay);
 
-      // Day strip: show a window around current
-      const start = Math.max(1, state.currentDay - 8);
-      const end = Math.min(60, state.currentDay + 8);
+      // Day strip: full 1–60, scrollable. Only submitted days are clickable.
       let dots = "";
-      for (let d = start; d <= end; d++) {
+      for (let d = 1; d <= 60; d++) {
+        const isDone = submitted(d);
+        const isCurrent = d === state.currentDay;
         let cls = "day-dot";
-        if (d === state.currentDay) cls += " current";
-        else if (submitted(d)) cls += " done";
-        dots += `<span class="${cls}" aria-label="Day ${d}">${d}</span>`;
+        if (isCurrent) cls += " current";
+        if (isDone) cls += " done";
+        else if (!isCurrent) cls += " locked";
+        // Submitted days can be opened; incomplete days do nothing
+        const clickable = isDone || isCurrent;
+        dots += `<button type="button" class="${cls}" data-day="${d}" data-open="${clickable?"1":"0"}" aria-label="Day ${d}${isDone?" submitted":isCurrent?" current":" locked"}">${d}</button>`;
       }
 
       app.innerHTML = `
@@ -1790,12 +2021,24 @@ const HEADER = `<div class="mobile-brandbar">
         }
       });
 
-      // Day numbers are display-only. Navigation is ONLY through Prev / Next buttons.
+      // Only submitted days (and current) open on click. Incomplete days do nothing.
       $$(".day-dot").forEach(btn => {
-        btn.disabled = true;
-        btn.setAttribute("aria-disabled", "true");
-        btn.style.cursor = "default";
-        btn.style.pointerEvents = "none";
+        const dayNum = Number(btn.dataset.day);
+        const canOpen = btn.dataset.open === "1";
+        if (!canOpen) {
+          btn.setAttribute("aria-disabled", "true");
+          btn.style.pointerEvents = "none";
+          return;
+        }
+        btn.addEventListener("click", () => {
+          // Only open if submitted, or it is the current working day
+          if (!submitted(dayNum) && dayNum !== state.currentDay) return;
+          if (dayNum === state.currentDay) return; // already viewing
+          state.currentDay = dayNum;
+          submitStatus = null;
+          save();
+          renderDay();
+        });
       });
 
       // Live validation clear
@@ -1827,7 +2070,9 @@ const HEADER = `<div class="mobile-brandbar">
           return;
         }
 
-        state.submissions.push({ day: state.currentDay, github, linkedin });
+        const completedDay = state.currentDay;
+        state.submissions.push({ day: completedDay, github, linkedin, submittedAt: new Date().toISOString() });
+        state.lastSubmitAt = new Date().toISOString();
         state.profile.xp += 50;
 
         const newLevel = Math.floor(state.profile.xp / 500) + 1;
@@ -1865,13 +2110,9 @@ const HEADER = `<div class="mobile-brandbar">
         save();
         confetti();
         toast("+50 XP earned");
-
-        setTimeout(() => {
-          submitStatus = null;
-          renderDay();
-        }, 2600);
-
         renderDay();
+        // One submission per day — show 24h wait popup
+        setTimeout(() => showWaitPopup({ mode:"success", completedDay }), 400);
       });
 
       $("#prevDay")?.addEventListener("click", () => {
@@ -1886,6 +2127,11 @@ const HEADER = `<div class="mobile-brandbar">
         if (state.currentDay >= 60) return;
         if (!submitted(state.currentDay)) {
           showTaskLock();
+          return;
+        }
+        // Enforce 24-hour gap before unlocking the next day's submit
+        if (!canSubmitNextDay()) {
+          showWaitPopup({ mode:"locked" });
           return;
         }
         state.currentDay++;
@@ -1982,8 +2228,10 @@ const HEADER = `<div class="mobile-brandbar">
 
     $("#taskLockClose")?.addEventListener("click", hideTaskLock);
     $("#taskLockOverlay")?.addEventListener("click", (e) => { if(e.target.id === "taskLockOverlay") hideTaskLock(); });
+    $("#waitClose")?.addEventListener("click", hideWaitPopup);
+    $("#waitOverlay")?.addEventListener("click", (e) => { if(e.target.id === "waitOverlay") hideWaitPopup(); });
     document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){ hideTaskLock(); closeNotifications(); closeProfile(); }
+      if(e.key === "Escape"){ hideTaskLock(); hideWaitPopup(); closeNotifications(); closeProfile(); }
     });
 
     document.addEventListener("click", (e) => {
@@ -2000,7 +2248,7 @@ const HEADER = `<div class="mobile-brandbar">
       state.profile = { ...defaultState().profile, ...(state.profile || {}) };
       state.submissions = Array.isArray(state.submissions) ? state.submissions : [];
       state.badges = Array.isArray(state.badges) ? state.badges : [];
-      state.weeklyActivity = Array.isArray(state.weeklyActivity) ? state.weeklyActivity : [1,3,2,5,3,6,4];
+      state.weeklyActivity = Array.isArray(state.weeklyActivity) ? state.weeklyActivity : [3,1,5,2,4,0,3];
       state.leaderboard = Array.isArray(state.leaderboard) ? state.leaderboard : defaultState().leaderboard;
       state.quotes = Array.isArray(state.quotes) && state.quotes.length ? state.quotes : QUOTES;
       state.profile.xp = xpTotal();
