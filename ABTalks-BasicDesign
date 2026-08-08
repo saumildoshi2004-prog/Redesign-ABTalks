@@ -777,6 +777,24 @@ img,svg,video,canvas{max-width:100%!important;height:auto}
   </div>
 </div>
 
+<div class="task-lock-overlay" id="resetOverlay" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+  <div class="task-lock-modal" style="border-color:rgba(251,113,133,.35);">
+    <div class="task-lock-icon">⚠️</div>
+    <h3 id="resetTitle" style="color:var(--rose);">Reset everything?</h3>
+    <p id="resetMessage" style="text-align:left;">This will permanently clear:
+      <br>• All submissions (Day 1–60)
+      <br>• Streak, XP, level & badges
+      <br>• 24-hour submit timer
+      <br>• Weekly activity & rank progress
+      <br><br><b>You will start again from Day 1 with everything at zero.</b>
+      <br>This cannot be undone.</p>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="btn btn-secondary" id="resetCancel" style="flex:1;">Cancel</button>
+      <button class="btn btn-primary" id="resetConfirm" style="flex:1;background:linear-gradient(135deg,#fb7185,#e11d48);box-shadow:0 10px 24px rgba(251,113,133,.3);">Yes, reset all</button>
+    </div>
+  </div>
+</div>
+
 <div class="profile-overlay" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
   <div class="profile-modal">
     <div class="flex-between">
@@ -1109,6 +1127,88 @@ async function persist(){
     saving=false;
   }
 }
+function freshStartState(){
+  // Absolute zero — Day 1, nothing completed
+  const name=(state&&state.profile&&state.profile.name)||"";
+  const college=(state&&state.profile&&state.profile.college)||"";
+  const course=(state&&state.profile&&state.profile.course)||"";
+  const goal=(state&&state.profile&&state.profile.goal)||"Software Developer";
+  const initials=(typeof initialsFor==="function" && name)?initialsFor(name):(name?name.split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase():"👨‍💻");
+  return {
+    profile:{
+      name,
+      initials,
+      college,
+      course,
+      goal,
+      profileComplete:!!name,
+      joined:new Date().toISOString(),
+      careerReadinessBase:0,
+      careerReadiness:0,
+      xp:0,
+      level:1,
+      streak:0,
+      bestStreak:0
+    },
+    submissions:[],
+    badges:[],
+    badgesSeenAt:Date.now(),
+    checklists:{},
+    currentDay:1,
+    weeklyActivity:[0,0,0,0,0,0,0],
+    lastSubmitAt:null,
+    leaderboard:[
+      {name:name||"You",xp:0,streak:0,isYou:true,initials},
+      {name:"Aarav Shah",xp:2450,streak:28},
+      {name:"Neha Kapoor",xp:1980,streak:22},
+      {name:"Vikram Rao",xp:1720,streak:19},
+      {name:"Priya Nair",xp:890,streak:11},
+      {name:"Arjun Mehta",xp:610,streak:9}
+    ],
+    quotes:QUOTES
+  };
+}
+function showResetWarning(){
+  $("#resetOverlay")?.classList.add("show");
+}
+function hideResetWarning(){
+  $("#resetOverlay")?.classList.remove("show");
+}
+async function doFullReset(){
+  try{
+    hideResetWarning();
+    stopWaitCountdown?.();
+    hideWaitPopup?.();
+    hideTaskLock?.();
+    // Wipe every component
+    state=freshStartState();
+    submitStatus=null;
+    page="dashboard";
+    // Clear all storage keys this app may have used
+    try{ await window.storage.set(STORAGE_KEY,JSON.stringify(state),false); }catch(e){}
+    try{
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem("abtalks_demo_matched_v3");
+      localStorage.removeItem("abtalks_demo_matched_v4_day13");
+      localStorage.removeItem("abtalks_demo_matched_v5_commits");
+      localStorage.removeItem("abtalks_demo_matched_v6_bars");
+    }catch(e){}
+    // Reset notification read state if present
+    try{
+      if(typeof notifications!=="undefined" && Array.isArray(notifications)){
+        notifications.forEach(n=>{ n.unread=true; });
+      }
+    }catch(e){}
+    toast("Everything reset · Day 1","✓");
+    render();
+  }catch(e){
+    toast("Reset failed","⚠️");
+  }
+}
+function resetProgress(){
+  // Only show warning — actual reset happens after user confirms
+  showResetWarning();
+}
 
 function getChallenge(day){return CHALLENGES.find(c=>c.day===day)||CHALLENGES[0];}
 function hasSubmitted(day){return state.submissions.some(s=>s.day===day);}
@@ -1138,7 +1238,13 @@ function leaderboardRows(){
   return[...others,you].sort((a,b)=>b.xp-a.xp);
 }
 function myRank(){const rows=leaderboardRows();return rows.findIndex(r=>r.isYou)+1;}
-function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";if(h<17)return"Good afternoon";if(h<21)return"Good evening";return"Still coding, night owl";}
+function greeting(){
+  const h=new Date().getHours();
+  if(h>=5 && h<12) return "Good morning";
+  if(h>=12 && h<17) return "Good afternoon";
+  if(h>=17 && h<21) return "Good evening";
+  return "Still coding, night owl";
+}
     function weeklyActivityData(){
       // Always show a different commit count for each day of the week (ups & downs).
       // Prefer live submission counts; if flat/empty, use varied demo commits.
@@ -1596,6 +1702,14 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
             </button>
           </div>
 
+          <div class="card" style="margin-bottom:13px;border-color:rgba(251,113,133,.25);">
+            <div class="section-title" style="color:var(--rose);">⚠️ Danger zone</div>
+            <p class="text-xs text-muted" style="margin:8px 0 12px;line-height:1.5;">Sets everything to zero and starts again from Day 1 — no submissions, streak, XP, or badges.</p>
+            <button class="btn btn-secondary" id="resetProgressBtn" style="border-color:rgba(251,113,133,.4);color:var(--rose);">
+              <i class="fas fa-rotate-left"></i> Reset progress
+            </button>
+          </div>
+
           <div class="quote" style="margin-bottom:8px;">
             <span style="color:var(--primary);margin-right:6px;">✨</span>“${quote()}”
           </div>
@@ -1606,6 +1720,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
       $("#headerProfileBtn")?.addEventListener("click", openNotifications);
       $("#editProfileBtn")?.addEventListener("click", openProfile);
       $("#profileGoDay")?.addEventListener("click", ()=>{ page="day"; render(); });
+      $("#resetProgressBtn")?.addEventListener("click", resetProgress);
     }
 
     // ---------- DASHBOARD ----------
@@ -1628,7 +1743,7 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
 </div>
           <div class="hero-greeting">
             <div class="eyebrow">60-Day Coding Challenge</div>
-            <h1>Good morning, ${p.name || "builder"}! 👋</h1>
+            <h1>${greeting()}, ${p.name || "builder"}! 👋</h1>
             <p>Let’s keep building your future, one day at a time.</p>
           </div>
           <div class="dashboard-topbar" style="margin-bottom:12px;">
@@ -1660,7 +1775,16 @@ function greeting(){const h=new Date().getHours();if(h<12)return"Good morning";i
       </div>
       <div class="streak-side-box">
         <div class="label"><i class="far fa-calendar-check"></i> Last Active</div>
-        <div class="value" style="color:#4ade80;">Yesterday</div>
+        <div class="value" style="color:${state.submissions.length?'#4ade80':'var(--dim)'};">${(()=>{
+          if(!state.submissions.length) return "Never";
+          const last=state.submissions.map(s=>s.submittedAt).filter(Boolean).sort().pop();
+          if(!last) return "—";
+          const d=new Date(last), t=todayStart(), diff=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/86400000);
+          if(diff===0) return "Today";
+          if(diff===1) return "Yesterday";
+          if(diff>1&&diff<7) return diff+" days ago";
+          return d.toLocaleDateString();
+        })()}</div>
       </div>
     </div>
   </div>
@@ -2230,8 +2354,11 @@ const HEADER = `<div class="mobile-brandbar">
     $("#taskLockOverlay")?.addEventListener("click", (e) => { if(e.target.id === "taskLockOverlay") hideTaskLock(); });
     $("#waitClose")?.addEventListener("click", hideWaitPopup);
     $("#waitOverlay")?.addEventListener("click", (e) => { if(e.target.id === "waitOverlay") hideWaitPopup(); });
+    $("#resetCancel")?.addEventListener("click", hideResetWarning);
+    $("#resetConfirm")?.addEventListener("click", doFullReset);
+    $("#resetOverlay")?.addEventListener("click", (e) => { if(e.target.id === "resetOverlay") hideResetWarning(); });
     document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){ hideTaskLock(); hideWaitPopup(); closeNotifications(); closeProfile(); }
+      if(e.key === "Escape"){ hideTaskLock(); hideWaitPopup(); hideResetWarning(); closeNotifications(); closeProfile(); }
     });
 
     document.addEventListener("click", (e) => {
