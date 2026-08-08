@@ -6,14 +6,13 @@
   <meta name="theme-color" content="#0B1120" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="ABTalks · 60-day coding challenge. Build real skills, ship daily, stay consistent." />
+  <meta name="description" content="ABTalks · 60-day coding challenge. Build real skills, ship daily, stay consistent. National-level student initiative." />
   <title>ABTalks · 60-day coding challenge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    /* ========== DESIGN SYSTEM ========== */
     :root {
       --primary: #6366F1;
       --primary-light: #818CF8;
@@ -23,64 +22,50 @@
       --success: #22C55E;
       --warning: #F59E0B;
       --danger: #EF4444;
-      --bg: #0B1120;
-      --surface: #111827;
-      --card: #1E293B;
+      --bg: #0A0F1C;
+      --surface: #0F1629;
+      --card: #151C2E;
       --text: #F8FAFC;
       --text-secondary: #CBD5E1;
       --muted: #94A3B8;
-      --radius: 16px;
-      --radius-lg: 22px;
-      --radius-xl: 28px;
-      --shadow: 0 8px 30px -8px rgba(0,0,0,0.55);
-      --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.7);
-      --glass: rgba(17, 24, 39, 0.78);
+      --radius: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow: 0 4px 24px -4px rgba(0,0,0,0.5);
+      --shadow-lg: 0 12px 40px -8px rgba(0,0,0,0.6);
+      --glass: rgba(15, 22, 41, 0.85);
       --border: rgba(255,255,255,0.06);
       --border-strong: rgba(255,255,255,0.1);
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --nav-h: 72px;
+      --nav-h: 68px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
-    /* ========== RESET ========== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      height: 100%;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; height: 100%; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.5;
       min-height: 100%;
       min-height: 100dvh;
-      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 8px);
+      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 12px);
       -webkit-tap-highlight-color: transparent;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
-    button, input, textarea {
-      font: inherit;
-      border: none;
-      outline: none;
-      background: none;
-      color: inherit;
-    }
+    button, input, textarea { font: inherit; border: none; outline: none; background: none; color: inherit; }
     button { cursor: pointer; }
-    img, svg { display: block; max-width: 100%; }
     ::selection { background: rgba(99,102,241,0.35); color: #fff; }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.5); border-radius: 20px; }
+    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.45); border-radius: 20px; }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -89,7 +74,6 @@
       }
     }
 
-    /* ========== LAYOUT ========== */
     .container {
       width: 100%;
       max-width: 480px;
@@ -97,23 +81,20 @@
       padding: 16px 16px 12px;
     }
 
-    /* ========== BOTTOM NAV ========== */
     .bottom-nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       height: calc(var(--nav-h) + var(--safe-bottom));
       padding-bottom: var(--safe-bottom);
-      background: rgba(11, 17, 32, 0.88);
-      backdrop-filter: blur(24px) saturate(1.6);
-      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      background: rgba(10, 15, 28, 0.9);
+      backdrop-filter: blur(28px) saturate(1.5);
+      -webkit-backdrop-filter: blur(28px) saturate(1.5);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-around;
       align-items: center;
       z-index: 100;
-      box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 -6px 28px rgba(0,0,0,0.35);
     }
     .nav-item {
       display: flex;
@@ -121,37 +102,34 @@
       align-items: center;
       justify-content: center;
       gap: 3px;
-      min-width: 64px;
-      height: 56px;
-      padding: 6px 10px;
-      border-radius: 14px;
+      min-width: 62px;
+      height: 52px;
+      padding: 5px 8px;
+      border-radius: 12px;
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.15px;
       color: var(--muted);
-      transition: color 0.22s var(--ease), transform 0.18s var(--ease);
+      transition: color 0.2s var(--ease), transform 0.15s var(--ease);
       position: relative;
       user-select: none;
-      -webkit-user-select: none;
     }
     .nav-item i {
-      font-size: 20px;
-      transition: transform 0.22s var(--ease), color 0.22s var(--ease), filter 0.22s;
+      font-size: 19px;
+      transition: transform 0.2s var(--ease), color 0.2s, filter 0.2s;
     }
     .nav-item.active { color: var(--primary-light); }
     .nav-item.active i {
       color: var(--primary);
-      transform: translateY(-1px) scale(1.05);
-      filter: drop-shadow(0 0 8px rgba(99,102,241,0.5));
+      transform: translateY(-1px) scale(1.04);
+      filter: drop-shadow(0 0 7px rgba(99,102,241,0.45));
     }
-    .nav-item:active { transform: scale(0.92); }
+    .nav-item:active { transform: scale(0.93); }
     .nav-badge {
       position: absolute;
-      top: 4px;
-      right: 8px;
-      min-width: 17px;
-      height: 17px;
-      padding: 0 5px;
+      top: 3px; right: 6px;
+      min-width: 16px; height: 16px;
+      padding: 0 4px;
       background: linear-gradient(135deg, #EF4444, #F97316);
       color: #fff;
       font-size: 9px;
@@ -160,296 +138,357 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(239,68,68,0.45);
+      box-shadow: 0 2px 6px rgba(239,68,68,0.4);
       line-height: 1;
     }
 
-    /* ========== CARDS ========== */
     .card {
       background: var(--glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 16px;
       box-shadow: var(--shadow);
       margin-bottom: 12px;
-      transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+      transition: border-color 0.22s var(--ease);
     }
     .card:hover { border-color: var(--border-strong); }
     .card.accent { border-left: 3px solid var(--primary); }
     .card.flat {
-      background: rgba(255,255,255,0.025);
+      background: rgba(255,255,255,0.02);
       box-shadow: none;
     }
 
-    /* ========== BADGES ========== */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 11px;
+      gap: 4px;
+      padding: 3px 10px;
       border-radius: 40px;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.15px;
       background: rgba(99,102,241,0.14);
       color: var(--primary-light);
-      border: 1px solid rgba(99,102,241,0.18);
+      border: 1px solid rgba(99,102,241,0.16);
       white-space: nowrap;
     }
-    .badge.success { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.2); }
-    .badge.warning { background: rgba(245,158,11,0.12); color: var(--warning); border-color: rgba(245,158,11,0.2); }
-    .badge.danger  { background: rgba(239,68,68,0.1); color: var(--danger); border-color: rgba(239,68,68,0.18); }
-    .badge.accent  { background: rgba(6,182,212,0.1); color: var(--accent); border-color: rgba(6,182,212,0.18); }
+    .badge.success { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.18); }
+    .badge.warning { background: rgba(245,158,11,0.12); color: var(--warning); border-color: rgba(245,158,11,0.18); }
+    .badge.danger  { background: rgba(239,68,68,0.1); color: var(--danger); border-color: rgba(239,68,68,0.16); }
+    .badge.accent  { background: rgba(6,182,212,0.1); color: var(--accent); border-color: rgba(6,182,212,0.16); }
 
-    /* ========== BUTTONS ========== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       width: 100%;
-      padding: 14px 20px;
+      padding: 13px 18px;
       border-radius: 60px;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 600;
-      letter-spacing: 0.15px;
-      transition: transform 0.2s var(--ease), box-shadow 0.25s, opacity 0.2s, background 0.2s;
+      letter-spacing: 0.1px;
+      transition: transform 0.18s var(--ease), box-shadow 0.22s, opacity 0.2s, background 0.2s;
       position: relative;
       overflow: hidden;
       user-select: none;
     }
-    .btn:active:not(:disabled) { transform: scale(0.97); }
-    .btn:disabled { opacity: 0.42; pointer-events: none; }
+    .btn:active:not(:disabled) { transform: scale(0.975); }
+    .btn:disabled { opacity: 0.4; pointer-events: none; }
 
     .btn-primary {
       background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
       color: #fff;
-      box-shadow: 0 6px 20px rgba(99,102,241,0.32);
+      box-shadow: 0 5px 18px rgba(99,102,241,0.3);
     }
     .btn-primary::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.12), transparent 70%);
+      background: linear-gradient(135deg, transparent 25%, rgba(255,255,255,0.1), transparent 75%);
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s;
     }
     .btn-primary:hover::after { opacity: 1; }
-    .btn-primary:active { box-shadow: 0 3px 12px rgba(99,102,241,0.25); }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.035);
       border: 1px solid var(--border);
       color: var(--text);
     }
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.06);
       border-color: var(--border-strong);
     }
+    .btn-sm { padding: 10px 14px; font-size: 13px; }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      padding: 10px 14px;
-      width: auto;
-    }
-    .btn-ghost:hover { color: var(--text); }
-
-    .btn-sm { padding: 10px 16px; font-size: 13px; }
-
-    /* ========== PROGRESS ========== */
     .progress {
       height: 6px;
-      background: #1E293B;
+      background: #1A2236;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
     }
     .progress-fill {
       height: 100%;
       border-radius: 20px;
       background: linear-gradient(90deg, #6366F1, #06B6D4);
-      transition: width 0.85s var(--ease-out);
+      transition: width 0.8s var(--ease-out);
       position: relative;
     }
     .progress-fill::after {
       content: '';
       position: absolute;
       right: 0; top: 0;
-      width: 20px; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25));
+      width: 18px; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22));
       border-radius: 20px;
     }
 
-    /* ========== STREAK ========== */
     .streak {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
+      gap: 5px;
+      padding: 5px 11px;
       border-radius: 40px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       background: rgba(245,158,11,0.1);
       color: var(--warning);
-      border: 1px solid rgba(245,158,11,0.18);
+      border: 1px solid rgba(245,158,11,0.16);
     }
     .streak i { animation: fire 1.5s ease-in-out infinite; }
     @keyframes fire {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
+      50% { transform: scale(1.12); }
     }
 
-    /* ========== INPUTS ========== */
     .field {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: #1E293B;
+      gap: 11px;
+      background: #1A2236;
       border: 1px solid var(--border);
       border-radius: 60px;
-      padding: 3px 16px;
-      margin: 8px 0;
-      transition: border-color 0.22s, box-shadow 0.22s;
+      padding: 2px 15px;
+      margin: 7px 0;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .field:focus-within {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.16);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.14);
     }
     .field.error {
       border-color: var(--danger);
-      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
     }
     .field i {
       color: var(--muted);
-      font-size: 1.05rem;
-      width: 20px;
+      font-size: 1rem;
+      width: 18px;
       text-align: center;
       flex-shrink: 0;
     }
     .field input {
       flex: 1;
-      padding: 12px 0;
+      padding: 11px 0;
       background: transparent;
       color: var(--text);
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
       min-width: 0;
     }
     .field input::placeholder { color: var(--muted); font-weight: 400; }
-    .field input:read-only { opacity: 0.7; }
+    .field input:read-only { opacity: 0.65; }
     .field-hint {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--danger);
-      margin: -4px 0 6px 16px;
+      margin: -2px 0 5px 14px;
       opacity: 0;
-      transform: translateY(-4px);
-      transition: opacity 0.2s, transform 0.2s;
+      transform: translateY(-3px);
+      transition: opacity 0.18s, transform 0.18s;
     }
     .field-hint.show { opacity: 1; transform: translateY(0); }
 
-    /* ========== CHIPS ========== */
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 2px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 9px 0 2px; }
     .chip {
-      padding: 4px 12px;
+      padding: 4px 11px;
       border-radius: 40px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.035);
       color: var(--muted);
       border: 1px solid transparent;
     }
     .chip.on {
       background: rgba(99,102,241,0.1);
       color: var(--text-secondary);
-      border-color: rgba(99,102,241,0.3);
+      border-color: rgba(99,102,241,0.28);
     }
 
-    /* ========== DAY SELECTOR ========== */
     .day-strip {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       overflow-x: auto;
-      padding: 2px 2px 14px;
+      padding: 2px 2px 12px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
     .day-strip::-webkit-scrollbar { display: none; }
     .day-dot {
       flex: 0 0 auto;
-      width: 38px;
-      height: 38px;
+      width: 36px; height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
-      background: #1E293B;
+      background: #1A2236;
       color: var(--muted);
       border: 1.5px solid transparent;
       scroll-snap-align: center;
-      transition: all 0.22s var(--ease);
+      transition: all 0.2s var(--ease);
       cursor: pointer;
     }
     .day-dot.current {
       background: linear-gradient(135deg, #6366F1, #8B5CF6);
       color: #fff;
-      box-shadow: 0 4px 14px rgba(99,102,241,0.4);
-      transform: scale(1.08);
+      box-shadow: 0 3px 12px rgba(99,102,241,0.38);
+      transform: scale(1.06);
     }
     .day-dot.done {
-      background: rgba(34,197,94,0.14);
+      background: rgba(34,197,94,0.13);
       color: var(--success);
-      border-color: rgba(34,197,94,0.28);
+      border-color: rgba(34,197,94,0.25);
     }
     .day-dot:hover:not(.current) {
       border-color: var(--primary);
       color: var(--text);
     }
 
-    /* ========== ACTIVITY ========== */
-    .activity-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      margin-top: 10px;
+    /* ========== WEEKLY ACTIVITY HEATMAP ========== */
+    .activity-section { margin-top: 2px; }
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
     }
-    .activity-label {
-      text-align: center;
+    .activity-header h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .activity-summary {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .activity-summary strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .heatmap-wrap { position: relative; }
+    .heatmap {
+      display: grid;
+      grid-template-columns: 28px repeat(7, 1fr);
+      gap: 4px;
+      align-items: center;
+    }
+    .heatmap-day-label {
       font-size: 10px;
       font-weight: 600;
       color: var(--muted);
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
+      text-align: right;
+      padding-right: 2px;
     }
-    .activity-cell {
+    .heatmap-cell {
       aspect-ratio: 1;
-      border-radius: 5px;
-      background: #1E293B;
-      transition: transform 0.15s, border-color 0.15s;
+      border-radius: 4px;
+      background: #1A2236;
       border: 1px solid transparent;
+      transition: transform 0.15s var(--ease), border-color 0.15s, box-shadow 0.15s;
+      cursor: default;
+      position: relative;
     }
-    .activity-cell.l1 { background: #1E3A5F; }
-    .activity-cell.l2 { background: #2D4B7A; }
-    .activity-cell.l3 { background: #4F7EB3; }
-    .activity-cell.l4 { background: #7BA9E0; }
-    .activity-cell:hover {
-      transform: scale(1.1);
-      border-color: var(--primary);
-      z-index: 1;
+    .heatmap-cell.l0 { background: #1A2236; }
+    .heatmap-cell.l1 { background: #1E3A5F; }
+    .heatmap-cell.l2 { background: #2A5080; }
+    .heatmap-cell.l3 { background: #3D6BA3; }
+    .heatmap-cell.l4 { background: #5B8FD4; }
+    .heatmap-cell.l5 { background: #7BA9E0; }
+    .heatmap-cell:hover {
+      transform: scale(1.12);
+      border-color: rgba(99,102,241,0.5);
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.25);
+      z-index: 2;
+    }
+    .heatmap-cell.has-tip:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F1F5F9;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .heatmap-cell.has-tip:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: #1E293B;
+      z-index: 10;
     }
 
-    /* ========== SCROLL X ========== */
+    .heatmap-legend {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .legend-cell {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    .legend-cell.l0 { background: #1A2236; }
+    .legend-cell.l1 { background: #1E3A5F; }
+    .legend-cell.l2 { background: #2A5080; }
+    .legend-cell.l3 { background: #3D6BA3; }
+    .legend-cell.l4 { background: #5B8FD4; }
+    .legend-cell.l5 { background: #7BA9E0; }
+
     .scroll-x {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 4px 0 8px;
+      padding: 4px 0 6px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -457,21 +496,20 @@
     .scroll-x::-webkit-scrollbar { display: none; }
     .scroll-x > * { flex: 0 0 auto; scroll-snap-align: start; }
 
-    /* ========== TOAST ========== */
     .toast-wrap {
       position: fixed;
-      top: max(16px, env(safe-area-inset-top));
+      top: max(14px, env(safe-area-inset-top));
       left: 50%;
-      transform: translateX(-50%) translateY(-120%);
+      transform: translateX(-50%) translateY(-130%);
       z-index: 300;
-      transition: transform 0.4s var(--ease-out);
+      transition: transform 0.38s var(--ease-out);
       pointer-events: none;
     }
     .toast-wrap.show { transform: translateX(-50%) translateY(0); }
     .toast {
-      background: rgba(17,24,39,0.94);
+      background: rgba(15,22,41,0.95);
       border: 1px solid var(--border-strong);
-      padding: 11px 18px;
+      padding: 10px 16px;
       border-radius: 40px;
       font-size: 13px;
       font-weight: 500;
@@ -480,10 +518,9 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
-    /* ========== CONFETTI ========== */
     .confetti-layer {
       position: fixed;
       inset: 0;
@@ -492,47 +529,41 @@
       overflow: hidden;
     }
 
-    /* ========== PAGE TRANSITION ========== */
-    .page {
-      animation: pageIn 0.4s var(--ease-out) forwards;
-    }
+    .page { animation: pageIn 0.38s var(--ease-out) forwards; }
     @keyframes pageIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ========== MISC ========== */
     .flex { display: flex; }
     .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     .flex-center { display: flex; align-items: center; justify-content: center; }
     .gap-1 { gap: 8px; }
     .gap-2 { gap: 12px; }
     .text-muted { color: var(--muted); }
-    .text-sm { font-size: 0.85rem; }
-    .text-xs { font-size: 0.75rem; }
+    .text-sm { font-size: 0.84rem; }
+    .text-xs { font-size: 0.74rem; }
     .fw-6 { font-weight: 600; }
     .fw-7 { font-weight: 700; }
     .fw-8 { font-weight: 800; }
-    .mt-1 { margin-top: 8px; }
-    .mb-1 { margin-bottom: 8px; }
     .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
     .stat-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 8px;
-      margin: 12px 0 4px;
+      margin: 10px 0 4px;
     }
     .stat {
       text-align: center;
-      padding: 12px 6px;
+      padding: 11px 6px;
       border-radius: var(--radius);
-      background: rgba(255,255,255,0.025);
+      background: rgba(255,255,255,0.02);
       border: 1px solid var(--border);
     }
-    .stat i { font-size: 1.1rem; margin-bottom: 2px; }
-    .stat .val { font-weight: 700; font-size: 0.95rem; }
-    .stat .lbl { font-size: 0.62rem; color: var(--muted); }
+    .stat i { font-size: 1.05rem; margin-bottom: 2px; }
+    .stat .val { font-weight: 700; font-size: 0.92rem; }
+    .stat .lbl { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.2px; }
 
     .grid-2 {
       display: grid;
@@ -542,76 +573,103 @@
 
     .empty {
       text-align: center;
-      padding: 32px 12px;
+      padding: 28px 12px;
       color: var(--muted);
     }
-    .empty i { font-size: 2.6rem; opacity: 0.2; margin-bottom: 8px; }
+    .empty i { font-size: 2.4rem; opacity: 0.18; margin-bottom: 6px; }
 
     .quote {
-      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
-      border: 1px solid rgba(99,102,241,0.12);
+      background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(139,92,246,0.03));
+      border: 1px solid rgba(99,102,241,0.1);
       border-radius: var(--radius-lg);
-      padding: 14px 16px;
+      padding: 13px 15px;
       font-style: italic;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: #E2E8F0;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     .success-banner {
-      margin-top: 12px;
-      padding: 12px 14px;
-      background: rgba(34,197,94,0.09);
-      border-radius: 14px;
+      margin-top: 11px;
+      padding: 11px 13px;
+      background: rgba(34,197,94,0.08);
+      border-radius: 12px;
       border-left: 3px solid var(--success);
       display: flex;
       align-items: center;
-      gap: 10px;
-      animation: slideUp 0.4s var(--ease-out);
+      gap: 9px;
+      animation: slideUp 0.35s var(--ease-out);
     }
     .error-banner {
-      margin-top: 12px;
-      padding: 12px 14px;
-      background: rgba(239,68,68,0.09);
-      border-radius: 14px;
+      margin-top: 11px;
+      padding: 11px 13px;
+      background: rgba(239,68,68,0.08);
+      border-radius: 12px;
       border-left: 3px solid var(--danger);
       color: var(--danger);
-      font-size: 0.88rem;
-      animation: slideUp 0.4s var(--ease-out);
+      font-size: 0.86rem;
+      animation: slideUp 0.35s var(--ease-out);
     }
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-5px); }
     }
     @keyframes confettiFall {
       0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
       100% { transform: translateY(110vh) rotate(720deg) scale(0.2); opacity: 0; }
     }
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.28); }
-      50% { box-shadow: 0 0 0 10px rgba(99,102,241,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.25); }
+      50% { box-shadow: 0 0 0 9px rgba(99,102,241,0); }
     }
-    .pulse { animation: pulseGlow 2.5s ease-in-out infinite; }
+    .pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
 
-    /* ========== RESPONSIVE ========== */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 18px 0 12px;
+    }
+    .metric {
+      background: rgba(255,255,255,0.025);
+      border-radius: 12px;
+      padding: 13px 4px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .metric .num {
+      font-size: 1.45rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .metric .lbl {
+      font-size: 10.5px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
     @media (min-width: 640px) {
-      .container { max-width: 540px; padding: 24px 24px 16px; }
+      .container { max-width: 540px; padding: 22px 24px 16px; }
       .bottom-nav {
         max-width: 540px;
         left: 50%;
         transform: translateX(-50%);
-        border-radius: 24px 24px 0 0;
+        border-radius: 22px 22px 0 0;
         border-left: 1px solid var(--border);
         border-right: 1px solid var(--border);
       }
       .grid-2 { grid-template-columns: 1fr 1fr; }
     }
     @media (min-width: 900px) {
-      .container { max-width: 680px; padding: 28px 32px 20px; }
+      .container { max-width: 680px; padding: 26px 32px 18px; }
       .bottom-nav { max-width: 600px; }
     }
   </style>
@@ -640,9 +698,6 @@
   <main id="app" class="container" role="main"></main>
 
   <script>
-    // ============================================================
-    //  DATA
-    // ============================================================
     const CHALLENGES = [
       { day:1, title:"Hello World & Variables", difficulty:"Easy", time:"15 min", objectives:["Print Hello World","Declare variables","Basic data types"], instructions:"Write a program that prints 'Hello, World!' and declares variables of different types (string, number, boolean).", criteria:["Use console.log","Use let / const","Show typeof"], resources:["MDN Variables"] },
       { day:2, title:"Conditional Statements", difficulty:"Easy", time:"20 min", objectives:["If-else","Switch case"], instructions:"Write a program that checks if a number is even or odd using if-else. Also implement a simple grade checker with switch.", criteria:["Use if-else","Handle edge cases","Use switch"], resources:["MDN Conditionals"] },
@@ -740,7 +795,12 @@
         { name:"Priya", xp:980, avatar:"👩", streak:11 },
         { name:"Arjun", xp:870, avatar:"🧑‍🎓", streak:9 }
       ],
-      weeklyActivity: [4,5,6,7,5,3,2],
+      weeklyActivity: [
+        [0,1,2,3,2,1,0],
+        [2,3,4,5,3,2,1],
+        [3,4,5,6,4,2,1],
+        [4,5,6,7,5,3,2]
+      ],
       currentDay: 8,
       quotes: [
         "Consistency beats talent. You're building the future, one commit at a time.",
@@ -753,13 +813,10 @@
       ]
     };
 
-    // ============================================================
-    //  STATE
-    // ============================================================
-    const KEY = "abtalks_v3";
+    const KEY = "abtalks_v4";
     let state = load();
     let page = "dashboard";
-    let submitStatus = null; // null | success | error
+    let submitStatus = null;
     let toastTimer = null;
 
     function load() {
@@ -771,6 +828,7 @@
             ...DEFAULT,
             ...p,
             profile: { ...DEFAULT.profile, ...p.profile },
+            weeklyActivity: p.weeklyActivity || DEFAULT.weeklyActivity,
             leaderboard: DEFAULT.leaderboard.map(u => {
               if (u.name.includes("Mihir") && p.profile) {
                 return { ...u, xp: p.profile.xp, streak: p.profile.streak };
@@ -795,9 +853,6 @@
       } catch (_) {}
     }
 
-    // ============================================================
-    //  HELPERS
-    // ============================================================
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
     const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
@@ -827,6 +882,17 @@
     function quote() {
       return state.quotes[Math.floor(Math.random() * state.quotes.length)];
     }
+    function activityLevel(v) {
+      if (v >= 6) return "l5";
+      if (v >= 5) return "l4";
+      if (v >= 3) return "l3";
+      if (v >= 2) return "l2";
+      if (v >= 1) return "l1";
+      return "l0";
+    }
+    function totalCommits() {
+      return state.weeklyActivity.flat().reduce((a, b) => a + b, 0);
+    }
 
     function toast(msg, icon = "✓") {
       const wrap = $("#toastWrap");
@@ -834,7 +900,7 @@
       el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
       wrap.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => wrap.classList.remove("show"), 2600);
+      toastTimer = setTimeout(() => wrap.classList.remove("show"), 2500);
     }
 
     function confetti() {
@@ -842,27 +908,24 @@
       layer.className = "confetti-layer";
       document.body.appendChild(layer);
       const colors = ["#6366F1","#8B5CF6","#06B6D4","#F59E0B","#22C55E","#EF4444","#F1F5F9","#EC4899"];
-      for (let i = 0; i < 64; i++) {
+      for (let i = 0; i < 56; i++) {
         const p = document.createElement("div");
-        const s = 4 + Math.random() * 8;
+        const s = 4 + Math.random() * 7;
         p.style.cssText = `
           position:absolute;width:${s}px;height:${s}px;
           background:${colors[Math.floor(Math.random()*colors.length)]};
           border-radius:${Math.random()>0.5?"50%":"2px"};
           left:${Math.random()*100}%;top:-10%;
           opacity:${0.5+Math.random()*0.5};
-          animation:confettiFall ${1.6+Math.random()*2.2}s linear forwards;
-          animation-delay:${Math.random()*0.3}s;
+          animation:confettiFall ${1.5+Math.random()*2}s linear forwards;
+          animation-delay:${Math.random()*0.28}s;
           transform:rotate(${Math.random()*360}deg);
         `;
         layer.appendChild(p);
       }
-      setTimeout(() => layer.remove(), 4000);
+      setTimeout(() => layer.remove(), 3800);
     }
 
-    // ============================================================
-    //  RENDER
-    // ============================================================
     const app = $("#app");
 
     function render() {
@@ -886,63 +949,55 @@
       if (badge) badge.textContent = state.currentDay;
     }
 
-    // ---------- LANDING ----------
     function renderLanding() {
       app.innerHTML = `
         <div class="page">
-          <div style="text-align:center;padding:24px 0 12px;">
-            <div style="font-size:2.8rem;margin-bottom:6px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
-            <h1 style="font-size:2.3rem;font-weight:900;letter-spacing:-1.2px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
-            <p class="text-muted" style="font-size:1rem;margin:6px auto 18px;max-width:280px;">60-day coding challenge · built for India</p>
-            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:260px;margin:0 auto;">
+          <div style="text-align:center;padding:22px 0 10px;">
+            <div style="font-size:2.6rem;margin-bottom:5px;display:inline-block;animation:float 3s ease-in-out infinite;">🚀</div>
+            <h1 style="font-size:2.2rem;font-weight:900;letter-spacing:-1.1px;background:linear-gradient(135deg,#F8FAFC,#94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABTalks</h1>
+            <p class="text-muted" style="font-size:0.95rem;margin:5px auto 16px;max-width:270px;">60-day coding challenge · built for India</p>
+            <button class="btn btn-primary pulse" id="joinBtn" style="max-width:250px;margin:0 auto;">
               <i class="fas fa-bolt"></i> Join the challenge
             </button>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:20px 0 14px;">
-            ${[
-              { v:"60", l:"days" },
-              { v:"1.2k+", l:"students" },
-              { v:"89%", l:"completion" }
-            ].map(s => `
-              <div style="background:rgba(255,255,255,0.03);border-radius:14px;padding:14px 4px;text-align:center;border:1px solid var(--border);">
-                <div style="font-size:1.55rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${s.v}</div>
-                <div style="font-size:11px;color:var(--muted);font-weight:500;">${s.l}</div>
-              </div>
-            `).join("")}
+          <div class="metric-grid">
+            <div class="metric"><div class="num">60</div><div class="lbl">days</div></div>
+            <div class="metric"><div class="num">1.2k+</div><div class="lbl">students</div></div>
+            <div class="metric"><div class="num">89%</div><div class="lbl">completion</div></div>
           </div>
 
           <div class="card">
-            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
+            <h3 class="fw-7" style="font-size:0.98rem;display:flex;gap:8px;align-items:center;">
               <i class="fas fa-compass" style="color:var(--primary);"></i> How it works
             </h3>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+            <div style="display:flex;flex-direction:column;gap:7px;margin-top:11px;">
               ${[
                 "Daily coding task (20–40 min)",
                 "Push your solution to GitHub",
                 "Share one learning on LinkedIn",
                 "Submit links & protect your streak"
               ].map((t,i) => `
-                <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.025);padding:11px 13px;border-radius:12px;">
-                  <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span>
-                  <span style="font-size:0.9rem;">${t}</span>
+                <div style="display:flex;align-items:center;gap:11px;background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:11px;">
+                  <span class="badge" style="min-width:22px;justify-content:center;">${i+1}</span>
+                  <span style="font-size:0.88rem;">${t}</span>
                 </div>
               `).join("")}
             </div>
           </div>
 
           <div class="card flat">
-            <h3 class="fw-7" style="font-size:1.02rem;display:flex;gap:9px;align-items:center;">
+            <h3 class="fw-7" style="font-size:0.98rem;display:flex;gap:8px;align-items:center;">
               <i class="fas fa-star" style="color:var(--warning);"></i> Why ABTalks?
             </h3>
-            <ul style="list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+            <ul style="list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px;">
               ${[
                 "Build a real, public portfolio",
                 "Daily accountability & streaks",
                 "Earn XP, levels & badges",
                 "Join a community of doers"
               ].map(t => `
-                <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;">
+                <li style="display:flex;gap:9px;align-items:center;font-size:0.88rem;">
                   <span style="color:var(--success);">✓</span> ${t}
                 </li>
               `).join("")}
@@ -953,29 +1008,29 @@
             { t:"“ABTalks turned my coding habit around. I went from zero to job-ready in 60 days.”", a:"— Ananya, NIT Trichy" },
             { t:"“The streak system kept me going even on tough days. Best decision ever.”", a:"— Rohan, VIT" }
           ].map(q => `
-            <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--primary);padding:14px 15px;border-radius:12px;margin:8px 0;">
-              <p style="font-size:0.9rem;font-style:italic;color:#E2E8F0;line-height:1.5;">${q.t}</p>
-              <span class="text-xs text-muted" style="margin-top:5px;display:block;font-weight:500;">${q.a}</span>
+            <div style="background:rgba(99,102,241,0.05);border-left:3px solid var(--primary);padding:13px 14px;border-radius:11px;margin:7px 0;">
+              <p style="font-size:0.88rem;font-style:italic;color:#E2E8F0;line-height:1.48;">${q.t}</p>
+              <span class="text-xs text-muted" style="margin-top:4px;display:block;font-weight:500;">${q.a}</span>
             </div>
           `).join("")}
 
           <div class="card">
-            <h3 class="fw-7" style="font-size:1.02rem;">FAQ</h3>
+            <h3 class="fw-7" style="font-size:0.98rem;">FAQ</h3>
             ${[
               { q:"Is it free?", a:"Yes — completely free for Indian college students." },
               { q:"What if I miss a day?", a:"Your streak resets, but you can always catch up on previous days." },
               { q:"How much time per day?", a:"Most tasks take 20–40 minutes. Day 60 is a mini project." }
             ].map((f,i,arr) => `
-              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:13px 0;">
-                <h4 class="fw-6" style="font-size:0.92rem;display:flex;gap:9px;align-items:center;">
+              <div style="border-bottom:${i<arr.length-1?'1px solid var(--border)':'none'};padding:12px 0;">
+                <h4 class="fw-6" style="font-size:0.9rem;display:flex;gap:8px;align-items:center;">
                   <span class="badge">Q</span> ${f.q}
                 </h4>
-                <p class="text-muted text-sm" style="margin-top:3px;padding-left:30px;">${f.a}</p>
+                <p class="text-muted text-sm" style="margin-top:2px;padding-left:28px;">${f.a}</p>
               </div>
             `).join("")}
           </div>
 
-          <p class="text-center text-muted" style="font-size:0.7rem;letter-spacing:0.3px;padding:16px 0 6px;">
+          <p class="text-center text-muted" style="font-size:0.68rem;letter-spacing:0.25px;padding:14px 0 4px;">
             © 2026 ABTalks · Made with ❤️ in India
           </p>
         </div>
@@ -983,7 +1038,6 @@
       $("#joinBtn")?.addEventListener("click", () => { page = "dashboard"; render(); });
     }
 
-    // ---------- DASHBOARD ----------
     function renderDashboard() {
       const p = state.profile;
       const today = challenge(state.currentDay);
@@ -991,86 +1045,115 @@
       const r = rank();
       const lp = levelProgress();
       const done = state.submissions.length;
+      const commits = totalCommits();
+      const dayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+      let heatmapHTML = "";
+      heatmapHTML += `<div class="heatmap-day-label"></div>`;
+      dayNames.forEach(d => {
+        heatmapHTML += `<div class="heatmap-day-label" style="text-align:center;font-size:9.5px;">${d[0]}</div>`;
+      });
+
+      state.weeklyActivity.forEach((week, wi) => {
+        heatmapHTML += `<div class="heatmap-day-label">W${wi + 1}</div>`;
+        week.forEach((v, di) => {
+          const lvl = activityLevel(v);
+          const tip = v === 0 ? "No activity" : `${v} commit${v > 1 ? "s" : ""} · ${dayNames[di]}`;
+          heatmapHTML += `<div class="heatmap-cell ${lvl} has-tip" data-tip="${tip}" title="${tip}"></div>`;
+        });
+      });
 
       app.innerHTML = `
         <div class="page">
-          <div class="flex-between" style="margin-bottom:12px;">
+          <div class="flex-between" style="margin-bottom:11px;">
             <div class="flex gap-2" style="align-items:center;">
-              <span style="font-size:2.2rem;line-height:1;">${p.avatar}</span>
+              <span style="font-size:2.1rem;line-height:1;">${p.avatar}</span>
               <div>
-                <h2 class="fw-7" style="font-size:1.35rem;letter-spacing:-0.3px;">${p.name}</h2>
+                <h2 class="fw-7" style="font-size:1.28rem;letter-spacing:-0.25px;">${p.name}</h2>
                 <span class="text-muted text-sm">ID ${p.id} · Level ${p.level} · ${p.xp.toLocaleString()} XP</span>
               </div>
             </div>
             <span class="streak"><i class="fas fa-fire"></i> ${p.streak}</span>
           </div>
 
-          <div style="margin-bottom:14px;">
+          <div style="margin-bottom:12px;">
             <div class="flex-between text-xs text-muted">
               <span>Level ${p.level}</span>
               <span>${p.xp % 500} / 500 XP</span>
             </div>
-            <div class="progress" style="height:5px;margin-top:5px;">
+            <div class="progress" style="height:5px;margin-top:4px;">
               <div class="progress-fill" style="width:${lp}%;"></div>
             </div>
           </div>
 
-          <div class="grid-2" style="margin-bottom:4px;">
+          <div class="grid-2" style="margin-bottom:2px;">
             <div class="card accent" style="margin-bottom:0;">
               <div class="flex-between">
                 <span class="badge">Day ${today.day}</span>
                 <span class="text-muted text-xs"><i class="far fa-clock"></i> ${today.time}</span>
               </div>
-              <h3 class="fw-7" style="margin:8px 0 3px;font-size:1.08rem;">${today.title}</h3>
+              <h3 class="fw-7" style="margin:7px 0 2px;font-size:1.04rem;">${today.title}</h3>
               <p class="text-muted text-sm">${today.difficulty} · ${today.objectives.slice(0,2).join(" · ")}</p>
-              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:12px;">
+              <button class="btn btn-primary btn-sm" id="goDay" style="margin-top:11px;">
                 <i class="fas fa-arrow-right"></i> Continue
               </button>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="card" style="padding:13px;margin-bottom:0;">
+              <div class="card" style="padding:12px;margin-bottom:0;">
                 <div class="flex-between text-sm">
                   <span>Progress</span>
                   <span class="fw-7">${Math.round(prog)}%</span>
                 </div>
-                <div class="progress" style="margin-top:6px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
-                <div class="text-xs text-muted" style="margin-top:4px;">${done} of 60 done</div>
+                <div class="progress" style="margin-top:5px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
+                <div class="text-xs text-muted" style="margin-top:3px;">${done} of 60 done</div>
               </div>
-              <div class="card" style="padding:13px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
-                <span class="fw-8" style="font-size:1.4rem;color:var(--warning);">#${r}</span>
+              <div class="card" style="padding:12px;margin-bottom:0;flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+                <span class="fw-8" style="font-size:1.35rem;color:var(--warning);">#${r}</span>
                 <span class="text-xs text-muted">rank</span>
               </div>
             </div>
           </div>
 
           <div class="stat-row">
-            <div class="stat" style="background:rgba(6,182,212,0.05);">
+            <div class="stat" style="background:rgba(6,182,212,0.04);">
               <i class="fas fa-medal" style="color:var(--accent);"></i>
               <div class="val">${state.badges.length}</div>
               <div class="lbl">badges</div>
             </div>
-            <div class="stat" style="background:rgba(34,197,94,0.05);">
+            <div class="stat" style="background:rgba(34,197,94,0.04);">
               <i class="fas fa-check-circle" style="color:var(--success);"></i>
               <div class="val">${done}</div>
               <div class="lbl">submitted</div>
             </div>
-            <div class="stat" style="background:rgba(139,92,246,0.05);">
+            <div class="stat" style="background:rgba(139,92,246,0.04);">
               <i class="fas fa-chart-line" style="color:var(--secondary);"></i>
               <div class="val">${p.careerReadiness}%</div>
               <div class="lbl">readiness</div>
             </div>
           </div>
 
-          <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
-              <i class="fas fa-calendar-alt" style="color:var(--primary);"></i> Weekly activity
-            </h4>
-            <div class="activity-grid">
-              ${["M","T","W","T","F","S","S"].map(d => `<div class="activity-label">${d}</div>`).join("")}
-              ${state.weeklyActivity.map(v => {
-                const lvl = v >= 6 ? "l4" : v >= 4 ? "l3" : v >= 2 ? "l2" : v >= 1 ? "l1" : "";
-                return `<div class="activity-cell ${lvl}" title="${v} commits"></div>`;
-              }).join("")}
+          <div class="card activity-section">
+            <div class="activity-header">
+              <h4>
+                <i class="fas fa-chart-area" style="color:var(--primary);"></i>
+                Weekly activity
+              </h4>
+              <span class="activity-summary"><strong>${commits}</strong> commits this month</span>
+            </div>
+            <div class="heatmap-wrap">
+              <div class="heatmap">
+                ${heatmapHTML}
+              </div>
+              <div class="heatmap-legend">
+                <span>Less</span>
+                <div class="legend-cell l0"></div>
+                <div class="legend-cell l1"></div>
+                <div class="legend-cell l2"></div>
+                <div class="legend-cell l3"></div>
+                <div class="legend-cell l4"></div>
+                <div class="legend-cell l5"></div>
+                <span>More</span>
+              </div>
             </div>
           </div>
 
@@ -1080,13 +1163,13 @@
             </h4>
             <div class="scroll-x">
               ${state.badges.length === 0
-                ? `<div class="empty" style="padding:14px;width:100%;font-size:0.85rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
+                ? `<div class="empty" style="padding:12px;width:100%;font-size:0.84rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
                 : state.badges.map(b => `
-                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);">
-                      <span style="font-size:1.25rem;">${b.icon}</span>
+                    <div style="background:rgba(255,255,255,0.025);padding:7px 13px;border-radius:40px;display:flex;align-items:center;gap:7px;border:1px solid var(--border);">
+                      <span style="font-size:1.2rem;">${b.icon}</span>
                       <div>
-                        <div class="fw-6" style="font-size:0.76rem;">${b.name}</div>
-                        <div class="text-muted" style="font-size:0.58rem;">${b.date}</div>
+                        <div class="fw-6" style="font-size:0.74rem;">${b.name}</div>
+                        <div class="text-muted" style="font-size:0.56rem;">${b.date}</div>
                       </div>
                     </div>
                   `).join("")
@@ -1095,20 +1178,18 @@
           </div>
 
           <div class="quote">
-            <span style="color:var(--primary);margin-right:6px;">✨</span>“${quote()}”
+            <span style="color:var(--primary);margin-right:5px;">✨</span>“${quote()}”
           </div>
         </div>
       `;
       $("#goDay")?.addEventListener("click", () => { page = "day"; render(); });
     }
 
-    // ---------- DAY ----------
     function renderDay() {
       const c = challenge(state.currentDay);
       const done = submitted(state.currentDay);
       const sub = submission(state.currentDay);
 
-      // Day strip: show a window around current
       const start = Math.max(1, state.currentDay - 8);
       const end = Math.min(60, state.currentDay + 8);
       let dots = "";
@@ -1124,35 +1205,35 @@
           <div class="day-strip" id="dayStrip">${dots}</div>
 
           <div class="flex-between" style="margin-bottom:2px;">
-            <span class="fw-8" style="font-size:2.3rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;">Day ${c.day}</span>
+            <span class="fw-8" style="font-size:2.2rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.9px;">Day ${c.day}</span>
             <span class="badge ${diffClass(c.difficulty)}">${c.difficulty}</span>
           </div>
-          <h2 class="fw-7" style="font-size:1.2rem;margin-bottom:4px;">${c.title}</h2>
-          <p class="text-muted text-sm" style="margin-bottom:12px;">
+          <h2 class="fw-7" style="font-size:1.15rem;margin-bottom:3px;">${c.title}</h2>
+          <p class="text-muted text-sm" style="margin-bottom:11px;">
             <i class="far fa-clock"></i> ${c.time} · ${c.objectives.join(" · ")}
           </p>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:7px;align-items:center;">
               <i class="fas fa-book-open" style="color:var(--primary);"></i> Instructions
             </h4>
-            <p style="color:#E2E8F0;font-size:0.92rem;margin:8px 0;line-height:1.55;">${c.instructions}</p>
+            <p style="color:#E2E8F0;font-size:0.9rem;margin:7px 0;line-height:1.52;">${c.instructions}</p>
             <div class="chips">
               ${c.criteria.map(x => `<span class="chip on">${x}</span>`).join("")}
             </div>
-            <div style="margin-top:12px;">
+            <div style="margin-top:11px;">
               <span class="text-xs text-muted fw-6">Resources</span>
               ${c.resources.map(r => `
-                <div style="color:var(--primary-light);font-size:0.84rem;margin-top:3px;">
-                  <i class="fas fa-book" style="font-size:0.65rem;opacity:0.65;"></i> ${r}
+                <div style="color:var(--primary-light);font-size:0.82rem;margin-top:2px;">
+                  <i class="fas fa-book" style="font-size:0.62rem;opacity:0.6;"></i> ${r}
                 </div>
               `).join("")}
             </div>
-            ${done ? `<div class="badge success" style="margin-top:12px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
+            ${done ? `<div class="badge success" style="margin-top:11px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
           </div>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
+            <h4 class="fw-6 text-sm" style="display:flex;gap:7px;align-items:center;">
               <i class="fas fa-paper-plane" style="color:var(--accent);"></i> Submit your work
             </h4>
             <div class="field" id="ghField">
@@ -1165,13 +1246,13 @@
               <input type="url" id="linkedinInput" placeholder="LinkedIn post URL" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
             <div class="field-hint" id="liHint">Include linkedin.com in the URL</div>
-            <button class="btn btn-primary" id="submitBtn" style="margin-top:6px;" ${done ? "disabled" : ""}>
+            <button class="btn btn-primary" id="submitBtn" style="margin-top:5px;" ${done ? "disabled" : ""}>
               <i class="fas ${done ? "fa-check-circle" : "fa-paper-plane"}"></i>
               ${done ? "Submitted" : "Submit & earn +50 XP"}
             </button>
             ${submitStatus === "success" ? `
               <div class="success-banner">
-                <i class="fas fa-check-circle" style="color:var(--success);font-size:1.2rem;"></i>
+                <i class="fas fa-check-circle" style="color:var(--success);font-size:1.15rem;"></i>
                 <div><span class="fw-7" style="color:var(--success);">+50 XP</span> <span class="text-muted text-sm">· Streak updated</span></div>
               </div>
             ` : ""}
@@ -1182,7 +1263,7 @@
             ` : ""}
           </div>
 
-          <div class="flex gap-1" style="margin:6px 0 8px;">
+          <div class="flex gap-1" style="margin:5px 0 7px;">
             <button class="btn btn-secondary" id="prevDay" style="flex:1;" ${state.currentDay <= 1 ? "disabled" : ""}>
               <i class="fas fa-arrow-left"></i> Prev
             </button>
@@ -1191,7 +1272,7 @@
             </button>
           </div>
 
-          <div class="flex-center gap-2 text-muted text-sm" style="padding:4px 0 8px;">
+          <div class="flex-center gap-2 text-muted text-sm" style="padding:3px 0 6px;">
             <span><i class="fas fa-star" style="color:var(--warning);"></i> +50 XP</span>
             <span><i class="fas fa-fire" style="color:var(--warning);"></i> Streak</span>
             <span><i class="fas fa-medal" style="color:var(--secondary);"></i> Badges</span>
@@ -1199,7 +1280,6 @@
         </div>
       `;
 
-      // Scroll current day into view
       requestAnimationFrame(() => {
         const strip = $("#dayStrip");
         const cur = strip?.querySelector(".day-dot.current");
@@ -1209,7 +1289,6 @@
         }
       });
 
-      // Day dots
       $$(".day-dot").forEach(btn => {
         btn.addEventListener("click", () => {
           state.currentDay = +btn.dataset.day;
@@ -1219,7 +1298,6 @@
         });
       });
 
-      // Live validation clear
       const ghIn = $("#githubInput");
       const liIn = $("#linkedinInput");
       ghIn?.addEventListener("input", () => {
@@ -1231,7 +1309,6 @@
         $("#liHint")?.classList.remove("show");
       });
 
-      // Submit
       $("#submitBtn")?.addEventListener("click", () => {
         if (submitted(state.currentDay)) return;
 
@@ -1263,7 +1340,6 @@
 
         state.profile.careerReadiness = Math.min(98, Math.round(38 + (state.submissions.length / 60) * 60));
 
-        // Badges
         const addBadge = (name, icon) => {
           if (!state.badges.find(b => b.name === name)) {
             state.badges.push({ name, icon, date: `Day ${state.currentDay}` });
@@ -1276,8 +1352,9 @@
         if (state.submissions.length >= 30) addBadge("Halfway Hero", "🏅");
         if (state.submissions.length >= 60) addBadge("Challenge Complete", "🏆");
 
-        const idx = (state.currentDay - 1) % 7;
-        if (state.weeklyActivity[idx] < 7) state.weeklyActivity[idx]++;
+        const lastWeek = state.weeklyActivity[state.weeklyActivity.length - 1];
+        const dayIdx = (state.currentDay - 1) % 7;
+        if (lastWeek[dayIdx] < 7) lastWeek[dayIdx]++;
 
         const me = state.leaderboard.find(u => u.name.includes("Mihir"));
         if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
@@ -1290,7 +1367,7 @@
         setTimeout(() => {
           submitStatus = null;
           renderDay();
-        }, 2600);
+        }, 2500);
 
         renderDay();
       });
@@ -1313,61 +1390,57 @@
       });
     }
 
-    // ---------- LEADERBOARD ----------
     function renderLeaderboard() {
       const sorted = [...state.leaderboard].sort((a, b) => b.xp - a.xp);
       const myRank = rank();
 
       app.innerHTML = `
         <div class="page">
-          <div style="margin-bottom:14px;">
-            <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
+          <div style="margin-bottom:13px;">
+            <h2 class="fw-8" style="font-size:1.35rem;letter-spacing:-0.35px;">Leaderboard</h2>
             <p class="text-muted text-sm">Top performers this cohort</p>
           </div>
 
-          <div class="card accent" style="margin-bottom:12px;">
+          <div class="card accent" style="margin-bottom:11px;">
             <div class="flex-between">
               <div>
                 <div class="text-xs text-muted">Your rank</div>
-                <div class="fw-8" style="font-size:1.5rem;color:var(--warning);">#${myRank}</div>
+                <div class="fw-8" style="font-size:1.45rem;color:var(--warning);">#${myRank}</div>
               </div>
               <div style="text-align:right;">
                 <div class="text-xs text-muted">Your XP</div>
-                <div class="fw-7" style="font-size:1.2rem;">${state.profile.xp.toLocaleString()}</div>
+                <div class="fw-7" style="font-size:1.15rem;">${state.profile.xp.toLocaleString()}</div>
               </div>
             </div>
           </div>
 
-          <div class="card" style="padding:4px 0;">
+          <div class="card" style="padding:3px 0;">
             ${sorted.map((u, i) => {
               const isMe = u.name.includes("Mihir") || u.name === state.profile.name;
               const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
               return `
-                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.07);" : ""}">
-                  <div style="width:26px;text-align:center;font-weight:700;font-size:0.92rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
+                <div style="display:flex;align-items:center;gap:11px;padding:10px 13px;${i < sorted.length - 1 ? "border-bottom:1px solid var(--border);" : ""}${isMe ? "background:rgba(99,102,241,0.06);" : ""}">
+                  <div style="width:24px;text-align:center;font-weight:700;font-size:0.9rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
                     ${medal || (i + 1)}
                   </div>
-                  <span style="font-size:1.35rem;">${u.avatar}</span>
+                  <span style="font-size:1.3rem;">${u.avatar}</span>
                   <div style="flex:1;min-width:0;">
-                    <div class="fw-6 truncate" style="font-size:0.9rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
+                    <div class="fw-6 truncate" style="font-size:0.88rem;${isMe ? "color:var(--primary-light);" : ""}">${u.name}${isMe ? " (you)" : ""}</div>
                     <div class="text-xs text-muted">${u.streak || 0} day streak</div>
                   </div>
-                  <div class="fw-7" style="font-size:0.92rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted fw-5" style="font-weight:500;">XP</span></div>
+                  <div class="fw-7" style="font-size:0.9rem;">${u.xp.toLocaleString()} <span class="text-xs text-muted" style="font-weight:500;">XP</span></div>
                 </div>
               `;
             }).join("")}
           </div>
 
-          <p class="text-center text-muted text-xs" style="margin-top:10px;">
+          <p class="text-center text-muted text-xs" style="margin-top:9px;">
             Rankings update as you submit. Keep shipping.
           </p>
         </div>
       `;
     }
 
-    // ============================================================
-    //  NAV
-    // ============================================================
     $$(".nav-item").forEach(el => {
       el.addEventListener("click", () => {
         const p = el.dataset.page;
@@ -1379,9 +1452,6 @@
       });
     });
 
-    // ============================================================
-    //  INIT
-    // ============================================================
     render();
   </script>
 </body>
