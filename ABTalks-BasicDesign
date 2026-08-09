@@ -2605,6 +2605,62 @@ function showCertificateModal(){
             </div>
           </div>
 
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-card-title">🚀 How to start & participate</div>
+            <p class="text-xs text-muted" style="margin:4px 0 12px;">Follow these steps every day. Takes 15–40 minutes for most tasks.</p>
+            <div style="display:grid;gap:8px;">
+              ${[
+                ["1","Open today's challenge","Go to the <b>Challenge</b> tab (calendar icon). Read the title, objectives, instructions, and checklist."],
+                ["2","Code the solution","Solve the problem in your preferred language. Keep it clean — recruiters may open your repo."],
+                ["3","Push to GitHub","Commit your code and copy the repo or commit URL. It must include <b>github.com</b>."],
+                ["4","Share on LinkedIn","Post a short update: what you built or learned. Copy the post URL (must include <b>linkedin.com</b>)."],
+                ["5","Submit proof here","Paste both links on the Challenge page. Optional: demo URL, notes, screenshot. Hit Submit to earn <b>+50 XP</b>."],
+                ["6","Protect your streak","One submission per day. After you submit, the next day unlocks after 24 hours — come back and keep the chain alive."]
+              ].map(x=>`
+                <div style="display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                  <div style="width:28px;height:28px;border-radius:9px;flex:0 0 28px;display:grid;place-items:center;font-weight:800;font-size:.8rem;background:linear-gradient(135deg,#675ef2,#a855f7);color:#fff;">${x[0]}</div>
+                  <div style="min-width:0;">
+                    <div class="fw-7 text-sm">${x[1]}</div>
+                    <div class="text-xs text-muted" style="margin-top:3px;line-height:1.45;">${x[2]}</div>
+                  </div>
+                </div>`).join("")}
+            </div>
+            <div style="margin-top:12px;padding:11px 12px;border-radius:12px;background:rgba(103,94,242,.1);border:1px solid rgba(103,94,242,.22);">
+              <div class="fw-7 text-sm" style="margin-bottom:4px;">📚 Learning path</div>
+              <div class="text-xs text-muted" style="line-height:1.5;">Days 1–7 Foundations → 8–20 Core patterns → 21–30 Algorithms → 31–45 Problem solving → 46–59 Advanced structures → Day 60 Capstone project. Difficulty ramps gradually. Resources are linked on each day.</div>
+            </div>
+            <div style="margin-top:8px;padding:11px 12px;border-radius:12px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);">
+              <div class="fw-7 text-sm" style="margin-bottom:4px;">✅ What counts as done</div>
+              <div class="text-xs text-muted" style="line-height:1.5;">Valid GitHub URL + valid LinkedIn URL. Optional demo, notes, and screenshot boost your contribution graph intensity. Missing a day resets the streak only — completed days stay forever.</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-card-title">🏅 Badges & achievements</div>
+            <p class="text-xs text-muted" style="margin:4px 0 12px;">Unlock these as you ship. Track them on Profile and Progress.</p>
+            <div style="display:grid;gap:8px;">
+              ${[
+                ["🌟","First Commit","Ship Day 1 — your first verified submission."],
+                ["🔥","Week Streak","Maintain a 7-day streak without breaking the chain."],
+                ["💪","Consistent Coder","Complete 10 days of the challenge."],
+                ["🏅","Halfway Hero","Reach 30 days shipped."],
+                ["⚡","Momentum","Hit a 21-day streak."],
+                ["🏆","Challenge Complete","Finish all 60 days and unlock the certificate."]
+              ].map(x=>`
+                <div style="display:flex;gap:11px;align-items:center;padding:10px 12px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                  <span style="font-size:1.25rem;flex:0 0 auto;">${x[0]}</span>
+                  <div style="flex:1;min-width:0;">
+                    <div class="fw-7 text-sm">${x[1]}</div>
+                    <div class="text-xs text-muted" style="margin-top:2px;line-height:1.4;">${x[2]}</div>
+                  </div>
+                </div>`).join("")}
+            </div>
+            <div style="margin-top:12px;padding:11px 12px;border-radius:12px;background:rgba(255,178,26,.08);border:1px solid rgba(255,178,26,.2);">
+              <div class="fw-7 text-sm" style="margin-bottom:4px;">🎓 Certificate (Day 60)</div>
+              <div class="text-xs text-muted" style="line-height:1.5;">Complete all 60 days to generate a PDF certificate with your name, XP, rank, and a QR code for verification. Share it on LinkedIn from the Profile page.</div>
+            </div>
+          </div>
+
           ${(() => {
             const msLeft = typeof hoursLeftUntilNextSubmit === "function" ? hoursLeftUntilNextSubmit() : 0;
             if (msLeft <= 0) return "";
