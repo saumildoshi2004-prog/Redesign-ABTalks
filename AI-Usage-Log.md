@@ -10,7 +10,7 @@ The project was developed iteratively using AI as a **design, development, debug
 
 ## 🛠️ AI Tool Used
 
-**ChatGPT — OpenAI**
+**ChatGPT — OpenAI,GROK**
 
 AI was used for:
 
