@@ -813,6 +813,199 @@ img,svg,video,canvas{max-width:100%!important;height:auto}
 .demo-link{font-size:.78rem;color:var(--cyan);word-break:break-all}
 </style>
 
+
+<style id="abtalks-100-polish">
+/* ===== 100/100 polish layer ===== */
+:root{
+  --glow:0 0 40px rgba(103,94,242,.35);
+  --glass:rgba(16,19,30,.72);
+}
+body{
+  background:
+    radial-gradient(900px 480px at 50% -15%,rgba(103,94,242,.22),transparent 55%),
+    radial-gradient(600px 400px at 100% 20%,rgba(34,211,238,.08),transparent 50%),
+    radial-gradient(500px 300px at 0% 60%,rgba(168,85,247,.07),transparent 50%),
+    #070910 !important;
+}
+.container{padding-bottom:120px!important}
+
+/* Landing hero */
+.landing-hero{
+  position:relative;text-align:center;padding:12px 4px 8px;
+  overflow:hidden;
+}
+.landing-hero .hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:999px;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  background:rgba(103,94,242,.14);border:1px solid rgba(103,94,242,.28);
+  color:#b9b4ff;margin-bottom:16px;
+}
+.landing-hero h1{
+  font-family:"Space Grotesk",Inter,sans-serif;
+  font-size:clamp(1.9rem,7vw,2.75rem);font-weight:800;
+  letter-spacing:-1.4px;line-height:1.08;margin:0 0 12px;
+}
+.landing-hero h1 .grad{
+  background:linear-gradient(135deg,#fff 10%,#a99fff 45%,#22d3ee 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.landing-hero .lead{
+  color:#9aa3b8;font-size:.9rem;line-height:1.55;max-width:340px;margin:0 auto 20px;
+}
+.landing-cta-row{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto}
+.trust-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0 8px;
+}
+.trust-stat{
+  text-align:center;padding:14px 8px;border-radius:16px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.trust-stat .n{font-family:"Space Grotesk",sans-serif;font-size:1.25rem;font-weight:800;color:#e8ebf3}
+.trust-stat .l{font-size:.62rem;color:var(--dim);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+
+.how-step{
+  display:flex;gap:14px;align-items:flex-start;padding:14px;
+  border-radius:16px;background:rgba(255,255,255,.025);border:1px solid var(--line);
+  margin-bottom:8px;transition:border-color .2s,transform .2s;
+}
+.how-step:hover{border-color:rgba(103,94,242,.35);transform:translateY(-1px)}
+.how-num{
+  width:36px;height:36px;border-radius:12px;flex:0 0 36px;
+  display:grid;place-items:center;font-weight:800;font-size:.9rem;
+  background:linear-gradient(135deg,#675ef2,#a855f7);color:#fff;
+  box-shadow:0 8px 20px rgba(103,94,242,.3);
+}
+.testimonial{
+  padding:16px;border-radius:18px;margin-bottom:10px;
+  background:linear-gradient(145deg,rgba(103,94,242,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(103,94,242,.15);
+}
+.testimonial .stars{color:#ffb21a;font-size:.75rem;letter-spacing:1px;margin-bottom:8px}
+.testimonial .q{font-size:.88rem;line-height:1.55;color:#d5d9e6;font-style:italic}
+.testimonial .who{margin-top:12px;display:flex;align-items:center;gap:10px}
+.testimonial .av{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  background:var(--grad-brand);font-weight:800;font-size:.8rem;
+}
+
+/* Dashboard cards */
+.streak-panel-v2{
+  border-radius:22px;padding:16px;margin-bottom:14px;
+  background:
+    radial-gradient(280px 140px at 0% 0%,rgba(255,178,26,.14),transparent 60%),
+    linear-gradient(180deg,#161a28,#0e121c);
+  border:1px solid rgba(255,178,26,.2);
+  box-shadow:0 12px 36px rgba(0,0,0,.25);
+}
+.streak-fire{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle,rgba(255,178,26,.25),rgba(255,178,26,.05));
+  border:2px solid #ffb21a;box-shadow:0 0 0 6px rgba(255,178,26,.08),0 0 28px rgba(255,178,26,.2);
+  font-size:1.6rem;color:#ffb21a;animation:pulseFire 2.4s ease-in-out infinite;
+}
+@keyframes pulseFire{0%,100%{box-shadow:0 0 0 6px rgba(255,178,26,.08),0 0 28px rgba(255,178,26,.2)}50%{box-shadow:0 0 0 10px rgba(255,178,26,.12),0 0 36px rgba(255,178,26,.32)}}
+.today-focus-v2{
+  border-radius:22px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(320px 160px at 100% 0%,rgba(103,94,242,.2),transparent 65%),
+    linear-gradient(165deg,#14182a,#0f1220);
+  border:1px solid rgba(103,94,242,.28);
+  box-shadow:0 14px 40px rgba(103,94,242,.12);
+}
+.today-focus-v2 .go-btn{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#675ef2,#7c3aed);color:#fff;
+  box-shadow:0 10px 24px rgba(103,94,242,.4);border:0;flex:0 0 48px;
+  transition:transform .2s;
+}
+.today-focus-v2 .go-btn:active{transform:scale(.94)}
+
+.week-cal{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:14px;
+}
+.week-cal .d{
+  text-align:center;padding:8px 2px;border-radius:12px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.week-cal .d .lbl{font-size:.58rem;color:var(--dim);font-weight:600}
+.week-cal .d .dot{
+  width:22px;height:22px;margin:6px auto 0;border-radius:50%;
+  display:grid;place-items:center;font-size:.65rem;
+}
+.week-cal .d.done .dot{background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.35)}
+.week-cal .d.miss .dot{background:rgba(251,113,133,.1);color:#fb7185;border:1px solid rgba(251,113,133,.25)}
+.week-cal .d.today .dot{background:rgba(255,178,26,.15);color:#ffb21a;border:1px solid #ffb21a;box-shadow:0 0 0 3px rgba(255,178,26,.1)}
+.week-cal .d.today{border-color:rgba(255,178,26,.3);background:rgba(255,178,26,.06)}
+
+/* Day challenge */
+.obj-list{display:grid;gap:8px;margin-top:10px}
+.obj-item{
+  display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.obj-item .ic{font-size:1rem;flex:0 0 auto}
+.req-list{display:grid;gap:6px;margin-top:10px}
+.req-item{
+  display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:11px;
+  background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);
+  font-size:.84rem;
+}
+.req-item i{color:var(--mint);font-size:.75rem}
+.res-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;
+  background:rgba(103,94,242,.1);border:1px solid rgba(103,94,242,.2);
+  color:#b9b4ff;font-size:.78rem;margin:4px 4px 0 0;
+}
+.first-day-banner{
+  border-radius:16px;padding:14px 16px;margin-bottom:12px;
+  background:linear-gradient(135deg,rgba(103,94,242,.18),rgba(34,211,238,.08));
+  border:1px solid rgba(103,94,242,.3);
+  display:flex;gap:12px;align-items:center;
+}
+.missed-banner{
+  border-radius:16px;padding:14px 16px;margin-bottom:12px;
+  background:linear-gradient(135deg,rgba(251,113,133,.12),rgba(245,165,36,.06));
+  border:1px solid rgba(251,113,133,.25);
+  display:flex;gap:12px;align-items:center;
+}
+.tomorrow-preview{
+  border-radius:16px;padding:14px;margin-top:12px;
+  background:rgba(255,255,255,.025);border:1px dashed rgba(148,163,184,.25);
+}
+.tomorrow-preview .t{font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.journey-tl{position:relative;padding-left:22px;margin-top:12px}
+.journey-tl::before{content:"";position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--indigo),transparent)}
+.journey-item{position:relative;padding-bottom:16px}
+.journey-item::before{
+  content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;border-radius:50%;
+  background:var(--indigo-soft);box-shadow:0 0 0 4px rgba(103,94,242,.15);
+}
+.journey-item.done::before{background:var(--mint);box-shadow:0 0 0 4px rgba(52,211,153,.15)}
+.empty-profile{
+  text-align:center;padding:28px 16px;border-radius:20px;margin-bottom:14px;
+  border:1px dashed rgba(139,132,247,.4);background:rgba(103,94,242,.06);
+}
+.empty-profile .big{font-size:2.5rem;margin-bottom:8px}
+.completion-burst{
+  position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
+  background:rgba(2,4,8,.85);backdrop-filter:blur(12px);padding:20px;
+}
+.completion-burst .box{
+  text-align:center;max-width:360px;padding:28px 22px;border-radius:24px;
+  background:linear-gradient(180deg,#1a1f35,#0e1220);border:1px solid rgba(103,94,242,.35);
+  animation:popIn .5s cubic-bezier(.22,1,.36,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.field-label-v2{font-size:.72rem;font-weight:700;color:var(--dim);margin:0 0 6px 4px;letter-spacing:.03em;text-transform:uppercase}
+.submit-section-title{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.section-card-title{
+  font-family:"Space Grotesk",sans-serif;font-weight:800;font-size:.95rem;
+  display:flex;align-items:center;gap:8px;margin-bottom:2px;
+}
+.soft-divider{height:1px;background:var(--line);margin:14px 0;border:none}
+</style>
+
 </head>
 <body>
 <div class="splash" id="splash" aria-hidden="false">
@@ -1684,7 +1877,29 @@ function greeting(){
       toast("Certificate downloaded","🏆");
     }
 
-    function showCertificateModal(){
+    
+    function showCompletionBurst(){
+      const existing = document.getElementById("completionBurst");
+      if (existing) existing.remove();
+      const el = document.createElement("div");
+      el.className = "completion-burst";
+      el.id = "completionBurst";
+      el.innerHTML = `
+        <div class="box">
+          <div style="font-size:3rem;margin-bottom:8px;">🏆</div>
+          <div style="font-family:Space Grotesk,sans-serif;font-size:1.4rem;font-weight:800;">Challenge complete!</div>
+          <p class="text-xs text-muted" style="margin:10px 0 18px;line-height:1.5;">You shipped all 60 days. Your certificate is ready with QR verification.</p>
+          <button class="btn btn-primary" id="burstCertBtn"><i class="fas fa-download"></i> Get certificate</button>
+          <button class="btn btn-secondary" id="burstCloseBtn" style="margin-top:8px;">Keep celebrating</button>
+        </div>`;
+      document.body.appendChild(el);
+      confetti();
+      $("#burstCertBtn")?.addEventListener("click", () => { el.remove(); showCertificateModal(); });
+      $("#burstCloseBtn")?.addEventListener("click", () => el.remove());
+      el.addEventListener("click", e => { if (e.target === el) el.remove(); });
+    }
+
+function showCertificateModal(){
       if(state.submissions.length < 60 && !state.profile.certificateId){
         toast("Finish Day 60 to unlock your certificate","🔒");
         return;
@@ -1768,83 +1983,112 @@ function greeting(){
         <button class="brand-action" id="headerProfileBtn" aria-label="Notifications"><i class="far fa-bell"></i></button>
       </div>
 
-      <div style="text-align:center;padding:5px 0 10px;">
-        <span class="eyebrow">60 Days. Build. Share. Grow.</span>
-        <h1 style="font-family:'Space Grotesk';font-size:2.35rem;line-height:1.02;margin:18px 0 8px;letter-spacing:-1.3px;">
-          Build in Public.<br>Grow Your <span style="color:#8b84f7;">Future.</span>
-        </h1>
-        <p class="text-muted" style="font-size:.86rem;line-height:1.55;max-width:310px;margin:0 auto;">
-          ABTalks is a 60-day challenge for students to build real projects, share them online, and become career ready.
-        </p>
-        <button class="btn btn-primary" id="joinBtn" style="margin:22px auto 0;max-width:310px;">
-          Start Your 60-Day Challenge <i class="fas fa-arrow-right"></i>
-        </button>
-        <div class="text-xs text-muted" style="margin-top:11px;">🚀 Join 1.2K+ students already building</div>
-      </div>
-
-      <div class="card" style="margin-top:18px;padding:12px;">
-        <div style="height:180px;border-radius:17px;display:grid;place-items:center;position:relative;overflow:hidden;background:
-          radial-gradient(circle at 50% 70%,rgba(103,94,242,.32),transparent 38%),
-          radial-gradient(circle at 20% 20%,rgba(34,211,238,.10),transparent 25%),
-          linear-gradient(145deg,#15182a,#090c14);">
-          <div style="font-size:5.5rem;filter:drop-shadow(0 14px 28px rgba(103,94,242,.35));">👨‍💻</div>
-          <span style="position:absolute;left:12%;top:22%;font-size:1.5rem;">&lt;/&gt;</span>
-          <span style="position:absolute;right:13%;top:27%;font-size:1.7rem;color:#55aaff;">in</span>
-          <span style="position:absolute;left:18%;bottom:18%;font-size:1.4rem;">★</span>
-          <span style="position:absolute;right:18%;bottom:18%;font-size:1.2rem;color:#a855f7;">✦</span>
+      <div class="landing-hero">
+        <div class="hero-badge"><span style="width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;"></span> Free · 60 days · Build in public</div>
+        <h1>Ship code daily.<br><span class="grad">Grow your future.</span></h1>
+        <p class="lead">A focused 60-day coding challenge for Indian college developers. One task a day. GitHub + LinkedIn proof. A portfolio recruiters can actually check.</p>
+        <div class="landing-cta-row">
+          <button class="btn btn-primary" id="joinBtn">Start Your 60-Day Challenge <i class="fas fa-arrow-right"></i></button>
+          <button class="btn btn-secondary" id="seeHowBtn" style="width:100%;">See how it works</button>
         </div>
       </div>
 
+      <div class="trust-stats">
+        <div class="trust-stat"><div class="n">1.2K+</div><div class="l">Students</div></div>
+        <div class="trust-stat"><div class="n">60</div><div class="l">Challenges</div></div>
+        <div class="trust-stat"><div class="n">100%</div><div class="l">Free</div></div>
+      </div>
+
+      <div class="card" style="margin-top:8px;padding:0;overflow:hidden;">
+        <div style="height:160px;display:grid;place-items:center;position:relative;background:
+          radial-gradient(circle at 50% 70%,rgba(103,94,242,.35),transparent 40%),
+          linear-gradient(145deg,#15182a,#090c14);">
+          <div style="font-size:4.5rem;filter:drop-shadow(0 14px 28px rgba(103,94,242,.4));">👨‍💻</div>
+          <span style="position:absolute;left:12%;top:20%;font-size:1.3rem;opacity:.7;">&lt;/&gt;</span>
+          <span style="position:absolute;right:14%;top:24%;font-size:1.4rem;color:#55aaff;opacity:.8;">in</span>
+          <span style="position:absolute;left:16%;bottom:16%;font-size:1.2rem;">🔥</span>
+          <span style="position:absolute;right:16%;bottom:18%;font-size:1.1rem;color:#a855f7;">✦</span>
+        </div>
+      </div>
+
+      <div class="card" id="howSection">
+        <div class="section-card-title">⚡ How it works</div>
+        <p class="text-xs text-muted" style="margin:4px 0 12px;">Four steps. Every single day.</p>
+        ${[
+          ["1","Code the task","Solve one focused problem in 15–60 minutes."],
+          ["2","Push to GitHub","Commit clean code recruiters can open."],
+          ["3","Share on LinkedIn","Post one learning — build in public."],
+          ["4","Submit proof","Link both · protect your streak · earn XP."]
+        ].map(x=>`
+          <div class="how-step">
+            <div class="how-num">${x[0]}</div>
+            <div><div class="fw-7 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;line-height:1.4;">${x[2]}</div></div>
+          </div>`).join("")}
+      </div>
+
       <div class="card">
-        <div class="section-title">Why ABTalks? ✨</div>
-        <div style="display:grid;gap:12px;margin-top:13px;">
+        <div class="section-card-title">✨ Why ABTalks</div>
+        <div style="display:grid;gap:10px;margin-top:12px;">
           ${[
-            ["⚡","Daily bite-sized challenges","Build consistently, learn continuously"],
-            ["🌐","Build in Public","Share on GitHub & LinkedIn"],
-            ["📈","Track Your Progress","Stay motivated with streaks & stats"],
-            ["🚀","Become Career Ready","Build a portfolio that gets you noticed"]
-          ].map(x=>`<div style="display:flex;gap:11px;align-items:flex-start;">
-            <div style="width:32px;height:32px;border-radius:10px;background:rgba(103,94,242,.12);display:grid;place-items:center;flex:0 0 32px;">${x[0]}</div>
-            <div><div class="fw-6 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;">${x[2]}</div></div>
+            ["⚡","Daily bite-sized challenges","Consistency over marathon tutorials."],
+            ["🌐","Build in public","GitHub graph + LinkedIn trail recruiters notice."],
+            ["📈","Streaks, XP & ranks","Motivation that compounds."],
+            ["🏆","Certificate on Day 60","PDF with QR verification."]
+          ].map(x=>`<div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:38px;height:38px;border-radius:12px;background:rgba(103,94,242,.12);display:grid;place-items:center;flex:0 0 38px;font-size:1.1rem;">${x[0]}</div>
+            <div><div class="fw-7 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;">${x[2]}</div></div>
           </div>`).join("")}
         </div>
       </div>
 
       <div class="card">
-        <div class="section-title">How it works</div>
-        <div style="display:grid;gap:8px;margin-top:12px;">
-          ${["Complete one focused coding task","Push your work to GitHub","Share one learning on LinkedIn","Submit proof and protect your streak"].map((t,i)=>`
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.025);">
-              <span class="badge" style="min-width:24px;justify-content:center;">${i+1}</span><span class="text-sm">${t}</span>
-            </div>`).join("")}
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="section-title">What you'll build over 60 days 🧭</div>
-        <div class="info-stats">
+        <div class="section-card-title">🧭 Your 60-day journey</div>
+        <div class="info-stats" style="margin-top:12px;">
           <div class="info-stat"><div class="v">01–07</div><div class="l">Foundations</div></div>
-          <div class="info-stat"><div class="v">08–20</div><div class="l">Core Patterns</div></div>
-          <div class="info-stat"><div class="v">21–60</div><div class="l">Algorithms + Capstone</div></div>
+          <div class="info-stat"><div class="v">08–30</div><div class="l">Patterns</div></div>
+          <div class="info-stat"><div class="v">31–60</div><div class="l">Advanced + Capstone</div></div>
         </div>
-        <p class="text-xs text-muted" style="margin-top:10px;line-height:1.5;">Start simple, build problem-solving habits, then finish with advanced structures and one complete capstone project.</p>
+        <p class="text-xs text-muted" style="margin-top:12px;line-height:1.5;">Start simple. Build problem-solving muscle. Finish with structures, caches, tries — and one shipped capstone.</p>
       </div>
 
       <div class="card">
-        <div class="section-title">FAQ</div>
-        ${[
-          ["Is it free?","Yes — all 60 challenge days are free."],
-          ["What if I miss a day?","Your streak resets, but completed work stays. You can catch up on the missed day."],
-          ["What do I submit?","A GitHub repository/commit and a LinkedIn post for the day."],
-          ["How much time does it take?","Most tasks take 15–40 minutes; later hard tasks can take up to an hour."]
-        ].map(f=>`<div style="padding:12px 0;border-bottom:1px solid var(--line);"><div class="fw-6 text-sm">Q · ${f[0]}</div><div class="text-xs text-muted" style="margin-top:4px;">${f[1]}</div></div>`).join("")}
+        <div class="section-card-title">💬 What builders say</div>
+        <div style="margin-top:12px;">
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <div class="q">"I stopped restarting the same tutorial. Ninety days ago I hadn't touched Git — now my GitHub graph is basically part of my resume."</div>
+            <div class="who"><div class="av">AR</div><div><div class="fw-7 text-sm">Ananya R.</div><div class="text-xs text-muted">NIT Trichy · CSE</div></div></div>
+          </div>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <div class="q">"The streak is what actually did it. I didn't want to break a 40-day chain, so I showed up even during exam week."</div>
+            <div class="who"><div class="av">RD</div><div><div class="fw-7 text-sm">Rohan D.</div><div class="text-xs text-muted">VIT · IT</div></div></div>
+          </div>
+        </div>
       </div>
 
-      <div class="text-center text-xs text-muted" style="padding:10px 0 5px;">© 2026 ABTalks · Made with ❤️ in India</div>
+      <div class="card">
+        <div class="section-card-title">❓ FAQ</div>
+        ${[
+          ["Is it free?","Yes — all 60 days, certificate included. No credit card."],
+          ["What do I submit?","GitHub commit/repo + LinkedIn post. Optional: live demo, screenshot, learning notes."],
+          ["What if I miss a day?","Streak resets. Completed work stays. Pick up the next day whenever you're ready."],
+          ["How long per day?","Most tasks 15–40 min. Later hard ones up to ~1 hour."]
+        ].map(f=>`<div style="padding:12px 0;border-bottom:1px solid var(--line);"><div class="fw-7 text-sm">${f[0]}</div><div class="text-xs text-muted" style="margin-top:4px;line-height:1.45;">${f[1]}</div></div>`).join("")}
+      </div>
+
+      <div style="text-align:center;padding:16px 0 8px;">
+        <button class="btn btn-primary" id="joinBtn2" style="max-width:320px;margin:0 auto;">Join free — Day 1 awaits <i class="fas fa-rocket"></i></button>
+        <div class="text-xs text-muted" style="margin-top:14px;">© 2026 ABTalks · Made with ❤️ in India</div>
+      </div>
     </div>`;
-  $("#joinBtn")?.addEventListener("click",()=>{page="dashboard";render();});
+  const go = ()=>{ page="dashboard"; render(); };
+  $("#joinBtn")?.addEventListener("click", go);
+  $("#joinBtn2")?.addEventListener("click", go);
+  $("#seeHowBtn")?.addEventListener("click", ()=> $("#howSection")?.scrollIntoView({behavior:"smooth"}));
   $("#headerProfileBtn")?.addEventListener("click", openNotifications);
 }
+
     // ---------- PROFILE SETUP ----------
     function initialsFor(name){
       const parts=String(name||"").trim().split(/\s+/).filter(Boolean);
@@ -2087,176 +2331,174 @@ function greeting(){
       const r = rank();
       const lp = levelProgress();
       const done = state.submissions.length;
+      const streak = computeStreak();
+      const isFirstDay = done === 0 && state.currentDay === 1;
+      // Missed: last submit was before yesterday and streak is 0 but had history
+      const lastSub = state.submissions.map(s=>s.submittedAt).filter(Boolean).sort().pop();
+      let missed = false;
+      if (lastSub) {
+        const ld = new Date(lastSub); ld.setHours(0,0,0,0);
+        const yest = todayStart(); yest.setDate(yest.getDate()-1);
+        missed = streak === 0 && ld.getTime() < yest.getTime();
+      }
+
+      // Week calendar Mon-Sun around today
+      const weekDays = [];
+      const now = todayStart();
+      const dow = (now.getDay() + 6) % 7; // Mon=0
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(now); d.setDate(d.getDate() - dow + i);
+        const key = dateKey(d);
+        const has = state.submissions.some(x => x.submittedAt && x.submittedAt.slice(0,10) === key);
+        const isToday = dateKey(d) === dateKey(now);
+        const labels = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+        let cls = "d";
+        if (isToday) cls += " today";
+        else if (has) cls += " done";
+        else if (d < now) cls += " miss";
+        weekDays.push({ label: labels[i], cls, has, isToday });
+      }
 
       app.innerHTML = `
         <div class="page">
           <div class="mobile-brandbar">
-  <div class="brand-lockup">
-    <div class="brand-mark">AB</div>
-    <div class="brand-name"><b>AB</b><span>Talks</span></div>
-  </div>
-  <button class="brand-action" id="headerProfileBtn" aria-label="Notifications"><i class="far fa-bell"></i></button>
-</div>
+            <div class="brand-lockup">
+              <div class="brand-mark">AB</div>
+              <div class="brand-name"><b>AB</b><span>Talks</span></div>
+            </div>
+            <button class="brand-action" id="headerProfileBtn" aria-label="Notifications"><i class="far fa-bell"></i></button>
+          </div>
+
           <div class="hero-greeting">
             <div class="eyebrow">60-Day Coding Challenge</div>
             <h1>${greeting()}, ${p.name || "builder"}! 👋</h1>
-            <p>Let’s keep building your future, one day at a time.</p>
+            <p>One commit today. Momentum tomorrow.</p>
           </div>
-          <div class="dashboard-topbar" style="margin-bottom:12px;">
-            <div class="dashboard-identity">
-              <div class="dashboard-avatar">${p.initials || "👨‍💻"}</div>
-              <div class="dashboard-name">
-                <h2 class="fw-7" style="font-size:1.25rem;letter-spacing:-0.3px;margin:0;">${p.name || "Your ABTalks Profile"}</h2>
-                <span class="text-muted text-sm">${p.college ? p.college + " · " : ""}Level ${p.level || 1} · ${(p.xp || 0).toLocaleString()} XP</span>
-              </div>
-              <button class="btn btn-secondary btn-sm" id="setupProfileBtn" title="Edit profile" style="margin-left:auto;flex:0 0 34px;">
-                <i class="fas fa-user-pen"></i>
-              </button>
+
+          ${!p.profileComplete ? `
+          <div class="empty-profile">
+            <div class="big">👤</div>
+            <div class="fw-7" style="font-size:1.05rem;">Set up your profile</div>
+            <p class="text-xs text-muted" style="margin:6px 0 14px;line-height:1.45;max-width:280px;margin-left:auto;margin-right:auto;">Add your name, college & GitHub so ranks, certificates and submissions feel like yours.</p>
+            <button class="btn btn-primary btn-sm" id="setupProfileInline" style="max-width:220px;margin:0 auto;"><i class="fas fa-user-pen"></i> Complete profile</button>
+          </div>` : `
+          <div class="dashboard-identity" style="margin-bottom:12px;">
+            <div class="dashboard-avatar">${p.initials || "👨‍💻"}</div>
+            <div class="dashboard-name" style="flex:1;min-width:0;">
+              <h2 class="fw-7" style="font-size:1.15rem;margin:0;letter-spacing:-.3px;">${p.name}</h2>
+              <span class="text-muted text-sm">${p.college ? p.college + " · " : ""}Lvl ${p.level || 1} · ${(p.xp || 0).toLocaleString()} XP</span>
             </div>
+            <button class="btn btn-secondary btn-sm" id="setupProfileBtn" title="Edit profile" style="margin-left:auto;flex:0 0 34px;width:34px;min-width:34px;height:34px;padding:0;display:grid;place-items:center;">
+              <i class="fas fa-user-pen"></i>
+            </button>
+          </div>`}
 
-            <div class="dashboard-streak-panel">
-  <div class="streak-main-row">
-    <div class="streak-big">
-      <div class="streak-fire-ring"><i class="fas fa-fire"></i></div>
-      <div>
-        <div class="streak-label">Current Streak <i class="far fa-circle-question"></i></div>
-        <div class="streak-number">${Number(p.streak || 0)} Days</div>
-        <div class="streak-sub">${Number(p.streak || 0) > 0 ? "Keep it up! 🔥" : "Start today — you've got this."}</div>
-      </div>
-    </div>
-    <div class="streak-side">
-      <div class="streak-side-box">
-        <div class="label"><i class="fas fa-arrow-trend-up"></i> Best Streak</div>
-        <div class="value">${Math.max(Number(p.bestStreak || 0), Number(p.streak || 0))} days</div>
-      </div>
-      <div class="streak-side-box">
-        <div class="label"><i class="far fa-calendar-check"></i> Last Active</div>
-        <div class="value" style="color:${state.submissions.length?'#4ade80':'var(--dim)'};">${(()=>{
-          if(!state.submissions.length) return "Never";
-          const last=state.submissions.map(s=>s.submittedAt).filter(Boolean).sort().pop();
-          if(!last) return "—";
-          const d=new Date(last), t=todayStart(), diff=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/86400000);
-          if(diff===0) return "Today";
-          if(diff===1) return "Yesterday";
-          if(diff>1&&diff<7) return diff+" days ago";
-          return d.toLocaleDateString();
-        })()}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-row">
-    ${[
-      ["Mon",4],["Tue",5],["Wed",6],["Thu",7],["Fri",8],["Sat",9],["Today",10]
-    ].map(([label,offset])=>{
-      const d=todayStart(); d.setDate(d.getDate()-(10-offset));
-      const key=dateKey(d);
-      const has=state.submissions.some(x=>x.submittedAt && x.submittedAt.slice(0,10)===key);
-      const isToday=label==="Today";
-      return `<div class="week-day">${label}<div class="week-status ${isToday?'today':has?'done':'missed'}">${isToday?'🔥':has?'✓':'•'}</div></div>`;
-    }).join("")}
-  </div>
-  <div class="consistency-line"><i class="fas fa-wand-magic-sparkles"></i><span>Consistency today, success tomorrow.</span></div>
-</div>
-
-          ${!p.profileComplete ? `<div class="card empty-profile-card" style="margin-bottom:12px;">
-            <div class="fw-7" style="font-size:1rem;">👋 Welcome to ABTalks</div>
-            <div class="text-xs text-muted" style="margin:4px 0 10px;">Set up your profile so your dashboard, rank and challenge history feel like yours.</div>
-            <button class="btn btn-primary btn-sm" id="setupProfileInline"><i class="fas fa-user-pen"></i> Set up my profile</button>
+          ${isFirstDay ? `
+          <div class="first-day-banner">
+            <div style="font-size:1.6rem;">🚀</div>
+            <div>
+              <div class="fw-7 text-sm">Day 1 — your first ship</div>
+              <div class="text-xs text-muted" style="margin-top:2px;">Print Hello World, declare variables, and submit GitHub + LinkedIn. You've got this.</div>
+            </div>
           </div>` : ""}
+
+          ${missed && !isFirstDay ? `
+          <div class="missed-banner">
+            <div style="font-size:1.5rem;">💫</div>
+            <div>
+              <div class="fw-7 text-sm">Streak paused — not erased</div>
+              <div class="text-xs text-muted" style="margin-top:2px;">Your shipped days stay. Open today's task and restart the chain.</div>
+            </div>
+          </div>` : ""}
+
+          <div class="streak-panel-v2">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div class="streak-fire"><i class="fas fa-fire"></i></div>
+              <div style="flex:1;min-width:0;">
+                <div class="text-xs text-muted" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Current streak</div>
+                <div style="font-family:Space Grotesk,sans-serif;font-size:1.85rem;font-weight:900;color:#ffc247;line-height:1.1;margin-top:2px;">${streak} <span style="font-size:.95rem;font-weight:600;color:#a2a9b8;">days</span></div>
+                <div class="text-xs text-muted" style="margin-top:4px;">${streak > 0 ? "Keep the chain alive today 🔥" : "Ship today to start a new streak"}</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="text-xs text-muted">Best</div>
+                <div class="fw-8" style="color:#e8ebf3;">${Math.max(Number(p.bestStreak||0), streak)}</div>
+              </div>
+            </div>
+            <div class="week-cal">
+              ${weekDays.map(w => `
+                <div class="${w.cls}">
+                  <div class="lbl">${w.label}</div>
+                  <div class="dot">${w.isToday ? "🔥" : w.has ? "✓" : "·"}</div>
+                </div>`).join("")}
+            </div>
+            <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(148,163,184,.1);font-size:.72rem;color:#a5adbd;display:flex;align-items:center;gap:7px;">
+              <i class="fas fa-wand-magic-sparkles" style="color:#a855f7;"></i> Consistency today, portfolio tomorrow.
+            </div>
+          </div>
 
           <div style="margin-bottom:14px;">
             <div class="flex-between text-xs text-muted">
-              <span>Level ${p.level}</span>
-              <span>${p.xp % 500} / 500 XP</span>
+              <span>Level ${p.level || 1}</span>
+              <span>${(p.xp || 0) % 500} / 500 XP</span>
             </div>
-            <div class="progress" style="height:5px;margin-top:5px;">
-              <div class="progress-fill" style="width:${lp}%;"></div>
-            </div>
+            <div class="progress" style="height:6px;margin-top:6px;"><div class="progress-fill" style="width:${lp}%;"></div></div>
           </div>
 
-          <div class="today-focus" style="margin-bottom:13px;">
-            <div class="today-focus-head">
-              <div class="today-focus-label"><span class="today-focus-icon">◎</span> Today's Focus</div>
+          <div class="today-focus-v2">
+            <div class="flex-between" style="margin-bottom:12px;">
+              <div class="fw-7 text-sm" style="display:flex;align-items:center;gap:8px;">
+                <span style="width:28px;height:28px;border-radius:9px;background:rgba(103,94,242,.18);display:grid;place-items:center;color:#9b91ff;font-size:.85rem;">◎</span>
+                Today's focus
+              </div>
               <span class="badge">Day ${today.day} / 60</span>
             </div>
-            <div class="today-task-main">
-              <div class="today-task-emoji">${today.day <= 5 ? "💻" : today.day <= 10 ? "🧠" : "🚀"}</div>
+            <div style="display:flex;gap:12px;align-items:center;">
+              <div style="width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem;background:rgba(103,94,242,.12);border:1px solid rgba(103,94,242,.18);flex:0 0 56px;">
+                ${today.day <= 7 ? "💻" : today.day <= 20 ? "🧠" : today.day <= 45 ? "⚡" : "🚀"}
+              </div>
               <div style="min-width:0;flex:1;">
-                <div class="today-task-title">${today.title}</div>
-                <div class="text-xs text-muted" style="margin-top:4px;line-height:1.35;">${today.instructions.slice(0,88)}${today.instructions.length>88?"…":""}</div>
-                <div class="today-task-meta">
+                <div class="fw-8" style="font-family:Space Grotesk,sans-serif;font-size:1.05rem;line-height:1.25;">${today.title}</div>
+                <div class="text-xs text-muted" style="margin-top:4px;line-height:1.35;">${today.instructions.slice(0,90)}${today.instructions.length>90?"…":""}</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:.65rem;color:#9da5b7;">
                   <span>◷ ${today.time}</span>
-                  <span>▥ ${today.difficulty}</span>
+                  <span class="badge ${diffClass(today.difficulty)}" style="font-size:.62rem;padding:2px 8px;">${today.difficulty}</span>
                   <span>⚡ +50 XP</span>
                 </div>
               </div>
-              <button class="today-task-arrow" id="goDay" aria-label="Open today's challenge"><i class="fas fa-chevron-right"></i></button>
+              <button class="go-btn" id="goDay" aria-label="Open challenge"><i class="fas fa-chevron-right"></i></button>
             </div>
           </div>
 
           <div class="card progress-card" style="margin-bottom:13px;">
             <div class="flex-between">
-              <div class="section-title">🏁 60 Day Challenge Progress</div>
+              <div class="section-card-title" style="margin:0;">🏁 Challenge progress</div>
               <div style="font-size:1.35rem;font-weight:900;color:#58d978;">${Math.round(prog)}%</div>
             </div>
             <div class="progress" style="margin-top:12px;"><div class="progress-fill" style="width:${prog}%;"></div></div>
             <div class="flex-between text-xs text-muted" style="margin-top:8px;">
-              <span><b style="color:#58d978;">${done}</b> / 60 days completed</span>
-              <span>${Math.max(0,60-done)} days remaining</span>
+              <span><b style="color:#58d978;">${done}</b> / 60 shipped</span>
+              <span>${Math.max(0,60-done)} remaining</span>
             </div>
           </div>
 
           <div class="card" style="margin-bottom:13px;">
-            <div class="section-title">🏆 Your Rank</div>
-            <div style="text-align:center;padding:22px 4px 8px;">
+            <div class="section-card-title">🏆 Your rank</div>
+            <div style="text-align:center;padding:18px 4px 6px;">
               <div class="rank-number">#${r}</div>
               <div class="rank-caption">Out of 1.2K+ students</div>
-              <span class="badge" style="margin-top:12px;color:#ffbd35;border-color:rgba(255,178,26,.2);background:rgba(255,178,26,.08)!important;">Top performer</span>
             </div>
           </div>
 
-          <div class="stat-row">
-            <div class="stat" style="background:rgba(6,182,212,0.05);">
-              <i class="fas fa-medal" style="color:var(--accent);"></i>
-              <div class="val">${(state.badges || []).length}</div>
-              <div class="lbl">badges</div>
-            </div>
-            <div class="stat" style="background:rgba(34,197,94,0.05);">
-              <i class="fas fa-check-circle" style="color:var(--success);"></i>
-              <div class="val">${done}</div>
-              <div class="lbl">submitted</div>
-            </div>
-            <div class="stat" style="background:rgba(139,92,246,0.05);">
-              <i class="fas fa-chart-line" style="color:var(--secondary);"></i>
-              <div class="val">${careerReadiness()}%</div>
-              <div class="lbl">readiness</div>
-            </div>
-          </div>
-          <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
-              <i class="fas fa-award" style="color:var(--secondary);"></i> Achievements
-            </h4>
-            <div class="scroll-x">
-              ${state.badges.length === 0
-                ? `<div class="empty" style="padding:14px;width:100%;font-size:0.85rem;"><i class="fas fa-trophy"></i><p>No badges yet</p></div>`
-                : state.badges.map(b => `
-                    <div style="background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:40px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);">
-                      <span style="font-size:1.25rem;">${b.icon}</span>
-                      <div>
-                        <div class="fw-6" style="font-size:0.76rem;">${b.name}</div>
-                        <div class="text-muted" style="font-size:0.58rem;">${b.date}</div>
-                      </div>
-                    </div>
-                  `).join("")
-              }
-            </div>
+          <div class="stat-row" style="margin-bottom:13px;">
+            <div class="stat"><i class="fas fa-medal" style="color:var(--accent);"></i><div class="val">${(state.badges||[]).length}</div><div class="lbl">badges</div></div>
+            <div class="stat"><i class="fas fa-check-circle" style="color:var(--success);"></i><div class="val">${done}</div><div class="lbl">submitted</div></div>
+            <div class="stat"><i class="fas fa-chart-line" style="color:var(--secondary);"></i><div class="val">${careerReadiness()}%</div><div class="lbl">readiness</div></div>
           </div>
 
           ${(state.submissions.length >= 60 || state.profile.certificateId) ? `
           <div class="card cert-card" style="margin-bottom:13px;">
             <div class="fw-7">🏆 Certificate unlocked</div>
-            <p class="text-xs text-muted" style="margin:6px 0 12px;">You completed the 60-day challenge. Download your PDF with QR verification.</p>
+            <p class="text-xs text-muted" style="margin:6px 0 12px;">Download your PDF with QR verification.</p>
             <button class="btn btn-primary btn-sm" id="openCertBtn"><i class="fas fa-download"></i> Get certificate</button>
           </div>` : ""}
 
@@ -2267,8 +2509,10 @@ function greeting(){
       `;
       $("#goDay")?.addEventListener("click", () => { page = "day"; render(); });
       $("#setupProfileInline")?.addEventListener("click", openProfile);
+      $("#setupProfileBtn")?.addEventListener("click", openProfile);
       $("#headerProfileBtn")?.addEventListener("click", openNotifications);
     }
+
 
 const HEADER = `<div class="mobile-brandbar">
   <div class="brand-lockup">
@@ -2348,6 +2592,22 @@ const HEADER = `<div class="mobile-brandbar">
           </div>
 
           <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">🗺️ Developer journey</div>
+            <div class="journey-tl">
+              ${PHASES.map((ph,i)=>{
+                const pd=phaseDone[i];
+                const complete=pd.done>=pd.total;
+                const active=!complete && (i===0 || phaseDone[i-1].done>=phaseDone[i-1].total);
+                return `<div class="journey-item ${complete?"done":""}">
+                  <div class="fw-7 text-sm">${complete?"✓ ":active?"◎ ":""}${ph.name}</div>
+                  <div class="text-xs text-muted">${ph.range} · ${ph.desc}</div>
+                  <div class="text-xs" style="margin-top:3px;color:${complete?"var(--mint)":"var(--dim)"};">${pd.done}/${pd.total} days</div>
+                </div>`;
+              }).join("")}
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
             <div class="section-title">🧭 Phases</div>
             <div style="display:grid;gap:10px;margin-top:12px;">
               ${PHASES.map((ph,i)=>{
@@ -2401,8 +2661,9 @@ const HEADER = `<div class="mobile-brandbar">
       const c = challenge(state.currentDay);
       const done = submitted(state.currentDay);
       const sub = submission(state.currentDay);
+      const isFirst = state.currentDay === 1 && state.submissions.length === 0;
+      const nextC = state.currentDay < 60 ? challenge(state.currentDay + 1) : null;
 
-      // Day strip: full 1–60, scrollable. Only submitted days are clickable.
       let dots = "";
       for (let d = 1; d <= 60; d++) {
         const isDone = submitted(d);
@@ -2411,75 +2672,105 @@ const HEADER = `<div class="mobile-brandbar">
         if (isCurrent) cls += " current";
         if (isDone) cls += " done";
         else if (!isCurrent) cls += " locked";
-        // Submitted days can be opened; incomplete days do nothing
         const clickable = isDone || isCurrent;
-        dots += `<button type="button" class="${cls}" data-day="${d}" data-open="${clickable?"1":"0"}" aria-label="Day ${d}${isDone?" submitted":isCurrent?" current":" locked"}">${d}</button>`;
+        dots += `<button type="button" class="${cls}" data-day="${d}" data-open="${clickable?"1":"0"}" aria-label="Day ${d}">${d}</button>`;
       }
 
       app.innerHTML = `
         <div class="page">
           <div class="mobile-brandbar">
-  <div class="brand-lockup">
-    <div class="brand-mark">AB</div>
-    <div class="brand-name"><b>AB</b><span>Talks</span></div>
-  </div>
-  <button class="brand-action" id="headerProfileBtn" aria-label="Notifications"><i class="far fa-bell"></i></button>
-</div>
+            <div class="brand-lockup">
+              <div class="brand-mark">AB</div>
+              <div class="brand-name"><b>AB</b><span>Talks</span></div>
+            </div>
+            <button class="brand-action" id="headerProfileBtn" aria-label="Notifications"><i class="far fa-bell"></i></button>
+          </div>
+
           <div class="day-strip" id="dayStrip">${dots}</div>
 
-          <div class="flex-between" style="margin-bottom:2px;">
-            <span class="fw-8" style="font-size:2.3rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;">Day ${c.day}</span>
+          ${isFirst ? `
+          <div class="first-day-banner">
+            <div style="font-size:1.5rem;">🌱</div>
+            <div>
+              <div class="fw-7 text-sm">Welcome to Day 1</div>
+              <div class="text-xs text-muted" style="margin-top:2px;">Keep it simple. Ship something small. Momentum starts here.</div>
+            </div>
+          </div>` : ""}
+
+          <div class="flex-between" style="margin-bottom:2px;align-items:flex-end;">
+            <span class="fw-8" style="font-size:2.2rem;background:linear-gradient(135deg,#6366F1,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;font-family:Space Grotesk,sans-serif;">Day ${c.day}</span>
             <span class="badge ${diffClass(c.difficulty)}">${c.difficulty}</span>
           </div>
-          <h2 class="fw-7" style="font-size:1.2rem;margin-bottom:4px;">${c.title}</h2>
-          <p class="text-muted text-sm" style="margin-bottom:12px;">
-            <i class="far fa-clock"></i> ${c.time} · ${c.objectives.map((x,i)=>`${objectiveEmoji(i)} ${x}`).join(" · ")}
+          <h2 class="fw-7" style="font-size:1.25rem;margin-bottom:6px;font-family:Space Grotesk,sans-serif;">${c.title}</h2>
+          <p class="text-muted text-sm" style="margin-bottom:14px;">
+            <i class="far fa-clock"></i> ${c.time} · ⚡ +50 XP
           </p>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
-              <i class="fas fa-book-open" style="color:var(--primary);"></i> Instructions
-            </h4>
-            <div class="info-item"><span class="task-number">${c.day}</span><p style="color:#E2E8F0;font-size:0.92rem;margin:0;line-height:1.55;"><span style="margin-right:6px;">📝</span>${c.instructions}</p></div>
-            <div class="chips">
-              ${c.criteria.map((x,i) => `<span class="chip on">${criteriaEmoji(i)} ${x}</span>`).join("")}
+            <div class="section-card-title"><i class="fas fa-bullseye" style="color:var(--cyan);"></i> Learning objectives</div>
+            <div class="obj-list">
+              ${c.objectives.map((x,i) => `
+                <div class="obj-item">
+                  <span class="ic">${objectiveEmoji(i)}</span>
+                  <span class="text-sm">${x}</span>
+                </div>`).join("")}
             </div>
-            <div style="margin-top:12px;">
-              <span class="text-xs text-muted fw-6">Resources</span>
-              ${c.resources.map(r => `
-                <div style="color:var(--primary-light);font-size:0.84rem;margin-top:3px;">
-                  <i class="fas fa-book" style="font-size:0.65rem;opacity:0.65;"></i> ${r}
-                </div>
-              `).join("")}
-            </div>
-            ${done ? `<div class="badge success" style="margin-top:12px;"><i class="fas fa-check-circle"></i> Submitted</div>` : ""}
           </div>
 
           <div class="card">
-            <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
-              <i class="fas fa-paper-plane" style="color:var(--accent);"></i> Submit your work
-            </h4>
-            <p class="text-xs text-muted" style="margin:4px 0 10px;">Day is marked complete only after valid GitHub + LinkedIn proof.</p>
+            <div class="section-card-title"><i class="fas fa-book-open" style="color:var(--primary);"></i> Instructions</div>
+            <p style="color:#E2E8F0;font-size:0.92rem;margin:10px 0 0;line-height:1.6;">${c.instructions}</p>
+          </div>
+
+          <div class="card">
+            <div class="section-card-title"><i class="fas fa-list-check" style="color:var(--mint);"></i> Requirements checklist</div>
+            <div class="req-list">
+              ${c.criteria.map((x,i) => `
+                <div class="req-item"><i class="fas fa-check"></i><span>${x}</span></div>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-card-title"><i class="fas fa-link" style="color:var(--violet);"></i> Resources</div>
+            <div style="margin-top:10px;">
+              ${c.resources.map(r => `<span class="res-chip"><i class="fas fa-book" style="font-size:.65rem;"></i> ${r}</span>`).join("")}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="submit-section-title">
+              <i class="fas fa-paper-plane" style="color:var(--accent);"></i>
+              <span class="section-card-title" style="margin:0;">Submit your work</span>
+            </div>
+            <p class="text-xs text-muted" style="margin:4px 0 12px;">Day completes only after valid GitHub + LinkedIn proof.</p>
+
+            <label class="field-label-v2">GitHub URL *</label>
             <div class="field" id="ghField">
               <i class="fab fa-github"></i>
-              <input type="url" id="githubInput" placeholder="GitHub commit / repo URL" value="${sub?.github || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+              <input type="url" id="githubInput" placeholder="https://github.com/you/repo or commit" value="${sub?.github || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
-            <div class="field-hint" id="ghHint">Must include github.com${state.profile.githubUsername ? " · prefer @"+state.profile.githubUsername : ""}</div>
+            <div class="field-hint" id="ghHint">Must include github.com${state.profile.githubUsername ? " · match @"+state.profile.githubUsername : ""}</div>
+
+            <label class="field-label-v2" style="margin-top:10px;">LinkedIn post URL *</label>
             <div class="field" id="liField">
               <i class="fab fa-linkedin"></i>
-              <input type="url" id="linkedinInput" placeholder="LinkedIn post URL" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+              <input type="url" id="linkedinInput" placeholder="https://www.linkedin.com/posts/…" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
-            <div class="field-hint" id="liHint">Must include linkedin.com — required for verification</div>
+            <div class="field-hint" id="liHint">Must include linkedin.com</div>
+
+            <label class="field-label-v2" style="margin-top:10px;">Live demo URL</label>
             <div class="field" id="demoField">
               <i class="fas fa-globe"></i>
-              <input type="url" id="demoInput" placeholder="Live demo URL (optional)" value="${sub?.demoUrl || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+              <input type="url" id="demoInput" placeholder="https://your-demo.vercel.app (optional)" value="${sub?.demoUrl || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
+
             <div class="submission-extra">
-              <label class="field-label" style="margin-left:4px;">Notes about today's learning</label>
-              <textarea id="notesInput" placeholder="What did you learn? Any blockers?" ${done ? "readonly" : ""}>${sub?.notes || ""}</textarea>
+              <label class="field-label-v2">Reflection notes</label>
+              <textarea id="notesInput" placeholder="What did you learn? What was hard? One insight for tomorrow…" ${done ? "readonly" : ""}>${sub?.notes || ""}</textarea>
               <div style="margin-top:10px;">
                 <label class="file-btn">
-                  <i class="fas fa-camera"></i> ${sub?.screenshot ? "Screenshot attached" : "Add screenshot (optional)"}
+                  <i class="fas fa-camera"></i> ${sub?.screenshot ? "Screenshot attached ✓" : "Upload screenshot (optional)"}
                   <input type="file" id="shotInput" accept="image/*" ${done ? "disabled" : ""} />
                 </label>
                 <div class="shot-preview" id="shotPreview" style="${sub?.screenshot ? "" : "display:none"}">
@@ -2487,17 +2778,20 @@ const HEADER = `<div class="mobile-brandbar">
                 </div>
               </div>
             </div>
-            ${done && (sub?.verifiedGithub || sub?.verifiedLinkedin) ? `
+
+            ${done ? `
               <div class="verify-banner">
                 <span>✅</span>
                 <div class="text-xs">
-                  <div class="fw-7">Verified submission</div>
-                  <div class="text-muted">${sub?.verifiedGithub ? "GitHub ✓" : ""} ${sub?.verifiedLinkedin ? "LinkedIn ✓" : ""} ${sub?.demoUrl ? "· Demo linked" : ""}</div>
+                  <div class="fw-7">Submitted & verified</div>
+                  <div class="text-muted">${sub?.verifiedGithub ? "GitHub ✓" : ""} ${sub?.verifiedLinkedin ? "· LinkedIn ✓" : ""}${sub?.demoUrl ? " · Demo linked" : ""}</div>
                   ${sub?.demoUrl ? `<div class="demo-link">${sub.demoUrl}</div>` : ""}
+                  ${sub?.notes ? `<div style="margin-top:6px;color:var(--dim);font-style:italic;">"${(sub.notes||"").slice(0,120)}${(sub.notes||"").length>120?"…":""}"</div>` : ""}
                 </div>
               </div>
             ` : ""}
-            <button class="btn btn-primary" id="submitBtn" style="margin-top:12px;" ${done ? "disabled" : ""}>
+
+            <button class="btn btn-primary" id="submitBtn" style="margin-top:14px;" ${done ? "disabled" : ""}>
               <i class="fas ${done ? "fa-check-circle" : "fa-paper-plane"}"></i>
               ${done ? "Submitted & verified" : "Submit & earn +50 XP"}
             </button>
@@ -2509,12 +2803,26 @@ const HEADER = `<div class="mobile-brandbar">
             ` : ""}
             ${submitStatus === "error" ? `
               <div class="error-banner">
-                <i class="fas fa-exclamation-circle"></i> Valid GitHub and LinkedIn URLs are required to mark the day complete.
+                <i class="fas fa-exclamation-circle"></i> Valid GitHub and LinkedIn URLs are required.
               </div>
             ` : ""}
           </div>
 
-          <div class="flex gap-1" style="margin:6px 0 8px;">
+          ${nextC && !done ? `
+          <div class="tomorrow-preview">
+            <div class="t">Up next · Day ${nextC.day}</div>
+            <div class="fw-7 text-sm" style="margin-top:4px;">${nextC.title}</div>
+            <div class="text-xs text-muted" style="margin-top:3px;">${nextC.difficulty} · ${nextC.time} · Unlocks after you ship today</div>
+          </div>
+          ` : nextC && done ? `
+          <div class="tomorrow-preview">
+            <div class="t">Tomorrow's challenge</div>
+            <div class="fw-7 text-sm" style="margin-top:4px;">Day ${nextC.day} · ${nextC.title}</div>
+            <div class="text-xs text-muted" style="margin-top:3px;">${nextC.difficulty} · ${nextC.time} · Available after 24h cooldown</div>
+          </div>
+          ` : ""}
+
+          <div class="flex gap-1" style="margin:14px 0 8px;">
             <button class="btn btn-secondary" id="prevDay" style="flex:1;" ${state.currentDay <= 1 ? "disabled" : ""}>
               <i class="fas fa-arrow-left"></i> Prev
             </button>
@@ -2522,18 +2830,11 @@ const HEADER = `<div class="mobile-brandbar">
               Next <i class="fas fa-arrow-right"></i>
             </button>
           </div>
-
-          <div class="flex-center gap-2 text-muted text-sm" style="padding:4px 0 8px;">
-            <span><i class="fas fa-star" style="color:var(--warning);"></i> +50 XP</span>
-            <span><i class="fas fa-fire" style="color:var(--warning);"></i> Streak</span>
-            <span><i class="fas fa-medal" style="color:var(--secondary);"></i> Badges</span>
-          </div>
         </div>
       `;
 
       $("#headerProfileBtn")?.addEventListener("click", openNotifications);
 
-      // Scroll current day into view
       requestAnimationFrame(() => {
         const strip = $("#dayStrip");
         const cur = strip?.querySelector(".day-dot.current");
@@ -2543,7 +2844,6 @@ const HEADER = `<div class="mobile-brandbar">
         }
       });
 
-      // Only submitted days (and current) open on click. Incomplete days do nothing.
       $$(".day-dot").forEach(btn => {
         const dayNum = Number(btn.dataset.day);
         const canOpen = btn.dataset.open === "1";
@@ -2553,9 +2853,8 @@ const HEADER = `<div class="mobile-brandbar">
           return;
         }
         btn.addEventListener("click", () => {
-          // Only open if submitted, or it is the current working day
           if (!submitted(dayNum) && dayNum !== state.currentDay) return;
-          if (dayNum === state.currentDay) return; // already viewing
+          if (dayNum === state.currentDay) return;
           state.currentDay = dayNum;
           submitStatus = null;
           save();
@@ -2563,7 +2862,6 @@ const HEADER = `<div class="mobile-brandbar">
         });
       });
 
-      // Live validation clear
       const ghIn = $("#githubInput");
       const liIn = $("#linkedinInput");
       ghIn?.addEventListener("input", () => {
@@ -2575,7 +2873,6 @@ const HEADER = `<div class="mobile-brandbar">
         $("#liHint")?.classList.remove("show");
       });
 
-      // Screenshot preview
       let pendingShot = sub?.screenshot || "";
       $("#shotInput")?.addEventListener("change", (e) => {
         const file = e.target.files?.[0];
@@ -2590,18 +2887,16 @@ const HEADER = `<div class="mobile-brandbar">
         reader.readAsDataURL(file);
       });
 
-      // Submit
       $("#submitBtn")?.addEventListener("click", () => {
         if (submitted(state.currentDay)) return;
 
-        const github = ghIn.value.trim();
-        const linkedin = liIn.value.trim();
+        const github = (ghIn?.value || "").trim();
+        const linkedin = (liIn?.value || "").trim();
         const demoUrl = ($("#demoInput")?.value || "").trim();
         const notes = ($("#notesInput")?.value || "").trim();
         const okGh = github && (github.includes("github.com") || github.includes("gist.github.com"));
         const okLi = linkedin && linkedin.includes("linkedin.com");
 
-        // Optional: stronger GitHub username match when connected
         let ghUserOk = true;
         if (state.profile.githubUsername && okGh) {
           const u = state.profile.githubUsername.toLowerCase();
@@ -2616,7 +2911,7 @@ const HEADER = `<div class="mobile-brandbar">
           return;
         }
         if (!ghUserOk) {
-          toast("GitHub URL should match your connected username @"+state.profile.githubUsername,"⚠️");
+          toast("GitHub URL should match @"+state.profile.githubUsername,"⚠️");
           $("#ghField")?.classList.add("error");
           return;
         }
@@ -2642,13 +2937,14 @@ const HEADER = `<div class="mobile-brandbar">
           toast(`Level ${newLevel} unlocked!`, "🎉");
         }
 
-        if (state.currentDay === state.profile.streak + 1) {
-          state.profile.streak++;
+        // streak: recompute properly
+        state.profile.streak = computeStreak(state);
+        if (state.profile.streak > (state.profile.bestStreak || 0)) {
+          state.profile.bestStreak = state.profile.streak;
         }
 
         state.profile.careerReadiness = Math.min(98, Math.round(38 + (state.submissions.length / 60) * 60));
 
-        // Badges
         const addBadge = (name, icon) => {
           if (!state.badges.find(b => b.name === name)) {
             state.badges.push({ name, icon, date: `Day ${state.currentDay}` });
@@ -2667,13 +2963,13 @@ const HEADER = `<div class="mobile-brandbar">
         const me = state.leaderboard.find(u => u.name === state.profile.name || u.isYou);
         if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
 
-        // Certificate when Day 60 is done
         if (completedDay === 60 || state.submissions.length >= 60) {
           if (!state.profile.certificateId) {
             state.profile.certificateId = "ABT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
             state.profile.certificateIssuedAt = new Date().toISOString();
-            toast("Certificate unlocked!","🏆");
           }
+          // Completion animation
+          setTimeout(() => showCompletionBurst(), 500);
         }
 
         submitStatus = "success";
@@ -2681,7 +2977,6 @@ const HEADER = `<div class="mobile-brandbar">
         confetti();
         toast("+50 XP earned");
         renderDay();
-        // One submission per day — show 24h wait popup
         setTimeout(() => showWaitPopup({ mode:"success", completedDay }), 400);
       });
 
@@ -2699,7 +2994,6 @@ const HEADER = `<div class="mobile-brandbar">
           showTaskLock();
           return;
         }
-        // Enforce 24-hour gap before unlocking the next day's submit
         if (!canSubmitNextDay()) {
           showWaitPopup({ mode:"locked" });
           return;
@@ -2841,6 +3135,12 @@ const HEADER = `<div class="mobile-brandbar">
       if(!state.currentDay || state.currentDay < 1 || state.currentDay > 60) state.currentDay = nextIncompleteDay();
       // Single source of truth for rank + list
       syncLeaderboardState();
+      // First-time users land on marketing page; returning users on Home
+      if (!state.profile.profileComplete && state.submissions.length === 0) {
+        page = "landing";
+      } else if (page === "landing") {
+        page = "dashboard";
+      }
       render();
       // Splash: JUST DO IT!!!!! then welcome
       setTimeout(()=>{
