@@ -746,3 +746,111 @@ can you add these things into this website and make it more amazing with these n
 now , if we submit the today problem and countdown timer is starts for submit next problem after 24 hours , the timer countdown also shows at homepage because it shows like now you can relif for this time next submission has time
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Master Task: ABTalks Home Page Enhancement, Challenge Guide Integration, and Ranking System Fix**
+
+You are required to implement improvements to the ABTalks platform, focusing on enhancing the Home Page experience, adding a structured onboarding guide for the 60-day challenge, and fixing the ranking logic after progress reset.
+
+---
+
+### **1. Home Page ("/") Enhancement**
+
+The Home Page should act as the first interaction point for students who are not familiar with ABTalks. It must build trust, provide clarity, and motivate users to commit to the 60-day challenge.
+
+**Requirements:**
+
+* Clearly explain:
+
+  * What ABTalks is
+  * Purpose of the 60-day challenge
+  * Benefits of participation
+* Improve layout and content to:
+
+  * Create a strong first impression
+  * Deliver a clear value proposition
+  * Encourage user engagement and action
+* Maintain a clean, modern, and user-friendly UI/UX
+
+---
+
+### **2. Add “How to Start the Challenge” Section**
+
+Add a new section below the **“Why Show Up Today”** section.
+
+**Section Title:**
+**“How to Start the Challenge”**
+
+**Requirements:**
+
+* Provide a clear, step-by-step guide covering:
+
+  1. How to register or join the challenge
+  2. How to start daily participation
+  3. How the learning process works
+  4. What users are expected to do daily
+* Include detailed information about:
+
+  * Participation flow
+  * Learning structure
+  * Commitment expectations
+* Add a subsection explaining:
+
+  * Badges and achievements system
+  * Rewards (if applicable)
+  * Progress tracking mechanism
+* Design the section using:
+
+  * Cards, steps, or timeline UI
+  * Easy-to-understand visual hierarchy
+
+---
+
+### **3. Ranking System Fix (Progress Reset Issue)**
+
+**Problem:**
+When a user resets their progress, their rank incorrectly remains unchanged.
+
+**Expected Behavior:**
+
+* After resetting progress:
+
+  * The user’s rank must be updated to the lowest rank.
+  * Lowest rank = total number of participants.
+
+**Example:**
+
+* If there are 10 users → rank after reset = 10
+* If there are N users → rank after reset = N
+
+**Requirements:**
+
+* Update ranking logic to:
+
+  * Dynamically assign the last rank upon reset
+  * Prevent stale or cached rank values
+* Ensure consistency across all users
+* Validate functionality with multiple user scenarios
+
+---
+
+### **4. Deliverables**
+
+* Updated code files for:
+
+  * Home Page improvements
+  * New “How to Start the Challenge” section
+  * Ranking system fix
+* UI Preview demonstrating:
+
+  * Enhanced Home Page
+  * Newly added guide section
+  * Correct rank update after progress reset
+
+---
+
+### **Goal**
+
+Deliver a polished, user-friendly experience that:
+
+* Builds trust for new users
+* Clearly guides them to start the challenge
+* Ensures accurate and fair ranking behavior
