@@ -1229,7 +1229,13 @@ const LEADERBOARD_OTHERS=[
 {name:"Vikram Rao",xp:1720,streak:19},
 {name:"Priya Nair",xp:890,streak:11},
 {name:"Arjun Mehta",xp:610,streak:9},
-{name:"Sana Iqbal",xp:420,streak:6}
+{name:"Sana Iqbal",xp:420,streak:6},
+{name:"Kabir Joshi",xp:380,streak:5},
+{name:"Meera Desai",xp:290,streak:4},
+{name:"Rahul Verma",xp:210,streak:3},
+{name:"Isha Reddy",xp:150,streak:2},
+{name:"Dev Patel",xp:80,streak:1},
+{name:"Ananya Gupta",xp:40,streak:1}
 ];
 const TESTIMONIALS=[
 {quote:"I stopped restarting the same tutorial for the third time. Ninety days ago I hadn't touched Git — now my GitHub graph is basically part of my resume.",name:"Ananya R.",meta:"NIT Trichy, CSE"},
@@ -1310,12 +1316,19 @@ function defaultState(){
     currentDay:13,
     weeklyActivity:[3,1,5,2,4,0,3],
     leaderboard:[
-      {name:"Mihir Trivedi",xp:600,streak:5,isYou:true,initials:"MT"},
       {name:"Aarav Shah",xp:2450,streak:28},
       {name:"Neha Kapoor",xp:1980,streak:22},
       {name:"Vikram Rao",xp:1720,streak:19},
       {name:"Priya Nair",xp:890,streak:11},
-      {name:"Arjun Mehta",xp:610,streak:9}
+      {name:"Arjun Mehta",xp:610,streak:9},
+      {name:"Mihir Trivedi",xp:600,streak:5,isYou:true,initials:"MT"},
+      {name:"Sana Iqbal",xp:420,streak:6},
+      {name:"Kabir Joshi",xp:380,streak:5},
+      {name:"Meera Desai",xp:290,streak:4},
+      {name:"Rahul Verma",xp:210,streak:3},
+      {name:"Isha Reddy",xp:150,streak:2},
+      {name:"Dev Patel",xp:80,streak:1},
+      {name:"Ananya Gupta",xp:40,streak:1}
     ],
     quotes:QUOTES
   };
@@ -1528,9 +1541,21 @@ async function doFullReset(){
     stopWaitCountdown?.();
     hideWaitPopup?.();
     hideTaskLock?.();
-    // Wipe every component
+    // Wipe every component — XP 0, day 1, empty submissions
     state=freshStartState();
-    syncLeaderboardState();
+    // Guarantee zero progress so rank falls to last place
+    state.profile.xp = 0;
+    state.profile.level = 1;
+    state.profile.streak = 0;
+    state.profile.bestStreak = 0;
+    state.profile.careerReadiness = 0;
+    state.profile.careerReadinessBase = 0;
+    state.submissions = [];
+    state.badges = [];
+    state.currentDay = 1;
+    state.lastSubmitAt = null;
+    state.weeklyActivity = [0,0,0,0,0,0,0];
+    syncLeaderboardState(); // recompute rank from 0 XP → last place
     submitStatus=null;
     page="dashboard";
     // Clear all storage keys this app may have used
@@ -1583,10 +1608,11 @@ function earnedBadges(){return BADGE_DEFS.filter(b=>b.need(state));}
 function lockedBadges(){return BADGE_DEFS.filter(b=>!b.need(state));}
 function leaderboardRows(){
   const youName=state.profile.name||"You";
+  const youXp=xpTotal(); // always live from submissions (0 after reset)
   const you={
     name:youName,
     initials:state.profile.initials||(youName==="You"?"YO":youName.split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase()),
-    xp:xpTotal(),
+    xp:youXp,
     streak:computeStreak(),
     isYou:true
   };
@@ -1595,7 +1621,8 @@ function leaderboardRows(){
     initials:o.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),
     isYou:false
   }));
-  // Sort by XP desc; if tie, put "you" after others with same XP so rank is consistent
+  // Sort by XP desc. On ties, put "you" after others so after a full reset (0 XP)
+  // you always land in last place among the cohort.
   return[...others,you].sort((a,b)=>{
     if(b.xp!==a.xp) return b.xp-a.xp;
     if(a.isYou) return 1;
