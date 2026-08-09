@@ -742,3 +742,7 @@ can you add these things into this website and make it more amazing with these n
 * Notes about today's learning
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+now , if we submit the today problem and countdown timer is starts for submit next problem after 24 hours , the timer countdown also shows at homepage because it shows like now you can relif for this time next submission has time
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
