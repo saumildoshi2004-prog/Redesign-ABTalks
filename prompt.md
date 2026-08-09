@@ -706,3 +706,39 @@ Before finishing, verify that:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 add and improve reset button and some smoothness in website make it perfect and professional
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+can you add these things into this website and make it more amazing with these new features :- 1.Certificates
+
+* Auto-generate certificate after Day 60.
+
+* Download as PDF.
+
+* QR code verification.
+
+2. GitHub Integration
+
+* Connect GitHub username.
+
+* Verify daily commits automatically.
+
+* Show contribution graph.
+
+3. LinkedIn Proof
+
+* Upload LinkedIn post link.
+
+* Mark challenge completed only after verification.
+
+4. Daily Submission
+
+* GitHub URL
+
+* Live Demo URL
+
+* Screenshot
+
+* Notes about today's learning
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
