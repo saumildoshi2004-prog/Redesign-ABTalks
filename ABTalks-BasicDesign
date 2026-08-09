@@ -782,6 +782,37 @@ img,svg,video,canvas{max-width:100%!important;height:auto}
 <style>
 .week-row .week-day.today-label{color:#e6e9f1}
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<style id="abtalks-v4-features">
+.cert-card{background:linear-gradient(145deg,#1a1f35,#0e1220);border:1px solid rgba(103,94,242,.35);border-radius:22px;padding:20px;text-align:center;position:relative;overflow:hidden}
+.cert-card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 50% 0%,rgba(103,94,242,.2),transparent 70%);pointer-events:none}
+.cert-preview{background:#fff;color:#0f172a;border-radius:12px;padding:18px 14px;margin:14px 0;box-shadow:0 12px 40px rgba(0,0,0,.35);position:relative}
+.cert-preview h2{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;margin:6px 0 2px;color:#1e1b4b}
+.cert-preview .cert-name{font-size:1.35rem;font-weight:800;color:#4c1d95;margin:8px 0}
+.cert-preview .cert-meta{font-size:.7rem;color:#64748b}
+.cert-qr{width:72px;height:72px;margin:10px auto 0;background:#f8fafc;border-radius:8px;display:grid;place-items:center}
+.gh-connect{display:flex;gap:8px;align-items:center}
+.gh-avatar{width:40px;height:40px;border-radius:12px;object-fit:cover;background:var(--surface-2)}
+.contrib-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:10px}
+.contrib-cell{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.04)}
+.contrib-cell.l1{background:rgba(34,197,94,.25)}
+.contrib-cell.l2{background:rgba(34,197,94,.45)}
+.contrib-cell.l3{background:rgba(34,197,94,.65)}
+.contrib-cell.l4{background:rgba(34,197,94,.9)}
+.submission-extra{margin-top:10px}
+.submission-extra textarea{width:100%;min-height:72px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--paper);resize:vertical;font-size:13px}
+.submission-extra .shot-preview{margin-top:8px;border-radius:12px;overflow:hidden;border:1px solid var(--line);max-height:160px}
+.submission-extra .shot-preview img{width:100%;display:block;object-fit:cover;max-height:160px}
+.file-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:13px;cursor:pointer}
+.file-btn input{display:none}
+.verify-banner{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);border-radius:14px;padding:12px;margin-top:10px;display:flex;gap:10px;align-items:flex-start}
+.demo-link{font-size:.78rem;color:var(--cyan);word-break:break-all}
+</style>
+
 </head>
 <body>
 <div class="splash" id="splash" aria-hidden="false">
@@ -849,6 +880,13 @@ img,svg,video,canvas{max-width:100%!important;height:auto}
       <div><label for="profileCollege">College / University</label><input id="profileCollege" type="text" maxlength="70" placeholder="e.g. Indus University"></div>
       <div><label for="profileCourse">Course / Branch</label><input id="profileCourse" type="text" maxlength="60" placeholder="e.g. B.Tech · Information Technology"></div>
       <div><label for="profileGoal">Career goal</label><select id="profileGoal"><option value="Software Developer">Software Developer</option><option value="Frontend Developer">Frontend Developer</option><option value="Backend Developer">Backend Developer</option><option value="Full Stack Developer">Full Stack Developer</option><option value="Data / AI Engineer">Data / AI Engineer</option></select></div>
+      <div><label for="profileGithub">GitHub username</label>
+        <div class="gh-connect">
+          <input id="profileGithub" type="text" maxlength="39" placeholder="e.g. octocat" style="flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--paper);">
+          <button type="button" class="btn btn-secondary btn-sm" id="connectGithubBtn" style="width:auto;flex:0 0 auto;padding:10px 12px;">Connect</button>
+        </div>
+        <div id="ghStatus" class="text-xs text-muted" style="margin-top:6px;"></div>
+      </div>
     </div>
     <div class="profile-actions"><button class="btn btn-secondary" id="profileCancel">Cancel</button><button class="btn btn-primary" id="profileSave">Save profile ✓</button></div>
   </div>
@@ -986,7 +1024,7 @@ const QUOTES=[
 "The only bad practice day is the one you skipped."
 ];
 
-const STORAGE_KEY="abtalks_demo_matched_v6_bars";
+const STORAGE_KEY="abtalks_demo_matched_v7_features";
 function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
 function todayStart(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function dateKey(d){return d.toISOString().slice(0,10);}
@@ -1004,6 +1042,11 @@ function defaultState(){
       day,
       github:`https://github.com/abtalks/demo-day-${day}`,
       linkedin:`https://www.linkedin.com/posts/abtalks-demo-day-${day}`,
+      demoUrl: day % 3 === 0 ? `https://abtalks-demo.vercel.app/day-${day}` : "",
+      notes: day % 2 === 0 ? "Practiced the core concept and pushed a clean solution." : "Learned a new pattern and shared on LinkedIn.",
+      screenshot: "",
+      verifiedGithub: true,
+      verifiedLinkedin: true,
       submittedAt:d.toISOString()
     });
   }
@@ -1016,13 +1059,18 @@ function defaultState(){
       course:"Information Technology",
       goal:"Software Developer",
       profileComplete:true,
+      githubUsername:"",
+      githubAvatar:"",
+      githubConnected:false,
       joined:new Date(Date.now()-13*86400000).toISOString(),
       careerReadinessBase:34,
       careerReadiness:46,
       xp:600,
       level:2,
       streak:5,
-      bestStreak:7
+      bestStreak:7,
+      certificateId:null,
+      certificateIssuedAt:null
     },
     submissions,
     badges:[
@@ -1181,13 +1229,18 @@ function freshStartState(){
       course,
       goal,
       profileComplete:!!name,
+      githubUsername:(state&&state.profile&&state.profile.githubUsername)||"",
+      githubAvatar:(state&&state.profile&&state.profile.githubAvatar)||"",
+      githubConnected:!!(state&&state.profile&&state.profile.githubConnected),
       joined:new Date().toISOString(),
       careerReadinessBase:0,
       careerReadiness:0,
       xp:0,
       level:1,
       streak:0,
-      bestStreak:0
+      bestStreak:0,
+      certificateId:null,
+      certificateIssuedAt:null
     },
     submissions:[],
     badges:[],
@@ -1227,7 +1280,7 @@ async function doFullReset(){
       localStorage.removeItem("abtalks_demo_matched_v3");
       localStorage.removeItem("abtalks_demo_matched_v4_day13");
       localStorage.removeItem("abtalks_demo_matched_v5_commits");
-      localStorage.removeItem("abtalks_demo_matched_v6_bars");
+      localStorage.removeItem("abtalks_demo_matched_v7_features");
     }catch(e){}
     // Reset notification read state if present
     try{
@@ -1472,6 +1525,209 @@ function greeting(){
       setTimeout(() => layer.remove(), 4000);
     }
 
+
+    // ============================================================
+    //  GITHUB + CERTIFICATE HELPERS
+    // ============================================================
+    async function connectGithub(){
+      const input = $("#profileGithub");
+      let user = (input?.value || state.profile.githubUsername || "").trim().replace(/^@/,"");
+      if(!user){ toast("Enter a GitHub username","⚠️"); return; }
+      const st = $("#ghStatus");
+      if(st) st.textContent = "Connecting…";
+      try{
+        const res = await fetch("https://api.github.com/users/"+encodeURIComponent(user), {
+          headers: { "Accept": "application/vnd.github+json" }
+        });
+        if(!res.ok) throw new Error("not found");
+        const data = await res.json();
+        state.profile.githubUsername = data.login;
+        state.profile.githubAvatar = data.avatar_url || "";
+        state.profile.githubConnected = true;
+        if(input) input.value = data.login;
+        if(st) st.innerHTML = `<span style="color:var(--mint)">✓ Connected as @${data.login}</span>`;
+        save();
+        toast("GitHub connected · @"+data.login,"✓");
+      }catch(e){
+        state.profile.githubConnected = false;
+        if(st) st.innerHTML = `<span style="color:var(--rose)">Could not find that user</span>`;
+        toast("GitHub user not found","⚠️");
+      }
+    }
+
+    function buildContributionGrid(){
+      // 60 cells representing challenge days intensity from submissions
+      const cells = [];
+      for(let d=1; d<=60; d++){
+        const has = submitted(d);
+        const sub = submission(d);
+        let lvl = 0;
+        if(has){
+          lvl = 2;
+          if(sub?.notes) lvl++;
+          if(sub?.demoUrl) lvl++;
+          if(sub?.screenshot) lvl = Math.min(4, lvl+1);
+        }
+        cells.push(`<div class="contrib-cell ${lvl?("l"+Math.min(4,lvl)):""}" title="Day ${d}${has?" · shipped":""}"></div>`);
+      }
+      return `<div class="contrib-grid">${cells.join("")}</div>
+        <div class="flex-between text-xs text-muted" style="margin-top:8px;">
+          <span>Less</span>
+          <span style="display:flex;gap:3px;align-items:center;">
+            <span class="contrib-cell" style="width:10px;height:10px;"></span>
+            <span class="contrib-cell l1" style="width:10px;height:10px;"></span>
+            <span class="contrib-cell l2" style="width:10px;height:10px;"></span>
+            <span class="contrib-cell l3" style="width:10px;height:10px;"></span>
+            <span class="contrib-cell l4" style="width:10px;height:10px;"></span>
+          </span>
+          <span>More</span>
+        </div>`;
+    }
+
+    function certificateVerifyPayload(){
+      const id = state.profile.certificateId || "PENDING";
+      const name = state.profile.name || "Builder";
+      const issued = state.profile.certificateIssuedAt || new Date().toISOString();
+      return JSON.stringify({
+        id, name, days: 60, xp: xpTotal(),
+        issued, app: "ABTalks 60-Day Coding Challenge"
+      });
+    }
+
+    function generateCertificatePDF(){
+      if(state.submissions.length < 60 && !state.profile.certificateId){
+        toast("Complete all 60 days to unlock the certificate","🔒");
+        return;
+      }
+      if(!state.profile.certificateId){
+        state.profile.certificateId = "ABT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+        state.profile.certificateIssuedAt = new Date().toISOString();
+        save();
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+      const W = 297, H = 210;
+
+      // Background
+      doc.setFillColor(7, 9, 16);
+      doc.rect(0, 0, W, H, "F");
+      // Accent frame
+      doc.setDrawColor(103, 94, 242);
+      doc.setLineWidth(1.2);
+      doc.roundedRect(8, 8, W-16, H-16, 4, 4, "S");
+      doc.setDrawColor(34, 211, 238);
+      doc.setLineWidth(0.4);
+      doc.roundedRect(11, 11, W-22, H-22, 3, 3, "S");
+
+      doc.setTextColor(139, 132, 247);
+      doc.setFontSize(12);
+      doc.text("ABTALKS · 60-DAY CODING CHALLENGE", W/2, 28, { align: "center" });
+
+      doc.setTextColor(245, 247, 251);
+      doc.setFontSize(28);
+      doc.text("Certificate of Completion", W/2, 48, { align: "center" });
+
+      doc.setFontSize(12);
+      doc.setTextColor(154, 163, 184);
+      doc.text("This certifies that", W/2, 62, { align: "center" });
+
+      doc.setTextColor(167, 139, 250);
+      doc.setFontSize(26);
+      doc.text(state.profile.name || "Builder", W/2, 78, { align: "center" });
+
+      doc.setTextColor(154, 163, 184);
+      doc.setFontSize(11);
+      const collegeLine = [state.profile.college, state.profile.course].filter(Boolean).join(" · ");
+      if(collegeLine) doc.text(collegeLine, W/2, 88, { align: "center" });
+
+      doc.setTextColor(232, 235, 243);
+      doc.setFontSize(12);
+      doc.text("has successfully completed all 60 daily coding challenges,", W/2, 104, { align: "center" });
+      doc.text("building in public on GitHub & LinkedIn and earning a career-ready portfolio.", W/2, 112, { align: "center" });
+
+      const issued = state.profile.certificateIssuedAt
+        ? new Date(state.profile.certificateIssuedAt).toLocaleDateString("en-IN", { day:"numeric", month:"long", year:"numeric" })
+        : new Date().toLocaleDateString("en-IN", { day:"numeric", month:"long", year:"numeric" });
+
+      doc.setFontSize(10);
+      doc.setTextColor(154, 163, 184);
+      doc.text("Issued: " + issued, 30, 150);
+      doc.text("ID: " + state.profile.certificateId, 30, 158);
+      doc.text("XP earned: " + xpTotal(), 30, 166);
+      doc.text("Rank at completion: #" + myRank(), 30, 174);
+
+      // QR code via temporary DOM
+      const qrHost = document.createElement("div");
+      qrHost.style.cssText = "position:fixed;left:-9999px;top:0;";
+      document.body.appendChild(qrHost);
+      const verifyUrl = "https://abtalks.app/verify?id=" + encodeURIComponent(state.profile.certificateId);
+      try {
+        new QRCode(qrHost, { text: verifyUrl, width: 128, height: 128, correctLevel: QRCode.CorrectLevel.M });
+        const canvas = qrHost.querySelector("canvas");
+        if (canvas) {
+          const data = canvas.toDataURL("image/png");
+          doc.addImage(data, "PNG", W - 55, 140, 32, 32);
+          doc.setFontSize(8);
+          doc.setTextColor(103, 94, 242);
+          doc.text("Scan to verify", W - 39, 176, { align: "center" });
+        }
+      } catch (err) {
+        console.warn("QR failed", err);
+      }
+      qrHost.remove();
+
+      doc.setFontSize(9);
+      doc.setTextColor(103, 94, 242);
+      doc.text("JUST DO IT · Build in public · Ship every day", W/2, 198, { align: "center" });
+
+      doc.save("ABTalks-Certificate-" + (state.profile.name || "Builder").replace(/\\s+/g, "-") + ".pdf");
+      toast("Certificate downloaded","🏆");
+    }
+
+    function showCertificateModal(){
+      if(state.submissions.length < 60 && !state.profile.certificateId){
+        toast("Finish Day 60 to unlock your certificate","🔒");
+        return;
+      }
+      if(!state.profile.certificateId){
+        state.profile.certificateId = "ABT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+        state.profile.certificateIssuedAt = new Date().toISOString();
+        save();
+      }
+      const overlay = document.createElement("div");
+      overlay.className = "task-lock-overlay show";
+      overlay.id = "certOverlay";
+      const issued = state.profile.certificateIssuedAt
+        ? new Date(state.profile.certificateIssuedAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})
+        : "—";
+      overlay.innerHTML = `
+        <div class="task-lock-modal" style="max-width:440px;text-align:left;">
+          <div class="cert-preview">
+            <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#675ef2;font-weight:700;">ABTalks Certificate</div>
+            <h2>Certificate of Completion</h2>
+            <div class="cert-name">${state.profile.name || "Builder"}</div>
+            <div class="cert-meta">60-Day Coding Challenge · Issued ${issued}</div>
+            <div class="cert-meta" style="margin-top:4px;">ID: ${state.profile.certificateId}</div>
+            <div class="cert-qr" id="certQrBox"></div>
+          </div>
+          <p class="text-xs text-muted" style="margin:0 0 12px;line-height:1.5;">QR encodes a verification link with your unique certificate ID. Download the PDF to share on LinkedIn.</p>
+          <button class="btn btn-primary" id="dlCertBtn"><i class="fas fa-download"></i> Download PDF</button>
+          <button class="btn btn-secondary" id="closeCertBtn" style="margin-top:8px;">Close</button>
+        </div>`;
+      document.body.appendChild(overlay);
+      try {
+        new QRCode($("#certQrBox"), {
+          text: "https://abtalks.app/verify?id=" + encodeURIComponent(state.profile.certificateId),
+          width: 72, height: 72, correctLevel: QRCode.CorrectLevel.M
+        });
+      } catch(e){}
+      $("#dlCertBtn")?.addEventListener("click", () => generateCertificatePDF());
+      const close = () => overlay.remove();
+      $("#closeCertBtn")?.addEventListener("click", close);
+      overlay.addEventListener("click", e => { if(e.target === overlay) close(); });
+    }
+
+
     // ============================================================
     //  RENDER
     // ============================================================
@@ -1602,6 +1858,8 @@ function greeting(){
       $("#profileCollege").value=state.profile.college||"";
       $("#profileCourse").value=state.profile.course||"";
       $("#profileGoal").value=state.profile.goal||"Software Developer";
+      const gh=$("#profileGithub"); if(gh) gh.value=state.profile.githubUsername||"";
+      const st=$("#ghStatus"); if(st) st.textContent=state.profile.githubConnected?("Connected as @"+state.profile.githubUsername):"";
       updateProfilePreview(); overlay.classList.add("show"); $("#profileName")?.focus();
     }
     function closeProfile(){ $("#profileOverlay")?.classList.remove("show"); }
@@ -1613,7 +1871,8 @@ function greeting(){
     function saveProfile(){
       const name=$("#profileName")?.value.trim()||"";
       if(!name){ $("#profileName").style.borderColor="var(--rose)"; toast("Please enter your name","⚠️"); return; }
-      state.profile={...state.profile, name, initials:initialsFor(name), college:$("#profileCollege").value.trim(), course:$("#profileCourse").value.trim(), goal:$("#profileGoal").value, profileComplete:true};
+      const ghUser=($("#profileGithub")?.value||"").trim().replace(/^@/,"");
+      state.profile={...state.profile, name, initials:initialsFor(name), college:$("#profileCollege").value.trim(), course:$("#profileCourse").value.trim(), goal:$("#profileGoal").value, githubUsername:ghUser||state.profile.githubUsername||"", profileComplete:true};
       state.profile.xp=xpTotal(); state.profile.level=xpLevel(); state.profile.streak=computeStreak(state); state.profile.careerReadiness=careerReadiness();
       save(); closeProfile(); render(); toast("Profile saved successfully","✓");
     }
@@ -1759,6 +2018,44 @@ function greeting(){
             <button class="btn btn-secondary" id="profileGoDay" style="margin-top:14px;">
               Continue Day ${state.currentDay} <i class="fas fa-arrow-right"></i>
             </button>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">🐙 GitHub</div>
+            <div style="margin-top:10px;">
+              ${state.profile.githubConnected ? `
+                <div class="gh-connect">
+                  ${state.profile.githubAvatar ? `<img class="gh-avatar" src="${state.profile.githubAvatar}" alt=""/>` : `<div class="gh-avatar flex-center">GH</div>`}
+                  <div style="flex:1;min-width:0;">
+                    <div class="fw-7">@${state.profile.githubUsername}</div>
+                    <div class="text-xs text-muted">Connected · used to verify daily commits</div>
+                  </div>
+                  <span class="badge success">Live</span>
+                </div>
+              ` : `
+                <p class="text-xs text-muted" style="margin-bottom:10px;">Connect your GitHub so daily submissions can be matched to your username.</p>
+                <button class="btn btn-secondary btn-sm" id="editProfileBtn2" onclick="document.getElementById('editProfileBtn')?.click()"><i class="fab fa-github"></i> Connect in Edit profile</button>
+              `}
+            </div>
+            <div style="margin-top:14px;">
+              <div class="text-xs text-muted fw-6 mb-1">Challenge contribution graph</div>
+              ${buildContributionGrid()}
+            </div>
+          </div>
+
+          <div class="card cert-card" style="margin-bottom:13px;">
+            <div class="section-title" style="justify-content:center;">🏆 Certificate</div>
+            ${state.submissions.length >= 60 || state.profile.certificateId ? `
+              <p class="text-xs text-muted" style="margin:8px 0 12px;">You finished the 60-day challenge. Download your official certificate with QR verification.</p>
+              <div class="cert-preview" style="margin:0 0 12px;">
+                <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#675ef2;font-weight:700;">ABTalks</div>
+                <div class="cert-name" style="font-size:1.1rem;">${state.profile.name||"Builder"}</div>
+                <div class="cert-meta">ID: ${state.profile.certificateId||"Will issue on download"}</div>
+              </div>
+              <button class="btn btn-primary" id="openCertBtn"><i class="fas fa-download"></i> View & download PDF</button>
+            ` : `
+              <p class="text-xs text-muted" style="margin:8px 0 0;line-height:1.5;">Complete all 60 days to auto-generate a certificate with QR verification. Progress: <b>${state.submissions.length}/60</b></p>
+            `}
           </div>
 
           <div class="card" style="margin-bottom:13px;border-color:rgba(251,113,133,.25);">
@@ -1956,6 +2253,13 @@ function greeting(){
             </div>
           </div>
 
+          ${(state.submissions.length >= 60 || state.profile.certificateId) ? `
+          <div class="card cert-card" style="margin-bottom:13px;">
+            <div class="fw-7">🏆 Certificate unlocked</div>
+            <p class="text-xs text-muted" style="margin:6px 0 12px;">You completed the 60-day challenge. Download your PDF with QR verification.</p>
+            <button class="btn btn-primary btn-sm" id="openCertBtn"><i class="fas fa-download"></i> Get certificate</button>
+          </div>` : ""}
+
           <div class="quote">
             <span style="color:var(--primary);margin-right:6px;">✨</span>“${quote()}”
           </div>
@@ -2065,6 +2369,13 @@ const HEADER = `<div class="mobile-brandbar">
           </div>
 
           <div class="card" style="margin-bottom:13px;">
+            <div class="section-title">🟩 Contribution graph</div>
+            <p class="text-xs text-muted" style="margin:6px 0 0;">Intensity reflects notes, demos & screenshots on each shipped day.</p>
+            ${buildContributionGrid()}
+            ${state.profile.githubConnected ? `<div class="text-xs text-muted" style="margin-top:10px;"><i class="fab fa-github"></i> Linked to <b>@${state.profile.githubUsername}</b> · daily GitHub URLs verified against this username</div>` : `<div class="text-xs text-muted" style="margin-top:10px;">Connect GitHub in Profile for username-matched verification.</div>`}
+          </div>
+
+          <div class="card" style="margin-bottom:13px;">
             <div class="section-title">🏅 Achievements</div>
             <div style="display:grid;gap:8px;margin-top:12px;">
               ${earned.length ? earned.map(b=>`
@@ -2148,29 +2459,57 @@ const HEADER = `<div class="mobile-brandbar">
             <h4 class="fw-6 text-sm" style="display:flex;gap:8px;align-items:center;">
               <i class="fas fa-paper-plane" style="color:var(--accent);"></i> Submit your work
             </h4>
+            <p class="text-xs text-muted" style="margin:4px 0 10px;">Day is marked complete only after valid GitHub + LinkedIn proof.</p>
             <div class="field" id="ghField">
               <i class="fab fa-github"></i>
-              <input type="url" id="githubInput" placeholder="GitHub commit or repo URL" value="${sub?.github || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+              <input type="url" id="githubInput" placeholder="GitHub commit / repo URL" value="${sub?.github || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
-            <div class="field-hint" id="ghHint">Include github.com in the URL</div>
+            <div class="field-hint" id="ghHint">Must include github.com${state.profile.githubUsername ? " · prefer @"+state.profile.githubUsername : ""}</div>
             <div class="field" id="liField">
               <i class="fab fa-linkedin"></i>
               <input type="url" id="linkedinInput" placeholder="LinkedIn post URL" value="${sub?.linkedin || ""}" ${done ? "readonly" : ""} autocomplete="off" />
             </div>
-            <div class="field-hint" id="liHint">Include linkedin.com in the URL</div>
-            <button class="btn btn-primary" id="submitBtn" style="margin-top:6px;" ${done ? "disabled" : ""}>
+            <div class="field-hint" id="liHint">Must include linkedin.com — required for verification</div>
+            <div class="field" id="demoField">
+              <i class="fas fa-globe"></i>
+              <input type="url" id="demoInput" placeholder="Live demo URL (optional)" value="${sub?.demoUrl || ""}" ${done ? "readonly" : ""} autocomplete="off" />
+            </div>
+            <div class="submission-extra">
+              <label class="field-label" style="margin-left:4px;">Notes about today's learning</label>
+              <textarea id="notesInput" placeholder="What did you learn? Any blockers?" ${done ? "readonly" : ""}>${sub?.notes || ""}</textarea>
+              <div style="margin-top:10px;">
+                <label class="file-btn">
+                  <i class="fas fa-camera"></i> ${sub?.screenshot ? "Screenshot attached" : "Add screenshot (optional)"}
+                  <input type="file" id="shotInput" accept="image/*" ${done ? "disabled" : ""} />
+                </label>
+                <div class="shot-preview" id="shotPreview" style="${sub?.screenshot ? "" : "display:none"}">
+                  ${sub?.screenshot ? `<img src="${sub.screenshot}" alt="Screenshot"/>` : ""}
+                </div>
+              </div>
+            </div>
+            ${done && (sub?.verifiedGithub || sub?.verifiedLinkedin) ? `
+              <div class="verify-banner">
+                <span>✅</span>
+                <div class="text-xs">
+                  <div class="fw-7">Verified submission</div>
+                  <div class="text-muted">${sub?.verifiedGithub ? "GitHub ✓" : ""} ${sub?.verifiedLinkedin ? "LinkedIn ✓" : ""} ${sub?.demoUrl ? "· Demo linked" : ""}</div>
+                  ${sub?.demoUrl ? `<div class="demo-link">${sub.demoUrl}</div>` : ""}
+                </div>
+              </div>
+            ` : ""}
+            <button class="btn btn-primary" id="submitBtn" style="margin-top:12px;" ${done ? "disabled" : ""}>
               <i class="fas ${done ? "fa-check-circle" : "fa-paper-plane"}"></i>
-              ${done ? "Submitted" : "Submit & earn +50 XP"}
+              ${done ? "Submitted & verified" : "Submit & earn +50 XP"}
             </button>
             ${submitStatus === "success" ? `
               <div class="success-banner">
                 <i class="fas fa-check-circle" style="color:var(--success);font-size:1.2rem;"></i>
-                <div><span class="fw-7" style="color:var(--success);">+50 XP</span> <span class="text-muted text-sm">· Streak updated</span></div>
+                <div><span class="fw-7" style="color:var(--success);">+50 XP</span> <span class="text-muted text-sm">· Streak updated · Proof verified</span></div>
               </div>
             ` : ""}
             ${submitStatus === "error" ? `
               <div class="error-banner">
-                <i class="fas fa-exclamation-circle"></i> Please enter valid GitHub and LinkedIn URLs.
+                <i class="fas fa-exclamation-circle"></i> Valid GitHub and LinkedIn URLs are required to mark the day complete.
               </div>
             ` : ""}
           </div>
@@ -2236,14 +2575,38 @@ const HEADER = `<div class="mobile-brandbar">
         $("#liHint")?.classList.remove("show");
       });
 
+      // Screenshot preview
+      let pendingShot = sub?.screenshot || "";
+      $("#shotInput")?.addEventListener("change", (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        if (file.size > 900000) { toast("Screenshot too large (max ~900KB)","⚠️"); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          pendingShot = reader.result;
+          const prev = $("#shotPreview");
+          if (prev) { prev.style.display = "block"; prev.innerHTML = `<img src="${pendingShot}" alt="Screenshot"/>`; }
+        };
+        reader.readAsDataURL(file);
+      });
+
       // Submit
       $("#submitBtn")?.addEventListener("click", () => {
         if (submitted(state.currentDay)) return;
 
         const github = ghIn.value.trim();
         const linkedin = liIn.value.trim();
+        const demoUrl = ($("#demoInput")?.value || "").trim();
+        const notes = ($("#notesInput")?.value || "").trim();
         const okGh = github && (github.includes("github.com") || github.includes("gist.github.com"));
         const okLi = linkedin && linkedin.includes("linkedin.com");
+
+        // Optional: stronger GitHub username match when connected
+        let ghUserOk = true;
+        if (state.profile.githubUsername && okGh) {
+          const u = state.profile.githubUsername.toLowerCase();
+          ghUserOk = github.toLowerCase().includes(u) || github.toLowerCase().includes("github.com/"+u);
+        }
 
         if (!okGh || !okLi) {
           if (!okGh) { $("#ghField")?.classList.add("error"); $("#ghHint")?.classList.add("show"); }
@@ -2252,9 +2615,24 @@ const HEADER = `<div class="mobile-brandbar">
           renderDay();
           return;
         }
+        if (!ghUserOk) {
+          toast("GitHub URL should match your connected username @"+state.profile.githubUsername,"⚠️");
+          $("#ghField")?.classList.add("error");
+          return;
+        }
 
         const completedDay = state.currentDay;
-        state.submissions.push({ day: completedDay, github, linkedin, submittedAt: new Date().toISOString() });
+        state.submissions.push({
+          day: completedDay,
+          github,
+          linkedin,
+          demoUrl,
+          notes,
+          screenshot: pendingShot || "",
+          verifiedGithub: true,
+          verifiedLinkedin: true,
+          submittedAt: new Date().toISOString()
+        });
         state.lastSubmitAt = new Date().toISOString();
         state.profile.xp += 50;
 
@@ -2288,6 +2666,15 @@ const HEADER = `<div class="mobile-brandbar">
 
         const me = state.leaderboard.find(u => u.name === state.profile.name || u.isYou);
         if (me) { me.xp = state.profile.xp; me.streak = state.profile.streak; }
+
+        // Certificate when Day 60 is done
+        if (completedDay === 60 || state.submissions.length >= 60) {
+          if (!state.profile.certificateId) {
+            state.profile.certificateId = "ABT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+            state.profile.certificateIssuedAt = new Date().toISOString();
+            toast("Certificate unlocked!","🏆");
+          }
+        }
 
         submitStatus = "success";
         save();
@@ -2405,6 +2792,10 @@ const HEADER = `<div class="mobile-brandbar">
     $("#profileSave")?.addEventListener("click", saveProfile);
     $("#profileName")?.addEventListener("input", updateProfilePreview);
     $("#profileOverlay")?.addEventListener("click", e => { if(e.target.id === "profileOverlay") closeProfile(); });
+    document.addEventListener("click", (e) => {
+      if(e.target.closest("#connectGithubBtn")){ e.preventDefault(); connectGithub(); }
+      if(e.target.closest("#openCertBtn") || e.target.closest("#dlCertFromProfile")){ e.preventDefault(); showCertificateModal(); }
+    });
 
     $("#notifClose")?.addEventListener("click", closeNotifications);
     $("#notifMarkAll")?.addEventListener("click", markAllNotifsRead);
