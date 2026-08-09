@@ -2052,19 +2052,44 @@ function showCertificateModal(){
       </div>
 
       <div class="landing-hero">
-        <div class="hero-badge"><span style="width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;"></span> Free · 60 days · Build in public</div>
-        <h1>Ship code daily.<br><span class="grad">Grow your future.</span></h1>
-        <p class="lead">A focused 60-day coding challenge for Indian college developers. One task a day. GitHub + LinkedIn proof. A portfolio recruiters can actually check.</p>
+        <div class="hero-badge"><span style="width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;"></span> Free forever · No credit card · Built for Indian colleges</div>
+        <h1>Stop scrolling.<br><span class="grad">Start shipping.</span></h1>
+        <p class="lead">60 days. One focused coding task a day. Push to GitHub. Share on LinkedIn. Walk away with a portfolio recruiters can actually open — not another unfinished tutorial.</p>
         <div class="landing-cta-row">
-          <button class="btn btn-primary" id="joinBtn">Start Your 60-Day Challenge <i class="fas fa-arrow-right"></i></button>
-          <button class="btn btn-secondary" id="seeHowBtn" style="width:100%;">See how it works</button>
+          <button class="btn btn-primary" id="joinBtn">I'm in — start Day 1 free <i class="fas fa-arrow-right"></i></button>
+          <button class="btn btn-secondary" id="seeHowBtn" style="width:100%;">See how the challenge works</button>
         </div>
+        <p class="text-xs text-muted" style="margin-top:14px;text-align:center;line-height:1.5;">🔥 The best time to start was 60 days ago.<br>The second best time is <b style="color:#c4b5fd;">today</b>.</p>
       </div>
 
       <div class="trust-stats">
-        <div class="trust-stat"><div class="n">1.2K+</div><div class="l">Students</div></div>
-        <div class="trust-stat"><div class="n">60</div><div class="l">Challenges</div></div>
-        <div class="trust-stat"><div class="n">100%</div><div class="l">Free</div></div>
+        <div class="trust-stat"><div class="n">1.2K+</div><div class="l">Students shipping</div></div>
+        <div class="trust-stat"><div class="n">60</div><div class="l">Daily challenges</div></div>
+        <div class="trust-stat"><div class="n">100%</div><div class="l">Free · Forever</div></div>
+      </div>
+
+      <div class="card" style="margin-top:8px;background:linear-gradient(135deg,rgba(103,94,242,.12),rgba(34,211,238,.06));border-color:rgba(103,94,242,.28);">
+        <div style="text-align:center;padding:4px 0 2px;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">💪</div>
+          <div class="fw-7" style="font-family:Space Grotesk,sans-serif;font-size:1.05rem;line-height:1.35;">Consistency beats talent.<br>One commit a day builds the future tutorials never gave you.</div>
+          <p class="text-xs text-muted" style="margin-top:10px;line-height:1.5;">You don't need another course. You need a streak that forces you to show up — even on hard days.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:8px;">
+        <div class="section-card-title">🎯 What you walk away with</div>
+        <p class="text-xs text-muted" style="margin:4px 0 12px;">Not certificates of attendance. Proof of work.</p>
+        <div style="display:grid;gap:10px;">
+          ${[
+            ["📁","A public GitHub trail","60 days of real commits. Recruiters can click and verify."],
+            ["💼","LinkedIn proof of work","Daily posts that show consistency — not empty claims."],
+            ["🏆","Verified certificate","PDF + QR on Day 60. Share it. Own it."],
+            ["📈","Streak, XP & rank","Motivation that keeps you shipping past week 2."]
+          ].map(x=>`<div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:38px;height:38px;border-radius:12px;background:rgba(103,94,242,.12);display:grid;place-items:center;flex:0 0 38px;font-size:1.1rem;">${x[0]}</div>
+            <div><div class="fw-7 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;line-height:1.4;">${x[2]}</div></div>
+          </div>`).join("")}
+        </div>
       </div>
 
       <div class="card" style="margin-top:8px;padding:0;overflow:hidden;">
@@ -2081,12 +2106,12 @@ function showCertificateModal(){
 
       <div class="card" id="howSection">
         <div class="section-card-title">⚡ How it works</div>
-        <p class="text-xs text-muted" style="margin:4px 0 12px;">Four steps. Every single day.</p>
+        <p class="text-xs text-muted" style="margin:4px 0 12px;">Four simple steps. Every single day. No overwhelm.</p>
         ${[
-          ["1","Code the task","Solve one focused problem in 15–60 minutes."],
-          ["2","Push to GitHub","Commit clean code recruiters can open."],
-          ["3","Share on LinkedIn","Post one learning — build in public."],
-          ["4","Submit proof","Link both · protect your streak · earn XP."]
+          ["1","Code the task","One focused problem — usually 15–40 minutes."],
+          ["2","Push to GitHub","Clean commit or repo recruiters can open."],
+          ["3","Share on LinkedIn","One short post about what you learned."],
+          ["4","Submit proof","Paste both links. Protect your streak. Earn +50 XP."]
         ].map(x=>`
           <div class="how-step">
             <div class="how-num">${x[0]}</div>
@@ -2095,16 +2120,16 @@ function showCertificateModal(){
       </div>
 
       <div class="card">
-        <div class="section-card-title">✨ Why ABTalks</div>
+        <div class="section-card-title">✨ Why students stick with ABTalks</div>
         <div style="display:grid;gap:10px;margin-top:12px;">
           ${[
-            ["⚡","Daily bite-sized challenges","Consistency over marathon tutorials."],
-            ["🌐","Build in public","GitHub graph + LinkedIn trail recruiters notice."],
-            ["📈","Streaks, XP & ranks","Motivation that compounds."],
-            ["🏆","Certificate on Day 60","PDF with QR verification."]
+            ["⚡","Daily, not endless","Bite-sized tasks beat restarting the same tutorial for the third time."],
+            ["🌐","Build in public","GitHub graph + LinkedIn trail that recruiters actually notice."],
+            ["📈","Streaks that pull you forward","You show up because you don't want to break the chain — even during exams."],
+            ["🏆","A certificate that means something","Finish all 60 → verified PDF with QR. Real proof, not a participation trophy."]
           ].map(x=>`<div style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:38px;height:38px;border-radius:12px;background:rgba(103,94,242,.12);display:grid;place-items:center;flex:0 0 38px;font-size:1.1rem;">${x[0]}</div>
-            <div><div class="fw-7 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;">${x[2]}</div></div>
+            <div><div class="fw-7 text-sm">${x[1]}</div><div class="text-xs text-muted" style="margin-top:2px;line-height:1.4;">${x[2]}</div></div>
           </div>`).join("")}
         </div>
       </div>
@@ -2116,7 +2141,8 @@ function showCertificateModal(){
           <div class="info-stat"><div class="v">08–30</div><div class="l">Patterns</div></div>
           <div class="info-stat"><div class="v">31–60</div><div class="l">Advanced + Capstone</div></div>
         </div>
-        <p class="text-xs text-muted" style="margin-top:12px;line-height:1.5;">Start simple. Build problem-solving muscle. Finish with structures, caches, tries — and one shipped capstone.</p>
+        <p class="text-xs text-muted" style="margin-top:12px;line-height:1.5;">Start with variables and loops. Build problem-solving muscle. Finish with trees, caches, tries — and one real project you shipped end-to-end.</p>
+        <p class="text-xs" style="margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(103,94,242,.1);border:1px solid rgba(103,94,242,.22);color:#c4b5fd;line-height:1.45;font-weight:600;">🚀 Day 1 is easy on purpose. Momentum compounds. By Day 30 you'll wonder why you waited.</p>
       </div>
 
       <div class="card">
@@ -2124,30 +2150,42 @@ function showCertificateModal(){
         <div style="margin-top:12px;">
           <div class="testimonial">
             <div class="stars">★★★★★</div>
-            <div class="q">"I stopped restarting the same tutorial. Ninety days ago I hadn't touched Git — now my GitHub graph is basically part of my resume."</div>
+            <div class="q">"I stopped restarting the same tutorial for the third time. Ninety days ago I hadn't touched Git — now my GitHub graph is basically part of my resume."</div>
             <div class="who"><div class="av">AR</div><div><div class="fw-7 text-sm">Ananya R.</div><div class="text-xs text-muted">NIT Trichy · CSE</div></div></div>
           </div>
           <div class="testimonial">
             <div class="stars">★★★★★</div>
-            <div class="q">"The streak is what actually did it. I didn't want to break a 40-day chain, so I showed up even during exam week."</div>
+            <div class="q">"The streak is what actually did it, not the problems. I didn't want to break a 40-day chain, so I showed up even during exam week."</div>
             <div class="who"><div class="av">RD</div><div><div class="fw-7 text-sm">Rohan D.</div><div class="text-xs text-muted">VIT · IT</div></div></div>
           </div>
         </div>
       </div>
 
+      <div class="card" style="background:linear-gradient(145deg,rgba(255,178,26,.08),rgba(103,94,242,.06));border-color:rgba(255,178,26,.22);">
+        <div style="text-align:center;padding:6px 4px;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">⏰</div>
+          <div class="fw-7" style="font-family:Space Grotesk,sans-serif;font-size:1.02rem;line-height:1.4;">Every day you delay is a day your GitHub stays empty.</div>
+          <p class="text-xs text-muted" style="margin-top:8px;line-height:1.5;">Recruiters don't care about the course you almost finished.<br>They care about the 60 days you actually shipped.</p>
+        </div>
+      </div>
+
       <div class="card">
-        <div class="section-card-title">❓ FAQ</div>
+        <div class="section-card-title">❓ FAQ — straight answers</div>
         ${[
-          ["Is it free?","Yes — all 60 days, certificate included. No credit card."],
-          ["What do I submit?","GitHub commit/repo + LinkedIn post. Optional: live demo, screenshot, learning notes."],
-          ["What if I miss a day?","Streak resets. Completed work stays. Pick up the next day whenever you're ready."],
-          ["How long per day?","Most tasks 15–40 min. Later hard ones up to ~1 hour."]
+          ["Is ABTalks actually free?","Yes. All 60 days and the certificate are free. No credit card, no paywalled tasks."],
+          ["What exactly do I submit each day?","A GitHub commit/repo link + a short LinkedIn post. Optional: live demo, screenshot, and a quick note on what you learned."],
+          ["What if I miss a day?","Your streak resets, but nothing you've already shipped disappears. Pick up the next day whenever you're ready."],
+          ["Do I need to already know how to code?","You need the basics — variables, loops, functions. Day 1 starts simple on purpose and difficulty ramps gradually."],
+          ["How much time does a day take?","Most tasks take 15–40 minutes. A few harder ones later run up to about an hour."]
         ].map(f=>`<div style="padding:12px 0;border-bottom:1px solid var(--line);"><div class="fw-7 text-sm">${f[0]}</div><div class="text-xs text-muted" style="margin-top:4px;line-height:1.45;">${f[1]}</div></div>`).join("")}
       </div>
 
-      <div style="text-align:center;padding:16px 0 8px;">
-        <button class="btn btn-primary" id="joinBtn2" style="max-width:320px;margin:0 auto;">Join free — Day 1 awaits <i class="fas fa-rocket"></i></button>
-        <div class="text-xs text-muted" style="margin-top:14px;">© 2026 ABTalks · Made with ❤️ in India</div>
+      <div style="text-align:center;padding:20px 0 8px;">
+        <div class="fw-7" style="font-family:Space Grotesk,sans-serif;font-size:1.15rem;margin-bottom:6px;letter-spacing:-.3px;">Your future self is watching.</div>
+        <p class="text-xs text-muted" style="margin:0 0 16px;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.5;">Open Day 1. Ship something small today. Decide if the streak is for you — no signup wall, no pressure.</p>
+        <button class="btn btn-primary" id="joinBtn2" style="max-width:320px;margin:0 auto;">Commit to 60 days — start free <i class="fas fa-rocket"></i></button>
+        <p class="text-xs" style="margin-top:14px;color:#a99fff;font-weight:600;">JUST DO IT. Build in public. Ship every day.</p>
+        <div class="text-xs text-muted" style="margin-top:16px;">© 2026 ABTalks · Made with ❤️ in India</div>
       </div>
     </div>`;
   const go = ()=>{ page="dashboard"; render(); };
@@ -2534,6 +2572,36 @@ function showCertificateModal(){
                 </div>
               </div>
               <button class="go-btn" id="goDay" aria-label="Open challenge"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:13px;background:linear-gradient(135deg,rgba(103,94,242,.10),rgba(34,211,238,.05));border-color:rgba(103,94,242,.25);">
+            <div class="section-card-title" style="margin-bottom:10px;">💡 Why show up today</div>
+            <div style="display:grid;gap:9px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">🔥</span>
+                <div class="text-sm" style="line-height:1.45;"><b>Consistency beats talent.</b> One commit a day builds the future tutorials never gave you.</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">⏰</span>
+                <div class="text-sm" style="line-height:1.45;"><b>The best time to start was 60 days ago.</b> The second best time is today.</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">📈</span>
+                <div class="text-sm" style="line-height:1.45;"><b>Small daily improvements compound.</b> Ship something every day — momentum beats motivation.</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">💼</span>
+                <div class="text-sm" style="line-height:1.45;"><b>Recruiters notice consistency.</b> A 60-day GitHub trail beats another unfinished course.</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">🚀</span>
+                <div class="text-sm" style="line-height:1.45;"><b>Code. Commit. Share. Repeat.</b> Protect your streak — your future self is watching.</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);">
+                <span style="flex:0 0 auto;font-size:1.05rem;">✨</span>
+                <div class="text-sm" style="line-height:1.45;"><b>The only bad practice day is the one you skipped.</b> Open the task. Ship it. Keep the chain alive.</div>
+              </div>
             </div>
           </div>
 
