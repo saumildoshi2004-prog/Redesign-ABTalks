@@ -3259,15 +3259,15 @@ const HEADER = `<div class="mobile-brandbar">
       const total = typeof TOTAL_COHORT === "number" ? TOTAL_COHORT : 1200;
       syncLeaderboardState();
 
-      // Top 12 students only (never include "you" in this list)
-      const top12 = LEADERBOARD_OTHERS
+      // Top 3 students only (never include "you" in this list)
+      const top3 = LEADERBOARD_OTHERS
         .map(o => ({
           ...o,
           initials: o.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase(),
           isYou: false
         }))
         .sort((a, b) => b.xp - a.xp || a.name.localeCompare(b.name))
-        .slice(0, 12);
+        .slice(0, 3);
 
       const youName = state.profile.name || "You";
       const youInitials = state.profile.initials || (youName === "You" ? "YO" : youName.split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase());
@@ -3283,7 +3283,7 @@ const HEADER = `<div class="mobile-brandbar">
           </div>
           <div style="margin-bottom:14px;">
             <h2 class="fw-8" style="font-size:1.4rem;letter-spacing:-0.4px;">Leaderboard</h2>
-            <p class="text-muted text-sm">Top 12 of ${total.toLocaleString()} students in this cohort</p>
+            <p class="text-muted text-sm">Top 3 of ${total.toLocaleString()} students in this cohort</p>
           </div>
 
           <div class="card accent" style="margin-bottom:12px;">
@@ -3301,11 +3301,11 @@ const HEADER = `<div class="mobile-brandbar">
           </div>
 
           <div class="card" style="padding:4px 0;margin-bottom:12px;">
-            <div class="text-xs text-muted fw-6" style="padding:10px 14px 6px;letter-spacing:.04em;text-transform:uppercase;">Top 12</div>
-            ${top12.map((u, i) => {
+            <div class="text-xs text-muted fw-6" style="padding:10px 14px 6px;letter-spacing:.04em;text-transform:uppercase;">Top 3</div>
+            ${top3.map((u, i) => {
               const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
               return `
-                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < top12.length - 1 ? "border-bottom:1px solid var(--border);" : ""}">
+                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;${i < top3.length - 1 ? "border-bottom:1px solid var(--border);" : ""}">
                   <div style="width:28px;text-align:center;font-weight:700;font-size:0.92rem;color:${i < 3 ? "var(--warning)" : "var(--muted)"};">
                     ${medal || (i + 1)}
                   </div>
