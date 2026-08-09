@@ -1006,6 +1006,41 @@ body{
 .soft-divider{height:1px;background:var(--line);margin:14px 0;border:none}
 </style>
 
+
+<style id="abtalks-home-countdown">
+.home-countdown{
+  border-radius:20px;padding:16px;margin-bottom:14px;
+  background:
+    radial-gradient(280px 120px at 100% 0%,rgba(103,94,242,.18),transparent 60%),
+    linear-gradient(165deg,#14182a,#0e1220);
+  border:1px solid rgba(103,94,242,.28);
+  box-shadow:0 12px 32px rgba(103,94,242,.1);
+}
+.home-countdown .cd-label{
+  font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:#8b84f7;margin-bottom:6px;display:flex;align-items:center;gap:7px;
+}
+.home-countdown .cd-time{
+  font-family:"JetBrains Mono",monospace;font-size:1.75rem;font-weight:800;
+  letter-spacing:2px;color:#c4b5fd;line-height:1.1;
+}
+.home-countdown .cd-units{
+  display:flex;gap:16px;margin-top:4px;font-size:.62rem;color:var(--dim);font-weight:600;
+  letter-spacing:.04em;
+}
+.home-countdown .cd-sub{
+  margin-top:10px;font-size:.78rem;color:#9aa3b8;line-height:1.45;
+}
+.home-countdown.ready{
+  border-color:rgba(74,222,128,.3);
+  background:
+    radial-gradient(280px 120px at 100% 0%,rgba(74,222,128,.12),transparent 60%),
+    linear-gradient(165deg,#121a16,#0e1220);
+}
+.home-countdown.ready .cd-label{color:#4ade80}
+.home-countdown.ready .cd-time{color:#86efac}
+</style>
+
 </head>
 <body>
 <div class="splash" id="splash" aria-hidden="false">
@@ -1308,6 +1343,7 @@ function hideTaskLock(){
   const m=$("#taskLockMessage"); if(m) m.textContent="Submit today's GitHub and LinkedIn links before moving to the next day.";
 }
 let waitCountdownTimer=null;
+let homeCountdownTimer=null;
 function hoursLeftUntilNextSubmit(){
   const last=state.lastSubmitAt ? new Date(state.lastSubmitAt).getTime() : 0;
   if(!last) return 0;
@@ -1348,6 +1384,37 @@ function startWaitCountdown(){
 function stopWaitCountdown(){
   if(waitCountdownTimer){ clearInterval(waitCountdownTimer); waitCountdownTimer=null; }
 }
+
+function stopHomeCountdown(){
+  if(homeCountdownTimer){ clearInterval(homeCountdownTimer); homeCountdownTimer=null; }
+}
+function updateHomeCountdown(){
+  const el = $("#homeCountdownTime");
+  const card = $("#homeCountdownCard");
+  if(!el && !card){ stopHomeCountdown(); return; }
+  const ms = hoursLeftUntilNextSubmit();
+  if(ms <= 0){
+    if(el) el.textContent = "00:00:00";
+    if(card){
+      card.classList.add("ready");
+      const sub = card.querySelector(".cd-sub");
+      const label = card.querySelector(".cd-label");
+      if(label) label.innerHTML = '<i class="fas fa-check-circle"></i> Next challenge unlocked';
+      if(sub) sub.innerHTML = 'You can submit the next day now. Open <b>Challenge</b> and keep shipping.';
+    }
+    stopHomeCountdown();
+    return;
+  }
+  if(el) el.textContent = formatCountdown(ms);
+}
+function startHomeCountdown(){
+  stopHomeCountdown();
+  if(hoursLeftUntilNextSubmit() <= 0) return;
+  updateHomeCountdown();
+  homeCountdownTimer = setInterval(updateHomeCountdown, 1000);
+}
+
+
 function showWaitPopup(opts){
   opts=opts||{};
   const mode=opts.mode||"success"; // success | locked
@@ -1949,6 +2016,7 @@ function showCertificateModal(){
     const app = $("#app");
 
     function render() {
+      stopHomeCountdown();
       switch (page) {
         case "landing": renderLanding(); break;
         case "dashboard": renderDashboard(); break;
@@ -2469,6 +2537,20 @@ function showCertificateModal(){
             </div>
           </div>
 
+          ${(() => {
+            const msLeft = typeof hoursLeftUntilNextSubmit === "function" ? hoursLeftUntilNextSubmit() : 0;
+            if (msLeft <= 0) return "";
+            const nextDay = Math.min(60, (state.currentDay || 1) + (submitted(state.currentDay) ? 1 : 0));
+            const nc = challenge(nextDay);
+            return `
+            <div class="home-countdown" id="homeCountdownCard">
+              <div class="cd-label"><i class="far fa-clock"></i> Next submission unlocks in</div>
+              <div class="cd-time" id="homeCountdownTime">${formatCountdown(msLeft)}</div>
+              <div class="cd-units"><span>HOURS</span><span>MINS</span><span>SECS</span></div>
+              <div class="cd-sub">You submitted today — take a break. <b>Day ${nextDay}${nc ? " · " + nc.title : ""}</b> opens when the timer hits zero. Keep your streak ready.</div>
+            </div>`;
+          })()}
+
           <div class="card progress-card" style="margin-bottom:13px;">
             <div class="flex-between">
               <div class="section-card-title" style="margin:0;">🏁 Challenge progress</div>
@@ -2511,6 +2593,7 @@ function showCertificateModal(){
       $("#setupProfileInline")?.addEventListener("click", openProfile);
       $("#setupProfileBtn")?.addEventListener("click", openProfile);
       $("#headerProfileBtn")?.addEventListener("click", openNotifications);
+      startHomeCountdown();
     }
 
 
@@ -3134,6 +3217,14 @@ const HEADER = `<div class="mobile-brandbar">
       state.profile.careerReadiness = careerReadiness();
       if(!state.currentDay || state.currentDay < 1 || state.currentDay > 60) state.currentDay = nextIncompleteDay();
       // Single source of truth for rank + list
+      // Restore 24h lock from last submission if still active
+      if (!state.lastSubmitAt && state.submissions.length) {
+        const last = state.submissions.map(s => s.submittedAt).filter(Boolean).sort().pop();
+        if (last) {
+          const age = Date.now() - new Date(last).getTime();
+          if (age < 24 * 60 * 60 * 1000) state.lastSubmitAt = last;
+        }
+      }
       syncLeaderboardState();
       // First-time users land on marketing page; returning users on Home
       if (!state.profile.profileComplete && state.submissions.length === 0) {
