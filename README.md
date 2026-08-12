@@ -409,39 +409,9 @@ Or use any static HTTP server.
 # 🌐 Live Demo
 
 **Live Demo:**
-`YOUR_LIVE_DEMO_URL`
+`https://saumildoshi2004-prog.github.io/Redesign-ABTalks/`
 
 > Replace the placeholder above with your deployed application URL before submission.
-
----
-
-# 📸 Project Preview
-
-Add screenshots/GIFs of the following screens to this section:
-
-### Landing Page
-
-```text
-Add landing-page screenshot here
-```
-
-### Student Dashboard
-
-```text
-Add dashboard screenshot here
-```
-
-### Challenge Day
-
-```text
-Add challenge-day screenshot here
-```
-
-### Mobile View
-
-```text
-Add 390px mobile screenshot here
-```
 
 ---
 
